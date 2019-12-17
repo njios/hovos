@@ -13,9 +13,22 @@ class LandingVC: UIViewController {
   
     @IBOutlet weak var scrollContainer:UIScrollView!
     @IBOutlet weak var volunteerSignupView:UIView!
+    @IBOutlet weak var sliderCollView:UICollectionView!
+    @IBOutlet weak var hostCollView:UICollectionView!
+    @IBOutlet weak var volCollView:UICollectionView!
+    var sliderDelegates = Dashboardslider()
+    var listDelegates = VolunteerListCollView()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        sliderCollView.delegate = sliderDelegates
+        sliderCollView.dataSource = sliderDelegates
+        sliderCollView.reloadData()
+        hostCollView.delegate = listDelegates
+        hostCollView.dataSource = listDelegates
+        hostCollView.reloadData()
+        volCollView.delegate = listDelegates
+        volCollView.dataSource = listDelegates
+        volCollView.reloadData()
         
         // Do any additional setup after loading the view.
     }
@@ -48,4 +61,6 @@ class LandingVC: UIViewController {
     @IBAction func hostSignup(_ sender:UIButton){
            self.performSegue(withIdentifier: "host", sender: nil)
        }
+    
+    
 }

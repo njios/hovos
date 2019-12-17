@@ -15,4 +15,11 @@ extension UIViewController{
             nvc.popToRootViewController(animated: true)
         }
     }
+    
+    @IBAction func goback(_ sender:UIButton){
+        if let nvc = self.navigationController{
+        nvc.popViewController(animated: true)
+        }
+    }
+    
 }

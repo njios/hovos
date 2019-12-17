@@ -9,4 +9,5 @@ target 'Hovos' do
   pod 'GoogleSignIn'
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
+  pod 'IQKeyboardManagerSwift'
 end

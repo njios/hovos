@@ -12,12 +12,30 @@ import FBSDKLoginKit
 class LoginVC: UIViewController,GIDSignInDelegate {
     
 
+     @IBOutlet weak var emailId:UITextField!
+     @IBOutlet weak var password:UITextField!
+     
+    
+    var type:String? // used to identify Volunteer or host
+    var vmObject:LoginVM?
     override func viewDidLoad() {
-        super.viewDidLoad()
-        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.presentingViewController = self
-       
+        vmObject = LoginVM()
     }
+    @IBAction func signUpClicked(_ sender:UIButton){
+        ViewHelper.shared().showLoader(self)
+        vmObject?.signUp(emailId: emailId.text!, password: password.text!, completion: updateUiAfterSignup(status:))
+       }
+    
+     func updateUiAfterSignup(status:Bool){
+        DispatchQueue.main.async {
+            ViewHelper.shared().hideLoader()
+            if status == true{
+                       UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
+                       self.goToRootVC()
+                   }
+        }
+    }
+    
 
     @IBAction func googleSignInClicked(_ sender:UIButton){
         GIDSignIn.sharedInstance()?.signIn()
