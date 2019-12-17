@@ -18,6 +18,14 @@ import UIKit
             self.layer.borderWidth = CGFloat(newValue)
         }
     }
+    @IBInspectable var corners:CGFloat{
+        get{
+            return self.layer.cornerRadius
+        }
+        set{
+            self.layer.cornerRadius = CGFloat(newValue)
+        }
+    }
     @IBInspectable var borderColor:UIColor?{
         get {
                return UIColor(cgColor: self.layer.borderColor!)
@@ -26,4 +34,6 @@ import UIKit
                self.layer.borderColor = newValue?.cgColor
             }
     }
+    
+    
 }
