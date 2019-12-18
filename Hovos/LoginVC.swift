@@ -20,6 +20,8 @@ class LoginVC: UIViewController,GIDSignInDelegate {
     var vmObject:LoginVM?
     override func viewDidLoad() {
         vmObject = LoginVM()
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+        GIDSignIn.sharedInstance()?.delegate = self
     }
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
