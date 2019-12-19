@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 13.0, *)
 class MenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
    
 
@@ -20,11 +21,14 @@ class MenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         tbl.dataSource = self
         tbl.delegate = self
         tbl.reloadData()
+        heightConstraints.constant = 3 * 40
+        let nib = UINib(nibName: "MenuCell", bundle: nil)
+        tbl.register(nib, forCellReuseIdentifier: "MenuCell")
         // Do any additional setup after loading the view.
     }
     
     @IBAction func dismiss(_ sender:UIButton){
-        self.dismiss(animated: true, completion: nil)
+    self.dismiss(animated: true, completion: nil)
     }
     override func viewDidAppear(_ animated: Bool) {
         heightConstraints.constant = tbl.contentSize.height
@@ -40,6 +44,19 @@ class MenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         return cell
       }
       
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0{
+            self.dismiss(animated: false) {
+                DispatchQueue.main.async {
+                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+                          let vc = storyBoard.instantiateViewController(identifier: "SignUpVc") as! SignUpVc
+                              self.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+      
+                
+        }
+    }
 
 }
 

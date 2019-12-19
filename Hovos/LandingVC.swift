@@ -30,6 +30,7 @@ class LandingVC: UIViewController {
         volCollView.dataSource = listDelegates
         volCollView.reloadData()
         
+        
         // Do any additional setup after loading the view.
     }
     override func viewWillLayoutSubviews() {
@@ -62,5 +63,9 @@ class LandingVC: UIViewController {
            self.performSegue(withIdentifier: "host", sender: nil)
        }
     
-    
+    @IBAction func loadMenu(_ sender:UIButton){
+        
+        let nib = Bundle.main.loadNibNamed("MenuVc", owner: self, options: nil)
+     
+    }
 }
