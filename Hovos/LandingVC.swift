@@ -16,6 +16,7 @@ class LandingVC: UIViewController {
     @IBOutlet weak var sliderCollView:UICollectionView!
     @IBOutlet weak var hostCollView:UICollectionView!
     @IBOutlet weak var volCollView:UICollectionView!
+    @IBOutlet weak var menuView:MenuVC!
     var sliderDelegates = Dashboardslider()
     var listDelegates = VolunteerListCollView()
     override func viewDidLoad() {
@@ -29,8 +30,8 @@ class LandingVC: UIViewController {
         volCollView.delegate = listDelegates
         volCollView.dataSource = listDelegates
         volCollView.reloadData()
-        
-        
+        menuView.frame = self.view.frame
+        menuView.delegate = self
         // Do any additional setup after loading the view.
     }
     override func viewWillLayoutSubviews() {
@@ -65,7 +66,25 @@ class LandingVC: UIViewController {
     
     @IBAction func loadMenu(_ sender:UIButton){
         
-        let nib = Bundle.main.loadNibNamed("MenuVc", owner: self, options: nil)
-     
+        self.view.addSubview(menuView)
+   
+        
+    }
+    
+    
+}
+
+extension LandingVC:Menudelegates{
+    func menuItemDidSelect(for action: Action) {
+        menuView.removeFromSuperview()
+        switch action {
+        case Action.register:
+            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
+            if registerVC != nil, loginVC != nil{
+                self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
+            }
+        }
+       
     }
 }

@@ -8,32 +8,49 @@
 
 import UIKit
 
-@available(iOS 13.0, *)
-class MenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
-   
+enum Action{
+    case register
+}
 
+protocol Menudelegates {
+    func menuItemDidSelect(for action:Action)
+}
+
+class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
+   
     @IBOutlet weak var tbl:UITableView!
-     @IBOutlet weak var heightConstraints:NSLayoutConstraint!
-     @IBOutlet weak var containerView:UIView!
-    var options = ["Register","Volunteer list","Host list"]
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var heightConstraints:NSLayoutConstraint!
+    @IBOutlet weak var containerView:UIView!
+    var options = ["Log in","Volunteer list","Host list"]
+    var delegate:Menudelegates!
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit(){
+        let vc = Bundle.main.loadNibNamed("MenuVC", owner: self, options: nil)?[0] as? UIView
+        self.addSubview(vc!)
+        heightConstraints.constant = 3 * 40
+        let nib = UINib(nibName: "MenuCell", bundle: nil)
+        tbl.register(nib, forCellReuseIdentifier: "menuitem")
         tbl.dataSource = self
         tbl.delegate = self
         tbl.reloadData()
-        heightConstraints.constant = 3 * 40
-        let nib = UINib(nibName: "MenuCell", bundle: nil)
-        tbl.register(nib, forCellReuseIdentifier: "MenuCell")
-        // Do any additional setup after loading the view.
     }
     
+   
+    
     @IBAction func dismiss(_ sender:UIButton){
-    self.dismiss(animated: true, completion: nil)
+        self.removeFromSuperview()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        heightConstraints.constant = tbl.contentSize.height
-        containerView.isHidden = false
-    }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return options.count
       }
@@ -46,15 +63,8 @@ class MenuVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
-            self.dismiss(animated: false) {
-                DispatchQueue.main.async {
-                    let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-                          let vc = storyBoard.instantiateViewController(identifier: "SignUpVc") as! SignUpVc
-                              self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
-      
-                
+
+            self.delegate.menuItemDidSelect(for: Action.register)
         }
     }
 

@@ -23,6 +23,9 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ANC-gI-3j6">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="857"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <action selector="dismiss:" destination="-1" eventType="touchUpInside" id="T9K-14-4yu"/>
+                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHB-g2-8b9">
                     <rect key="frame" x="150" y="44" width="254" height="100"/>

@@ -24,6 +24,8 @@
 		AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */; };
 		AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D6C23AB6E840017430B /* MenuVC.xib */; };
 		AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D7023AB703F0017430B /* MenuCell.xib */; };
+		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
+		ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
 		DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
@@ -50,6 +52,8 @@
 		AC63951323940A38000EA4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7E7D6C23AB6E840017430B /* MenuVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuVC.xib; sourceTree = "<group>"; };
 		AC7E7D7023AB703F0017430B /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
+		ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVM.swift; sourceTree = "<group>"; };
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
 		DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboardslider.swift; sourceTree = "<group>"; };
@@ -122,6 +126,8 @@
 				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
 				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
+				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
+				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
 			);
 			path = Hovos;
 			sourceTree = "<group>";
@@ -286,6 +292,8 @@
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
 				AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */,
 				DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */,
+				ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */,
+				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
 				DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
