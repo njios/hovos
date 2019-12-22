@@ -17,6 +17,7 @@
 		AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */; };
 		AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E423A8C68F0043B10B /* SignUpVC.swift */; };
 		AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */; };
+		AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */; };
 		AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950523940A36000EA4F9 /* AppDelegate.swift */; };
 		AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950923940A36000EA4F9 /* LoginVC.swift */; };
 		AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63950B23940A36000EA4F9 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPackets.swift; sourceTree = "<group>"; };
 		AC49F1E423A8C68F0043B10B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		AC63950223940A36000EA4F9 /* Hovos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hovos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC63950523940A36000EA4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC63950923940A36000EA4F9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
 				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
 				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
+				AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */,
 			);
 			path = Hovos;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
 				AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */,
 				DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */,
+				AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */,
 				ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */,
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
 				DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */,

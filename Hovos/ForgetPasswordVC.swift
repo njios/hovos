@@ -18,6 +18,7 @@ class ForgetPasswordVC: UIViewController {
     }
     
     @IBAction func forgetPasswordClicked(_ sender:UIButton){
+        emailField.resignFirstResponder()
         ViewHelper.shared().showLoader(self)
         vmObject?.ForgetPasswordService(emailId: emailField.text!, completion: forgetPasswordResponseRecieved(status:))
     }
@@ -26,7 +27,9 @@ class ForgetPasswordVC: UIViewController {
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
-                
+                let vc = self.storyboard?.instantiateViewController(withIdentifier: "OTPVC") as! OTPVC
+                vc.email = self.emailField.text!
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
         
