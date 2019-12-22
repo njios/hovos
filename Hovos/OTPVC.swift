@@ -23,6 +23,18 @@ class OTPVC: UIViewController {
         otp[0].becomeFirstResponder()
     }
     
+    private func goTochangePassword(){
+        let vc = storyboard?.instantiateViewController(withIdentifier: "ChangePasswordVC") as! ChangePasswordVC
+        var code = ""
+        for item in otp{
+            code = code + item.text!
+        }
+       
+        vc.code = code
+        vc.email = email
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
 }
 
 extension OTPVC:UITextFieldDelegate{
@@ -39,6 +51,7 @@ extension OTPVC:UITextFieldDelegate{
         }
         if blank == false{
             textField.resignFirstResponder()
+           goTochangePassword()
         }
     }
     
@@ -55,4 +68,6 @@ extension OTPVC:UITextFieldDelegate{
             return true
         }
     }
+    
+    
 }

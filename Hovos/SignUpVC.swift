@@ -55,7 +55,12 @@ class SignUpVc: UIViewController {
             if status == true{
                        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
                        self.goToRootVC()
-                   }
+            }else{
+                let alert = UIAlertController(title: "Error!", message: "Something wrong, please try", preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
+            }
         }
        
     }
