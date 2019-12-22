@@ -42,6 +42,7 @@ class ChangePasswordVC: UIViewController {
     
     private func changePasswordResponseRecieved(status:Bool){
         DispatchQueue.main.async {
+            ViewHelper.shared().hideLoader()
             if status == true{
                 for item in self.navigationController!.viewControllers {
                     if let vc = item as? LoginVC{

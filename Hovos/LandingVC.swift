@@ -84,6 +84,8 @@ extension LandingVC:Menudelegates{
             if registerVC != nil, loginVC != nil{
                 self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
             }
+        case .logout:
+            break
         }
        
     }

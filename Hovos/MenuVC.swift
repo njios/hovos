@@ -10,6 +10,7 @@ import UIKit
 
 enum Action{
     case register
+    case logout
 }
 
 protocol Menudelegates {
@@ -21,7 +22,8 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tbl:UITableView!
     @IBOutlet weak var heightConstraints:NSLayoutConstraint!
     @IBOutlet weak var containerView:UIView!
-    var options = ["Log in","Volunteer list","Host list"]
+    var options = ["Log in"]
+   
     var delegate:Menudelegates!
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,9 +38,12 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     private func commonInit(){
         let vc = Bundle.main.loadNibNamed("MenuVC", owner: self, options: nil)?[0] as? UIView
         self.addSubview(vc!)
-        heightConstraints.constant = 3 * 40
+        heightConstraints.constant = CGFloat(options.count * 40)
         let nib = UINib(nibName: "MenuCell", bundle: nil)
         tbl.register(nib, forCellReuseIdentifier: "menuitem")
+        if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
+            options[0] = "Log out"
+        }
         tbl.dataSource = self
         tbl.delegate = self
         tbl.reloadData()
@@ -63,8 +68,11 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
       
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0{
-
+    if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
+          self.delegate.menuItemDidSelect(for: Action.logout)
+    }else{
             self.delegate.menuItemDidSelect(for: Action.register)
+            }
         }
     }
 

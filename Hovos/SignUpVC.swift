@@ -54,7 +54,10 @@ class SignUpVc: UIViewController {
             ViewHelper.shared().hideLoader()
             if status == true{
                        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-                       self.goToRootVC()
+                       let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                        let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+                        let appdel = UIApplication.shared.delegate as? AppDelegate
+                       appdel?.window?.rootViewController = vc
             }else{
                 let alert = UIAlertController(title: "Error!", message: "Something wrong, please try", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)

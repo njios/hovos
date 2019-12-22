@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		2CF9ECA5B1B073A347B5C8E0 /* Pods_Hovos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1391DE148A75807616E94B57 /* Pods_Hovos.framework */; };
 		AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C078623AA18D200EC19BC /* MenuVC.swift */; };
+		AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */; };
 		AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */; };
 		AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */; };
+		AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */; };
 		AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1D823A8B8250043B10B /* LandingVC.swift */; };
 		AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DA23A8BD2D0043B10B /* Constants.swift */; };
 		AC49F1DD23A8BE0E0043B10B /* CommonExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DC23A8BE0E0043B10B /* CommonExtenstions.swift */; };
@@ -38,8 +40,10 @@
 		0C76A3EF4E0B2D8DDC6E9E30 /* Pods-Hovos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.debug.xcconfig"; sourceTree = "<group>"; };
 		1391DE148A75807616E94B57 /* Pods_Hovos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hovos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC0C078623AA18D200EC19BC /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
+		AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
+		AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AC49F1D823A8B8250043B10B /* LandingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVC.swift; sourceTree = "<group>"; };
 		AC49F1DA23A8BD2D0043B10B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		AC49F1DC23A8BE0E0043B10B /* CommonExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtenstions.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
 				AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */,
 				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
+				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
+				AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */,
 			);
 			path = Hovos;
 			sourceTree = "<group>";
@@ -215,6 +221,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */,
+				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
 				AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */,
 				AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */,
@@ -289,6 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
+				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,

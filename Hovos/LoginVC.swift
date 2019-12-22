@@ -33,7 +33,10 @@ class LoginVC: UIViewController,GIDSignInDelegate {
             ViewHelper.shared().hideLoader()
             if status == true{
                        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-                       self.goToRootVC()
+                     let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                    let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+                    let appdel = UIApplication.shared.delegate as? AppDelegate
+                   appdel?.window?.rootViewController = vc
             }else{
                 let alert = UIAlertController(title: "Error!", message: "Something wrong, please try", preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
@@ -61,7 +64,10 @@ class LoginVC: UIViewController,GIDSignInDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil{
             UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-            self.goToRootVC()
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+             let appdel = UIApplication.shared.delegate as? AppDelegate
+            appdel?.window?.rootViewController = vc
         }
      }
      
@@ -72,7 +78,10 @@ class LoginVC: UIViewController,GIDSignInDelegate {
     private func loginManagerDidComplete(_ result: LoginManagerLoginResult) {
           print(result)
         UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-          self.goToRootVC()
+          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+           let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+           let appdel = UIApplication.shared.delegate as? AppDelegate
+          appdel?.window?.rootViewController = vc
        }
 
 }

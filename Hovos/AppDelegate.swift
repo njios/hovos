@@ -18,7 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         GIDSignIn.sharedInstance().clientID = "256440564385-h4159oo3clbprkg6t8f3btmdvi162l6p.apps.googleusercontent.com"
-        constants.accessToken.remove()
+        
+        if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+            window?.rootViewController = vc
+        }
         return true
     }
     
