@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 class SignUPVM: NSObject {
     
-    func signUp(firstname:String,lastname:String,emailId:String,password:String,type:String, completion: @escaping (Bool)->()){
+    func signUp(firstname:String,lastname:String,emailId:String,password:String,type:String, completion: @escaping (Bool,Data?)->()){
         var packet = NetworkPacket()
         packet.apiPath = "/api/account/"
         packet.data = ["email":emailId,
@@ -24,9 +24,10 @@ class SignUPVM: NSObject {
         packet.encoding = Alamofire.URLEncoding.httpBody
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
-                completion(true)
+                completion(true,data)
             }else{
-                completion(false)
+                
+                completion(false,data)
             }
         }
     }

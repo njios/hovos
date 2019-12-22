@@ -20,16 +20,21 @@ class ForgetPasswordVC: UIViewController {
     @IBAction func forgetPasswordClicked(_ sender:UIButton){
         emailField.resignFirstResponder()
         ViewHelper.shared().showLoader(self)
-        vmObject?.ForgetPasswordService(emailId: emailField.text!, completion: forgetPasswordResponseRecieved(status:))
+        vmObject?.ForgetPasswordService(emailId: emailField.text!, completion: forgetPasswordResponseRecieved(status:data:))
     }
     
-    func forgetPasswordResponseRecieved(status:Bool){
+    func forgetPasswordResponseRecieved(status:Bool,data:Data?){
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
                 let vc = self.storyboard?.instantiateViewController(withIdentifier: "OTPVC") as! OTPVC
                 vc.email = self.emailField.text!
                 self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                let alert = UIAlertController(title: "Error!", message: data?.html2String, preferredStyle: .alert)
+                let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
+                alert.addAction(okButton)
+                self.present(alert, animated: true, completion: nil)
             }
         }
         

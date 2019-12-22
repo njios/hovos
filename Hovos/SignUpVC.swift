@@ -16,7 +16,7 @@ class SignUpVc: UIViewController {
     @IBOutlet weak var titlelabel:UILabel!
     @IBOutlet weak var subtitle:UILabel!
     @IBOutlet weak var icon:UIImageView!
-    var type:String? // used to identify Volunteer or host
+    var type:String? = "v" // used to identify Volunteer or host
     var vmObject:SignUPVM?
     override func viewDidLoad() {
         vmObject = SignUPVM()
@@ -32,7 +32,7 @@ class SignUpVc: UIViewController {
     }
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
-        vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: password.text!, type: type!, completion: updateUiAfterSignup(status:))
+        vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: password.text!, type: type!, completion:updateUiAfterSignup(status:data:))
        }
     
     @IBAction func switchUser(_ sender:UIButton){
@@ -49,7 +49,7 @@ class SignUpVc: UIViewController {
         }
     }
     
-     func updateUiAfterSignup(status:Bool){
+    func updateUiAfterSignup(status:Bool,data:Data?){
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
@@ -59,7 +59,7 @@ class SignUpVc: UIViewController {
                         let appdel = UIApplication.shared.delegate as? AppDelegate
                        appdel?.window?.rootViewController = vc
             }else{
-                let alert = UIAlertController(title: "Error!", message: "Something wrong, please try", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!", message: data?.html2String, preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)

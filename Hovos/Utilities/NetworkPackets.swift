@@ -29,7 +29,7 @@ func ApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
         if response.response?.statusCode == 200 || response.response?.statusCode == 201{
             completion(response.data!, true, 200)
         }else{
-            completion(nil, false, response.response?.statusCode ?? 0)
+            completion(response.data, false, response.response?.statusCode ?? 0)
         }
     }
 }

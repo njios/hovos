@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 class ForgetPasswordVM: NSObject {
     
-    func ForgetPasswordService(emailId:String, completion: @escaping (Bool)->()){
+    func ForgetPasswordService(emailId:String, completion: @escaping (Bool,Data?)->()){
         var packet = NetworkPacket()
         packet.apiPath = "/api/account/forgot_password"
         packet.data = ["email":emailId]
@@ -19,9 +19,9 @@ class ForgetPasswordVM: NSObject {
         packet.encoding = Alamofire.URLEncoding.httpBody
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
-                completion(true)
+                completion(true,data)
             }else{
-                completion(false)
+                completion(false,data)
             }
         }
     }

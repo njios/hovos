@@ -25,10 +25,10 @@ class LoginVC: UIViewController,GIDSignInDelegate {
     }
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
-        vmObject?.signUp(emailId: emailId.text!, password: password.text!, completion: updateUiAfterSignup(status:))
+        vmObject?.signUp(emailId: emailId.text!, password: password.text!, completion: updateUiAfterSignup(status:data:))
        }
     
-     func updateUiAfterSignup(status:Bool){
+     func updateUiAfterSignup(status:Bool,data:Data?){
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
@@ -38,7 +38,7 @@ class LoginVC: UIViewController,GIDSignInDelegate {
                     let appdel = UIApplication.shared.delegate as? AppDelegate
                    appdel?.window?.rootViewController = vc
             }else{
-                let alert = UIAlertController(title: "Error!", message: "Something wrong, please try", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!", message: data?.html2String, preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
                 alert.addAction(okButton)
                 self.present(alert, animated: true, completion: nil)

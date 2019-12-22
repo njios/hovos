@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 class LoginVM:NSObject {
-    func signUp(emailId:String,password:String, completion: @escaping (Bool)->()){
+    func signUp(emailId:String,password:String, completion: @escaping (Bool,Data?)->()){
          var packet = NetworkPacket()
          packet.apiPath = "/api/account/login"
          packet.data = ["email":emailId,
@@ -21,9 +21,9 @@ class LoginVM:NSObject {
          packet.encoding = Alamofire.URLEncoding.httpBody
          ApiCall(packet: packet) { (data, status, code) in
              if code == 200{
-                 completion(true)
+                 completion(true,data)
              }else{
-                 completion(false)
+                 completion(false,data)
              }
          }
      }
