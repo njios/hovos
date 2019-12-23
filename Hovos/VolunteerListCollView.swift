@@ -24,7 +24,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height)
+            return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height )
         }
         
     }

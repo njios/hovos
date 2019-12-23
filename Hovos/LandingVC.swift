@@ -24,14 +24,17 @@ class LandingVC: UIViewController {
         sliderCollView.delegate = sliderDelegates
         sliderCollView.dataSource = sliderDelegates
         sliderCollView.reloadData()
+       
         hostCollView.delegate = listDelegates
         hostCollView.dataSource = listDelegates
         hostCollView.reloadData()
         volCollView.delegate = listDelegates
         volCollView.dataSource = listDelegates
         volCollView.reloadData()
+        
         menuView.frame = self.view.frame
         menuView.delegate = self
+      
         // Do any additional setup after loading the view.
     }
     override func viewWillLayoutSubviews() {
@@ -39,10 +42,10 @@ class LandingVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        scrollContainer.contentOffset.y = 0
-        if UserDefaults.standard.bool(forKey: constants.accessToken.rawValue){
-              scrollContainer.contentSize.height =  volunteerSignupView.frame.origin.y
-               }
+       // scrollContainer.contentOffset.y = 0
+        //if UserDefaults.standard.bool(forKey: constants.accessToken.rawValue){
+          //    scrollContainer.contentSize.height =  volunteerSignupView.frame.origin.y
+            //   }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
