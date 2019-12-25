@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     var images = ["boating","charity","computer","construction"]
-        
+    
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return 4
         }
@@ -24,7 +24,11 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height )
+            if collectionView.tag == 0{
+            return CGSize(width: collectionView.frame.size.width / 2, height: collectionView.frame.size.height )
+            }else{
+                    return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height )
+            }
         }
         
     }

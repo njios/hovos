@@ -35,7 +35,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
-                    <color key="backgroundColor" red="0.96470588239999999" green="0.95634847720000005" blue="0.94117647059999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="Qs7-VI-okM"/>
                         <constraint firstItem="8TH-Mi-k9y" firstAttribute="leading" secondItem="eHB-g2-8b9" secondAttribute="leading" id="ccN-Vb-Nfe"/>

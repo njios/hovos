@@ -11,6 +11,7 @@ import UIKit
 enum Action{
     case register
     case logout
+    case other
 }
 
 protocol Menudelegates {
@@ -22,7 +23,7 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tbl:UITableView!
     @IBOutlet weak var heightConstraints:NSLayoutConstraint!
     @IBOutlet weak var containerView:UIView!
-    var options = ["Log in"]
+    var options = ["Log in","Volunteer list","Host list"]
    
     var delegate:Menudelegates!
     override init(frame: CGRect) {
@@ -73,6 +74,8 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     }else{
             self.delegate.menuItemDidSelect(for: Action.register)
             }
+        }else{
+            self.delegate.menuItemDidSelect(for: Action.other)
         }
     }
 

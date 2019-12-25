@@ -21,6 +21,17 @@ extension UIViewController{
         nvc.popViewController(animated: true)
         }
     }
+    func showProgressAlert(){
+        let alert = UIAlertController(title: "No Content", message: "Work in progress.", preferredStyle: .alert)
+        let alertaction = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+        alert.addAction(alertaction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    @IBAction func showAlert(_ sender:UIButton){
+           if let nvc = self.navigationController{
+          showProgressAlert()
+           }
+       }
     
 }
 

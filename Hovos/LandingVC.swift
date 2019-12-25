@@ -17,10 +17,17 @@ class LandingVC: UIViewController {
     @IBOutlet weak var hostCollView:UICollectionView!
     @IBOutlet weak var volCollView:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
+     @IBOutlet weak var countries:ContinentView!
+    @IBOutlet weak var sliderTitle:CustomLabels!
+    @IBOutlet weak var sliderSubTitle:UILabel!
+     @IBOutlet weak var nextButton:UIButton!
+     @IBOutlet weak var prevButton:UIButton!
     var sliderDelegates = Dashboardslider()
     var listDelegates = VolunteerListCollView()
+    var sliderIndex = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+        sliderDelegates.vc = self
         sliderCollView.delegate = sliderDelegates
         sliderCollView.dataSource = sliderDelegates
         sliderCollView.reloadData()
@@ -34,7 +41,11 @@ class LandingVC: UIViewController {
         
         menuView.frame = self.view.frame
         menuView.delegate = self
-      
+       
+        countries.delegate = self
+        sliderTitle.text = self.sliderDelegates.titlesOfimage[sliderIndex]
+        sliderSubTitle.text = sliderTitle.text! + "Detail comming soon"
+         sliderTitle.isComplete = true
         // Do any additional setup after loading the view.
     }
     override func viewWillLayoutSubviews() {
@@ -74,6 +85,36 @@ class LandingVC: UIViewController {
         
     }
     
+    @IBAction func loadCountries(_ sender:UIButton){
+         
+        countries.isHidden = false
+    
+         
+     }
+    
+    @IBAction func nextSlide(_ sender:UIButton){
+        sender.isUserInteractionEnabled = false
+        if self.sliderCollView.scrollToNextItem(){
+            sliderIndex = sliderIndex + 1
+            sliderTitle.text = self.sliderDelegates.titlesOfimage[sliderIndex]
+             sliderSubTitle.text = sliderTitle.text! + "Detail comming soon"
+            sliderTitle.isComplete = true
+          
+        }
+        
+        
+    }
+    @IBAction func prevSlide(_ sender:UIButton){
+                sender.isUserInteractionEnabled = false
+        if self.sliderCollView.scrollToPreviousItem(){
+            sliderIndex = sliderIndex - 1
+            sliderTitle.text = self.sliderDelegates.titlesOfimage[sliderIndex]
+             sliderSubTitle.text = sliderTitle.text! + "Detail comming soon"
+             sliderTitle.isComplete = true
+          
+          
+        }
+       }
     
 }
 
@@ -89,7 +130,35 @@ extension LandingVC:Menudelegates{
             }
         case .logout:
             break
+        case .other:
+            countries.isHidden = true
+            self.showProgressAlert()
         }
        
+    }
+}
+extension UICollectionView {
+    func scrollToNextItem()->Bool {
+        if self.contentOffset.x + self.bounds.size.width < self.contentSize.width{
+        let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+            return true
+        }else{
+            return false
+        }
+    }
+
+    func scrollToPreviousItem()->Bool {
+         if self.contentOffset.x  > 0{
+        let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+              return true
+         }else{
+            return false
+        }
+    }
+
+    func moveToFrame(contentOffset : CGFloat) {
+        self.setContentOffset(CGPoint(x: contentOffset, y: self.contentOffset.y), animated: true)
     }
 }
