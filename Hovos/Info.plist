@@ -71,5 +71,9 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to fetch near by Hosts.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Used to fetch near by Hosts.</string>
 </dict>
 </plist>

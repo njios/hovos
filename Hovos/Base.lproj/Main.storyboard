@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twA-5N-1eG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="twA-5N-1eG">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -260,16 +260,13 @@
                                                 <color key="textColor" name="orangeColor"/>
                                                 <nil key="highlightedColor"/>
                                                 <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isComplete" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isComplete" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-Zn-Gu3">
                                                 <rect key="frame" x="20" y="13" width="335" height="30"/>
-                                                <connections>
-                                                    <action selector="showAlert:" destination="5r2-Sc-S9e" eventType="touchUpInside" id="iJu-d4-TNJ"/>
-                                                </connections>
                                             </button>
-                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Apf-U8-SC5">
+                                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Apf-U8-SC5">
                                                 <rect key="frame" x="20" y="40" width="335" height="200"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
@@ -333,6 +330,9 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
+                                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g6d-7m-VL5">
+                                                <rect key="frame" x="20" y="40" width="335" height="200"/>
+                                            </mapView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="orangeAngle" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-S3-lTE">
                                                 <rect key="frame" x="323" y="10" width="32" height="30"/>
                                                 <constraints>
@@ -348,14 +348,18 @@
                                             <constraint firstItem="00s-jE-B49" firstAttribute="leading" secondItem="Od6-2a-qI4" secondAttribute="leading" constant="20" id="H4W-k3-6tD"/>
                                             <constraint firstAttribute="trailing" secondItem="Apf-U8-SC5" secondAttribute="trailing" constant="20" id="Joo-eZ-aEt"/>
                                             <constraint firstItem="BCK-Zn-Gu3" firstAttribute="trailing" secondItem="ecO-S3-lTE" secondAttribute="trailing" id="Tcj-JW-erS"/>
+                                            <constraint firstItem="g6d-7m-VL5" firstAttribute="width" secondItem="Apf-U8-SC5" secondAttribute="width" id="VBj-kU-8iF"/>
                                             <constraint firstItem="BCK-Zn-Gu3" firstAttribute="leading" secondItem="lah-Ip-Yoh" secondAttribute="leading" id="ZZb-2b-UrX"/>
                                             <constraint firstItem="Apf-U8-SC5" firstAttribute="top" secondItem="ecO-S3-lTE" secondAttribute="bottom" id="bzZ-SE-rS9"/>
+                                            <constraint firstItem="g6d-7m-VL5" firstAttribute="leading" secondItem="Apf-U8-SC5" secondAttribute="leading" id="gZh-TO-vFi"/>
                                             <constraint firstItem="lah-Ip-Yoh" firstAttribute="leading" secondItem="Apf-U8-SC5" secondAttribute="leading" id="hli-fB-66g"/>
                                             <constraint firstItem="Apf-U8-SC5" firstAttribute="leading" secondItem="Od6-2a-qI4" secondAttribute="leading" constant="20" id="iDX-kr-Sh9"/>
+                                            <constraint firstItem="g6d-7m-VL5" firstAttribute="height" secondItem="Apf-U8-SC5" secondAttribute="height" id="k2h-y7-qQU"/>
                                             <constraint firstItem="lah-Ip-Yoh" firstAttribute="centerY" secondItem="ecO-S3-lTE" secondAttribute="centerY" id="lrg-1J-aW0"/>
                                             <constraint firstItem="00s-jE-B49" firstAttribute="top" secondItem="Apf-U8-SC5" secondAttribute="bottom" constant="5" id="mZj-LR-YvG"/>
                                             <constraint firstAttribute="bottom" secondItem="00s-jE-B49" secondAttribute="bottom" constant="5" id="pLY-zQ-YtS"/>
                                             <constraint firstItem="ecO-S3-lTE" firstAttribute="top" secondItem="Od6-2a-qI4" secondAttribute="top" constant="10" id="tUp-tb-oyn"/>
+                                            <constraint firstItem="g6d-7m-VL5" firstAttribute="top" secondItem="Apf-U8-SC5" secondAttribute="top" id="xle-7W-8gc"/>
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tA0-ft-qv1">
@@ -469,7 +473,7 @@
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5G2-Zp-RdY">
-                                        <rect key="frame" x="20" y="770" width="335" height="645.5"/>
+                                        <rect key="frame" x="20" y="770" width="335" height="644"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="v_small7" translatesAutoresizingMaskIntoConstraints="NO" id="rJ0-Hy-aC9">
                                                 <rect key="frame" x="10" y="10" width="50" height="75"/>
@@ -504,7 +508,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ye-5S-5nU">
-                                                <rect key="frame" x="92.5" y="589.5" width="150" height="36"/>
+                                                <rect key="frame" x="92.5" y="588" width="150" height="36"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="150" id="WQc-bq-vBJ"/>
                                                     <constraint firstAttribute="height" constant="36" id="Xwn-Zo-s9G"/>
@@ -526,7 +530,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="753" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuM-dh-x0e">
-                                                <rect key="frame" x="10" y="361" width="270" height="208.5"/>
+                                                <rect key="frame" x="10" y="361" width="270" height="207"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="*">
                                                         <attributes>
@@ -555,7 +559,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -589,7 +593,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -623,7 +627,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -657,7 +661,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -691,7 +695,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -725,7 +729,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -759,7 +763,7 @@
 </string>
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -791,7 +795,7 @@
                                                     <fragment content=" Cancel at any time">
                                                         <attributes>
                                                             <color key="NSColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="18" name="Lato-Regular"/>
+                                                            <font key="NSFont" metaFont="system" size="18"/>
                                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="leftToRight" lineSpacing="5" defaultTabInterval="36" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
                                                                 <tabStops/>
                                                             </paragraphStyle>
@@ -808,7 +812,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blueAngle" translatesAutoresizingMaskIntoConstraints="NO" id="ihV-Tc-jFa">
-                                                <rect key="frame" x="290" y="448" width="35" height="35"/>
+                                                <rect key="frame" x="290" y="447" width="35" height="35"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="35" id="Dcx-7W-jhe"/>
                                                     <constraint firstAttribute="height" constant="35" id="hpg-Pj-2QL"/>
@@ -850,7 +854,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="894-6m-FkF">
-                                        <rect key="frame" x="20" y="1435.5" width="335" height="371.5"/>
+                                        <rect key="frame" x="20" y="1434" width="335" height="371.5"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="h_small7" translatesAutoresizingMaskIntoConstraints="NO" id="pwu-AV-amJ">
                                                 <rect key="frame" x="10" y="10" width="50" height="75"/>
