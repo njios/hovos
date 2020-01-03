@@ -12,9 +12,9 @@ class  ChangePasswordVM: NSObject {
     
     func changePasswordService(emailId:String,password:String,code:String, completion: @escaping (Bool)->()){
          var packet = NetworkPacket()
-         packet.apiPath = "/api/account/reset_password/"
+         packet.apiPath = ApiEndPoints.changePassword.rawValue
         packet.data = ["email":emailId,"password":password,"code":code]
-         packet.header = ["Content-Type":"application/x-www-form-urlencoded"]
+         
          packet.method = HTTPMethod.post.rawValue
          packet.encoding = Alamofire.URLEncoding.httpBody
          ApiCall(packet: packet) { (data, status, code) in

@@ -12,9 +12,9 @@ class ForgetPasswordVM: NSObject {
     
     func ForgetPasswordService(emailId:String, completion: @escaping (Bool,Data?)->()){
         var packet = NetworkPacket()
-        packet.apiPath = "/api/account/forgot_password"
+        packet.apiPath = ApiEndPoints.forgetPassword.rawValue
         packet.data = ["email":emailId]
-        packet.header = ["Content-Type":"application/x-www-form-urlencoded"]
+     
         packet.method = HTTPMethod.post.rawValue
         packet.encoding = Alamofire.URLEncoding.httpBody
         ApiCall(packet: packet) { (data, status, code) in

@@ -20,7 +20,8 @@ struct NetworkPacket {
         
     }
     var method:String?
-    var header:[String:String] = [:]
+    var header:[String:String] = ["Content-Type":"application/x-www-form-urlencoded",
+                                  "API_KEY":constants.Api_key.rawValue]
     var data:[String:Any] = [:]
     var encoding:URLEncoding?
 }

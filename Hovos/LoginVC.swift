@@ -32,7 +32,7 @@ class LoginVC: UIViewController,GIDSignInDelegate {
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
-                       UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
+                       
                      let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
                     let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
                     let appdel = UIApplication.shared.delegate as? AppDelegate

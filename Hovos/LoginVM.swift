@@ -8,19 +8,21 @@
 
 import Foundation
 import Alamofire
-class LoginVM:NSObject {
+class LoginVM {
+    
     func signUp(emailId:String,password:String, completion: @escaping (Bool,Data?)->()){
          var packet = NetworkPacket()
-         packet.apiPath = "/api/account/login"
+         packet.apiPath = ApiEndPoints.login.rawValue
          packet.data = ["email":emailId,
                         "password":password,
                         "apptoken":"testtoken123",
                         ]
-         packet.header = ["Content-Type":"application/x-www-form-urlencoded"]
+        
          packet.method = HTTPMethod.post.rawValue
          packet.encoding = Alamofire.URLEncoding.httpBody
          ApiCall(packet: packet) { (data, status, code) in
              if code == 200{
+                UserDefaults.standard.set(data!, forKey: constants.accessToken.rawValue)
                  completion(true,data)
              }else{
                  completion(false,data)

@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleSignIn
+import CoreLocation
+import MapKit
 class LandingVC: UIViewController {
 
   
@@ -17,27 +19,26 @@ class LandingVC: UIViewController {
     @IBOutlet weak var hostCollView:UICollectionView!
     @IBOutlet weak var volCollView:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
-     @IBOutlet weak var countries:ContinentView!
+    @IBOutlet weak var countries:ContinentView!
     @IBOutlet weak var sliderTitle:CustomLabels!
     @IBOutlet weak var sliderSubTitle:UILabel!
-     @IBOutlet weak var nextButton:UIButton!
-     @IBOutlet weak var prevButton:UIButton!
+    @IBOutlet weak var nextButton:UIButton!
+    @IBOutlet weak var prevButton:UIButton!
     var sliderDelegates = Dashboardslider()
     var listDelegates = VolunteerListCollView()
     var sliderIndex = 0
+    var VMObject:LandingVM!
+    var locManager = CLLocationManager()
+      
     override func viewDidLoad() {
         super.viewDidLoad()
         sliderDelegates.vc = self
+        VMObject = LandingVM()
         sliderCollView.delegate = sliderDelegates
         sliderCollView.dataSource = sliderDelegates
         sliderCollView.reloadData()
        
-        hostCollView.delegate = listDelegates
-        hostCollView.dataSource = listDelegates
-        hostCollView.reloadData()
-        volCollView.delegate = listDelegates
-        volCollView.dataSource = listDelegates
-        volCollView.reloadData()
+    
         
         menuView.frame = self.view.frame
         menuView.delegate = self
@@ -46,7 +47,23 @@ class LandingVC: UIViewController {
         sliderTitle.text = self.sliderDelegates.titlesOfimage[sliderIndex]
         sliderSubTitle.text = sliderTitle.text! + "Detail comming soon"
          sliderTitle.isComplete = true
-        // Do any additional setup after loading the view.
+        ViewHelper.shared().showLoader(self)
+        DispatchQueue.global().async {
+            self.VMObject.getVolunteerList { (status) in
+                ViewHelper.shared().hideLoader()
+                if status == true{
+                    DispatchQueue.main.async {
+                        self.listDelegates.modalObject = self.VMObject.VolunteerList.travellers
+                        self.volCollView.delegate = self.listDelegates
+                        self.volCollView.dataSource = self.listDelegates
+                        self.volCollView.reloadData()
+                    }
+                }
+            }
+        }
+        
+        locManager.requestWhenInUseAuthorization()
+      
     }
     override func viewWillLayoutSubviews() {
        
@@ -122,13 +139,20 @@ extension LandingVC:Menudelegates{
     func menuItemDidSelect(for action: Action) {
         menuView.removeFromSuperview()
         switch action {
-        case Action.register:
+        case .login:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
             let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
             if registerVC != nil, loginVC != nil{
                 self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
             }
         case .logout:
+            break
+        case .register:
+            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+           
+            if registerVC != nil{
+                self.navigationController?.viewControllers = [self,registerVC!]
+            }
             break
         case .other:
             countries.isHidden = true

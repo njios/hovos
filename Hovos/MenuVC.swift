@@ -12,6 +12,7 @@ enum Action{
     case register
     case logout
     case other
+    case login
 }
 
 protocol Menudelegates {
@@ -23,7 +24,7 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tbl:UITableView!
     @IBOutlet weak var heightConstraints:NSLayoutConstraint!
     @IBOutlet weak var containerView:UIView!
-    var options = ["Log in","Volunteer list","Host list"]
+    var options = ["Log in","Register free","Host list","Volunteer list","Help center"]
    
     var delegate:Menudelegates!
     override init(frame: CGRect) {
@@ -44,7 +45,9 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
         tbl.register(nib, forCellReuseIdentifier: "menuitem")
         if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
             options[0] = "Log out"
+            options.remove(at: 1)
         }
+        
         tbl.dataSource = self
         tbl.delegate = self
         tbl.reloadData()
@@ -68,17 +71,23 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
       }
       
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row == 0{
+       
     if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
+         if indexPath.row == 0{
           self.delegate.menuItemDidSelect(for: Action.logout)
     }else{
-            self.delegate.menuItemDidSelect(for: Action.register)
-            }
-        }else{
             self.delegate.menuItemDidSelect(for: Action.other)
         }
+    }else if indexPath.row == 0{
+        
+        self.delegate.menuItemDidSelect(for: Action.login)
+        }
+    else if indexPath.row == 1{
+        self.delegate.menuItemDidSelect(for: Action.register)
+    }else{
+          self.delegate.menuItemDidSelect(for: Action.other)
+        }
     }
-
 }
 
 class menuCell:UITableViewCell{
