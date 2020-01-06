@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
-    var cache = [String:UIImage?]()
+    var cache = [String:UIImage]()
     var modalObject:[VolunteerItem]?
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return modalObject?.count ?? 0
@@ -19,27 +20,10 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as! listCell
             cell.imageV?.image = nil
           
+            cell.imageV?.kf.indicatorType = .activity
+            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].image ?? ""))
+             
             
-                if self.cache.contains(where: { (k,v) -> Bool in
-                               if self.modalObject?[indexPath.row].member?.id ?? String(indexPath.row) == k {
-                                   return true
-                               }else{
-                                   return false
-                               }
-                           }){
-                   
-                        cell.imageV?.image = self.cache[self.modalObject?[indexPath.row].member?.id ?? String(indexPath.row)]!
-                
-                           }else{
-                    DispatchQueue.global().async {
-                let data = try? Data(contentsOf: URL(string:(self.modalObject?[indexPath.row].image)!)!)
-                let image = UIImage(data: data ?? Data())
-                self.cache[self.modalObject?[indexPath.row].member?.id ?? String(indexPath.row)] = image
-                DispatchQueue.main.async {
-                  cell.imageV?.image = self.cache[self.modalObject?[indexPath.row].member?.id ?? String(indexPath.row)]!
-                }
-            }
-            }
             cell.name?.text = modalObject?[indexPath.row].name
             cell.place?.text = (modalObject?[indexPath.row].location?.country ?? "") + ", " + (modalObject?[indexPath.row].location?.city ?? "")
             
@@ -60,4 +44,41 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var imageV:UIImageView?
         @IBOutlet weak var name:UILabel?
         @IBOutlet weak var place:UILabel?
+        @IBOutlet weak var lastSeen_memberSince:UILabel!
+        @IBOutlet weak var volunteerSlogan:UILabel!
+        @IBOutlet weak var jobs:UILabel!
+        @IBOutlet weak var location:UILabel!
+        @IBOutlet weak var status:UILabel!
+        @IBOutlet weak var schedule:UILabel!
+        @IBOutlet weak var language:UILabel!
+        @IBOutlet weak var additionalInfo:UILabel!
+        @IBOutlet weak var skills:UILabel!
+        @IBOutlet weak var placeDescription:UILabel!
+        @IBOutlet var verifiedStatus:[UILabel]!
+        @IBOutlet var startSelection:[UIImageView]!
+        @IBOutlet weak var countryHeight:NSLayoutConstraint!
+        @IBOutlet weak var countryTable:UITableView!
+        var countries:[String]?
+       
     }
+
+    class CountryCell:UITableViewCell{
+        @IBOutlet weak var country:UILabel!
+    }
+
+extension listCell:UITableViewDelegate,UITableViewDataSource{
+           func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return countries?.count ?? 0
+           }
+           
+           func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
+            cell.country.text = countries![indexPath.row]
+            return cell
+           }
+           
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 30.0
+    }
+           
+       }

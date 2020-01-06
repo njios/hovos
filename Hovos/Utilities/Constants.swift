@@ -24,3 +24,42 @@ enum ApiEndPoints:String{
     case changePassword = "/api/user/reset_password/"
     case volunteers = "/api/get/travellers/all"
 }
+
+enum CalenderMonth{
+    
+    case month(month:Int)
+    func getMonth()->String{
+        switch self {
+        case .month(let month):
+            switch month {
+            case 1:
+                return "Jan"
+            case 2:
+                return "Feb"
+            case 3:
+                return "March"
+            case 4:
+                return "April"
+            case 5:
+                return "May"
+            case 6:
+                return "June"
+            case 7:
+                return "July"
+            case 8:
+                return "Aug"
+            case 9:
+                return "Sept"
+            case 10:
+                return "Oct"
+            case 11:
+                return "Nov"
+            case 12:
+                return "Dec"
+            default:
+                return ""
+            }
+        
+        }
+    }
+}

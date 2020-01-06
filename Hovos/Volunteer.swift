@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 struct Volunteer:Codable{
     var facetContinent:[facetContinent]?
     var facetCountry:[facetCountry]?
@@ -67,7 +67,14 @@ struct VolunteerItem:Codable{
     var friends:[friends]?
     var member:User?
     var reviews:[review]?
-    
+    func getFullimage(completion:@escaping (UIImage?)->()){
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: URL(string:(self.image!))!)
+            let image = UIImage(data: data ?? Data())
+           completion(image ?? UIImage())
+        }
+        
+    }
 }
 
 struct location:Codable{

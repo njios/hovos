@@ -70,10 +70,7 @@ class LandingVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       // scrollContainer.contentOffset.y = 0
-        //if UserDefaults.standard.bool(forKey: constants.accessToken.rawValue){
-          //    scrollContainer.contentSize.height =  volunteerSignupView.frame.origin.y
-            //   }
+    
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,10 +78,15 @@ class LandingVC: UIViewController {
             if segue.identifier == "volunteer"{
                 vc.type = "v"
             }
-        else{
+        else if segue.identifier == "host"{
             vc.type = "h"
-        }
+            }
     }
+    
+        if let vollist = segue.destination as? VolunteerVC{
+            vollist.object = VMObject.VolunteerList.travellers ?? nil
+        }
+        
     }
 
     @IBAction func volunteerSignup(_ sender:UIButton){
@@ -101,6 +103,13 @@ class LandingVC: UIViewController {
    
         
     }
+    
+    @IBAction func showVolunteers(_ sender:UIButton){
+          
+    //
+      self.performSegue(withIdentifier: "vollist", sender: nil)
+          
+      }
     
     @IBAction func loadCountries(_ sender:UIButton){
          

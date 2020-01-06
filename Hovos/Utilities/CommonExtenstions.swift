@@ -48,3 +48,33 @@ extension Data {
         return html2AttributedString?.string ?? ""
     }
 }
+
+
+extension String{
+    func getDate()->Date{
+        let formatter = DateFormatter()
+        formatter.timeZone = NSTimeZone.local
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.date(from: self) ?? Date()
+    }
+}
+
+extension Date{
+    func getYear()->String{
+        let calenderComp = Calendar.current
+        let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
+        return "\( comp.year ?? 0 )"
+    }
+    
+    func getMonth()->String{
+        let calenderComp = Calendar.current
+        let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
+        return CalenderMonth.month(month: comp.month ?? 0).getMonth()
+    }
+    
+    func getDay()->String{
+        let calenderComp = Calendar.current
+        let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
+        return "\(comp.day ?? 0)"
+    }
+}

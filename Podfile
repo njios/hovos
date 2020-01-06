@@ -10,4 +10,5 @@ target 'Hovos' do
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
+  pod 'Kingfisher'
 end
