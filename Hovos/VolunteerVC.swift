@@ -12,18 +12,27 @@ class VolunteerVC: UIViewController {
   
     var object:[VolunteerItem]?
     var name = ""
-    
+    var indexpath:IndexPath?
     @IBOutlet weak var titleLabel:UILabel!
-    @IBOutlet weak var footerButton:UIButton!
-  
+    @IBOutlet weak var footerlabel:UILabel!
+    @IBOutlet weak var collView:UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      
+        
        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let index = self.indexpath{
+                       self.collView.scrollToItem(at: index, at: .left, animated: false)
+                         }
       
+      
+    }
+    
+    @IBAction func favSelected(_ sender:UIButton){
+        sender.isSelected = !sender.isSelected
     }
     
 }
@@ -43,7 +52,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.countryTable.reloadData()
         cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
         titleLabel.text = "Volunteers, \(indexPath.row + 1) of \(object?.count ?? 0)"
-        footerButton.setTitle("CONTACT \(cell.name!.text!.uppercased())", for: .normal)
+        footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
         cell.place?.text = country + ", " + city

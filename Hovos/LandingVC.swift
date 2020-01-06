@@ -54,8 +54,10 @@ class LandingVC: UIViewController {
                 if status == true{
                     DispatchQueue.main.async {
                         self.listDelegates.modalObject = self.VMObject.VolunteerList.travellers
+                        self.listDelegates.delegate = self
                         self.volCollView.delegate = self.listDelegates
                         self.volCollView.dataSource = self.listDelegates
+                        
                         self.volCollView.reloadData()
                     }
                 }
@@ -170,28 +172,15 @@ extension LandingVC:Menudelegates{
        
     }
 }
-extension UICollectionView {
-    func scrollToNextItem()->Bool {
-        if self.contentOffset.x + self.bounds.size.width < self.contentSize.width{
-        let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
-        self.moveToFrame(contentOffset: contentOffset)
-            return true
-        }else{
-            return false
-        }
-    }
 
-    func scrollToPreviousItem()->Bool {
-         if self.contentOffset.x  > 0{
-        let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
-        self.moveToFrame(contentOffset: contentOffset)
-              return true
-         }else{
-            return false
-        }
+extension LandingVC:ListViewDelegate{
+    func collViewdidUpdate(index: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
+        vc.indexpath = index
+        vc.object = VMObject.VolunteerList.travellers ?? nil
+        self.navigationController?.pushViewController(vc, animated: true)
     }
-
-    func moveToFrame(contentOffset : CGFloat) {
-        self.setContentOffset(CGPoint(x: contentOffset, y: self.contentOffset.y), animated: true)
-    }
+    
+    
 }
+

@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 import Kingfisher
+protocol ListViewDelegate {
+    func collViewdidUpdate(index:IndexPath)
+}
 class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     var cache = [String:UIImage]()
+    var delegate:ListViewDelegate!
     var modalObject:[VolunteerItem]?
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             return modalObject?.count ?? 0
@@ -37,6 +41,10 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
                     return CGSize(width: collectionView.frame.size.width / 3, height: collectionView.frame.size.height )
             }
         }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate.collViewdidUpdate(index: indexPath)
+    }
         
     }
 

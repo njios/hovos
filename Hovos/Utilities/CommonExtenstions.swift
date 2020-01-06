@@ -78,3 +78,29 @@ extension Date{
         return "\(comp.day ?? 0)"
     }
 }
+
+extension UICollectionView {
+    func scrollToNextItem()->Bool {
+        if self.contentOffset.x + self.bounds.size.width < self.contentSize.width{
+        let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+            return true
+        }else{
+            return false
+        }
+    }
+
+    func scrollToPreviousItem()->Bool {
+         if self.contentOffset.x  > 0{
+        let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
+        self.moveToFrame(contentOffset: contentOffset)
+              return true
+         }else{
+            return false
+        }
+    }
+
+    func moveToFrame(contentOffset : CGFloat) {
+        self.setContentOffset(CGPoint(x: contentOffset, y: self.contentOffset.y), animated: true)
+    }
+}
