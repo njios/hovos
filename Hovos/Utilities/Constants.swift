@@ -17,12 +17,36 @@ enum constants:String{
     }
 }
 
-enum ApiEndPoints:String{
-    case login = "/api/user/login/"
-    case signup = "/api/user/"
-    case forgetPassword = "/api/user/forgot_password"
-    case changePassword = "/api/user/reset_password/"
-    case volunteers = "/api/get/travellers/all"
+enum ApiEndPoints{
+    case login
+    case signup
+    case forgetPassword
+    case changePassword
+    case volunteers
+    case nearByHost(lat:Double,long:Double,radius:Int,min_offset:Int,max_offset:Int)
+        
+    var rawValue:String{
+        switch self {
+       
+        case .login:
+            return "/api/user/login/"
+        case .signup:
+            return "/api/user/"
+        case .forgetPassword:
+            return "/api/user/forgot_password"
+        case .changePassword:
+            return "/api/user/reset_password/"
+        case .volunteers:
+            return "/api/get/travellers/latest/"
+        case .nearByHost(let lat, let long, let radius, let min_offset, let max_offset):
+             let first = "/api/get/hosts/nearby/?latlng=" + String(lat) + "|" + String(long)
+             let second = first + "&radius=" + String(radius)
+             let third = second +  "&min_offset=" + String(min_offset) + "&max_offset=" + String(max_offset)
+             return third
+        }
+    }
+       
+    
 }
 
 enum CalenderMonth{

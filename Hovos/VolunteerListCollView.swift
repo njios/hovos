@@ -66,6 +66,8 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet var startSelection:[UIImageView]!
         @IBOutlet weak var countryHeight:NSLayoutConstraint!
         @IBOutlet weak var countryTable:UITableView!
+        @IBOutlet weak var photosCollview:UICollectionView!
+        @IBOutlet weak var photosHeight:NSLayoutConstraint!
         var countries:[String]?
        
     }
