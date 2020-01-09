@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -48,6 +48,7 @@
 		ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */; };
 		ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */; };
 		ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */; };
+		ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8C82123C711DB009537B5 /* HostsVC.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
 		DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
@@ -98,6 +99,7 @@
 		ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_light.ttf; sourceTree = "<group>"; };
 		ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabels.swift; sourceTree = "<group>"; };
 		ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerVC.swift; sourceTree = "<group>"; };
+		ACF8C82123C711DB009537B5 /* HostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostsVC.swift; sourceTree = "<group>"; };
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
 		DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboardslider.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */,
 				ACC86A8623BF119F00D58388 /* User.swift */,
 				ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */,
+				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
 			);
 			path = Hovos;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
+				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,
 				ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */,

@@ -23,6 +23,7 @@ enum ApiEndPoints{
     case forgetPassword
     case changePassword
     case volunteers
+    case hostByLocation
     case nearByHost(lat:Double,long:Double,radius:Int,min_offset:Int,max_offset:Int)
         
     var rawValue:String{
@@ -38,6 +39,8 @@ enum ApiEndPoints{
             return "/api/user/reset_password/"
         case .volunteers:
             return "/api/get/travellers/latest/"
+        case .hostByLocation:
+              return "/api/get/hosts/nearby/"
         case .nearByHost(let lat, let long, let radius, let min_offset, let max_offset):
              let first = "/api/get/hosts/nearby/?latlng=" + String(lat) + "|" + String(long)
              let second = first + "&radius=" + String(radius)

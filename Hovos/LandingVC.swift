@@ -88,7 +88,9 @@ class LandingVC: UIViewController {
         if let vollist = segue.destination as? VolunteerVC{
             vollist.object = VMObject.VolunteerList.travellers ?? nil
         }
-        
+        if let vollist = segue.destination as? HostsVC{
+            vollist.object = VMObject.Hosts.hosts ?? nil
+        }
     }
 
     @IBAction func volunteerSignup(_ sender:UIButton){
@@ -168,6 +170,10 @@ extension LandingVC:Menudelegates{
         case .other:
             countries.isHidden = true
             self.showProgressAlert()
+        case .hostlist:
+            performSegue(withIdentifier: "hostlist", sender: nil)
+        case .volunteers:
+            performSegue(withIdentifier: "vollist", sender: nil)
         }
        
     }

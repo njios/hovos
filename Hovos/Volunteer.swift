@@ -13,7 +13,7 @@ struct Volunteer:Codable{
     var facetCountry:[facetCountry]?
     var totalResults:Int?
     var travellers:[VolunteerItem]?
-    
+    var hosts:[VolunteerItem]?
 }
 
 struct facetContinent :Codable{
@@ -61,6 +61,8 @@ struct VolunteerItem:Codable{
     var dislikes:String?
     var location:location?
     var images:[images]?
+    var accommodations:[String]?
+    var accommodationImages:[images]?
     var jobs:[String]?
     var countries:[String:String?]?
     var schedules:[schedules]?

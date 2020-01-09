@@ -19,10 +19,7 @@ var locationManager: CLLocationManager?
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         GIDSignIn.sharedInstance().clientID = "256440564385-h4159oo3clbprkg6t8f3btmdvi162l6p.apps.googleusercontent.com"
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.requestLocation()
-        locationManager?.startUpdatingLocation()
+        
       
         
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
@@ -40,14 +37,6 @@ var locationManager: CLLocationManager?
 
 }
 
-extension AppDelegate:CLLocationManagerDelegate{
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        manager.stopUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
-    }
-}
+  
+
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import UIKit
 struct NetworkPacket {
      var url:String?
     var apiPath:String?{
@@ -26,11 +27,33 @@ struct NetworkPacket {
     var encoding:URLEncoding?
 }
 func ApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
-    Alamofire.request(packet.url!, method: HTTPMethod(rawValue: packet.method!)!, parameters: packet.data, encoding: packet.encoding!, headers: packet.header).responseJSON { (response) in
+    Alamofire.request(packet.url!, method: HTTPMethod(rawValue: packet.method!)!, parameters: packet.data, encoding: packet.encoding ?? URLEncoding.default, headers: packet.header).responseJSON { (response) in
+
         if response.response?.statusCode == 200 || response.response?.statusCode == 201{
             completion(response.data!, true, 200)
         }else{
             completion(response.data, false, response.response?.statusCode ?? 0)
         }
     }
+}
+func getApiCall(url:URL,completion: @escaping (Data?,Bool,Int)->()){
+
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      
+        guard let res = response as? HTTPURLResponse else {
+                 print(String(describing: error))
+            return
+        }
+        if res.statusCode == 200 || res.statusCode == 201{
+         completion(data, true, 200)
+     }else{
+         completion(data, false, res.statusCode )
+     }
+    }
+    task.resume()
+        
+    
 }
