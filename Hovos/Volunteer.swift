@@ -34,6 +34,7 @@ struct VolunteerItem:Codable{
     var id:String?
     var memberId:String?
     var memberListingId:String?
+    var title:String?
     var isPaid:String?
     var photo:String?
     var slogan:String?
@@ -41,6 +42,7 @@ struct VolunteerItem:Codable{
     var isPublished:String?
     var lang:String?
     var lastLogin:String?
+    var description:String?
     var publishedOn:String?
     var isCompanion:String?
     var companionAge:String?
@@ -51,12 +53,14 @@ struct VolunteerItem:Codable{
     var companion:String?
     var image:String?
     var name:String?
+    var workingDays:String?
+    var workingHours:String?
     var slug:String?
     var additionalDesc:String?
     var languageDesc:String?
     var skillDescription:String?
     var placeDescription:String?
-    var rating:String?
+    var rating:Int?
     var likes:String?
     var dislikes:String?
     var location:location?
@@ -69,6 +73,8 @@ struct VolunteerItem:Codable{
     var friends:[friends]?
     var member:User?
     var reviews:[review]?
+    var mealDescription:String?
+    var paymentDescription:String?
     func getFullimage(completion:@escaping (UIImage?)->()){
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: URL(string:(self.image!))!)

@@ -50,7 +50,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
        
         let volItem = object![indexPath.row]
         cell.name?.text = volItem.name ?? ""
-        cell.countries = Array(volItem.countries!.values) as? [String]
+        cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()
         cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
         titleLabel.text = "Volunteers, \(indexPath.row + 1) of \(object?.count ?? 0)"
@@ -106,6 +106,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.photosCollview.delegate = photosDelegate
         cell.photosCollview.dataSource = photosDelegate
         cell.photosCollview.reloadData()
+        cell.place?.setUnderLine()
         return cell
     }
     

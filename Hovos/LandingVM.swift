@@ -52,15 +52,15 @@ class LandingVM {
             var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = "www.hovos.com"
-            urlComponents.path = ApiEndPoints.hostByLocation.rawValue
-            urlComponents.queryItems = [
-               URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
-                 URLQueryItem(name: "radius", value: String(500)),
-                 URLQueryItem(name: "min_offset", value: String(500)),
-                 URLQueryItem(name: "min_offset", value: String(500))
-            ]
+            urlComponents.path = ApiEndPoints.allHosts.rawValue
+//            urlComponents.queryItems = [
+//               URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
+//                 URLQueryItem(name: "radius", value: String(500)),
+//                 URLQueryItem(name: "min_offset", value: String(500)),
+//                 URLQueryItem(name: "min_offset", value: String(500))
+//            ]
 
-            let url = URL(string: (urlComponents.url?.absoluteString)!)
+            let url =  URL(string: (urlComponents.url?.absoluteString)!)
                
             
             getApiCall(url: url! ) { (data, status, code) in

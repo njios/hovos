@@ -50,25 +50,34 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
 
     class listCell:UICollectionViewCell{
         @IBOutlet weak var imageV:UIImageView?
+        @IBOutlet weak var memberPic:UIImageView?
         @IBOutlet weak var name:UILabel?
-        @IBOutlet weak var place:UILabel?
+        @IBOutlet weak var place:CustomLabels?
         @IBOutlet weak var lastSeen_memberSince:UILabel!
         @IBOutlet weak var volunteerSlogan:UILabel!
         @IBOutlet weak var jobs:UILabel!
         @IBOutlet weak var location:UILabel!
         @IBOutlet weak var status:UILabel!
         @IBOutlet weak var schedule:UILabel!
+        @IBOutlet weak var year:UILabel!
+        @IBOutlet weak var language2:UILabel!
+        @IBOutlet weak var lastSeen:UILabel!
+        @IBOutlet weak var personaldesc:UILabel!
         @IBOutlet weak var language:UILabel!
         @IBOutlet weak var additionalInfo:UILabel!
+        @IBOutlet weak var mealDesc:UILabel!
         @IBOutlet weak var skills:UILabel!
         @IBOutlet weak var placeDescription:UILabel!
+        @IBOutlet weak var paymentDescription:UILabel!
+        @IBOutlet weak var hoursLabel:UILabel!
+        @IBOutlet weak var daysLabel:UILabel!
         @IBOutlet var verifiedStatus:[UILabel]!
         @IBOutlet var startSelection:[UIImageView]!
         @IBOutlet weak var countryHeight:NSLayoutConstraint!
         @IBOutlet weak var countryTable:UITableView!
         @IBOutlet weak var photosCollview:UICollectionView!
         @IBOutlet weak var photosHeight:NSLayoutConstraint!
-        var countries:[String]?
+        var countries = [String]()
        
     }
 
@@ -78,12 +87,12 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
 
 extension listCell:UITableViewDelegate,UITableViewDataSource{
            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return countries?.count ?? 0
+            return countries.count ?? 0
            }
            
            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
-            cell.country.text = countries![indexPath.row]
+            cell.country.text = countries[indexPath.row]
             return cell
            }
            

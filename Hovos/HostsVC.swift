@@ -47,63 +47,45 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
     
        
         let volItem = object![indexPath.row]
-        cell.name?.text = volItem.name ?? ""
-        
+        cell.name?.text = volItem.member?.firstName ?? ""
+        cell.countries = ["Animal care","Computer help","Construction"]
+        cell.countryHeight.constant = CGFloat((cell.countries.count) * 30)
         cell.countryTable.reloadData()
-        cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
+      
         titleLabel.text = "Hosts, \(indexPath.row + 1) of \(object?.count ?? 0)"
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
         cell.place?.text = country + ", " + city
-        cell.volunteerSlogan.text = " \"\(volItem.slogan ?? "")\" "
-        cell.skills.text = volItem.skillDescription ?? ""
-        let personalDesc = volItem.member?.personalDescription ?? ""
-        let additionalDesc = volItem.additionalDesc ?? ""
-        cell.additionalInfo.text = personalDesc + "\n" + additionalDesc
-        cell.placeDescription.text = volItem.placeDescription ?? ""
+        cell.hoursLabel.text = "\(volItem.workingHours ?? "") Hours a day"
+        cell.daysLabel.text = "\(volItem.workingDays ?? "") Days a week"
+        
+        cell.volunteerSlogan.text = volItem.title ?? ""
+        cell.additionalInfo.text = volItem.description ?? ""
+        cell.paymentDescription.text = volItem.paymentDescription ?? ""
+        
         cell.imageV?.image = nil
         cell.imageV?.kf.indicatorType = .activity
         cell.imageV?.kf.setImage(with: URL(string: volItem.image ?? ""))
+        
+        cell.memberPic?.kf.indicatorType = .activity
+        cell.memberPic?.kf.setImage(with: URL(string:volItem.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
         let lastSeen = "Last seen on \((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
         let memberSince = "member since \((volItem.publishedOn ?? "").getDate().getYear())"
-        
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
-       
-        cell.location.text = (volItem.location?.country ?? "") + ", Last seen on" + "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
-        // let language = volItem.member?.languages?.joined(separator: " | ")
-         cell.language.text = "English | French"
-        cell.status.text = "I am open for meeting travelers"
-        cell.jobs.text = "Elderly care | Help in the house | Hostel support | House sitting | Teaching"
+        cell.lastSeen.text = "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        cell.year.text = "\((volItem.publishedOn ?? "").getDate().getYear())"
+        cell.language.text = "English | French"
+        cell.language2.text = "English | French"
+        cell.personaldesc.text = volItem.member?.personalDescription ?? ""
+        cell.status.text = "\(volItem.workingHours ?? "") Hours/day | \(volItem.workingDays ?? "") days/week"
         var schedule:String = ""
         for item in volItem.schedules ?? []{
             schedule = schedule + item.start! + " - " + item.end!
             schedule = schedule + "\n"
         }
-        cell.schedule.text = schedule
-        
-        let rem = (volItem.images?.count ?? 0) % 3
-        var quo = (volItem.images?.count ?? 0) / 3
-        var width = (cell.photosCollview.frame.width / 3)
-        if rem == 0 && quo == 0{
-            cell.photosHeight.constant = 0
-        }
-        if rem > 0 && quo > 0{
-            quo = (quo + 1)
-            width = (width * CGFloat(quo))
-            cell.photosHeight.constant = width + 50
-        }
-        if rem == 0 && quo > 0{
-            width = (width * CGFloat(quo))
-               cell.photosHeight.constant = width + 50
-        }
-        if rem > 0 && quo == 0{
-            cell.photosHeight.constant = width  + 50
-        }
-        photosDelegate.objects = volItem
-        cell.photosCollview.delegate = photosDelegate
-        cell.photosCollview.dataSource = photosDelegate
-        cell.photosCollview.reloadData()
+        cell.place!.setUnderLine()
+        cell.mealDesc.text = volItem.mealDescription ?? ""
         return cell
     }
     
