@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import MapKit
 class LandingVM {
 
     typealias returntype = (Bool)->()
@@ -25,7 +26,7 @@ class LandingVM {
         locationManger.requestLocation()
     }
     
-    func getVolunteerList(completion:@escaping (Bool)->())  {
+    func getVolunteerList(vc:LandingVC,completion:@escaping (Bool)->())  {
         callBack = completion
       
         var packet = NetworkPacket()
@@ -37,28 +38,32 @@ class LandingVM {
                         let decoder =  JSONDecoder()
                         self.VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
 
-                        self.getNearByHosts()
+                        self.getNearByHosts(vc: vc)
                     }else{
                         completion(false)
                     }
                 }
             }
     
-    private func getNearByHosts(){
+    private func getNearByHosts(vc:LandingVC){
         
         if let location = locationManger.location{
-           
-     
+            DispatchQueue.main.async {
+                let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: CLLocationDistance(exactly: 50000)!, longitudinalMeters: CLLocationDistance(exactly: 50000)!)
+                         vc.mapView.setRegion(vc.mapView.regionThatFits(region), animated: true)
+            }
+        
+    
             var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = "www.hovos.com"
-            urlComponents.path = ApiEndPoints.allHosts.rawValue
-//            urlComponents.queryItems = [
-//               URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
-//                 URLQueryItem(name: "radius", value: String(500)),
-//                 URLQueryItem(name: "min_offset", value: String(500)),
-//                 URLQueryItem(name: "min_offset", value: String(500))
-//            ]
+            urlComponents.path = ApiEndPoints.hostByLocation.rawValue
+            urlComponents.queryItems = [
+               URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
+                 URLQueryItem(name: "radius", value: String(500)),
+                 URLQueryItem(name: "min_offset", value: String(500)),
+                 URLQueryItem(name: "min_offset", value: String(500))
+            ]
 
             let url =  URL(string: (urlComponents.url?.absoluteString)!)
                
@@ -67,6 +72,7 @@ class LandingVM {
                                  if code == 200{
                                      let decoder =  JSONDecoder()
                                      self.Hosts = try! decoder.decode(Volunteer.self, from: data!)
+                                   
                                     self.callBack(true)
                                      
                                  }else{

@@ -17,9 +17,11 @@ class VolunteerVC: UIViewController {
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var footerlabel:UILabel!
     @IBOutlet weak var collView:UICollectionView!
+    @IBOutlet weak var menuView:MenuVC!
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+      menuView.frame = self.view.frame
+      menuView.delegate = self
       if let _ = self.indexpath{
         ViewHelper.shared().showLoader(self)
         }
@@ -36,6 +38,13 @@ class VolunteerVC: UIViewController {
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
     }
+    
+    @IBAction func loadMenu(_ sender:UIButton){
+         
+         self.view.addSubview(menuView)
+    
+         
+     }
     
 }
 
@@ -152,4 +161,39 @@ class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSou
         }
     }
     
+}
+extension VolunteerVC:Menudelegates{
+    func menuItemDidSelect(for action: Action) {
+        menuView.removeFromSuperview()
+        switch action {
+        case .login:
+            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
+            if registerVC != nil, loginVC != nil{
+                self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
+            }
+        case .logout:
+            break
+        case .register:
+            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+           
+            if registerVC != nil{
+                self.navigationController?.viewControllers = [self,registerVC!]
+            }
+            break
+        case .other:
+         
+            self.showProgressAlert()
+        case .hostlist:
+            if let vc  = self.navigationController?.viewControllers.first as? LandingVC{
+                           vc.performSegue(withIdentifier: "hostlist", sender: nil)
+                       }
+        break
+        case .volunteers:
+           
+            
+         break
+        }
+       
+    }
 }

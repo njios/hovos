@@ -35,6 +35,8 @@
 		ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */; };
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
 		ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */; };
+		ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2F423D6CE140043CBDB /* CustomMap.swift */; };
+		ACC6F2F723D6DE0A0043CBDB /* Annotationview.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */; };
 		ACC86A8723BF119F00D58388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC86A8623BF119F00D58388 /* User.swift */; };
 		ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */; };
 		ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF223B3CDAB00891F0B /* lato.xml */; };
@@ -86,6 +88,8 @@
 		ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volunteer.swift; sourceTree = "<group>"; };
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
 		ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVM.swift; sourceTree = "<group>"; };
+		ACC6F2F423D6CE140043CBDB /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
+		ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Annotationview.xib; sourceTree = "<group>"; };
 		ACC86A8623BF119F00D58388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		ACCE4EF223B3CDAB00891F0B /* lato.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lato.xml; sourceTree = "<group>"; };
@@ -187,6 +191,8 @@
 				ACC86A8623BF119F00D58388 /* User.swift */,
 				ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */,
 				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
+				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
+				ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */,
 			);
 			path = Hovos;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 				AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */,
 				ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */,
 				ACCE4EFD23B3CDAC00891F0B /* roboto_light.ttf in Resources */,
+				ACC6F2F723D6DE0A0043CBDB /* Annotationview.xib in Resources */,
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
@@ -395,6 +402,7 @@
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */,
+				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
 				ACC86A8723BF119F00D58388 /* User.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
