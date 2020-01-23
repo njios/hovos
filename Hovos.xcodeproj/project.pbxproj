@@ -31,6 +31,8 @@
 		AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */; };
 		AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D6C23AB6E840017430B /* MenuVC.xib */; };
 		AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D7023AB703F0017430B /* MenuCell.xib */; };
+		AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */; };
+		AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */; };
 		ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */; };
 		ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */; };
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
@@ -52,7 +54,6 @@
 		ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */; };
 		ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8C82123C711DB009537B5 /* HostsVC.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
-		DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,8 @@
 		AC63951323940A38000EA4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC7E7D6C23AB6E840017430B /* MenuVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuVC.xib; sourceTree = "<group>"; };
 		AC7E7D7023AB703F0017430B /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
+		AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCSliderCell.swift; sourceTree = "<group>"; };
+		AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByHostMAPCell.swift; sourceTree = "<group>"; };
 		ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVM.swift; sourceTree = "<group>"; };
 		ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volunteer.swift; sourceTree = "<group>"; };
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
@@ -106,7 +109,6 @@
 		ACF8C82123C711DB009537B5 /* HostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostsVC.swift; sourceTree = "<group>"; };
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
-		DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboardslider.swift; sourceTree = "<group>"; };
 		DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListCollView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -160,41 +162,114 @@
 		AC63950423940A36000EA4F9 /* Hovos */ = {
 			isa = PBXGroup;
 			children = (
+				AC8B37BC23D9729800B7231F /* Config */,
+				AC8B37BB23D9728400B7231F /* Views */,
+				AC8B37BA23D9727C00B7231F /* Modals */,
+				AC8B37B923D9727300B7231F /* ViewModals */,
+				AC8B37B823D9726900B7231F /* ViewControllers */,
 				ACCE4EF023B3CDAB00891F0B /* font */,
 				DC892D4423A79F4E008D5C1B /* Utilities */,
-				AC63950523940A36000EA4F9 /* AppDelegate.swift */,
-				AC63950923940A36000EA4F9 /* LoginVC.swift */,
-				AC63950B23940A36000EA4F9 /* Main.storyboard */,
-				AC63950E23940A38000EA4F9 /* Assets.xcassets */,
-				AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */,
-				AC63951323940A38000EA4F9 /* Info.plist */,
-				AC49F1D823A8B8250043B10B /* LandingVC.swift */,
-				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
-				AC49F1E023A8C0750043B10B /* SignUPVM.swift */,
-				AC49F1E423A8C68F0043B10B /* SignUpVC.swift */,
-				DCB8793223A92F2100EB9D7A /* Dashboardslider.swift */,
-				DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */,
-				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
-				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
-				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
-				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
-				AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */,
-				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
-				AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */,
-				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
-				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
-				AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */,
-				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
-				AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */,
-				ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */,
-				ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */,
-				ACC86A8623BF119F00D58388 /* User.swift */,
-				ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */,
-				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
-				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
-				ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */,
 			);
 			path = Hovos;
+			sourceTree = "<group>";
+		};
+		AC8B37B823D9726900B7231F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				AC8B37C023D9772300B7231F /* CustomCells */,
+				AC8B37BF23D9748700B7231F /* TableViewCustomClasses */,
+				AC8B37BE23D9745600B7231F /* CollViewCustomClasses */,
+				AC8B37BD23D9742C00B7231F /* ViewClasses */,
+				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
+				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
+				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
+				AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */,
+				AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */,
+				AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */,
+				ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */,
+				AC49F1E423A8C68F0043B10B /* SignUpVC.swift */,
+				AC49F1D823A8B8250043B10B /* LandingVC.swift */,
+				AC63950923940A36000EA4F9 /* LoginVC.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		AC8B37B923D9727300B7231F /* ViewModals */ = {
+			isa = PBXGroup;
+			children = (
+				AC49F1E023A8C0750043B10B /* SignUPVM.swift */,
+				ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */,
+				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
+				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
+				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
+			);
+			path = ViewModals;
+			sourceTree = "<group>";
+		};
+		AC8B37BA23D9727C00B7231F /* Modals */ = {
+			isa = PBXGroup;
+			children = (
+				ACC86A8623BF119F00D58388 /* User.swift */,
+				ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */,
+			);
+			path = Modals;
+			sourceTree = "<group>";
+		};
+		AC8B37BB23D9728400B7231F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */,
+				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
+				AC63950B23940A36000EA4F9 /* Main.storyboard */,
+				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
+				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
+				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC8B37BC23D9729800B7231F /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AC63951323940A38000EA4F9 /* Info.plist */,
+				AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */,
+				AC63950E23940A38000EA4F9 /* Assets.xcassets */,
+				AC63950523940A36000EA4F9 /* AppDelegate.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		AC8B37BD23D9742C00B7231F /* ViewClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
+			);
+			path = ViewClasses;
+			sourceTree = "<group>";
+		};
+		AC8B37BE23D9745600B7231F /* CollViewCustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */,
+			);
+			path = CollViewCustomClasses;
+			sourceTree = "<group>";
+		};
+		AC8B37BF23D9748700B7231F /* TableViewCustomClasses */ = {
+			isa = PBXGroup;
+			children = (
+				AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */,
+			);
+			path = TableViewCustomClasses;
+			sourceTree = "<group>";
+		};
+		AC8B37C023D9772300B7231F /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */,
+				AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */,
+			);
+			path = CustomCells;
 			sourceTree = "<group>";
 		};
 		ACCE4EF023B3CDAB00891F0B /* font */ = {
@@ -411,8 +486,10 @@
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
 				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
+				AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */,
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,
 				ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */,
+				AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */,
 				AC49F1DD23A8BE0E0043B10B /* CommonExtenstions.swift in Sources */,
 				AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */,
 				AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */,
@@ -425,7 +502,6 @@
 				AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */,
 				ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */,
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
-				DCB8793323A92F2100EB9D7A /* Dashboardslider.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,7 +650,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2KAL3NND99;
-				INFOPLIST_FILE = Hovos/Info.plist;
+				INFOPLIST_FILE = /Users/neerajkumarjoshi/Desktop/hovos/Hovos/Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -596,7 +672,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 2KAL3NND99;
-				INFOPLIST_FILE = Hovos/Info.plist;
+				INFOPLIST_FILE = /Users/neerajkumarjoshi/Desktop/hovos/Hovos/Config/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "09EBADE9-B79E-4533-9807-E4768AC2E5A7"
-            shouldBeEnabled = "No"
+            uuid = "0700B7C4-1CFE-4BB4-91F6-773BD4B05A61"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Hovos/LandingVC.swift"
+            filePath = "Hovos/ViewModals/LandingVM.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
-            landmarkName = "mapView(_:didSelect:)"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "getNearByHosts(location:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

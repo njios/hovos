@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+typealias returntype = (Bool)->()
 enum constants:String{
     case accessToken = "login"
     case Api_key = "HOVOS-842145-API"
@@ -25,6 +25,7 @@ enum ApiEndPoints{
     case volunteers
     case hostByLocation
     case allHosts
+    case facetData
     case nearByHost(lat:Double,long:Double,radius:Int,min_offset:Int,max_offset:Int)
         
     var rawValue:String{
@@ -43,6 +44,8 @@ enum ApiEndPoints{
         case .hostByLocation:
               return "/api/get/hosts/nearby/"
         case .allHosts:
+            return "/api/get/hosts/all/"
+        case .facetData:
             return "/api/get/hosts/all/"
         case .nearByHost(let lat, let long, let radius, let min_offset, let max_offset):
              let first = "/api/get/hosts/nearby/?latlng=" + String(lat) + "|" + String(long)
