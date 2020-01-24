@@ -116,7 +116,7 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
              let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
              cell.VMObject = VMObject
              nearByHost = cell
-           
+             cell.loadMap()
                 return cell
         case 2:
              return UITableViewCell()
