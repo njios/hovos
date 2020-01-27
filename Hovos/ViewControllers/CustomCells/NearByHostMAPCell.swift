@@ -13,12 +13,12 @@ class NearByHostMAPCell: UITableViewCell {
     @IBOutlet weak var mapView:UIView!
     weak var VMObject:LandingVM!
     var locManager = CLLocationManager()
-    var Hosts:[VolunteerItem]!
+ 
     var map:MKMapView! = MKMapView()
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        map.frame = mapView.frame
+        map.frame = CGRect(x: 0, y: 0, width: mapView.frame.width, height: mapView.frame.height)
         map.isScrollEnabled = true
         
     }
@@ -49,8 +49,13 @@ class NearByHostMAPCell: UITableViewCell {
                 }
                 
                 DispatchQueue.main.async {
-                      self.mapView.addSubview(self.map)
-                    self.map.addAnnotations(annotations)
+                   
+                      self.map.addAnnotations(annotations)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+                           self.mapView.addSubview(self.map)
+                    }
+                   
+                  
                   
                 }
             }

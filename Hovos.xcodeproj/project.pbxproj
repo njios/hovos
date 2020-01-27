@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CF9ECA5B1B073A347B5C8E0 /* Pods_Hovos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1391DE148A75807616E94B57 /* Pods_Hovos.framework */; };
+		AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */; };
 		AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C078623AA18D200EC19BC /* MenuVC.swift */; };
 		AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */; };
 		AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */; };
@@ -60,6 +61,7 @@
 /* Begin PBXFileReference section */
 		0C76A3EF4E0B2D8DDC6E9E30 /* Pods-Hovos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.debug.xcconfig"; sourceTree = "<group>"; };
 		1391DE148A75807616E94B57 /* Pods_Hovos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hovos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCVolunteersCell.swift; sourceTree = "<group>"; };
 		AC0C078623AA18D200EC19BC /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 			children = (
 				AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */,
 				AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */,
+				AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
 				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
+				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
 				AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */,
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,

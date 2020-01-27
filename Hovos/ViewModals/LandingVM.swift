@@ -10,9 +10,10 @@ import UIKit
 import Alamofire
 import MapKit
 class LandingVM {
-    var VolunteerList:Volunteer!
-
-    func getVolunteerList()  {
+   
+    var Hosts:[VolunteerItem]!
+    var Volunteers:[VolunteerItem]!
+    func getVolunteerList(completion:@escaping ([VolunteerItem]?)->())  {
         var packet = NetworkPacket()
         packet.apiPath = ApiEndPoints.volunteers.rawValue
         packet.method = HTTPMethod.get.rawValue
@@ -20,11 +21,14 @@ class LandingVM {
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
                 let decoder =  JSONDecoder()
-                self.VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
-                
-                
+                if let VolunteerList = try? decoder.decode(Volunteer.self, from: data!){
+                self.Volunteers = VolunteerList.travellers
+                completion(VolunteerList.travellers)
             }else{
-             
+                completion(nil)
+            }
+            }else{
+             completion(nil)
             }
         }
     }
@@ -47,6 +51,7 @@ class LandingVM {
                 if code == 200{
                     let decoder =  JSONDecoder()
                     if let Volunteer = try? decoder.decode(Volunteer.self, from: data!){
+                        self.Hosts = Volunteer.hosts
                         completion(Volunteer.hosts)
                     }
                 }else{

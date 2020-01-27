@@ -12,20 +12,9 @@ class LandingVC: UIViewController {
 
   
     @IBOutlet weak var tblView:UITableView!
-//    @IBOutlet weak var volunteerSignupView:UIView!
-
-//    @IBOutlet weak var hostCollView:UICollectionView!
-//    @IBOutlet weak var volCollView:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var countries:ContinentView!
-//    @IBOutlet weak var sliderTitle:CustomLabels!
-//    @IBOutlet weak var sliderSubTitle:UILabel!
-
-   
-    var listDelegates = VolunteerListCollView()
-    
     var VMObject:LandingVM!
-    weak var nearByHost:NearByHostMAPCell!
     // variable to save the last position visited, default to zero
     private var lastContentOffset: CGFloat = 0
     override func viewDidLoad() {
@@ -34,24 +23,6 @@ class LandingVC: UIViewController {
         menuView.frame = self.view.frame
         menuView.delegate = self
         countries.delegate = self
-        
-//        ViewHelper.shared().showLoader(self)
-//        DispatchQueue.global().async {
-//        self.VMObject.getVolunteerList() { (status) in
-//        ViewHelper.shared().hideLoader()
-//        if status == true{
-//                    DispatchQueue.main.async {
-//                        self.listDelegates.modalObject = self.VMObject.VolunteerList.travellers
-//                        self.listDelegates.delegate = self
-//                        self.volCollView.delegate = self.listDelegates
-//                        self.volCollView.dataSource = self.listDelegates
-//                        self.volCollView.reloadData()
-//                    }
-//                }
-//            }
-//        }
-        
-       
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,12 +36,12 @@ class LandingVC: UIViewController {
     }
     
         if let vollist = segue.destination as? VolunteerVC{
-            vollist.object = VMObject.VolunteerList.travellers ?? nil
+            vollist.object = VMObject.Volunteers
         }
         if segue.identifier == "hostwithlocation"{
             if let vollist = segue.destination as? HostsVC{
                 
-                vollist.object = nearByHost.Hosts
+                vollist.object = VMObject.Hosts
                   }
         }
     }
@@ -88,9 +59,9 @@ class LandingVC: UIViewController {
     
      @IBAction func loadHosts(_ sender:UIButton){
         
-        if nearByHost.Hosts != nil{
+        
          performSegue(withIdentifier: "hostwithlocation", sender: nil)
-        }
+        
      }
     @IBAction func showVolunteers(_ sender:UIButton){
       self.performSegue(withIdentifier: "vollist", sender: nil)
@@ -103,7 +74,7 @@ class LandingVC: UIViewController {
 
 extension LandingVC:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,11 +86,15 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
         case 1:
              let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
              cell.VMObject = VMObject
-             nearByHost = cell
+           
              cell.loadMap()
                 return cell
         case 2:
-             return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LandingVCVolunteersCell") as! LandingVCVolunteersCell
+             cell.VMObject = VMObject
+             cell.getVolunteers(vc: self)
+            
+                return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "signup")
             return cell!
@@ -168,7 +143,7 @@ extension LandingVC:ListViewDelegate{
     func collViewdidUpdate(index: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
         vc.indexpath = index
-        vc.object = VMObject.VolunteerList.travellers ?? nil
+        vc.object = VMObject.Volunteers
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
