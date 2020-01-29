@@ -65,9 +65,9 @@ struct VolunteerItem:Codable{
     var dislikes:String?
     var location:location?
     var images:[images]?
-    var accommodations:[String]?
+    var accommodations:[Int:String]?
     var accommodationImages:[images]?
-    var jobs:[String]?
+    var jobs:[Int:String]?
     var countries:[String:String?]?
     var schedules:[schedules]?
     var friends:[friends]?

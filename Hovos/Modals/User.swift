@@ -45,7 +45,7 @@ struct User:Codable {
     var phoneNumber:String?
     var renewalAmount:String?
     var type:String?
-    var languages:[String]?
+    var languages:[String:String]?
     
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)

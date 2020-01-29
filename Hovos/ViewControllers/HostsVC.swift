@@ -82,7 +82,8 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         let volItem = object[indexPath.row]
         cell.name?.text = volItem.member?.firstName ?? ""
-        cell.countries = ["Animal care","Computer help","Construction"]
+        let jobs = volItem.jobs?.values
+        cell.countries = Array(jobs!)
         cell.countryHeight.constant = CGFloat((cell.countries.count) * 30)
         cell.countryTable.reloadData()
         
@@ -109,8 +110,10 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
         cell.lastSeen.text = "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
         cell.year.text = "\((volItem.publishedOn ?? "").getDate().getYear())"
-        cell.language.text = "English | French"
-        cell.language2.text = "English | French"
+        let languages = volItem.member?.languages?.values
+        cell.language.text = languages?.joined(separator: " | ")
+        cell.language2.text = languages?.joined(separator: " | ")
+        
         cell.personaldesc.text = volItem.member?.personalDescription ?? ""
         cell.status.text = "\(volItem.workingHours ?? "") Hours/day | \(volItem.workingDays ?? "") days/week"
         var schedule:String = ""

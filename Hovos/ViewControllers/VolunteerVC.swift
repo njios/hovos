@@ -81,11 +81,13 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
        
-        cell.location.text = (volItem.location?.country ?? "") + ", Last seen on" + "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
-        // let language = volItem.member?.languages?.joined(separator: " | ")
-         cell.language.text = "English | French"
+        cell.location.text = (volItem.location?.country ?? "") + ", Last seen on " + "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        let languages = volItem.member?.languages?.values
+       
+        cell.language.text = languages?.joined(separator: " | ")
         cell.status.text = "I am open for meeting travelers"
-        cell.jobs.text = "Elderly care | Help in the house | Hostel support | House sitting | Teaching"
+        let jobs = volItem.jobs?.values
+        cell.jobs.text = jobs?.joined(separator: " | ") //"Elderly care | Help in the house | Hostel support | House sitting | Teaching"
         var schedule:String = ""
         for item in volItem.schedules ?? []{
             schedule = schedule + item.start! + " - " + item.end!
