@@ -94,15 +94,18 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
             
         case 1:
              let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
+             if VMObject.Hosts == nil {
              cell.VMObject = VMObject
            
              cell.loadMap()
+             }
                 return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandingVCVolunteersCell") as! LandingVCVolunteersCell
+            if VMObject.Volunteers == nil{
              cell.VMObject = VMObject
              cell.getVolunteers(vc: self)
-            
+            }
                 return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "signup")

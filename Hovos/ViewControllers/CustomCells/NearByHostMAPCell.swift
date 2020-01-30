@@ -8,18 +8,18 @@
 
 import UIKit
 import MapKit
+import GoogleMaps
 class NearByHostMAPCell: UITableViewCell {
     
-    @IBOutlet weak var mapView:UIView!
+    @IBOutlet weak var mapView:GMSMapView!
     weak var VMObject:LandingVM!
     var locManager = CLLocationManager()
- 
-    var map:MKMapView! = MKMapView()
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        map.frame = CGRect(x: 0, y: 0, width: mapView.frame.width, height: mapView.frame.height)
-        map.isScrollEnabled = true
+        
         
     }
     
@@ -32,32 +32,28 @@ class NearByHostMAPCell: UITableViewCell {
     
     func loadMap(){
         
-        map.delegate = self
+        
         if let location = locManager.location{
-            map.showsUserLocation = true
+            
             VMObject.getNearByHosts(location: location, completion: { Hosts in
-                let region = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: CLLocationDistance(exactly: 50000)!, longitudinalMeters: CLLocationDistance(exactly: 50000)!)
-                self.map.setRegion(self.map.regionThatFits(region), animated: true)
-                var annotations = [MKAnnotation]()
-                for item in Hosts!{
-                    let point =  MKPointAnnotation()
-                    let lattitude = Double((item.location?.latitude)!)!
-                    let longitude = Double((item.location?.longitude)!)!
-                    point.coordinate = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
-                    point.title = item.member?.firstName
-                    annotations.append(point)
-                }
-                
                 DispatchQueue.main.async {
-                   
-                      self.map.addAnnotations(annotations)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
-                           self.mapView.addSubview(self.map)
-                    }
-                   
-                  
-                  
+                    self.mapView.isMyLocationEnabled = true
+                    self.mapView.camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 10.0)
+                                     
+                                  for item in Hosts!{
+                                      let lattitude = Double((item.location?.latitude)!)!
+                                      let longitude = Double((item.location?.longitude)!)!
+                                      let marker = CustomAnnotation()
+                                      marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
+                                      marker.title = item.member?.firstName
+                                      marker.snippet = item.currentLocation
+                                      
+                                      marker.map = self.mapView
+                                  }
+                                
                 }
+              
+                   
             }
             )
         }else{
@@ -69,9 +65,7 @@ class NearByHostMAPCell: UITableViewCell {
     }
     
 }
-extension NearByHostMAPCell:MKMapViewDelegate{
-    
-}
+
 
 
 extension NearByHostMAPCell:CLLocationManagerDelegate{
@@ -88,7 +82,7 @@ extension NearByHostMAPCell:CLLocationManagerDelegate{
     }
 }
 
-class CustomAnnotation:MKAnnotationView{
+class CustomAnnotation:GMSMarker{
     @IBOutlet weak var img:UIImageView!
     @IBOutlet weak var name:UILabel!
     @IBOutlet weak var lstseen:UILabel!

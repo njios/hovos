@@ -7,6 +7,7 @@ target 'Hovos' do
 
   # Pods for Hovos
   pod 'GoogleSignIn'
+  pod 'GoogleMaps'
   pod 'FBSDKLoginKit'
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
