@@ -97,7 +97,7 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
              if VMObject.Hosts == nil {
              cell.VMObject = VMObject
            
-             cell.loadMap()
+                cell.loadMap(dependency: self)
              }
                 return cell
         case 2:

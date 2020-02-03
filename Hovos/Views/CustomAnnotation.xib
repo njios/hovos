@@ -14,16 +14,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAnnotation" customModule="Hovos" customModuleProvider="target">
-            <connections>
-                <outlet property="img" destination="lMS-Fq-KGM" id="Pzz-X8-MC8"/>
-                <outlet property="jobs" destination="IAz-hT-5mL" id="CWL-Lm-uoq"/>
-                <outlet property="lstseen" destination="TRt-fp-AOr" id="nRL-G0-9gC"/>
-                <outlet property="name" destination="VaH-oh-wVm" id="mwE-xa-W45"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomAnnotation" customModule="Hovos" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="eMo-7Q-Ead">
+        <view contentMode="scaleToFill" id="eMo-7Q-Ead" customClass="CustomAnnotation" customModule="Hovos" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="263" height="255"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -120,6 +113,12 @@
                     <color key="value" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="img" destination="lMS-Fq-KGM" id="BGe-iU-Oba"/>
+                <outlet property="jobs" destination="IAz-hT-5mL" id="5pN-ff-5WY"/>
+                <outlet property="lstseen" destination="TRt-fp-AOr" id="DfG-La-LmL"/>
+                <outlet property="name" destination="VaH-oh-wVm" id="TiX-rF-ynx"/>
+            </connections>
             <point key="canvasLocation" x="29.600000000000001" y="-6.746626686656672"/>
         </view>
     </objects>

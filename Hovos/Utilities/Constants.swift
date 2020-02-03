@@ -46,7 +46,7 @@ enum ApiEndPoints{
         case .allHosts:
             return "/api/get/hosts/all/"
         case .facetData:
-            return "/api/get/hosts/all/"
+            return "/api/get/hosts/facet/" 
         case .nearByHost(let lat, let long, let radius, let min_offset, let max_offset):
              let first = "/api/get/hosts/nearby/?latlng=" + String(lat) + "|" + String(long)
              let second = first + "&radius=" + String(radius)

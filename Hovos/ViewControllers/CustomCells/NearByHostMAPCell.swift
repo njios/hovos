@@ -9,18 +9,18 @@
 import UIKit
 import MapKit
 import GoogleMaps
-class NearByHostMAPCell: UITableViewCell {
+class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     
     @IBOutlet weak var mapView:GMSMapView!
     weak var VMObject:LandingVM!
     var locManager = CLLocationManager()
-    
-    
-    
+    private var infoWindow = CustomAnnotation()
+    weak var vc :LandingVC!
+    fileprivate var locationMarker : GMSMarker? = GMSMarker()
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
+        mapView.delegate = self
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,8 +30,8 @@ class NearByHostMAPCell: UITableViewCell {
     
     
     
-    func loadMap(){
-        
+    func loadMap(dependency:LandingVC){
+        self.vc = dependency
         
         if let location = locManager.location{
             
@@ -43,12 +43,20 @@ class NearByHostMAPCell: UITableViewCell {
                                   for item in Hosts!{
                                       let lattitude = Double((item.location?.latitude)!)!
                                       let longitude = Double((item.location?.longitude)!)!
-                                      let marker = CustomAnnotation()
+                                    
+                                      let marker = customMarker()
                                       marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
                                       marker.title = item.member?.firstName
                                       marker.snippet = item.currentLocation
+
+                                       let markerImage = UIImage.init(named: "mappin")
+                                       let markerView = UIImageView(image: markerImage)
                                       
-                                      marker.map = self.mapView
+                                       marker.iconView = markerView
+                                       marker.info = item
+                                       marker.map = self.mapView
+                                    
+                                 
                                   }
                                 
                 }
@@ -64,6 +72,26 @@ class NearByHostMAPCell: UITableViewCell {
         
     }
     
+  
+    
+   
+    
+    func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+        let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation
+        if let custom = marker as? customMarker{
+            infoWindow.name.text = custom.info.member?.firstName ?? ""
+            let lastSeen = "Last seen on \((custom.info.lastLogin ?? "").getDate().getMonth()) \((custom.info.lastLogin ?? "").getDate().getDay())"
+            infoWindow.lstseen.text = lastSeen
+            let jobs = custom.info.jobs?.values
+            infoWindow.jobs.text = jobs?.joined(separator: " | ")
+            infoWindow.img.kf.indicatorType = .activity
+            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+        }
+        infoWindow.center = mapView.projection.point(for: marker.position)
+        infoWindow.center.y =  infoWindow.center.y + 100
+              return infoWindow
+    }
+    
 }
 
 
@@ -73,7 +101,7 @@ extension NearByHostMAPCell:CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         manager.stopUpdatingLocation()
-        loadMap()
+        loadMap(dependency: self.vc)
         
     }
     
@@ -82,9 +110,17 @@ extension NearByHostMAPCell:CLLocationManagerDelegate{
     }
 }
 
-class CustomAnnotation:GMSMarker{
+class CustomAnnotation:UIView{
     @IBOutlet weak var img:UIImageView!
     @IBOutlet weak var name:UILabel!
     @IBOutlet weak var lstseen:UILabel!
     @IBOutlet weak var jobs:UILabel!
+    
+    class func instanceFromNib() -> UIView {
+           return UINib(nibName: "CustomAnnotation", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+       }
+}
+
+class customMarker:GMSMarker{
+    var info = VolunteerItem()
 }

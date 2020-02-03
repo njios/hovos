@@ -39,7 +39,7 @@
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
 		ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */; };
 		ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2F423D6CE140043CBDB /* CustomMap.swift */; };
-		ACC6F2F723D6DE0A0043CBDB /* Annotationview.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */; };
+		ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */; };
 		ACC86A8723BF119F00D58388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC86A8623BF119F00D58388 /* User.swift */; };
 		ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */; };
 		ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF223B3CDAB00891F0B /* lato.xml */; };
@@ -53,6 +53,10 @@
 		ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */; };
 		ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */; };
 		ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */; };
+		ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276CF23E7E7E000000331 /* Facet Modal.swift */; };
+		ACE276D223E7E97600000331 /* FaceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D123E7E97600000331 /* FaceVM.swift */; };
+		ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE276D323E7F24100000331 /* ContinentCell.xib */; };
+		ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D523E7F34600000331 /* ContinentCell.swift */; };
 		ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8C82123C711DB009537B5 /* HostsVC.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
@@ -94,7 +98,7 @@
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
 		ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVM.swift; sourceTree = "<group>"; };
 		ACC6F2F423D6CE140043CBDB /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
-		ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Annotationview.xib; sourceTree = "<group>"; };
+		ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAnnotation.xib; sourceTree = "<group>"; };
 		ACC86A8623BF119F00D58388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		ACCE4EF223B3CDAB00891F0B /* lato.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lato.xml; sourceTree = "<group>"; };
@@ -108,6 +112,10 @@
 		ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_light.ttf; sourceTree = "<group>"; };
 		ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabels.swift; sourceTree = "<group>"; };
 		ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerVC.swift; sourceTree = "<group>"; };
+		ACE276CF23E7E7E000000331 /* Facet Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Facet Modal.swift"; sourceTree = "<group>"; };
+		ACE276D123E7E97600000331 /* FaceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceVM.swift; sourceTree = "<group>"; };
+		ACE276D323E7F24100000331 /* ContinentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentCell.xib; sourceTree = "<group>"; };
+		ACE276D523E7F34600000331 /* ContinentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentCell.swift; sourceTree = "<group>"; };
 		ACF8C82123C711DB009537B5 /* HostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostsVC.swift; sourceTree = "<group>"; };
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
@@ -204,6 +212,7 @@
 				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
 				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
 				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
+				ACE276D123E7E97600000331 /* FaceVM.swift */,
 			);
 			path = ViewModals;
 			sourceTree = "<group>";
@@ -213,6 +222,7 @@
 			children = (
 				ACC86A8623BF119F00D58388 /* User.swift */,
 				ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */,
+				ACE276CF23E7E7E000000331 /* Facet Modal.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -220,12 +230,13 @@
 		AC8B37BB23D9728400B7231F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				ACC6F2F623D6DE0A0043CBDB /* Annotationview.xib */,
+				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
 				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
 				AC63950B23940A36000EA4F9 /* Main.storyboard */,
 				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
 				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
 				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
+				ACE276D323E7F24100000331 /* ContinentCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -271,6 +282,7 @@
 				AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */,
 				AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */,
 				AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */,
+				ACE276D523E7F34600000331 /* ContinentCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -370,8 +382,9 @@
 				ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */,
 				AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */,
 				ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */,
+				ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */,
 				ACCE4EFD23B3CDAC00891F0B /* roboto_light.ttf in Resources */,
-				ACC6F2F723D6DE0A0043CBDB /* Annotationview.xib in Resources */,
+				ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */,
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
@@ -485,9 +498,11 @@
 				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
 				ACC86A8723BF119F00D58388 /* User.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
+				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
+				ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */,
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
 				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
 				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
@@ -503,6 +518,7 @@
 				ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
+				ACE276D223E7E97600000331 /* FaceVM.swift in Sources */,
 				AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */,
 				DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */,
 				AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */,
