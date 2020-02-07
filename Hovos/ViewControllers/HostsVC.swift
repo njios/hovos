@@ -7,50 +7,44 @@
 //
 
 import UIKit
-
+import CoreLocation
 class HostsVC: UIViewController {
     
     var object = [VolunteerItem]()
     var name = ""
     var indexpath:IndexPath?
+    var location:CLLocation!
     let photosDelegate = PhotosCollection()
+    weak var VMObject:LandingVM!
     @IBOutlet weak var titleLabel:UILabel!
-     @IBOutlet weak var loaderView:UIView!
+    @IBOutlet weak var loaderView:UIView!
     @IBOutlet weak var footerlabel:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-    menuView.frame = self.view.frame
-    menuView.delegate = self
+        menuView.frame = self.view.frame
+        menuView.delegate = self
         if object.count == 0{
-        ViewHelper.shared().showLoader(self)
-               var urlComponents = URLComponents()
-                urlComponents.scheme = "https"
-                urlComponents.host = "www.hovos.com"
-                urlComponents.path = ApiEndPoints.allHosts.rawValue
-                
-                
-                let url =  URL(string: (urlComponents.url?.absoluteString)!)
-                
-                
-                getApiCall(url: url! ) { (data, status, code) in
-                    DispatchQueue.main.async {
-                        if code == 200{
-                            let decoder =  JSONDecoder()
-                            let Hosts = try! decoder.decode(Volunteer.self, from: data!)
-                            self.object = Hosts.hosts ?? [VolunteerItem]()
-                            self.loaderView.isHidden = true
-                            self.collView.reloadData()
-                        }
-                        ViewHelper.shared().hideLoader()
-                    }
+            ViewHelper.shared().showLoader(self)
+            
+            VMObject.getNearByHosts(completion: { (items) in
+                DispatchQueue.main.async {
+                    self.object = items!
                     
-            }
+                    self.collView.reloadData()
+                    
+                }
+            })
+            
+            
+            
+            
+            
         }else{
             self.loaderView.isHidden = true
         }
-           
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -61,11 +55,11 @@ class HostsVC: UIViewController {
     }
     
     @IBAction func loadMenu(_ sender:UIButton){
-           
-           self.view.addSubview(menuView)
-      
-           
-       }
+        
+        self.view.addSubview(menuView)
+        
+        
+    }
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
     }
@@ -154,23 +148,25 @@ extension HostsVC:Menudelegates{
             break
         case .register:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-           
+            
             if registerVC != nil{
                 self.navigationController?.viewControllers = [self,registerVC!]
             }
             break
         case .other:
-         
+            
             self.showProgressAlert()
         case .hostlist:
-        break
+            break
         case .volunteers:
             if let vc  = self.navigationController?.viewControllers.first as? LandingVC{
                 vc.performSegue(withIdentifier: "vollist", sender: nil)
             }
             
-         break
+            break
+        case .AboutUS:
+            break
         }
-       
+        
     }
 }

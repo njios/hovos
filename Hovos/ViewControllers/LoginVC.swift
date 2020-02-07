@@ -63,11 +63,11 @@ class LoginVC: UIViewController,GIDSignInDelegate {
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil{
-            UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
-             let appdel = UIApplication.shared.delegate as? AppDelegate
-            appdel?.window?.rootViewController = vc
+//            UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
+//            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+//             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+//             let appdel = UIApplication.shared.delegate as? AppDelegate
+//            appdel?.window?.rootViewController = vc
         }
      }
      
@@ -76,12 +76,12 @@ class LoginVC: UIViewController,GIDSignInDelegate {
      }
     
     private func loginManagerDidComplete(_ result: LoginManagerLoginResult) {
-          print(result)
-        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-           let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
-           let appdel = UIApplication.shared.delegate as? AppDelegate
-          appdel?.window?.rootViewController = vc
+//          print(result)
+//        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
+//          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+//           let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+//           let appdel = UIApplication.shared.delegate as? AppDelegate
+//          appdel?.window?.rootViewController = vc
        }
 
 }

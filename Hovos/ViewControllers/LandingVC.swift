@@ -36,14 +36,16 @@ class LandingVC: UIViewController {
     }
     
         if let vollist = segue.destination as? VolunteerVC{
+            
             vollist.object = VMObject.Volunteers
         }
-        if segue.identifier == "hostwithlocation"{
+    
             if let vollist = segue.destination as? HostsVC{
-                
+                vollist.VMObject = VMObject
+                vollist.location = VMObject.location
                 vollist.object = VMObject.Hosts
                   }
-        }
+        
     }
     @IBAction func volunteerSignup(_ sender:UIButton){
         self.performSegue(withIdentifier: "volunteer", sender: nil)
@@ -146,7 +148,11 @@ extension LandingVC:Menudelegates{
             performSegue(withIdentifier: "hostlist", sender: nil)
         case .volunteers:
             performSegue(withIdentifier: "vollist", sender: nil)
+        case .AboutUS:
+             performSegue(withIdentifier: "AboutUS", sender: nil)
+            break
         }
+        
        
     }
 }

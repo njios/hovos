@@ -22,15 +22,16 @@ enum ApiEndPoints{
     case signup
     case forgetPassword
     case changePassword
-    case volunteers
+    case volunteersLatest
+    case volunteersRecommended
+    case volunteersNearBy
+    case volunteersAll
     case hostByLocation
-    case allHosts
+    case hostsRecommended
+    case hostsLatest
     case facetData
-    case nearByHost(lat:Double,long:Double,radius:Int,min_offset:Int,max_offset:Int)
-        
     var rawValue:String{
         switch self {
-       
         case .login:
             return "/api/user/login/"
         case .signup:
@@ -39,19 +40,22 @@ enum ApiEndPoints{
             return "/api/user/forgot_password"
         case .changePassword:
             return "/api/user/reset_password/"
-        case .volunteers:
+        case .volunteersLatest:
             return "/api/get/travellers/latest/"
+        case .volunteersAll:
+            return "/api/get/travellers/all/"
+        case .volunteersRecommended:
+             return "/api/traveller/recommended/"
+        case .volunteersNearBy:
+            return "/api/get/travellers/nearby/"
         case .hostByLocation:
               return "/api/get/hosts/nearby/"
-        case .allHosts:
-            return "/api/get/hosts/all/"
+        case .hostsRecommended:
+            return "/api/host/recommended/"
+        case .hostsLatest:
+            return "/api/get/hosts/latest/"
         case .facetData:
-            return "/api/get/hosts/facet/" 
-        case .nearByHost(let lat, let long, let radius, let min_offset, let max_offset):
-             let first = "/api/get/hosts/nearby/?latlng=" + String(lat) + "|" + String(long)
-             let second = first + "&radius=" + String(radius)
-             let third = second +  "&min_offset=" + String(min_offset) + "&max_offset=" + String(max_offset)
-             return third
+            return "/api/get/hosts/facet/"
         }
     }
        

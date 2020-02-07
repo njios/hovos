@@ -15,6 +15,10 @@ struct Auth:Codable {
     var user:User?
 }
 
+struct SharedUser{
+    static var manager = SharedUser()
+    var auth = Auth()
+}
 
 struct User:Codable {
     var additionalDesc:String?

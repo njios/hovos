@@ -34,8 +34,8 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         self.vc = dependency
         
         if let location = locManager.location{
-            
-            VMObject.getNearByHosts(location: location, completion: { Hosts in
+            VMObject.location = location
+            VMObject.getNearByHosts( completion: { Hosts in
                 DispatchQueue.main.async {
                     self.mapView.isMyLocationEnabled = true
                     self.mapView.camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 10.0)
@@ -101,6 +101,7 @@ extension NearByHostMAPCell:CLLocationManagerDelegate{
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         manager.stopUpdatingLocation()
+        VMObject.location = manager.location
         loadMap(dependency: self.vc)
         
     }

@@ -15,6 +15,7 @@ enum Action{
     case login
     case hostlist
     case volunteers
+    case AboutUS
 }
 
 protocol Menudelegates {
@@ -90,9 +91,9 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
           self.delegate.menuItemDidSelect(for: Action.hostlist)
         }else if indexPath.row == 3{
           self.delegate.menuItemDidSelect(for: Action.volunteers)
-        }else {
-          self.delegate.menuItemDidSelect(for: Action.other)
-        }
+    }else if indexPath.row == 4{
+          self.delegate.menuItemDidSelect(for: Action.AboutUS)
+    }
     }
 }
 

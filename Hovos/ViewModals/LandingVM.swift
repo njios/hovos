@@ -9,13 +9,14 @@
 import UIKit
 import Alamofire
 import MapKit
+import CoreLocation
 class LandingVM {
-   
+    var location:CLLocation!
     var Hosts:[VolunteerItem]!
     var Volunteers:[VolunteerItem]!
     func getVolunteerList(completion:@escaping ([VolunteerItem]?)->())  {
         var packet = NetworkPacket()
-        packet.apiPath = ApiEndPoints.volunteers.rawValue
+        packet.apiPath = ApiEndPoints.volunteersAll.rawValue
         packet.method = HTTPMethod.get.rawValue
         packet.encoding = Alamofire.URLEncoding.httpBody
         ApiCall(packet: packet) { (data, status, code) in
@@ -33,7 +34,7 @@ class LandingVM {
         }
     }
     
-    func getNearByHosts(location:CLLocation, completion:@escaping ([VolunteerItem]?)->()){
+    func getNearByHosts(completion:@escaping ([VolunteerItem]?)->()){
     
             var urlComponents = URLComponents()
             urlComponents.scheme = "https"
@@ -42,8 +43,8 @@ class LandingVM {
             urlComponents.queryItems = [
                 URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
                 URLQueryItem(name: "radius", value: String(500)),
-                URLQueryItem(name: "min_offset", value: String(500)),
-                URLQueryItem(name: "min_offset", value: String(500))
+                URLQueryItem(name: "min_offset", value: String(0)),
+                URLQueryItem(name: "min_offset", value: String(0))
             ]
             
             let url =  URL(string: (urlComponents.url?.absoluteString)!)
@@ -60,11 +61,7 @@ class LandingVM {
             }
         
     }
-    
-    
     private func getfacetdata(){
-       
-       
     }
 }
 

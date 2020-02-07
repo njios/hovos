@@ -1109,7 +1109,7 @@
             <objects>
                 <viewController id="Ate-wP-Y9X" customClass="LandingVC" customModule="Hovos" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dkc-d1-GEu">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="2000"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yws-i6-0sE">
@@ -1165,10 +1165,10 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LandingVCSliderCell" rowHeight="250" id="Mc4-pJ-Qyx" customClass="LandingVCSliderCell" customModule="Hovos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="365" height="250"/>
+                                        <rect key="frame" x="0.0" y="28" width="370" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mc4-pJ-Qyx" id="eb1-Bn-w2j">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="250"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zWe-Nq-dAB">
@@ -1353,10 +1353,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NearByHostMAPCell" id="Jcb-cP-P3L" customClass="NearByHostMAPCell" customModule="Hovos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="278" width="365" height="303"/>
+                                        <rect key="frame" x="0.0" y="278" width="370" height="303"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jcb-cP-P3L" id="iAh-Mz-jkr">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="303"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="303"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8md-Uc-gFU">
@@ -1433,10 +1433,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="signup" id="qTv-FD-nkP">
-                                        <rect key="frame" x="0.0" y="581" width="365" height="927.5"/>
+                                        <rect key="frame" x="0.0" y="581" width="370" height="927.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qTv-FD-nkP" id="3c1-gZ-lae">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="927.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="927.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lx5-Yj-7d5">
@@ -1915,10 +1915,10 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="LandingVCVolunteersCell" rowHeight="260" id="aLp-Wg-R2B" customClass="LandingVCVolunteersCell" customModule="Hovos" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1508.5" width="365" height="260"/>
+                                        <rect key="frame" x="0.0" y="1508.5" width="370" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aLp-Wg-R2B" id="7Sn-Iq-BwZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="365" height="260"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="370" height="260"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" id="FjH-DH-P9g">
@@ -2051,7 +2051,7 @@
                                     <outlet property="delegate" destination="Ate-wP-Y9X" id="iLz-Af-oj7"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-ot-Lc3" customClass="ContinentView" customModule="Hovos" customModuleProvider="target">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6Z-ot-Lc3" customClass="ContinentView" customModule="Hovos" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -2082,6 +2082,7 @@
                         <segue destination="8mT-rC-Ozh" kind="show" identifier="vollist" id="UQj-On-CeC"/>
                         <segue destination="gHW-5S-q3d" kind="show" identifier="hostlist" id="yUs-3i-PTD"/>
                         <segue destination="gHW-5S-q3d" kind="show" identifier="hostwithlocation" id="Lqu-89-weM"/>
+                        <segue destination="w7L-kn-UAv" kind="show" identifier="AboutUS" id="RPh-LR-0Oo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lY-6h-j7I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -4737,6 +4738,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x51-IZ-s13" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6929" y="125"/>
+        </scene>
+        <!--About UsVC-->
+        <scene sceneID="ayE-KV-RA5">
+            <objects>
+                <viewController id="w7L-kn-UAv" customClass="AboutUsVC" customModule="Hovos" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JVS-vf-aHh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PE7-6K-fY7">
+                                <rect key="frame" x="0.0" y="70" width="375" height="597"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aRb-3i-87V">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JY-e9-fpJ">
+                                        <rect key="frame" x="15" y="20" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="Ip8-bh-i7D"/>
+                                            <constraint firstAttribute="height" constant="30" id="R9D-1f-85t"/>
+                                        </constraints>
+                                        <state key="normal" image="backIcon">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goback:" destination="w7L-kn-UAv" eventType="touchUpInside" id="6vE-6J-UYe"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Help centre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ux-bt-LVY">
+                                        <rect key="frame" x="55" y="23" width="103" height="24"/>
+                                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="orangeColor"/>
+                                <constraints>
+                                    <constraint firstItem="9Ux-bt-LVY" firstAttribute="centerY" secondItem="aRb-3i-87V" secondAttribute="centerY" id="AFQ-WF-pf3"/>
+                                    <constraint firstAttribute="height" constant="70" id="N2F-HO-iui"/>
+                                    <constraint firstItem="3JY-e9-fpJ" firstAttribute="centerY" secondItem="aRb-3i-87V" secondAttribute="centerY" id="XsS-fk-sPu"/>
+                                    <constraint firstItem="3JY-e9-fpJ" firstAttribute="leading" secondItem="aRb-3i-87V" secondAttribute="leading" constant="15" id="iLI-Y3-xmS"/>
+                                    <constraint firstItem="9Ux-bt-LVY" firstAttribute="leading" secondItem="3JY-e9-fpJ" secondAttribute="trailing" constant="10" id="sWG-ph-MIP"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aRb-3i-87V" firstAttribute="leading" secondItem="JVS-vf-aHh" secondAttribute="leading" id="6GY-5S-Amy"/>
+                            <constraint firstItem="PE7-6K-fY7" firstAttribute="leading" secondItem="Obi-ea-12U" secondAttribute="leading" id="7GW-g7-dcT"/>
+                            <constraint firstItem="Obi-ea-12U" firstAttribute="trailing" secondItem="PE7-6K-fY7" secondAttribute="trailing" id="MBZ-Xd-y3p"/>
+                            <constraint firstItem="Obi-ea-12U" firstAttribute="bottom" secondItem="PE7-6K-fY7" secondAttribute="bottom" id="ZT5-fK-PXo"/>
+                            <constraint firstAttribute="trailing" secondItem="aRb-3i-87V" secondAttribute="trailing" id="eEz-hq-MSf"/>
+                            <constraint firstItem="aRb-3i-87V" firstAttribute="top" secondItem="Obi-ea-12U" secondAttribute="top" id="ocX-GW-QvE"/>
+                            <constraint firstItem="PE7-6K-fY7" firstAttribute="top" secondItem="aRb-3i-87V" secondAttribute="bottom" id="sj9-Br-VPn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Obi-ea-12U"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Pj4-HM-83f"/>
+                    <connections>
+                        <outlet property="webView" destination="PE7-6K-fY7" id="eXx-HE-0WZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m52-Iq-pSa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7881" y="123"/>
         </scene>
     </scenes>
     <resources>
