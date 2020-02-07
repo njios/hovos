@@ -25,10 +25,12 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             cell.imageV?.image = nil
           
             cell.imageV?.kf.indicatorType = .activity
-            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].image ?? ""))
+            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
              
             
-            cell.name?.text = modalObject?[indexPath.row].name
+            cell.name?.text = (modalObject?[indexPath.row].member?.firstName ?? "") + " " + (modalObject?[indexPath.row].member?.lastName ?? "")
+            
+            
             cell.place?.text = (modalObject?[indexPath.row].location?.country ?? "") + ", " + (modalObject?[indexPath.row].location?.city ?? "")
             
             return cell

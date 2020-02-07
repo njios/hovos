@@ -32,6 +32,7 @@
 		AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63950B23940A36000EA4F9 /* Main.storyboard */; };
 		AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC63950E23940A38000EA4F9 /* Assets.xcassets */; };
 		AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */; };
+		AC7E65C423EDC9AC00F384F0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */; };
 		AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D6C23AB6E840017430B /* MenuVC.xib */; };
 		AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D7023AB703F0017430B /* MenuCell.xib */; };
 		AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */; };
@@ -93,6 +94,7 @@
 		AC63950E23940A38000EA4F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC63951123940A38000EA4F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC63951323940A38000EA4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AC7E7D6C23AB6E840017430B /* MenuVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuVC.xib; sourceTree = "<group>"; };
 		AC7E7D7023AB703F0017430B /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCSliderCell.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				AC49F1D823A8B8250043B10B /* LandingVC.swift */,
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
+				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -519,6 +522,7 @@
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,
 				ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */,
 				AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */,
+				AC7E65C423EDC9AC00F384F0 /* TabBarController.swift in Sources */,
 				AC49F1DD23A8BE0E0043B10B /* CommonExtenstions.swift in Sources */,
 				AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */,
 				AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */,
