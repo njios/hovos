@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Hovos" customModuleProvider="target">
+            <connections>
+                <outlet property="mapView" destination="tlA-pU-Dqg" id="TTz-Dq-yUb"/>
+                <outlet property="view" destination="iN0-l3-epB" id="8Bf-Kb-LVU"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Clj-7E-4pR">
+                    <rect key="frame" x="0.0" y="0.0" width="394" height="101"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z7O-5a-RJR">
+                            <rect key="frame" x="6" y="34" width="118" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="00h-De-uQh"/>
+                                <constraint firstAttribute="width" constant="30" id="eJm-dm-zVI"/>
+                            </constraints>
+                            <state key="normal" title="Button" image="backIcon"/>
+                            <connections>
+                                <action selector="goback:" destination="-1" eventType="touchUpInside" id="2u2-4z-g4j"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="orangeColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="Htx-BD-jyh"/>
+                        <constraint firstItem="Z7O-5a-RJR" firstAttribute="centerY" secondItem="Clj-7E-4pR" secondAttribute="centerY" id="Kym-NV-k5c"/>
+                        <constraint firstItem="Z7O-5a-RJR" firstAttribute="leading" secondItem="Clj-7E-4pR" secondAttribute="leading" constant="20" id="m6c-pk-DGD"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlA-pU-Dqg" customClass="GMSMapView">
+                    <rect key="frame" x="0.0" y="119" width="414" height="777"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="tlA-pU-Dqg" secondAttribute="bottom" id="Hwh-S4-HqK"/>
+                <constraint firstItem="tlA-pU-Dqg" firstAttribute="top" secondItem="Clj-7E-4pR" secondAttribute="bottom" id="Nb2-s7-3Ix"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tlA-pU-Dqg" secondAttribute="trailing" id="YNX-QG-TSs"/>
+                <constraint firstItem="tlA-pU-Dqg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="k0c-1h-gaI"/>
+                <constraint firstItem="Clj-7E-4pR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nqV-kM-vpb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Clj-7E-4pR" secondAttribute="trailing" id="pOS-6X-waq"/>
+                <constraint firstItem="Clj-7E-4pR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ptO-pX-oMg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backIcon" width="64" height="64"/>
+        <namedColor name="orangeColor">
+            <color red="1" green="0.35294117647058826" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

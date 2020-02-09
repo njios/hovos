@@ -118,19 +118,26 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.photosCollview.dataSource = photosDelegate
         cell.photosCollview.reloadData()
         cell.place?.setUnderLine()
+        cell.photosCount.text = ""
+        if let img = volItem.images, img.count > 0{
+            cell.photosCount.text = " 1/\(img.count)"
+            cell.photosCount.isComplete = true
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var hieght = self.view.frame.size.height - collectionView.frame.origin.y - 50
         
-        if #available(iOS 11.0, *) {
-            let window = UIApplication.shared.keyWindow
-            let topPadding = window?.safeAreaInsets.top
-            let bottomPadding = window?.safeAreaInsets.bottom
-            hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
-        }
-        return CGSize(width: self.view.frame.size.width, height: hieght)
+         var hieght = collectionView.frame.height
+             
+             if #available(iOS 13.0, *) {
+                 hieght = self.view.frame.size.height - collectionView.frame.origin.y
+                 let window = UIApplication.shared.keyWindow
+                 let topPadding = window?.safeAreaInsets.top
+                 let bottomPadding = window?.safeAreaInsets.bottom
+                 hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
+             }
+             return CGSize(width: self.view.frame.size.width, height: hieght)
         
     }
     
@@ -159,7 +166,7 @@ class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSou
         if indexPath.row == 0{
          return CGSize(width: collectionView.frame.size.width, height: 50)
         }else{
-        return CGSize(width: collectionView.frame.size.width/3, height: collectionView.frame.size.width/3)
+        return CGSize(width: (collectionView.frame.size.width/3 - 5), height: (collectionView.frame.size.width/3) - 5)
         }
     }
     

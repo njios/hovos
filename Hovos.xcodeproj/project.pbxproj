@@ -37,6 +37,8 @@
 		AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D7023AB703F0017430B /* MenuCell.xib */; };
 		AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */; };
 		AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */; };
+		ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA0A38F23F05CC900E46F97 /* MapViewController.xib */; };
+		ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0A39123F05D6500E46F97 /* MapViewController.swift */; };
 		ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */; };
 		ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */; };
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
@@ -99,6 +101,8 @@
 		AC7E7D7023AB703F0017430B /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCSliderCell.swift; sourceTree = "<group>"; };
 		AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByHostMAPCell.swift; sourceTree = "<group>"; };
+		ACA0A38F23F05CC900E46F97 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		ACA0A39123F05D6500E46F97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVM.swift; sourceTree = "<group>"; };
 		ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volunteer.swift; sourceTree = "<group>"; };
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
+				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
 				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
 				ACE276D323E7F24100000331 /* ContinentCell.xib */,
+				ACA0A38F23F05CC900E46F97 /* MapViewController.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -396,6 +402,7 @@
 				ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */,
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
+				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
 				ACCE4F0123B3CDAC00891F0B /* lato_bold.ttf in Resources */,
 				ACCE4EFE23B3CDAC00891F0B /* roboto_condensed.ttf in Resources */,
@@ -528,6 +535,7 @@
 				AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */,
 				AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */,
 				ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */,
+				ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
 				ACE276D223E7E97600000331 /* FaceVM.swift in Sources */,

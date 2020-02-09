@@ -117,13 +117,19 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }
         cell.place!.setUnderLine()
         cell.mealDesc.text = volItem.mealDescription ?? ""
+        cell.photosCount.text = ""
+        if let img = volItem.images, img.count > 0{
+            cell.photosCount.text = " 1/\(img.count)"
+            cell.photosCount.isComplete = true
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        var hieght = self.view.frame.size.height - collectionView.frame.origin.y - 50
+        var hieght = collectionView.frame.height
         
-        if #available(iOS 11.0, *) {
+        if #available(iOS 13.0, *) {
+            hieght = self.view.frame.size.height - collectionView.frame.origin.y
             let window = UIApplication.shared.keyWindow
             let topPadding = window?.safeAreaInsets.top
             let bottomPadding = window?.safeAreaInsets.bottom

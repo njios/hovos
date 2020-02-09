@@ -74,7 +74,15 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     
   
     
-   
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        if VMObject.Hosts != nil{
+            let mapvc = MapViewController(nibName: "MapViewController", bundle: nil)
+            vc.modalPresentationStyle = .fullScreen
+            mapvc.currentLocation = locManager.location!
+            mapvc.Hosts = VMObject.Hosts
+            vc.present(mapvc, animated: true, completion: nil)
+        }
+    }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
         let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation

@@ -19,6 +19,8 @@ extension UIViewController{
     @IBAction func goback(_ sender:UIButton){
         if let nvc = self.navigationController{
         nvc.popViewController(animated: true)
+        }else{
+        self.dismiss(animated: true, completion: nil)
         }
     }
     func showProgressAlert(){

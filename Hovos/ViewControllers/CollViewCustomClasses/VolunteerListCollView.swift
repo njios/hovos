@@ -65,6 +65,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var language2:UILabel!
         @IBOutlet weak var lastSeen:UILabel!
         @IBOutlet weak var personaldesc:UILabel!
+         @IBOutlet weak var photosCount:CustomLabels!
         @IBOutlet weak var language:UILabel!
         @IBOutlet weak var additionalInfo:UILabel!
         @IBOutlet weak var mealDesc:UILabel!
