@@ -31,7 +31,8 @@ class VolunteerVC: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
       if let index = self.indexpath{
             self.collView.scrollToItem(at: index, at: .left, animated: false)
-        ViewHelper.shared().hideLoader()
+            ViewHelper.shared().hideLoader()
+        self.indexpath = nil
         }
     }
     
@@ -55,9 +56,10 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
-    
-       
         let volItem = object![indexPath.row]
+        cell.imageData = volItem.images ?? []
+        cell.dependency = self
+        cell.AddGesture()
         cell.name?.text = volItem.name ?? ""
         cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()

@@ -43,6 +43,8 @@
 		ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */; };
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
 		ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */; };
+		ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC686DE23F12EE90019F3D3 /* GalleryVC.xib */; };
+		ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC686E023F130350019F3D3 /* GalleryVC.swift */; };
 		ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2F423D6CE140043CBDB /* CustomMap.swift */; };
 		ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */; };
 		ACC86A8723BF119F00D58388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC86A8623BF119F00D58388 /* User.swift */; };
@@ -107,6 +109,8 @@
 		ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volunteer.swift; sourceTree = "<group>"; };
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
 		ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVM.swift; sourceTree = "<group>"; };
+		ACC686DE23F12EE90019F3D3 /* GalleryVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GalleryVC.xib; sourceTree = "<group>"; };
+		ACC686E023F130350019F3D3 /* GalleryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryVC.swift; sourceTree = "<group>"; };
 		ACC6F2F423D6CE140043CBDB /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
 		ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAnnotation.xib; sourceTree = "<group>"; };
 		ACC86A8623BF119F00D58388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -201,7 +205,6 @@
 				AC8B37BE23D9745600B7231F /* CollViewCustomClasses */,
 				AC8B37BD23D9742C00B7231F /* ViewClasses */,
 				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
-				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
 				AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */,
 				AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */,
@@ -212,7 +215,6 @@
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
-				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -244,14 +246,8 @@
 		AC8B37BB23D9728400B7231F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
-				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
-				AC63950B23940A36000EA4F9 /* Main.storyboard */,
-				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
-				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
-				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
-				ACE276D323E7F24100000331 /* ContinentCell.xib */,
-				ACA0A38F23F05CC900E46F97 /* MapViewController.xib */,
+				ACC686DC23F12E540019F3D3 /* Storyboards */,
+				ACC686DB23F12E3E0019F3D3 /* SingleViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -270,7 +266,10 @@
 		AC8B37BD23D9742C00B7231F /* ViewClasses */ = {
 			isa = PBXGroup;
 			children = (
+				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
+				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
+				ACC686E023F130350019F3D3 /* GalleryVC.swift */,
 			);
 			path = ViewClasses;
 			sourceTree = "<group>";
@@ -298,6 +297,37 @@
 				AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */,
 				AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */,
 				ACE276D523E7F34600000331 /* ContinentCell.swift */,
+			);
+			path = CustomCells;
+			sourceTree = "<group>";
+		};
+		ACC686DB23F12E3E0019F3D3 /* SingleViews */ = {
+			isa = PBXGroup;
+			children = (
+				ACC686DD23F12E7E0019F3D3 /* CustomCells */,
+				ACA0A38F23F05CC900E46F97 /* MapViewController.xib */,
+				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
+				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
+				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
+				ACC686DE23F12EE90019F3D3 /* GalleryVC.xib */,
+			);
+			path = SingleViews;
+			sourceTree = "<group>";
+		};
+		ACC686DC23F12E540019F3D3 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */,
+				AC63950B23940A36000EA4F9 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		ACC686DD23F12E7E0019F3D3 /* CustomCells */ = {
+			isa = PBXGroup;
+			children = (
+				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
+				ACE276D323E7F24100000331 /* ContinentCell.xib */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -403,6 +433,7 @@
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
+				ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
 				ACCE4F0123B3CDAC00891F0B /* lato_bold.ttf in Resources */,
 				ACCE4EFE23B3CDAC00891F0B /* roboto_condensed.ttf in Resources */,
@@ -545,6 +576,7 @@
 				ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */,
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
+				ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

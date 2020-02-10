@@ -75,6 +75,9 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         
         let volItem = object[indexPath.row]
+        cell.imageData = volItem.images ?? []
+        cell.dependency = self
+          cell.AddGesture()
         cell.name?.text = volItem.member?.firstName ?? ""
         let jobs = volItem.jobs?.values
         cell.countries = Array(jobs!)

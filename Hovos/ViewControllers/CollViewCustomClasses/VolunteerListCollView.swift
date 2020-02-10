@@ -65,7 +65,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var language2:UILabel!
         @IBOutlet weak var lastSeen:UILabel!
         @IBOutlet weak var personaldesc:UILabel!
-         @IBOutlet weak var photosCount:CustomLabels!
+        @IBOutlet weak var photosCount:CustomLabels!
         @IBOutlet weak var language:UILabel!
         @IBOutlet weak var additionalInfo:UILabel!
         @IBOutlet weak var mealDesc:UILabel!
@@ -81,7 +81,24 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var photosCollview:UICollectionView!
         @IBOutlet weak var photosHeight:NSLayoutConstraint!
         var countries = [String]()
+        var imageData = [images]()
+        weak var dependency:UIViewController!
+        
        
+        func AddGesture(){
+            let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(tapedOnimage))
+               gestureRecogniser.numberOfTapsRequired = 2
+               imageV?.addGestureRecognizer(gestureRecogniser)
+        }
+        
+        @objc func tapedOnimage(){
+            if imageData.count > 0 {
+            let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
+            vc.imageData = imageData
+            vc.modalPresentationStyle = .fullScreen
+            dependency.present(vc, animated: true, completion: nil)
+            }
+        }
     }
 
     class CountryCell:UITableViewCell{
