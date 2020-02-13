@@ -26,6 +26,10 @@
 		AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */; };
 		AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E423A8C68F0043B10B /* SignUpVC.swift */; };
 		AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */; };
+		AC535B9923F512750080B563 /* HostSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC535B9823F512750080B563 /* HostSearchVC.xib */; };
+		AC535B9B23F512B10080B563 /* HostSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC535B9A23F512B10080B563 /* HostSearchVC.swift */; };
+		AC535B9E23F514750080B563 /* CustomEditViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC535B9D23F514750080B563 /* CustomEditViews.xib */; };
+		AC535BA023F515E80080B563 /* CustomEditViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC535B9F23F515E80080B563 /* CustomEditViews.swift */; };
 		AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */; };
 		AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950523940A36000EA4F9 /* AppDelegate.swift */; };
 		AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950923940A36000EA4F9 /* LoginVC.swift */; };
@@ -90,6 +94,10 @@
 		AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPackets.swift; sourceTree = "<group>"; };
 		AC49F1E423A8C68F0043B10B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		AC535B9823F512750080B563 /* HostSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostSearchVC.xib; sourceTree = "<group>"; };
+		AC535B9A23F512B10080B563 /* HostSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchVC.swift; sourceTree = "<group>"; };
+		AC535B9D23F514750080B563 /* CustomEditViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEditViews.xib; sourceTree = "<group>"; };
+		AC535B9F23F515E80080B563 /* CustomEditViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditViews.swift; sourceTree = "<group>"; };
 		AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
 		AC63950223940A36000EA4F9 /* Hovos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hovos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC63950523940A36000EA4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +173,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		AC535B9C23F514560080B563 /* SeachViews */ = {
+			isa = PBXGroup;
+			children = (
+				AC535B9D23F514750080B563 /* CustomEditViews.xib */,
+			);
+			path = SeachViews;
+			sourceTree = "<group>";
+		};
 		AC6394F923940A36000EA4F9 = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +231,7 @@
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
+				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -270,6 +287,7 @@
 				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
 				ACC686E023F130350019F3D3 /* GalleryVC.swift */,
+				AC535B9A23F512B10080B563 /* HostSearchVC.swift */,
 			);
 			path = ViewClasses;
 			sourceTree = "<group>";
@@ -304,12 +322,14 @@
 		ACC686DB23F12E3E0019F3D3 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
+				AC535B9C23F514560080B563 /* SeachViews */,
 				ACC686DD23F12E7E0019F3D3 /* CustomCells */,
 				ACA0A38F23F05CC900E46F97 /* MapViewController.xib */,
 				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
 				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
 				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
 				ACC686DE23F12EE90019F3D3 /* GalleryVC.xib */,
+				AC535B9823F512750080B563 /* HostSearchVC.xib */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -423,10 +443,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC535B9E23F514750080B563 /* CustomEditViews.xib in Resources */,
 				ACCE4EFF23B3CDAC00891F0B /* roboto_bold.ttf in Resources */,
 				ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */,
 				AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */,
 				ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */,
+				AC535B9923F512750080B563 /* HostSearchVC.xib in Resources */,
 				ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */,
 				ACCE4EFD23B3CDAC00891F0B /* roboto_light.ttf in Resources */,
 				ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */,
@@ -568,6 +590,7 @@
 				ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */,
 				ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,
+				AC535B9B23F512B10080B563 /* HostSearchVC.swift in Sources */,
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
 				ACE276D223E7E97600000331 /* FaceVM.swift in Sources */,
 				AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */,
@@ -577,6 +600,7 @@
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
 				ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */,
+				AC535BA023F515E80080B563 /* CustomEditViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

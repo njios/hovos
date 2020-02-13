@@ -60,6 +60,14 @@ class HostsVC: UIViewController {
         
         
     }
+    
+    @IBAction func searchHost(_ sender:UIButton){
+        
+      let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+        
+    }
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
     }
