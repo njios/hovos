@@ -64,6 +64,8 @@
 		ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */; };
 		ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */; };
 		ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */; };
+		ACDF193323F682D900A8883F /* JobsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDF193223F682D900A8883F /* JobsCell.xib */; };
+		ACDF193523F683DC00A8883F /* JobsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF193423F683DC00A8883F /* JobsCell.swift */; };
 		ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276CF23E7E7E000000331 /* Facet Modal.swift */; };
 		ACE276D223E7E97600000331 /* FaceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D123E7E97600000331 /* FaceVM.swift */; };
 		ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE276D323E7F24100000331 /* ContinentCell.xib */; };
@@ -134,6 +136,8 @@
 		ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_light.ttf; sourceTree = "<group>"; };
 		ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabels.swift; sourceTree = "<group>"; };
 		ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerVC.swift; sourceTree = "<group>"; };
+		ACDF193223F682D900A8883F /* JobsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobsCell.xib; sourceTree = "<group>"; };
+		ACDF193423F683DC00A8883F /* JobsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCell.swift; sourceTree = "<group>"; };
 		ACE276CF23E7E7E000000331 /* Facet Modal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Facet Modal.swift"; sourceTree = "<group>"; };
 		ACE276D123E7E97600000331 /* FaceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceVM.swift; sourceTree = "<group>"; };
 		ACE276D323E7F24100000331 /* ContinentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentCell.xib; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				AC535B9D23F514750080B563 /* CustomEditViews.xib */,
+				ACDF193223F682D900A8883F /* JobsCell.xib */,
 			);
 			path = SeachViews;
 			sourceTree = "<group>";
@@ -231,7 +236,6 @@
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
-				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -283,6 +287,7 @@
 		AC8B37BD23D9742C00B7231F /* ViewClasses */ = {
 			isa = PBXGroup;
 			children = (
+				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
 				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
 				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
@@ -315,6 +320,7 @@
 				AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */,
 				AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */,
 				ACE276D523E7F34600000331 /* ContinentCell.swift */,
+				ACDF193423F683DC00A8883F /* JobsCell.swift */,
 			);
 			path = CustomCells;
 			sourceTree = "<group>";
@@ -462,6 +468,7 @@
 				AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */,
 				AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */,
 				ACCE4F0323B3CDAC00891F0B /* roboto_regular.ttf in Resources */,
+				ACDF193323F682D900A8883F /* JobsCell.xib in Resources */,
 				AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */,
 				ACCE4F0223B3CDAC00891F0B /* roboto_black.ttf in Resources */,
 				AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */,
@@ -579,6 +586,7 @@
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
 				AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */,
 				AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */,
+				ACDF193523F683DC00A8883F /* JobsCell.swift in Sources */,
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,
 				ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */,
 				AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */,
