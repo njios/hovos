@@ -30,6 +30,7 @@ enum ApiEndPoints{
     case hostsRecommended
     case hostsLatest
     case facetData
+    case jobs
     var rawValue:String{
         switch self {
         case .login:
@@ -56,6 +57,8 @@ enum ApiEndPoints{
             return "/api/get/hosts/latest/"
         case .facetData:
             return "/api/get/hosts/facet/"
+        case .jobs:
+            return "/api/get/jobs"
         }
     }
        

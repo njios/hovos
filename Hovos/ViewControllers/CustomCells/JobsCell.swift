@@ -11,4 +11,6 @@ import UIKit
 class JobsCell: UICollectionViewCell {
  
     @IBOutlet weak var jobsItem:UIButton!
+    
+    
 }

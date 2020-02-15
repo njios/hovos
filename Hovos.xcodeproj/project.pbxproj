@@ -43,6 +43,9 @@
 		AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */; };
 		ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA0A38F23F05CC900E46F97 /* MapViewController.xib */; };
 		ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0A39123F05D6500E46F97 /* MapViewController.swift */; };
+		ACB0921C23F84EA800932DC6 /* HostSearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */; };
+		ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921D23F8523000932DC6 /* Jobs.swift */; };
+		ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */; };
 		ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */; };
 		ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */; };
 		ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */; };
@@ -115,6 +118,9 @@
 		AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByHostMAPCell.swift; sourceTree = "<group>"; };
 		ACA0A38F23F05CC900E46F97 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		ACA0A39123F05D6500E46F97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchVM.swift; sourceTree = "<group>"; };
+		ACB0921D23F8523000932DC6 /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
+		ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchModel.swift; sourceTree = "<group>"; };
 		ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVM.swift; sourceTree = "<group>"; };
 		ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Volunteer.swift; sourceTree = "<group>"; };
 		ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordVC.swift; sourceTree = "<group>"; };
@@ -250,6 +256,7 @@
 				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
 				ACE276D123E7E97600000331 /* FaceVM.swift */,
 				AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */,
+				ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */,
 			);
 			path = ViewModals;
 			sourceTree = "<group>";
@@ -260,6 +267,8 @@
 				ACC86A8623BF119F00D58388 /* User.swift */,
 				ACB2764D23B8FBDC00E2CE2A /* Volunteer.swift */,
 				ACE276CF23E7E7E000000331 /* Facet Modal.swift */,
+				ACB0921D23F8523000932DC6 /* Jobs.swift */,
+				ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -569,6 +578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */,
+				ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */,
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */,
@@ -578,6 +588,7 @@
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
+				ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
 				ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */,
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
@@ -608,6 +619,7 @@
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
 				ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */,
+				ACB0921C23F84EA800932DC6 /* HostSearchVM.swift in Sources */,
 				AC535BA023F515E80080B563 /* CustomEditViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

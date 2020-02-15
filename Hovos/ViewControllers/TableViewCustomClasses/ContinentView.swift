@@ -19,6 +19,8 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     var VMObject = FaceVM()
     var selectedCountries = [countries]()
     var continent = ""
+    var host = true
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -31,6 +33,7 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     
     private func commonInit(){
         let vc = Bundle.main.loadNibNamed("ContinentView", owner: self, options: nil)?[0] as? UIView
+        vc?.frame = self.frame
         self.addSubview(vc!)
         tbl.register(UITableViewCell.self, forCellReuseIdentifier: "ContinentView")
         let nib = UINib.init(nibName: "ContinentCell", bundle: nil)

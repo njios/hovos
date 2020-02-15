@@ -16,8 +16,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HostSearchVC" customModule="Hovos" customModuleProvider="target">
             <connections>
+                <outlet property="clearButton" destination="0tP-zh-Ddk" id="kcG-ti-JUe"/>
                 <outlet property="collView" destination="j0Q-fJ-PkX" id="YmH-04-RTa"/>
+                <outlet property="continentView" destination="OEX-iE-eYq" id="b27-3F-7Ue"/>
+                <outlet property="countries" destination="cci-p1-HVM" id="7c7-Fs-9ZJ"/>
+                <outlet property="countriesView" destination="JZq-Ma-WnJ" id="DdT-K0-cIo"/>
                 <outlet property="heightConstraint" destination="aNg-eS-sLD" id="GEA-Mg-5nF"/>
+                <outlet property="searchTextView" destination="xGc-aR-suB" id="ZEX-nW-3iC"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Tgk-fB-9o4"/>
             </connections>
         </placeholder>
@@ -36,6 +41,9 @@
                                 <constraint firstAttribute="height" constant="30" id="y6l-3x-VTZ"/>
                             </constraints>
                             <state key="normal" title="Button" image="backIcon"/>
+                            <connections>
+                                <action selector="goback:" destination="-1" eventType="touchUpInside" id="1Fk-tA-ide"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hosts: refine search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDo-VT-fa5">
                             <rect key="frame" x="65" y="24" width="156" height="22"/>
@@ -65,9 +73,9 @@
                     <rect key="frame" x="0.0" y="114" width="425" height="692"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqG-KZ-6wl">
-                            <rect key="frame" x="0.0" y="0.0" width="425" height="642"/>
+                            <rect key="frame" x="0.0" y="0.0" width="425" height="647"/>
                             <subviews>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-aR-suB" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
+                                <view clipsSubviews="YES" tag="111" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGc-aR-suB" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
                                     <rect key="frame" x="15" y="15" width="395" height="55"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,7 +83,7 @@
                                         <constraint firstAttribute="height" constant="55" id="fqy-i4-zjh"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="search"/>
+                                        <userDefinedRuntimeAttribute type="image" keyPath="image" value="greaySearch"/>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isKeyBordVisible" value="YES"/>
                                         <userDefinedRuntimeAttribute type="string" keyPath="placeHolder" value="Enter keyword.."/>
                                         <userDefinedRuntimeAttribute type="number" keyPath="corners">
@@ -95,7 +103,7 @@
                                     <color key="textColor" name="orangeColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEX-iE-eYq" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
+                                <view clipsSubviews="YES" tag="222" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEX-iE-eYq" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
                                     <rect key="frame" x="15" y="119" width="395" height="55"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -117,7 +125,7 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </view>
-                                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZq-Ma-WnJ" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
+                                <view clipsSubviews="YES" tag="333" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JZq-Ma-WnJ" customClass="CustomEditViews" customModule="Hovos" customModuleProvider="target">
                                     <rect key="frame" x="15" y="189" width="395" height="55"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,10 +154,10 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfo-PV-DMI">
-                                    <rect key="frame" x="20" y="323" width="390" height="25"/>
+                                    <rect key="frame" x="20" y="323" width="390" height="30"/>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Only with in these dates" image="selectedTick">
+                                    <state key="normal" title="Only with in these dates" image="greyCheck">
                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <state key="selected" title="Only with in these dates" image="selectedTick">
@@ -163,7 +171,7 @@
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                     <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Any time" image="selectedTick">
+                                    <state key="normal" title="Any time" image="greyCheck">
                                         <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                     <state key="selected" title="Any time" image="selectedTick">
@@ -171,7 +179,7 @@
                                     </state>
                                 </button>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gl9-Vj-whN">
-                                    <rect key="frame" x="15" y="363" width="395" height="40"/>
+                                    <rect key="frame" x="15" y="368" width="395" height="40"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YrS-yF-zF3">
                                             <rect key="frame" x="15" y="10.5" width="69" height="19"/>
@@ -245,13 +253,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Work to be done" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCp-Nf-AjS">
-                                    <rect key="frame" x="15" y="418" width="148.5" height="24"/>
+                                    <rect key="frame" x="15" y="423" width="148.5" height="24"/>
                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
                                     <color key="textColor" name="orangeColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j0Q-fJ-PkX">
-                                    <rect key="frame" x="0.0" y="442" width="425" height="200"/>
+                                    <rect key="frame" x="10" y="447" width="405" height="200"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="200" id="aNg-eS-sLD"/>
@@ -282,6 +290,7 @@
                                 <constraint firstItem="TxJ-Bh-bIt" firstAttribute="top" secondItem="xGc-aR-suB" secondAttribute="bottom" constant="15" id="dA8-W9-KtF"/>
                                 <constraint firstAttribute="trailing" secondItem="j0Q-fJ-PkX" secondAttribute="trailing" constant="10" id="eWx-MR-4sS"/>
                                 <constraint firstItem="gl9-Vj-whN" firstAttribute="top" secondItem="nfo-PV-DMI" secondAttribute="bottom" constant="15" id="jbw-yW-9nA"/>
+                                <constraint firstItem="Pcj-QY-53K" firstAttribute="height" secondItem="nfo-PV-DMI" secondAttribute="height" id="jeh-IA-IQA"/>
                                 <constraint firstItem="JZq-Ma-WnJ" firstAttribute="top" secondItem="OEX-iE-eYq" secondAttribute="bottom" constant="15" id="n5v-el-LFf"/>
                                 <constraint firstItem="oCp-Nf-AjS" firstAttribute="leading" secondItem="gl9-Vj-whN" secondAttribute="leading" id="oJO-dR-4dg"/>
                                 <constraint firstItem="oCp-Nf-AjS" firstAttribute="top" secondItem="gl9-Vj-whN" secondAttribute="bottom" constant="15" id="oiI-Vt-VkA"/>
@@ -309,27 +318,27 @@
                     <rect key="frame" x="0.0" y="806" width="425" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fUE-op-y7l">
-                            <rect key="frame" x="50" y="5" width="147.5" height="40"/>
+                            <rect key="frame" x="20" y="5" width="177.5" height="40"/>
                             <color key="backgroundColor" name="orangeColor"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="17"/>
                             <state key="normal" title="SEARCH">
                                 <color key="titleColor" red="0.98039215690000003" green="0.96078431369999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMV-05-YGz">
-                            <rect key="frame" x="227.5" y="5" width="147.5" height="40"/>
-                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
-                            <state key="normal" title="SAVE FILTERS">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMV-05-YGz">
+                            <rect key="frame" x="227.5" y="5" width="177.5" height="40"/>
+                            <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" title="SAVE FILTERS" image="greyCheck">
                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="ZMV-05-YGz" secondAttribute="trailing" constant="50" id="3yO-ge-Rm1"/>
+                        <constraint firstAttribute="trailing" secondItem="ZMV-05-YGz" secondAttribute="trailing" constant="20" id="3yO-ge-Rm1"/>
                         <constraint firstItem="ZMV-05-YGz" firstAttribute="top" secondItem="fUE-op-y7l" secondAttribute="top" id="9bN-nY-JKe"/>
                         <constraint firstItem="fUE-op-y7l" firstAttribute="height" secondItem="ZMV-05-YGz" secondAttribute="height" id="FVP-PS-ywI"/>
-                        <constraint firstItem="fUE-op-y7l" firstAttribute="leading" secondItem="F5k-B0-JJw" secondAttribute="leading" constant="50" id="Qix-aA-bhS"/>
+                        <constraint firstItem="fUE-op-y7l" firstAttribute="leading" secondItem="F5k-B0-JJw" secondAttribute="leading" constant="20" id="Qix-aA-bhS"/>
                         <constraint firstItem="fUE-op-y7l" firstAttribute="width" secondItem="ZMV-05-YGz" secondAttribute="width" id="RUm-S2-U5U"/>
                         <constraint firstItem="ZMV-05-YGz" firstAttribute="leading" secondItem="fUE-op-y7l" secondAttribute="trailing" constant="30" id="d8W-OY-gLo"/>
                         <constraint firstAttribute="bottom" secondItem="fUE-op-y7l" secondAttribute="bottom" constant="5" id="kFw-oT-R5H"/>
@@ -345,18 +354,26 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cci-p1-HVM" customClass="ContinentView" customModule="Hovos" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="425" height="890"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="F5k-B0-JJw" secondAttribute="bottom" id="2dx-py-4bu"/>
                 <constraint firstItem="S2j-8J-PRs" firstAttribute="top" secondItem="mQZ-SO-ozC" secondAttribute="bottom" id="ADa-fF-d3v"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="S2j-8J-PRs" secondAttribute="trailing" id="CV3-5X-Jxf"/>
+                <constraint firstItem="cci-p1-HVM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Ll6-nm-DyN"/>
                 <constraint firstItem="F5k-B0-JJw" firstAttribute="top" secondItem="S2j-8J-PRs" secondAttribute="bottom" id="U5m-xN-SXd"/>
                 <constraint firstItem="mQZ-SO-ozC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="WId-sk-Lia"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mQZ-SO-ozC" secondAttribute="trailing" id="afI-l1-61q"/>
+                <constraint firstItem="cci-p1-HVM" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bnx-yZ-Sla"/>
                 <constraint firstItem="S2j-8J-PRs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="faL-YR-oPn"/>
                 <constraint firstItem="mQZ-SO-ozC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="h3D-rF-Pnr"/>
+                <constraint firstItem="cci-p1-HVM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jh5-15-NuO"/>
                 <constraint firstItem="F5k-B0-JJw" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="kCe-sa-YoY"/>
+                <constraint firstAttribute="bottom" secondItem="cci-p1-HVM" secondAttribute="bottom" id="v31-lx-FKQ"/>
                 <constraint firstItem="F5k-B0-JJw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="vHI-ie-AeW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -368,7 +385,8 @@
         <image name="backIcon" width="64" height="64"/>
         <image name="dateOrrange" width="64" height="64"/>
         <image name="dropIcon" width="64" height="64"/>
-        <image name="search" width="64" height="64"/>
+        <image name="greaySearch" width="64" height="64"/>
+        <image name="greyCheck" width="24" height="24"/>
         <image name="selectedTick" width="25" height="25"/>
         <namedColor name="orangeColor">
             <color red="1" green="0.35294117647058826" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

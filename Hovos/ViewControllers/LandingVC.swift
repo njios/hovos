@@ -23,6 +23,7 @@ class LandingVC: UIViewController {
         menuView.frame = self.view.frame
         menuView.delegate = self
         countries.delegate = self
+        countries.host = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

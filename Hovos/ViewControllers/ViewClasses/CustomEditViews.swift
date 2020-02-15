@@ -8,6 +8,13 @@
 
 import Foundation
 import UIKit
+
+protocol SearchDelegate {
+    func SearchText(with text:String)
+    func showContinent()
+    func showCountries()
+}
+
 @IBDesignable
 class CustomEditViews:UIView,UITextFieldDelegate{
     private var keybord = true
@@ -20,6 +27,7 @@ class CustomEditViews:UIView,UITextFieldDelegate{
             return keybord
         }
     }
+    
     @IBInspectable var placeHolder: String {
         set{
             serachText.attributedPlaceholder = NSAttributedString(string: newValue,
@@ -37,7 +45,7 @@ class CustomEditViews:UIView,UITextFieldDelegate{
             return img.image!
            }
        }
-    
+    var delegate:SearchDelegate!
     override init(frame: CGRect) {
            super.init(frame: frame)
            commonInit()
@@ -60,7 +68,18 @@ class CustomEditViews:UIView,UITextFieldDelegate{
         if isKeyBordVisible == false{
             textField.resignFirstResponder()
         }
+        if self.tag == 222{
+            delegate?.showContinent()
+        }
+        if self.tag == 333{
+            delegate?.showCountries()
+        }
     }
     
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if self.tag == 111{
+        delegate?.SearchText(with: textField.text!)
+        textField.resignFirstResponder()
+        }
+    }
 }

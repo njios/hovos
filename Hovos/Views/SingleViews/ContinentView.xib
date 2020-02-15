@@ -34,20 +34,20 @@
                     </connections>
                 </button>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5l4-mI-LPa">
-                    <rect key="frame" x="37.5" y="100" width="300" height="500"/>
+                    <rect key="frame" x="37.5" y="66.5" width="300" height="534"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continents" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lyx-AT-Hzl">
-                            <rect key="frame" x="15" y="15" width="270" height="28"/>
+                            <rect key="frame" x="15" y="15" width="270" height="29"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="24"/>
                             <color key="textColor" name="orangeColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ejf-fL-c6E">
-                            <rect key="frame" x="15" y="58" width="270" height="422"/>
+                            <rect key="frame" x="15" y="59" width="270" height="455"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </tableView>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1G8-Ni-anW">
-                            <rect key="frame" x="10" y="490" width="135" height="0.0"/>
+                            <rect key="frame" x="10" y="524" width="135" height="0.0"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="15"/>
                             <state key="normal" title="CANCEL">
                                 <color key="titleColor" name="orangeColor"/>
@@ -57,7 +57,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0l-h1-KtZ">
-                            <rect key="frame" x="155" y="490" width="135" height="0.0"/>
+                            <rect key="frame" x="155" y="524" width="135" height="0.0"/>
                             <color key="backgroundColor" name="orangeColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" id="e2X-Vj-mpK"/>
@@ -73,7 +73,6 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="300" id="1AX-mc-1Pu"/>
                         <constraint firstItem="1G8-Ni-anW" firstAttribute="top" secondItem="Ejf-fL-c6E" secondAttribute="bottom" constant="10" id="2Rw-rY-pNU"/>
                         <constraint firstItem="1G8-Ni-anW" firstAttribute="leading" secondItem="5l4-mI-LPa" secondAttribute="leading" constant="10" id="5QC-rT-65e"/>
                         <constraint firstItem="Lyx-AT-Hzl" firstAttribute="leading" secondItem="5l4-mI-LPa" secondAttribute="leading" constant="15" id="B7L-sR-OB6"/>
@@ -83,7 +82,6 @@
                         <constraint firstItem="Ejf-fL-c6E" firstAttribute="top" secondItem="Lyx-AT-Hzl" secondAttribute="bottom" constant="15" id="bZw-yt-3lU"/>
                         <constraint firstItem="E0l-h1-KtZ" firstAttribute="top" secondItem="Ejf-fL-c6E" secondAttribute="bottom" constant="10" id="bq0-wz-WGd"/>
                         <constraint firstAttribute="trailing" secondItem="Ejf-fL-c6E" secondAttribute="trailing" constant="15" id="dRe-oh-wi5"/>
-                        <constraint firstAttribute="height" constant="500" id="hf6-uE-lR2"/>
                         <constraint firstItem="1G8-Ni-anW" firstAttribute="width" secondItem="E0l-h1-KtZ" secondAttribute="width" id="lPh-Pd-Sa7"/>
                         <constraint firstAttribute="trailing" secondItem="E0l-h1-KtZ" secondAttribute="trailing" constant="10" id="nWY-aV-lfi"/>
                         <constraint firstItem="1G8-Ni-anW" firstAttribute="height" secondItem="E0l-h1-KtZ" secondAttribute="height" id="oVJ-or-pxG"/>
@@ -100,11 +98,13 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="5l4-mI-LPa" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="7SE-DT-poe"/>
                 <constraint firstItem="p7f-7h-vg1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8QY-2b-k1T"/>
                 <constraint firstItem="5l4-mI-LPa" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="FDE-h9-fqr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="p7f-7h-vg1" secondAttribute="bottom" id="NSl-RA-FrE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="p7f-7h-vg1" secondAttribute="trailing" id="aMb-G4-rnn"/>
-                <constraint firstItem="5l4-mI-LPa" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="gHP-5g-tqz"/>
+                <constraint firstItem="5l4-mI-LPa" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.8" id="ebW-6f-2ZL"/>
+                <constraint firstItem="5l4-mI-LPa" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.8" id="iic-LB-RFv"/>
                 <constraint firstItem="p7f-7h-vg1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="ncp-4e-aF3"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
