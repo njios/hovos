@@ -25,6 +25,8 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
      var searchModel = HostSearchModel(){
         didSet{
             if searchModel.jobs.count > 0 || searchModel.continent != "" || searchModel.exchangeDate != "" || searchModel.searchKeyword != "" {
+                continentView.serachText.text = searchModel.continent
+                countriesView.serachText.text = searchModel.countries.joined(separator: ",")
                 clearButton.isHidden = false
             }
             if searchModel.jobs.count == 0 && searchModel.continent == ""  && searchModel.exchangeDate == "" && searchModel.searchKeyword == ""{
@@ -88,9 +90,16 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
       }
       
     func showCountries() {
-          
+           countries.isHidden = false
       }
-      
+    
+    @IBAction func showCalender(_ sender:UIButton){
+        let vc = CalenderVC(nibName: "CalenderVC", bundle: nil)
+        
+        vc.modalPresentationStyle = .overCurrentContext
+       
+        self.present(vc, animated: false, completion: nil)
+    }
     
 }
 
@@ -121,7 +130,10 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         return CGSize(width: (collectionView.frame.size.width / 2 ), height: 50)
     }
     func menuItemDidSelect(for action: Action) {
-           countries.isHidden = true
+        let keys = Array<String>(action.getData()!.keys)
+        searchModel.continent = keys.first ?? ""
+        searchModel.countries = action.getData()![keys.first ?? ""]!
+        countries.isHidden = true
       }
       
     

@@ -206,6 +206,9 @@ extension VolunteerVC:Menudelegates{
          break
         case .AboutUS:
             break
+            
+        default:
+            break
         }
        
     }

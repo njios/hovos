@@ -152,6 +152,8 @@ extension LandingVC:Menudelegates{
         case .AboutUS:
              performSegue(withIdentifier: "AboutUS", sender: nil)
             break
+        default:
+            break
         }
         
        

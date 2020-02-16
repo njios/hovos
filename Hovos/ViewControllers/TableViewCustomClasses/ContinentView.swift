@@ -20,7 +20,7 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     var selectedCountries = [countries]()
     var continent = ""
     var host = true
-    
+    var selectedData = [String:[String]]()
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -64,7 +64,8 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             heightConstraint.constant = 0
            tbl.reloadData()
            self.isHidden = true
-           self.delegate.menuItemDidSelect(for: Action.other)
+           self.delegate.menuItemDidSelect(for: Action.Response(data: selectedData))
+           selectedData.removeAll()
        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -104,7 +105,9 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             step = 1
             selectedCountries = VMObject.facetData?.countries.filter({ (country) -> Bool in
                 if country.continentId == VMObject.facetData?.continents[indexPath.row].continentId{
+                   
                     continent = VMObject.facetData?.continents[indexPath.row].title ?? ""
+                     selectedData[continent] = []
                     return true
                 }else{
                     return false
@@ -116,8 +119,15 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             let cell = tableView.cellForRow(at: indexPath) as! ContinentCell
             cell.selectImage.isHidden = !cell.selectImage.isHidden
             if cell.selectImage.isHidden == false{
+                selectedData[continent]?.append(selectedCountries[indexPath.row].title ?? "")
             cell.ttlLable.font = UIFont(name: "Lato-Bold", size: 18)
             }else{
+                for i in 0 ..< selectedData[continent]!.count{
+                    if selectedData[continent]![indexPath.row] == (selectedCountries[indexPath.row].title ?? ""){
+                        selectedData[continent]?.remove(at: i)
+                        break
+                    }
+                }
                 cell.ttlLable.font = UIFont(name: "Lato-Regular", size: 18)
             }
         }

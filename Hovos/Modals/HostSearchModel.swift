@@ -12,7 +12,7 @@ struct HostSearchModel{
     
     var searchKeyword:String = ""
     var continent:String = ""
-    var countries = String()
+    var countries = [String]()
     var exchangeDate:String = ""
     var jobs = [String]()
     

@@ -56,11 +56,12 @@ class LandingVM {
                         completion(Volunteer.hosts)
                     }
                 }else{
-                    completion(nil)
+                    self.getNearByHosts(completion: completion)
                 }
             }
         
     }
+    
     private func getfacetdata(){
     }
 }

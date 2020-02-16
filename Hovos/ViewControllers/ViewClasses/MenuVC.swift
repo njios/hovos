@@ -16,6 +16,15 @@ enum Action{
     case hostlist
     case volunteers
     case AboutUS
+    case Response(data:[String:[String]])
+    func getData()->[String:[String]]?{
+        switch self {
+        case .Response(let data):
+            return data
+        default:
+            return nil
+        }
+    }
 }
 
 protocol Menudelegates {

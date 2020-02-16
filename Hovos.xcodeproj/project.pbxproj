@@ -41,6 +41,12 @@
 		AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D7023AB703F0017430B /* MenuCell.xib */; };
 		AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */; };
 		AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */; };
+		AC8E131D23F996F300E2AA0A /* CalenderVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC8E131C23F996F300E2AA0A /* CalenderVC.xib */; };
+		AC8E131F23F9A36C00E2AA0A /* CalenderMonthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC8E131E23F9A36C00E2AA0A /* CalenderMonthCell.xib */; };
+		AC8E132123F9AA6500E2AA0A /* CalenderDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC8E132023F9AA6500E2AA0A /* CalenderDateCell.xib */; };
+		AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */; };
+		AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */; };
+		AC8E132823F9AFD900E2AA0A /* CalenderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132723F9AFD900E2AA0A /* CalenderVC.swift */; };
 		ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA0A38F23F05CC900E46F97 /* MapViewController.xib */; };
 		ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0A39123F05D6500E46F97 /* MapViewController.swift */; };
 		ACB0921C23F84EA800932DC6 /* HostSearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */; };
@@ -116,6 +122,12 @@
 		AC7E7D7023AB703F0017430B /* MenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuCell.xib; sourceTree = "<group>"; };
 		AC8B37C123D9775000B7231F /* LandingVCSliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCSliderCell.swift; sourceTree = "<group>"; };
 		AC8B37C323D97C0200B7231F /* NearByHostMAPCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearByHostMAPCell.swift; sourceTree = "<group>"; };
+		AC8E131C23F996F300E2AA0A /* CalenderVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderVC.xib; sourceTree = "<group>"; };
+		AC8E131E23F9A36C00E2AA0A /* CalenderMonthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderMonthCell.xib; sourceTree = "<group>"; };
+		AC8E132023F9AA6500E2AA0A /* CalenderDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalenderDateCell.xib; sourceTree = "<group>"; };
+		AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderMonthCell.swift; sourceTree = "<group>"; };
+		AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDateCell.swift; sourceTree = "<group>"; };
+		AC8E132723F9AFD900E2AA0A /* CalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderVC.swift; sourceTree = "<group>"; };
 		ACA0A38F23F05CC900E46F97 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
 		ACA0A39123F05D6500E46F97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchVM.swift; sourceTree = "<group>"; };
@@ -187,7 +199,10 @@
 			isa = PBXGroup;
 			children = (
 				AC535B9D23F514750080B563 /* CustomEditViews.xib */,
-				ACDF193223F682D900A8883F /* JobsCell.xib */,
+				AC8E131C23F996F300E2AA0A /* CalenderVC.xib */,
+				AC8E131E23F9A36C00E2AA0A /* CalenderMonthCell.xib */,
+				AC535B9823F512750080B563 /* HostSearchVC.xib */,
+				AC8E132023F9AA6500E2AA0A /* CalenderDateCell.xib */,
 			);
 			path = SeachViews;
 			sourceTree = "<group>";
@@ -227,6 +242,7 @@
 		AC8B37B823D9726900B7231F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC8E132223F9ABA900E2AA0A /* SearchView */,
 				AC8B37C023D9772300B7231F /* CustomCells */,
 				AC8B37BF23D9748700B7231F /* TableViewCustomClasses */,
 				AC8B37BE23D9745600B7231F /* CollViewCustomClasses */,
@@ -296,12 +312,10 @@
 		AC8B37BD23D9742C00B7231F /* ViewClasses */ = {
 			isa = PBXGroup;
 			children = (
-				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
 				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
 				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
 				ACC686E023F130350019F3D3 /* GalleryVC.swift */,
-				AC535B9A23F512B10080B563 /* HostSearchVC.swift */,
 			);
 			path = ViewClasses;
 			sourceTree = "<group>";
@@ -334,6 +348,18 @@
 			path = CustomCells;
 			sourceTree = "<group>";
 		};
+		AC8E132223F9ABA900E2AA0A /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
+				AC535B9A23F512B10080B563 /* HostSearchVC.swift */,
+				AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */,
+				AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */,
+				AC8E132723F9AFD900E2AA0A /* CalenderVC.swift */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
 		ACC686DB23F12E3E0019F3D3 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -344,7 +370,6 @@
 				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
 				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
 				ACC686DE23F12EE90019F3D3 /* GalleryVC.xib */,
-				AC535B9823F512750080B563 /* HostSearchVC.xib */,
 			);
 			path = SingleViews;
 			sourceTree = "<group>";
@@ -362,6 +387,7 @@
 			isa = PBXGroup;
 			children = (
 				AC7E7D7023AB703F0017430B /* MenuCell.xib */,
+				ACDF193223F682D900A8883F /* JobsCell.xib */,
 				ACE276D323E7F24100000331 /* ContinentCell.xib */,
 			);
 			path = CustomCells;
@@ -468,6 +494,7 @@
 				ACCE4EFD23B3CDAC00891F0B /* roboto_light.ttf in Resources */,
 				ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */,
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
+				AC8E131D23F996F300E2AA0A /* CalenderVC.xib in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
 				ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */,
@@ -477,11 +504,13 @@
 				AC7E7D7123AB703F0017430B /* MenuCell.xib in Resources */,
 				AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */,
 				ACCE4F0323B3CDAC00891F0B /* roboto_regular.ttf in Resources */,
+				AC8E132123F9AA6500E2AA0A /* CalenderDateCell.xib in Resources */,
 				ACDF193323F682D900A8883F /* JobsCell.xib in Resources */,
 				AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */,
 				ACCE4F0223B3CDAC00891F0B /* roboto_black.ttf in Resources */,
 				AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */,
 				ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */,
+				AC8E131F23F9A36C00E2AA0A /* CalenderMonthCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,8 +614,10 @@
 				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
 				ACC86A8723BF119F00D58388 /* User.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
+				AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */,
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
+				AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
 				ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
@@ -603,6 +634,7 @@
 				AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */,
 				AC7E65C423EDC9AC00F384F0 /* TabBarController.swift in Sources */,
 				AC49F1DD23A8BE0E0043B10B /* CommonExtenstions.swift in Sources */,
+				AC8E132823F9AFD900E2AA0A /* CalenderVC.swift in Sources */,
 				AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */,
 				AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */,
 				AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */,

@@ -183,6 +183,8 @@ extension HostsVC:Menudelegates{
             break
         case .AboutUS:
             break
+        default:
+            break
         }
         
     }
