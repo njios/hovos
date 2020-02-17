@@ -13,27 +13,22 @@ class CalenderVC: UIViewController {
     @IBOutlet weak var fromDate:UILabel!
     @IBOutlet weak var toDate:UILabel!
     @IBOutlet weak var calender:UITableView!
-    var dateFormatter = DateFormatter()
-    var dateComponents: DateComponents!
-    var months = [String]()
+    var date = 0
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+                    calender.delegate = self
+                    calender.dataSource = self
+                    calender.register(UINib(nibName: "CalenderMonthCell", bundle: nil), forCellReuseIdentifier: "CalenderMonthCell")
+                    calender.reloadData()
        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let calendar = Calendar.current
-               dateFormatter.timeZone = calendar.timeZone
-               dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-               dateComponents = calendar.dateComponents([.month,.day,.year], from: dateFormatter.date(from: dateFormatter.string(from: Date()))!)
-               for i in dateComponents.month! ..< dateComponents.month!+12{
-                   months.append(getMonth(i%12))
-               }
-               calender.delegate = self
-               calender.dataSource = self
-               calender.register(UINib(nibName: "CalenderMonthCell", bundle: nil), forCellReuseIdentifier: "CalenderMonthCell")
-               calender.reloadData()
+              
+              
     }
+    
     @IBAction func selectDateAction(_ sender:UIButton){
         
     }
@@ -46,10 +41,12 @@ extension CalenderVC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CalenderMonthCell") as! CalenderMonthCell
-        cell.month.text = months[indexPath.row] + " \(String(dateComponents.year!))"
+        cell.month.text = CalenderHelper.shared.months[indexPath.row] + " \(String(CalenderHelper.shared.dateComponents.year!))"
         cell.dateCollView.delegate = self
         cell.dateCollView.dataSource = self
         cell.dateCollView.reloadData()
+        cell.dateCollView.tag = indexPath.row
+        date = 0
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -66,7 +63,13 @@ extension CalenderVC:UICollectionViewDelegate,UICollectionViewDataSource,UIColle
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CalenderDateCell", for: indexPath) as! CalenderDateCell
-        cell.date.text = String(indexPath.row)
+           cell.date.text = ""
+           let lastDate = CalenderHelper.shared.lastDayOfcurrentMonth(month: CalenderHelper.shared.months[collectionView.tag])
+        if CalenderHelper.shared.firstDayOfcurrentMonth(month:CalenderHelper.shared.months[collectionView.tag])-1 <= indexPath.row && date < lastDate{
+            date = date + 1
+             cell.date.text = String(date)
+             
+        }
        
        
         return cell
