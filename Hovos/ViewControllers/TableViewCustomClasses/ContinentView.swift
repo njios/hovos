@@ -9,6 +9,7 @@
 import UIKit
 
 
+
 class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
    
     @IBOutlet weak var tbl:UITableView!
@@ -18,9 +19,9 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     var step = 0
     var VMObject = FaceVM()
     var selectedCountries = [countries]()
-    var continent = ""
+    var continent:continents!
     var host = true
-    var selectedData = [String:[String]]()
+    var selectedData = [continents:[countries]]()
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -73,7 +74,7 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             ttlLabel.text = "Continents"
         return self.VMObject.facetData?.continents.count ?? 0
         }else{
-            ttlLabel.text = "Counties in \(continent)"
+            ttlLabel.text = "Counties in \(continent.title ?? "")"
             return selectedCountries.count
         }
       }
@@ -106,24 +107,25 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             selectedCountries = VMObject.facetData?.countries.filter({ (country) -> Bool in
                 if country.continentId == VMObject.facetData?.continents[indexPath.row].continentId{
                    
-                    continent = VMObject.facetData?.continents[indexPath.row].title ?? ""
-                     selectedData[continent] = []
+                    selectedData[(VMObject.facetData?.continents[indexPath.row])!] = []
                     return true
                 }else{
                     return false
                 }
             }) ?? []
+            continent = VMObject.facetData?.continents[indexPath.row]
             heightConstraint.constant = 30
             tableView.reloadData()
         }else{
             let cell = tableView.cellForRow(at: indexPath) as! ContinentCell
             cell.selectImage.isHidden = !cell.selectImage.isHidden
             if cell.selectImage.isHidden == false{
-                selectedData[continent]?.append(selectedCountries[indexPath.row].title ?? "")
+                selectedData[continent]?.append(selectedCountries[indexPath.row])
+              
             cell.ttlLable.font = UIFont(name: "Lato-Bold", size: 18)
             }else{
                 for i in 0 ..< selectedData[continent]!.count{
-                    if selectedData[continent]![indexPath.row] == (selectedCountries[indexPath.row].title ?? ""){
+                    if selectedData[continent]![i] == (selectedCountries[indexPath.row]){
                         selectedData[continent]?.remove(at: i)
                         break
                     }

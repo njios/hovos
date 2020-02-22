@@ -21,32 +21,34 @@ class HostsVC: UIViewController {
     @IBOutlet weak var footerlabel:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
+    var searchModal:HostSearchModel!{
+        didSet{
+           
+        object.removeAll()
+        self.collView.reloadData()
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
         menuView.delegate = self
         if object.count == 0{
             ViewHelper.shared().showLoader(self)
-            
             VMObject.getNearByHosts(completion: { (items) in
                 DispatchQueue.main.async {
                     self.object = items!
-                    
                     self.collView.reloadData()
-                    
                 }
             })
-            
-            
-            
-            
-            
         }else{
             self.loaderView.isHidden = true
         }
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
             self.collView.scrollToItem(at: index, at: .left, animated: false)
@@ -64,6 +66,9 @@ class HostsVC: UIViewController {
     @IBAction func searchHost(_ sender:UIButton){
         
       let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
+        vc.startSearch = { searchModal in
+            self.searchModal = searchModal
+        }
         self.navigationController?.pushViewController(vc, animated: true)
         
         

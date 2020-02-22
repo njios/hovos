@@ -16,8 +16,8 @@ enum Action{
     case hostlist
     case volunteers
     case AboutUS
-    case Response(data:[String:[String]])
-    func getData()->[String:[String]]?{
+    case Response(data:Any)
+    func getData()->Any?{
         switch self {
         case .Response(let data):
             return data

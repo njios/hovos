@@ -8,12 +8,20 @@
 
 import Foundation
 
-struct HostSearchModel{
+struct HostSearchModel:Codable{
     
-    var searchKeyword:String = ""
+//    var searchKeyword:String = ""
     var continent:String = ""
     var countries = [String]()
-    var exchangeDate:String = ""
-    var jobs = [String]()
+//    var exchangeDate:String = ""
+//    var jobs = [String]()
+//
     
+    var qs:String!
+    var dt:String!
+    var jobs = String()
+    var cntry:String!
+    var conti:String!
+    var latlng:String!
+    var radius:String!
 }

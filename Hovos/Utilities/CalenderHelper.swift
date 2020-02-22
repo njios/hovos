@@ -10,14 +10,19 @@ import Foundation
 
 struct CalenderHelper{
     var dateFormatter = DateFormatter()
+    var mmmddyyy = DateFormatter()
     var dateComponents: DateComponents!
     var months = [String]()
     let calendar = Calendar.current
     var calenderDatesForYear = [Int]()
+    var currentDate:Date
     static var shared = CalenderHelper()
     private init(){
         dateFormatter.timeZone = calendar.timeZone
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        mmmddyyy.timeZone = calendar.timeZone
+        mmmddyyy.dateFormat = "MMM dd, yyyy"
+        currentDate = dateFormatter.date(from: dateFormatter.string(from: Date()))!
         dateComponents = calendar.dateComponents([.month,.day,.year], from: dateFormatter.date(from: dateFormatter.string(from: Date()))!)
         for i in dateComponents.month! ..< dateComponents.month!+12{
             months.append(getMonth(i%12))
@@ -43,7 +48,7 @@ struct CalenderHelper{
         
     }
     
-   private func getMonth(_ monthinInt:Int)->String{
+    func getMonth(_ monthinInt:Int)->String{
     switch monthinInt {
     case 0:
         return "December"
@@ -74,5 +79,39 @@ struct CalenderHelper{
     default:
         return ""
     }
+    }
+        func getMonth(_ monthinString:String)->Int{
+           switch monthinString {
+           case "December":
+               return 0
+               case "January":
+                      return 1
+               case "February":
+                      return 2
+               case "March":
+                      return 3
+               case "April":
+                      return 4
+               case "May":
+                      return 5
+               case "June":
+                      return 6
+               case "July":
+                      return 7
+               case "August":
+                      return 8
+               case "September":
+                      return 9
+               case "October":
+                      return 10
+               case "November":
+               return 11
+            
+               
+           default:
+               return 12
+           }
 }
+    
+    
 }

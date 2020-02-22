@@ -10,5 +10,6 @@ import Foundation
 import UIKit
 class CalenderDateCell:UICollectionViewCell{
 @IBOutlet weak var date:UILabel!
+    var realDate:Date!
 }
 

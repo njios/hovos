@@ -14,6 +14,10 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
     
 
      @IBOutlet weak var clearButton:UIButton!
+     @IBOutlet weak var fromLabel:UILabel!
+     @IBOutlet weak var toLabel:UILabel!
+     @IBOutlet weak var anytime:UIButton!
+     @IBOutlet weak var dateRange:UIButton!
      @IBOutlet weak var searchTextView:CustomEditViews!
      @IBOutlet weak var continentView:CustomEditViews!
      @IBOutlet weak var countriesView:CustomEditViews!
@@ -24,18 +28,18 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
    
      var searchModel = HostSearchModel(){
         didSet{
-            if searchModel.jobs.count > 0 || searchModel.continent != "" || searchModel.exchangeDate != "" || searchModel.searchKeyword != "" {
+            if searchModel.jobs.count > 0 || searchModel.conti != nil || searchModel.dt != nil || searchModel.qs != nil {
                 continentView.serachText.text = searchModel.continent
                 countriesView.serachText.text = searchModel.countries.joined(separator: ",")
+                
                 clearButton.isHidden = false
             }
-            if searchModel.jobs.count == 0 && searchModel.continent == ""  && searchModel.exchangeDate == "" && searchModel.searchKeyword == ""{
+            if searchModel.jobs.count == 0 && searchModel.conti == nil  && searchModel.dt == nil && searchModel.qs == nil{
                  clearButton.isHidden = true
             }
-            
-        }
+         }
     }
-    
+    var startSearch:((_ modal:HostSearchModel)->())!
     override func viewDidLoad() {
         super.viewDidLoad()
         countries.delegate = self
@@ -61,14 +65,14 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
     }
     
     @objc func jobsSelected(_ sender:UIButton){
-        
-        if (searchModel.jobs.contains(vmObject.jobs[sender.tag].title ?? "")){
+         var jobsArray = searchModel.jobs.components(separatedBy: ",")
+        if (jobsArray.contains(vmObject.jobs[sender.tag].title ?? "")){
             sender.isSelected = false
             sender.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-            
-            for i in 0 ..< (searchModel.jobs.count){
-                if searchModel.jobs[i] == (vmObject.jobs[sender.tag].title ?? ""){
-                searchModel.jobs.remove(at: i)
+           
+            for i in 0 ..< (jobsArray.count){
+                if jobsArray[i] == (vmObject.jobs[sender.tag].title ?? ""){
+                jobsArray.remove(at: i)
                 break
                 }
             }
@@ -76,13 +80,13 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
         }else{
             sender.isSelected = true
             sender.backgroundColor = UIColor(named: "orangeColor")
-            searchModel.jobs.append(vmObject.jobs[sender.tag].title ?? "")
+            jobsArray.append(vmObject.jobs[sender.tag].title ?? "")
         }
-        
+        searchModel.jobs = jobsArray.joined(separator: ",")
     }
    
     func SearchText(with text: String) {
-        searchModel.searchKeyword = text
+        searchModel.qs = text
     }
     
     func showContinent() {
@@ -93,8 +97,27 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
            countries.isHidden = false
       }
     
+    @IBAction func searchClicked(_ sender:UIButton){
+           startSearch(searchModel)
+           goback(sender)
+       }
+    @IBAction func anyTimeClicked(_ sender:UIButton){
+        anytime.isSelected = true
+        dateRange.isSelected = false
+        self.fromLabel.text = "Start Date"
+        self.toLabel.text = "End Date"
+        self.searchModel.dt = nil
+    }
+    
     @IBAction func showCalender(_ sender:UIButton){
+        anytime.isSelected = false
+        dateRange.isSelected = true
         let vc = CalenderVC(nibName: "CalenderVC", bundle: nil)
+        vc.datesSelected = { fromDate,toDate in
+            self.fromLabel.text = fromDate
+            self.toLabel.text = toDate
+            self.searchModel.dt = fromDate + "|" + toDate
+        }
         
         vc.modalPresentationStyle = .overCurrentContext
        
@@ -130,9 +153,12 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         return CGSize(width: (collectionView.frame.size.width / 2 ), height: 50)
     }
     func menuItemDidSelect(for action: Action) {
-        let keys = Array<String>(action.getData()!.keys)
-        searchModel.continent = keys.first ?? ""
-        searchModel.countries = action.getData()![keys.first ?? ""]!
+        let countriesData = action.getData() as? [continents:[countries]]
+        let keys = Array<continents>(countriesData!.keys)
+        searchModel.continent = keys.first?.title ?? ""
+        searchModel.countries = (countriesData?[keys.first!]?.map({ $0.title }))! as! [String]
+        searchModel.conti = keys.first?.continentId
+        searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryId }))! as! [String]).joined(separator: ",")
         countries.isHidden = true
       }
       

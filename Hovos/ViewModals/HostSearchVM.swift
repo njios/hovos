@@ -8,8 +8,11 @@
 
 import Foundation
 import Alamofire
+
 class HostSearchVM{
     var jobs:[Jobs]!
+    
+   // var searchParam = HostSearch()
     
     func getJobs(completion:@escaping(()->())){
         var packet = NetworkPacket()

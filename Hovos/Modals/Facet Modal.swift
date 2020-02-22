@@ -13,15 +13,20 @@ struct facets:Codable{
    var continents:[continents]
 }
 
-struct countries:Codable{
+struct countries:Codable,Equatable{
+    
+    
+    
     var counts:String?
     var continentId:String?
     var latitude:String?
     var longitude:String?
     var title:String?
     var zoom:String?
+    var countryId:String?
 }
-struct continents:Codable{
+struct continents:Codable,Hashable{
+    
     var counts:String?
     var continentId:String?
     var latitude:String?
