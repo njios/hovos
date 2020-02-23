@@ -27,6 +27,7 @@ enum ApiEndPoints{
     case volunteersNearBy
     case volunteersAll
     case hostByLocation
+    case hostsAll
     case hostsRecommended
     case hostsLatest
     case facetData
@@ -53,6 +54,9 @@ enum ApiEndPoints{
               return "/api/get/hosts/nearby/"
         case .hostsRecommended:
             return "/api/host/recommended/"
+            
+        case .hostsAll:
+            return "/api/get/hosts/all/"
         case .hostsLatest:
             return "/api/get/hosts/latest/"
         case .facetData:

@@ -65,14 +65,15 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
     }
     
     @objc func jobsSelected(_ sender:UIButton){
-         var jobsArray = searchModel.jobs.components(separatedBy: ",")
-        if (jobsArray.contains(vmObject.jobs[sender.tag].title ?? "")){
+        
+        if (searchModel.jobsArray.contains(vmObject.jobs[sender.tag].title ?? "")){
             sender.isSelected = false
             sender.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
            
-            for i in 0 ..< (jobsArray.count){
-                if jobsArray[i] == (vmObject.jobs[sender.tag].title ?? ""){
-                jobsArray.remove(at: i)
+            for i in 0 ..< (searchModel.jobsArray.count){
+                if searchModel.jobsArray[i] == (vmObject.jobs[sender.tag].title ?? ""){
+                searchModel.jobsArray.remove(at: i)
+                    searchModel.jobs.remove(at: i)
                 break
                 }
             }
@@ -80,9 +81,12 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
         }else{
             sender.isSelected = true
             sender.backgroundColor = UIColor(named: "orangeColor")
-            jobsArray.append(vmObject.jobs[sender.tag].title ?? "")
+            searchModel.jobs.append(vmObject.jobs[sender.tag].value ?? "")
+            searchModel.jobsArray.append(vmObject.jobs[sender.tag].title ?? "")
         }
-        searchModel.jobs = jobsArray.joined(separator: ",")
+     
+        print("--->",searchModel.jobsArray.joined(separator: "|"))
+        print("--->",searchModel.jobs)
     }
    
     func SearchText(with text: String) {

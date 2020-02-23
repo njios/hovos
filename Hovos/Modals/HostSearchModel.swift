@@ -14,12 +14,12 @@ struct HostSearchModel:Codable{
     var continent:String = ""
     var countries = [String]()
 //    var exchangeDate:String = ""
-//    var jobs = [String]()
+    var jobsArray = [String]()
 //
     
     var qs:String!
     var dt:String!
-    var jobs = String()
+    var jobs = [String]()
     var cntry:String!
     var conti:String!
     var latlng:String!

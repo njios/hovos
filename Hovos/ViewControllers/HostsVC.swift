@@ -14,18 +14,47 @@ class HostsVC: UIViewController {
     var name = ""
     var indexpath:IndexPath?
     var location:CLLocation!
+
     let photosDelegate = PhotosCollection()
     weak var VMObject:LandingVM!
     @IBOutlet weak var titleLabel:UILabel!
     @IBOutlet weak var loaderView:UIView!
     @IBOutlet weak var footerlabel:UILabel!
+    @IBOutlet weak var searchText:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
     var searchModal:HostSearchModel!{
         didSet{
-           
-        object.removeAll()
-        self.collView.reloadData()
+            let countriesText = searchModal.countries.joined(separator: ",")
+            let continent = (searchModal.continent )
+            let date = (searchModal.dt ?? "")
+            let qs = (searchModal.qs ?? "")
+            let jobs = searchModal.jobsArray.joined(separator: ",")
+            object.removeAll()
+            ViewHelper.shared().showLoader(self)
+            VMObject.getHostBySearch(modal: searchModal) { (items) in
+                DispatchQueue.main.async {
+                    ViewHelper.shared().hideLoader()
+                    self.searchText.text = qs + "," + continent + "," + countriesText + "," + date + "," + jobs
+                 var isContinue = true
+                           while isContinue {
+                            if self.searchText.text?.first! == ","{
+                                self.searchText.text?.removeFirst()
+                               }else{
+                                   isContinue = false
+                               }
+                           }
+                    if self.location != nil{
+                        let distance = self.location.distance(from: CLLocation(latitude: Double(items?[0].location?.longitude ?? "")!, longitude: Double(items?[0].location?.latitude ?? "")!))
+                         self.titleLabel.text = "Hosts nearby \(Int(distance/100)) km"
+                    }
+                   
+                    self.object = items!
+                    self.collView.reloadData()
+                }
+            }
+          
+            self.collView.reloadData()
         }
     }
     override func viewDidLoad() {
@@ -36,6 +65,7 @@ class HostsVC: UIViewController {
             ViewHelper.shared().showLoader(self)
             VMObject.getNearByHosts(completion: { (items) in
                 DispatchQueue.main.async {
+                    self.loaderView.isHidden = true
                     self.object = items!
                     self.collView.reloadData()
                 }
@@ -97,7 +127,14 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.countryHeight.constant = CGFloat((cell.countries.count) * 30)
         cell.countryTable.reloadData()
         
+        if searchModal == nil{
         titleLabel.text = "Hosts, \(indexPath.row + 1) of \(object.count )"
+        }else{
+            if self.location != nil{
+                                   let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
+                                    self.titleLabel.text = "Hosts nearby \(Int(distance/1000)) km"
+                               }
+        }
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
