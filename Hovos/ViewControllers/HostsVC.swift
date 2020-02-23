@@ -14,7 +14,7 @@ class HostsVC: UIViewController {
     var name = ""
     var indexpath:IndexPath?
     var location:CLLocation!
-
+    
     let photosDelegate = PhotosCollection()
     weak var VMObject:LandingVM!
     @IBOutlet weak var titleLabel:UILabel!
@@ -36,24 +36,22 @@ class HostsVC: UIViewController {
                 DispatchQueue.main.async {
                     ViewHelper.shared().hideLoader()
                     self.searchText.text = qs + "," + continent + "," + countriesText + "," + date + "," + jobs
-                 var isContinue = true
-                           while isContinue {
-                            if self.searchText.text?.first! == ","{
-                                self.searchText.text?.removeFirst()
-                               }else{
-                                   isContinue = false
-                               }
-                           }
-                    if self.location != nil{
-                        let distance = self.location.distance(from: CLLocation(latitude: Double(items?[0].location?.longitude ?? "")!, longitude: Double(items?[0].location?.latitude ?? "")!))
-                         self.titleLabel.text = "Hosts nearby \(Int(distance/100)) km"
+                    var isContinue = true
+                    while isContinue {
+                        if self.searchText.text?.first! == ","{
+                            self.searchText.text?.removeFirst()
+                        }else{
+                            isContinue = false
+                        }
                     }
-                   
+                    _ = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
+                    _ = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
+                    _ = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
                     self.object = items!
                     self.collView.reloadData()
                 }
             }
-          
+            
             self.collView.reloadData()
         }
     }
@@ -95,7 +93,7 @@ class HostsVC: UIViewController {
     
     @IBAction func searchHost(_ sender:UIButton){
         
-      let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
+        let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
         vc.startSearch = { searchModal in
             self.searchModal = searchModal
         }
@@ -120,21 +118,19 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         let volItem = object[indexPath.row]
         cell.imageData = volItem.images ?? []
         cell.dependency = self
-          cell.AddGesture()
+        cell.AddGesture()
         cell.name?.text = volItem.member?.firstName ?? ""
         let jobs = volItem.jobs?.values
         cell.countries = Array(jobs!)
         cell.countryHeight.constant = CGFloat((cell.countries.count) * 30)
         cell.countryTable.reloadData()
         
-        if searchModal == nil{
-        titleLabel.text = "Hosts, \(indexPath.row + 1) of \(object.count )"
-        }else{
-            if self.location != nil{
-                                   let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
-                                    self.titleLabel.text = "Hosts nearby \(Int(distance/1000)) km"
-                               }
+        
+        if self.location != nil{
+            let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
+            self.titleLabel.text = "Hosts nearby \(Int(distance/1000)) km"
         }
+        
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
