@@ -15,6 +15,7 @@
 		AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */; };
 		AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */; };
 		AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */; };
+		AC3F2ACE24037F050006A63B /* VolunteerSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */; };
 		AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */; };
 		AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC45CCD823B40D3200FD53BA /* ContinentView.xib */; };
 		AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */; };
@@ -95,6 +96,7 @@
 		AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
 		AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVM.swift; sourceTree = "<group>"; };
+		AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearch.xib; sourceTree = "<group>"; };
 		AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AC45CCD823B40D3200FD53BA /* ContinentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentView.xib; sourceTree = "<group>"; };
 		AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				AC8E131E23F9A36C00E2AA0A /* CalenderMonthCell.xib */,
 				AC535B9823F512750080B563 /* HostSearchVC.xib */,
 				AC8E132023F9AA6500E2AA0A /* CalenderDateCell.xib */,
+				AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */,
 			);
 			path = SeachViews;
 			sourceTree = "<group>";
@@ -501,6 +504,7 @@
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
 				ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */,
+				AC3F2ACE24037F050006A63B /* VolunteerSearch.xib in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
 				ACCE4F0123B3CDAC00891F0B /* lato_bold.ttf in Resources */,
 				ACCE4EFE23B3CDAC00891F0B /* roboto_condensed.ttf in Resources */,
