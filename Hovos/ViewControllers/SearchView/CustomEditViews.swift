@@ -14,6 +14,11 @@ protocol SearchDelegate {
     func showContinent()
     func showCountries()
 }
+extension SearchDelegate{
+    func showContinent(){
+        
+    }
+}
 
 @IBDesignable
 class CustomEditViews:UIView,UITextFieldDelegate{

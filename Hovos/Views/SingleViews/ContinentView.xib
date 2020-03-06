@@ -16,7 +16,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ContinentView" customModule="Hovos" customModuleProvider="target">
             <connections>
+                <outlet property="cancelButton" destination="1G8-Ni-anW" id="Lmy-yZ-aQ5"/>
                 <outlet property="heightConstraint" destination="e2X-Vj-mpK" id="Afp-l1-xDG"/>
+                <outlet property="selectButton" destination="E0l-h1-KtZ" id="RL5-MR-9uN"/>
                 <outlet property="tbl" destination="Ejf-fL-c6E" id="xT3-e7-vBZ"/>
                 <outlet property="ttlLabel" destination="Lyx-AT-Hzl" id="euq-CQ-ak5"/>
             </connections>

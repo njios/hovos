@@ -13,9 +13,11 @@
 		AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */; };
 		AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */; };
 		AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */; };
+		AC2F9C0324121734007DF013 /* languageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F9C0124121734007DF013 /* languageVC.swift */; };
+		AC2F9C0424121734007DF013 /* languageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2F9C0224121734007DF013 /* languageVC.xib */; };
 		AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */; };
 		AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */; };
-		AC3F2ACE24037F050006A63B /* VolunteerSearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */; };
+		AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */; };
 		AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */; };
 		AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC45CCD823B40D3200FD53BA /* ContinentView.xib */; };
 		AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */; };
@@ -27,6 +29,7 @@
 		AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */; };
 		AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E423A8C68F0043B10B /* SignUpVC.swift */; };
 		AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */; };
+		AC513AB4240392F900EBC56E /* VolunteerSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC513AB3240392F900EBC56E /* VolunteerSearchVC.swift */; };
 		AC535B9923F512750080B563 /* HostSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC535B9823F512750080B563 /* HostSearchVC.xib */; };
 		AC535B9B23F512B10080B563 /* HostSearchVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC535B9A23F512B10080B563 /* HostSearchVC.swift */; };
 		AC535B9E23F514750080B563 /* CustomEditViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC535B9D23F514750080B563 /* CustomEditViews.xib */; };
@@ -74,6 +77,10 @@
 		ACCE4F0323B3CDAC00891F0B /* roboto_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF923B3CDAB00891F0B /* roboto_regular.ttf */; };
 		ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */; };
 		ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */; };
+		ACD3E7A3240CBB5D004B0137 /* VolunteerSearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD3E7A2240CBB5D004B0137 /* VolunteerSearchVM.swift */; };
+		ACD3E7A5240CBBE0004B0137 /* VolunteerSearchModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD3E7A4240CBBE0004B0137 /* VolunteerSearchModal.swift */; };
+		ACD3E7A8240CE17D004B0137 /* SkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD3E7A6240CE17D004B0137 /* SkillsVC.swift */; };
+		ACD3E7A9240CE17D004B0137 /* SkillsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACD3E7A7240CE17D004B0137 /* SkillsVC.xib */; };
 		ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */; };
 		ACDF193323F682D900A8883F /* JobsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACDF193223F682D900A8883F /* JobsCell.xib */; };
 		ACDF193523F683DC00A8883F /* JobsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDF193423F683DC00A8883F /* JobsCell.swift */; };
@@ -94,9 +101,11 @@
 		AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
+		AC2F9C0124121734007DF013 /* languageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = languageVC.swift; sourceTree = "<group>"; };
+		AC2F9C0224121734007DF013 /* languageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = languageVC.xib; sourceTree = "<group>"; };
 		AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVM.swift; sourceTree = "<group>"; };
-		AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearch.xib; sourceTree = "<group>"; };
+		AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearchVC.xib; sourceTree = "<group>"; };
 		AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AC45CCD823B40D3200FD53BA /* ContinentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentView.xib; sourceTree = "<group>"; };
 		AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentView.swift; sourceTree = "<group>"; };
@@ -108,6 +117,7 @@
 		AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPackets.swift; sourceTree = "<group>"; };
 		AC49F1E423A8C68F0043B10B /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		AC513AB3240392F900EBC56E /* VolunteerSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerSearchVC.swift; sourceTree = "<group>"; };
 		AC535B9823F512750080B563 /* HostSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HostSearchVC.xib; sourceTree = "<group>"; };
 		AC535B9A23F512B10080B563 /* HostSearchVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchVC.swift; sourceTree = "<group>"; };
 		AC535B9D23F514750080B563 /* CustomEditViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEditViews.xib; sourceTree = "<group>"; };
@@ -157,6 +167,10 @@
 		ACCE4EF923B3CDAB00891F0B /* roboto_regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_regular.ttf; sourceTree = "<group>"; };
 		ACCE4EFA23B3CDAB00891F0B /* lato_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_light.ttf; sourceTree = "<group>"; };
 		ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabels.swift; sourceTree = "<group>"; };
+		ACD3E7A2240CBB5D004B0137 /* VolunteerSearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerSearchVM.swift; sourceTree = "<group>"; };
+		ACD3E7A4240CBBE0004B0137 /* VolunteerSearchModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerSearchModal.swift; sourceTree = "<group>"; };
+		ACD3E7A6240CE17D004B0137 /* SkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkillsVC.swift; sourceTree = "<group>"; };
+		ACD3E7A7240CE17D004B0137 /* SkillsVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkillsVC.xib; sourceTree = "<group>"; };
 		ACDE3A5C23C0CF3100357609 /* VolunteerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerVC.swift; sourceTree = "<group>"; };
 		ACDF193223F682D900A8883F /* JobsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobsCell.xib; sourceTree = "<group>"; };
 		ACDF193423F683DC00A8883F /* JobsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsCell.swift; sourceTree = "<group>"; };
@@ -207,7 +221,9 @@
 				AC8E131E23F9A36C00E2AA0A /* CalenderMonthCell.xib */,
 				AC535B9823F512750080B563 /* HostSearchVC.xib */,
 				AC8E132023F9AA6500E2AA0A /* CalenderDateCell.xib */,
-				AC3F2ACD24037F050006A63B /* VolunteerSearch.xib */,
+				AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */,
+				ACD3E7A7240CE17D004B0137 /* SkillsVC.xib */,
+				AC2F9C0224121734007DF013 /* languageVC.xib */,
 			);
 			path = SeachViews;
 			sourceTree = "<group>";
@@ -278,6 +294,7 @@
 				ACE276D123E7E97600000331 /* FaceVM.swift */,
 				AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */,
 				ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */,
+				ACD3E7A2240CBB5D004B0137 /* VolunteerSearchVM.swift */,
 			);
 			path = ViewModals;
 			sourceTree = "<group>";
@@ -290,6 +307,7 @@
 				ACE276CF23E7E7E000000331 /* Facet Modal.swift */,
 				ACB0921D23F8523000932DC6 /* Jobs.swift */,
 				ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */,
+				ACD3E7A4240CBBE0004B0137 /* VolunteerSearchModal.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -357,6 +375,9 @@
 			isa = PBXGroup;
 			children = (
 				AC535B9F23F515E80080B563 /* CustomEditViews.swift */,
+				AC2F9C0124121734007DF013 /* languageVC.swift */,
+				ACD3E7A6240CE17D004B0137 /* SkillsVC.swift */,
+				AC513AB3240392F900EBC56E /* VolunteerSearchVC.swift */,
 				AC535B9A23F512B10080B563 /* HostSearchVC.swift */,
 				AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */,
 				AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */,
@@ -493,6 +514,7 @@
 				AC535B9E23F514750080B563 /* CustomEditViews.xib in Resources */,
 				ACCE4EFF23B3CDAC00891F0B /* roboto_bold.ttf in Resources */,
 				ACCE4F0423B3CDAC00891F0B /* lato_light.ttf in Resources */,
+				ACD3E7A9240CE17D004B0137 /* SkillsVC.xib in Resources */,
 				AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */,
 				ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */,
 				AC535B9923F512750080B563 /* HostSearchVC.xib in Resources */,
@@ -504,7 +526,7 @@
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
 				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
 				ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */,
-				AC3F2ACE24037F050006A63B /* VolunteerSearch.xib in Resources */,
+				AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
 				ACCE4F0123B3CDAC00891F0B /* lato_bold.ttf in Resources */,
 				ACCE4EFE23B3CDAC00891F0B /* roboto_condensed.ttf in Resources */,
@@ -515,6 +537,7 @@
 				ACDF193323F682D900A8883F /* JobsCell.xib in Resources */,
 				AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */,
 				ACCE4F0223B3CDAC00891F0B /* roboto_black.ttf in Resources */,
+				AC2F9C0424121734007DF013 /* languageVC.xib in Resources */,
 				AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */,
 				ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */,
 				AC8E131F23F9A36C00E2AA0A /* CalenderMonthCell.xib in Resources */,
@@ -615,6 +638,7 @@
 			files = (
 				AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */,
 				ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */,
+				ACD3E7A5240CBBE0004B0137 /* VolunteerSearchModal.swift in Sources */,
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */,
@@ -624,12 +648,14 @@
 				AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */,
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
+				ACD3E7A8240CE17D004B0137 /* SkillsVC.swift in Sources */,
 				AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
 				ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */,
 				AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */,
 				ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */,
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
+				ACD3E7A3240CBB5D004B0137 /* VolunteerSearchVM.swift in Sources */,
 				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
 				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
@@ -645,6 +671,8 @@
 				AC49F1E723A8C9BE0043B10B /* ViewHelper.swift in Sources */,
 				AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */,
 				AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */,
+				AC2F9C0324121734007DF013 /* languageVC.swift in Sources */,
+				AC513AB4240392F900EBC56E /* VolunteerSearchVC.swift in Sources */,
 				ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */,
 				ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,

@@ -15,6 +15,8 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var tbl:UITableView!
     @IBOutlet weak var heightConstraint:NSLayoutConstraint!
     @IBOutlet weak var ttlLabel:UILabel!
+     @IBOutlet weak var selectButton:UIButton!
+     @IBOutlet weak var cancelButton:UIButton!
     var delegate:Menudelegates!
     var step = 0
     var VMObject = FaceVM()
@@ -22,6 +24,7 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
     var continent:continents!
     var host = true
     var selectedData = [continents:[countries]]()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -48,6 +51,17 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
                 }
                 
             }
+        }
+        
+        if host == true{
+               ttlLabel.textColor = UIColor(named: "greenColor")
+            selectButton.backgroundColor = UIColor(named: "greenColor")
+            cancelButton.setTitleColor(UIColor(named: "greenColor"), for: .normal)
+        }else{
+            
+            ttlLabel.textColor = UIColor(named: "orangeColor")
+            selectButton.backgroundColor = UIColor(named: "orangeColor")
+            cancelButton.setTitleColor(UIColor(named: "orangeColor"), for: .normal)
         }
     }
     
@@ -118,6 +132,11 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
             tableView.reloadData()
         }else{
             let cell = tableView.cellForRow(at: indexPath) as! ContinentCell
+            if host == true{
+            cell.selectImage.image = UIImage(named: "selectedTick")
+            }else{
+                cell.selectImage.image = UIImage(named: "selectedBlueTick")
+            }
             cell.selectImage.isHidden = !cell.selectImage.isHidden
             if cell.selectImage.isHidden == false{
                 selectedData[continent]?.append(selectedCountries[indexPath.row])

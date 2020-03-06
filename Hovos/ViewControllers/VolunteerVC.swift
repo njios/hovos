@@ -47,6 +47,20 @@ class VolunteerVC: UIViewController {
          
      }
     
+    
+    @IBAction func searchClicked(_ sender:UIButton){
+        let vc = 
+            
+            VolunteerSearchVC(nibName: "VolunteerSearchVC", bundle: nil)
+              vc.startSearch = { searchModal in
+                DispatchQueue.main.async {
+                    self.object = searchModal
+                                   self.collView.reloadData()
+                }
+               
+              }
+              self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
