@@ -48,6 +48,7 @@ class LandingVC: UIViewController {
                   }
         
     }
+    
     @IBAction func volunteerSignup(_ sender:UIButton){
         self.performSegue(withIdentifier: "volunteer", sender: nil)
     }
@@ -55,6 +56,12 @@ class LandingVC: UIViewController {
     @IBAction func hostSignup(_ sender:UIButton){
            self.performSegue(withIdentifier: "host", sender: nil)
        }
+    
+    @IBAction func loginClicked(_ sender:UIButton){
+            
+            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
+        self.navigationController?.pushViewController(loginVC!, animated: true)
+        }
     
     @IBAction func loadMenu(_ sender:UIButton){
         self.view.addSubview(menuView)

@@ -37,31 +37,40 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
             VMObject.location = location
             VMObject.getNearByHosts( completion: { Hosts in
                 DispatchQueue.main.async {
-                    self.mapView.isMyLocationEnabled = true
+                    //self.mapView.isMyLocationEnabled = true
                     self.mapView.camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 10.0)
-                                     
-                                  for item in Hosts!{
-                                      let lattitude = Double((item.location?.latitude)!)!
-                                      let longitude = Double((item.location?.longitude)!)!
-                                    
-                                      let marker = customMarker()
-                                      marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
-                                      marker.title = item.member?.firstName
-                                      marker.snippet = item.currentLocation
-
-                                       let markerImage = UIImage.init(named: "mappin")
-                                       let markerView = UIImageView(image: markerImage)
-                                      
-                                       marker.iconView = markerView
-                                       marker.info = item
-                                       marker.map = self.mapView
-                                    
-                                 
-                                  }
-                                
+                    
+                    let marker = customMarker()
+                    marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+                    let markerImage = UIImage.init(named: "greenLocation")
+                    let markerView = UIImageView(image: markerImage)
+                 
+                    marker.iconView = markerView
+                    marker.map = self.mapView
+                    marker.isTappable = false
+                    for item in Hosts!{
+                        let lattitude = Double((item.location?.latitude)!)!
+                        let longitude = Double((item.location?.longitude)!)!
+                        
+                        let marker = customMarker()
+                        marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
+                        marker.title = item.member?.firstName
+                        marker.snippet = item.currentLocation
+                        
+                        let markerImage = UIImage.init(named: "mappin")
+                        let markerView = UIImageView(image: markerImage)
+                        
+                        marker.iconView = markerView
+                        marker.info = item
+                        marker.map = self.mapView
+                        
+                        
+                    }
+                    
+                    
                 }
-              
-                   
+                
+                
             }
             )
         }else{
@@ -72,7 +81,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         
     }
     
-  
+    
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         if VMObject.Hosts != nil{
@@ -85,6 +94,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     }
     
     func mapView(_ mapView: GMSMapView, markerInfoWindow marker: GMSMarker) -> UIView? {
+       
         let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation
         if let custom = marker as? customMarker{
             infoWindow.name.text = custom.info.member?.firstName ?? ""
@@ -97,7 +107,8 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         }
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y =  infoWindow.center.y + 100
-              return infoWindow
+        return infoWindow
+        
     }
     
 }
@@ -126,8 +137,8 @@ class CustomAnnotation:UIView{
     @IBOutlet weak var jobs:UILabel!
     
     class func instanceFromNib() -> UIView {
-           return UINib(nibName: "CustomAnnotation", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
-       }
+        return UINib(nibName: "CustomAnnotation", bundle: nil).instantiate(withOwner: self, options: nil).first as! UIView
+    }
 }
 
 class customMarker:GMSMarker{
