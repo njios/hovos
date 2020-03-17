@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import GoogleMaps
+import GoogleMapsUtils
 class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     
     @IBOutlet weak var mapView:GMSMapView!
@@ -63,15 +64,9 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
                         marker.iconView = markerView
                         marker.info = item
                         marker.map = self.mapView
-                        
-                        
                     }
-                    
-                    
-                }
-                
-                
-            }
+                  }
+              }
             )
         }else{
             locManager.delegate = self
@@ -141,6 +136,6 @@ class CustomAnnotation:UIView{
     }
 }
 
-class customMarker:GMSMarker{
+class customMarker:GMSMarker,GMUClusterItem{
     var info = VolunteerItem()
 }

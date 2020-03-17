@@ -29,7 +29,7 @@
                     <rect key="frame" x="31" y="200.5" width="352" height="495"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select languages" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="IG4-fz-h2c">
-                            <rect key="frame" x="15" y="15" width="174.5" height="30"/>
+                            <rect key="frame" x="15" y="15" width="184.5" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="eGp-0x-P44"/>
                             </constraints>

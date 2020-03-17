@@ -15,6 +15,22 @@ PODS:
     - FBSDKLoginKit/Login (= 5.7.0)
   - FBSDKLoginKit/Login (5.7.0):
     - FBSDKCoreKit (~> 5.0)
+  - Google-Maps-iOS-Utils (3.0.2):
+    - Google-Maps-iOS-Utils/Clustering (= 3.0.2)
+    - Google-Maps-iOS-Utils/Geometry (= 3.0.2)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.0.2)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.0.2)
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Clustering (3.0.2):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Geometry (3.0.2):
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/Heatmap (3.0.2):
+    - Google-Maps-iOS-Utils/QuadTree
+    - GoogleMaps
+  - Google-Maps-iOS-Utils/QuadTree (3.0.2):
+    - GoogleMaps
   - GoogleMaps (3.4.0):
     - GoogleMaps/Maps (= 3.4.0)
   - GoogleMaps/Base (3.4.0)
@@ -40,13 +56,14 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FBSDKLoginKit
+  - Google-Maps-iOS-Utils
   - GoogleMaps
   - GoogleSignIn
   - IQKeyboardManagerSwift
   - Kingfisher
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - AppAuth
     - FBSDKCoreKit
@@ -57,12 +74,15 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - Kingfisher
+  trunk:
+    - Google-Maps-iOS-Utils
 
 SPEC CHECKSUMS:
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
   FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
   FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
+  Google-Maps-iOS-Utils: bfc24e492f3a88a2dffec1b6e0a5bd86fc49486f
   GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
   GoogleSignIn: a62edd0516721d2a3db1259a5681b91f9b41c06a
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
@@ -70,6 +90,6 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
   Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
 
-PODFILE CHECKSUM: 435ad532a64cd2036240c6bad0925d8b165b506d
+PODFILE CHECKSUM: bf341e2f2a3d4211e7b0948508e1e8bb788d683c
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

@@ -39,16 +39,20 @@ class TabBarController: UIViewController {
     }
     
     @IBAction func addChild(_ sender:UIButton){
+        var vc :UIViewController!
         if sender.tag == 0{
-            let vc = storyboard?.instantiateViewController(withIdentifier: "DashboardVC")
-            
+             vc = storyboard?.instantiateViewController(withIdentifier: "DashboardVC")
+        }
+        if sender.tag == 2{
+             vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")
+        }
             for view in containerView.subviews {
                 view.removeFromSuperview()
             }
             vc!.view.frame =  CGRect(x: 0, y: 0, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height)
             self.addChild(vc!)
             self.containerView.addSubview(vc!.view)
-        }
+        
     }
     
 }

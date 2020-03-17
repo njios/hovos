@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="Hovos" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="tlA-pU-Dqg" id="TTz-Dq-yUb"/>
                 <outlet property="view" destination="iN0-l3-epB" id="8Bf-Kb-LVU"/>
             </connections>
         </placeholder>
@@ -42,17 +41,9 @@
                         <constraint firstItem="Z7O-5a-RJR" firstAttribute="leading" secondItem="Clj-7E-4pR" secondAttribute="leading" constant="20" id="m6c-pk-DGD"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tlA-pU-Dqg" customClass="GMSMapView">
-                    <rect key="frame" x="0.0" y="114" width="414" height="782"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="tlA-pU-Dqg" secondAttribute="bottom" id="Hwh-S4-HqK"/>
-                <constraint firstItem="tlA-pU-Dqg" firstAttribute="top" secondItem="Clj-7E-4pR" secondAttribute="bottom" id="Nb2-s7-3Ix"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="tlA-pU-Dqg" secondAttribute="trailing" id="YNX-QG-TSs"/>
-                <constraint firstItem="tlA-pU-Dqg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="k0c-1h-gaI"/>
                 <constraint firstItem="Clj-7E-4pR" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nqV-kM-vpb"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Clj-7E-4pR" secondAttribute="trailing" id="pOS-6X-waq"/>
                 <constraint firstItem="Clj-7E-4pR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ptO-pX-oMg"/>

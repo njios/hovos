@@ -129,7 +129,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         if rem > 0 && quo == 0{
             cell.photosHeight.constant = width  + 50
         }
-        photosDelegate.objects = volItem
+        photosDelegate.objects = volItem.images
         cell.photosCollview.delegate = photosDelegate
         cell.photosCollview.dataSource = photosDelegate
         cell.photosCollview.reloadData()
@@ -161,9 +161,9 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
 
 
 class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-    var objects:VolunteerItem?
+    var objects:[images]?
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return (objects?.images?.count ?? 0) + 1
+        return (objects?.count ?? 0) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -173,7 +173,7 @@ class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSou
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as! listCell
             cell.imageV?.kf.indicatorType = .activity
-            cell.imageV?.kf.setImage(with: URL(string:( objects?.images?[indexPath.row - 1].medium)?.replacingOccurrences(of: "large", with: "small").replacingOccurrences(of: "medium", with: "small") ?? ""))
+            cell.imageV?.kf.setImage(with: URL(string:( objects?[indexPath.row - 1].medium)?.replacingOccurrences(of: "large", with: "small").replacingOccurrences(of: "medium", with: "small") ?? ""))
                        return cell
         }
     }

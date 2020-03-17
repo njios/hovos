@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,7 @@
 		AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */; };
 		AC2F9C0324121734007DF013 /* languageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F9C0124121734007DF013 /* languageVC.swift */; };
 		AC2F9C0424121734007DF013 /* languageVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2F9C0224121734007DF013 /* languageVC.xib */; };
+		AC3348BD2420893000C16BAE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3348BC2420893000C16BAE /* ProfileViewController.swift */; };
 		AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */; };
 		AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */; };
 		AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */; };
@@ -103,6 +104,7 @@
 		AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
 		AC2F9C0124121734007DF013 /* languageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = languageVC.swift; sourceTree = "<group>"; };
 		AC2F9C0224121734007DF013 /* languageVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = languageVC.xib; sourceTree = "<group>"; };
+		AC3348BC2420893000C16BAE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVM.swift; sourceTree = "<group>"; };
 		AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearchVC.xib; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				AC63950923940A36000EA4F9 /* LoginVC.swift */,
 				AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
+				AC3348BC2420893000C16BAE /* ProfileViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -553,34 +556,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hovos/Pods-Hovos-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AppAuth/AppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMAppAuth/GTMAppAuth.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMAppAuth.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hovos/Pods-Hovos-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		49D0A1EEA9EC7B15DDF01612 /* [CP] Check Pods Manifest.lock */ = {
@@ -611,22 +595,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Hovos/Pods-Hovos-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Hovos/Pods-Hovos-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Hovos/Pods-Hovos-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -642,6 +619,7 @@
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */,
+				AC3348BD2420893000C16BAE /* ProfileViewController.swift in Sources */,
 				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
 				ACC86A8723BF119F00D58388 /* User.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
