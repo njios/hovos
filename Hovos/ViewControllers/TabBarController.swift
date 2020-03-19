@@ -46,6 +46,11 @@ class TabBarController: UIViewController {
         if sender.tag == 2{
              vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")
         }
+        if sender.tag == 4{
+            
+            vc = storyboard?.instantiateViewController(withIdentifier: "SettingsViewController")
+        }
+        
             for view in containerView.subviews {
                 view.removeFromSuperview()
             }
