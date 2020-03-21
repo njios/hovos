@@ -35,5 +35,23 @@ import UIKit
             }
     }
     
+    @IBInspectable var shadow:Bool{
+        get{
+            return true
+        }
+        set{
+                        if newValue == true{
+                            layer.masksToBounds = false
+                            layer.shadowColor = UIColor.black.cgColor
+                            layer.shadowOpacity = 0.3
+                            layer.shadowRadius = 2
+                            layer.shadowOffset = .zero
+            
+                            layer.shouldRasterize = true
+                            layer.rasterizationScale = UIScreen.main.scale
+                        }
+        }
+    }
+    
     
 }
