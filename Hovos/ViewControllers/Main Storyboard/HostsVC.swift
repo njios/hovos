@@ -23,6 +23,7 @@ class HostsVC: UIViewController {
     @IBOutlet weak var searchText:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
+       weak var menu_delegate:LandingVC!
     var searchModal:HostSearchModel!{
         didSet{
             let countriesText = searchModal.countries.joined(separator: ",")
@@ -58,7 +59,7 @@ class HostsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
-        menuView.delegate = self
+        menuView.delegate = menu_delegate
         if object.count == 0{
             ViewHelper.shared().showLoader(self)
             VMObject.getNearByHosts(completion: { (items) in
@@ -188,42 +189,4 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
     }
     
-}
-extension HostsVC:Menudelegates{
-    func menuItemDidSelect(for action: Action) {
-        menuView.removeFromSuperview()
-        switch action {
-        case .login:
-            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
-            if registerVC != nil, loginVC != nil{
-                self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
-            }
-        case .logout:
-            break
-        case .register:
-            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-            
-            if registerVC != nil{
-                self.navigationController?.viewControllers = [self,registerVC!]
-            }
-            break
-        case .other:
-            
-            self.showProgressAlert()
-        case .hostlist:
-            break
-        case .volunteers:
-            if let vc  = self.navigationController?.viewControllers.first as? LandingVC{
-                vc.performSegue(withIdentifier: "vollist", sender: nil)
-            }
-            
-            break
-        case .AboutUS:
-            break
-        default:
-            break
-        }
-        
-    }
 }

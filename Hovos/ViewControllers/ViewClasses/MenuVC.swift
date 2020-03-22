@@ -9,13 +9,16 @@
 import UIKit
 
 enum Action{
-    case register
+    case registerHost
+    case registerVolunteer
     case logout
     case other
     case login
     case hostlist
     case volunteers
     case AboutUS
+    case settings
+    case helpCenter
     case Response(data:Any)
     func getData()->Any?{
         switch self {
@@ -29,14 +32,16 @@ enum Action{
 
 protocol Menudelegates {
     func menuItemDidSelect(for action:Action)
+  
 }
+
 
 class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
    
     @IBOutlet weak var tbl:UITableView!
     @IBOutlet weak var heightConstraints:NSLayoutConstraint!
     @IBOutlet weak var containerView:UIView!
-    var options = ["Log in","Register free","Host list","Volunteer list","Help center"]
+    var options = ["Log in","Register as volunteer","Register as host","Host list","Volunteer list","Help center"]
    
     var delegate:Menudelegates!
     override init(frame: CGRect) {
@@ -56,13 +61,14 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
         let nib = UINib(nibName: "MenuCell", bundle: nil)
         tbl.register(nib, forCellReuseIdentifier: "menuitem")
         if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
-            options[0] = "Log out"
-            options.remove(at: 1)
+            options = ["Host list","Volunteer list","Settings","Help center","Log out"]
+            
         }
         
         tbl.dataSource = self
         tbl.delegate = self
         tbl.reloadData()
+      
     }
     
    
@@ -83,26 +89,35 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
       }
       
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       
-    if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{
-         if indexPath.row == 0{
-          self.delegate.menuItemDidSelect(for: Action.logout)
-    }else{
-            self.delegate.menuItemDidSelect(for: Action.other)
-        }
-    }else if indexPath.row == 0{
-        
+        self.removeFromSuperview()
+    if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) == nil{
+        if indexPath.row == 0{
         self.delegate.menuItemDidSelect(for: Action.login)
         }
     else if indexPath.row == 1{
-        self.delegate.menuItemDidSelect(for: Action.register)
+        self.delegate.menuItemDidSelect(for: Action.registerVolunteer)
     }else if indexPath.row == 2{
+        self.delegate.menuItemDidSelect(for: Action.registerHost)
+    }else if indexPath.row == 3{
           self.delegate.menuItemDidSelect(for: Action.hostlist)
-        }else if indexPath.row == 3{
+        }else if indexPath.row == 4{
           self.delegate.menuItemDidSelect(for: Action.volunteers)
-    }else if indexPath.row == 4{
+    }else if indexPath.row == 5{
           self.delegate.menuItemDidSelect(for: Action.AboutUS)
     }
+    }else{
+         if indexPath.row == 0{
+               self.delegate.menuItemDidSelect(for: Action.hostlist)
+           }else if indexPath.row == 1{
+               self.delegate.menuItemDidSelect(for: Action.volunteers)
+           }else if indexPath.row == 2{
+                 self.delegate.menuItemDidSelect(for: Action.settings)
+               }else if indexPath.row == 3{
+                 self.delegate.menuItemDidSelect(for: Action.helpCenter)
+           }else if indexPath.row == 4{
+                 self.delegate.menuItemDidSelect(for: Action.logout)
+           }
+        }
     }
 }
 

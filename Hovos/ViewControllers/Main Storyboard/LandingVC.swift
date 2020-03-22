@@ -37,12 +37,13 @@ class LandingVC: UIViewController {
     }
     
         if let vollist = segue.destination as? VolunteerVC{
-            
+            vollist.menu_delegate = self
             vollist.object = VMObject.Volunteers
         }
     
             if let vollist = segue.destination as? HostsVC{
                 vollist.VMObject = VMObject
+                vollist.menu_delegate = self
                 vollist.location = VMObject.location
                 vollist.object = VMObject.Hosts
                   }
@@ -131,8 +132,11 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
 }
 
 extension LandingVC:Menudelegates{
+    
     func menuItemDidSelect(for action: Action) {
-        menuView.removeFromSuperview()
+        
+        self.navigationController?.popToRootViewController(animated: false)
+
         switch action {
         case .login:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
@@ -142,12 +146,20 @@ extension LandingVC:Menudelegates{
             }
         case .logout:
             break
-        case .register:
+        case .registerHost:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-           
+           registerVC?.type = "h"
             if registerVC != nil{
                 self.navigationController?.viewControllers = [self,registerVC!]
             }
+            break
+        case .registerVolunteer:
+            let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+                      
+                       if registerVC != nil{
+                        registerVC?.type = "v"
+                           self.navigationController?.viewControllers = [self,registerVC!]
+                       }
             break
         case .other:
             countries.isHidden = true
