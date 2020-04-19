@@ -23,7 +23,8 @@ class HostsVC: UIViewController {
     @IBOutlet weak var searchText:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
-       weak var menu_delegate:LandingVC!
+    var showMatching = false
+    weak var menu_delegate:LandingVC!
     var searchModal:HostSearchModel!{
         didSet{
             let countriesText = searchModal.countries.joined(separator: ",")
@@ -52,7 +53,6 @@ class HostsVC: UIViewController {
                     self.collView.reloadData()
                 }
             }
-            
             self.collView.reloadData()
         }
     }
@@ -60,48 +60,47 @@ class HostsVC: UIViewController {
         super.viewDidLoad()
         menuView.frame = self.view.frame
         menuView.delegate = menu_delegate
+
         if object.count == 0{
-            ViewHelper.shared().showLoader(self)
-            VMObject.getNearByHosts(completion: { (items) in
-                DispatchQueue.main.async {
-                    self.loaderView.isHidden = true
-                    self.object = items!
-                    self.collView.reloadData()
-                }
-            })
+            getHost()
         }else{
-            self.loaderView.isHidden = true
+            if let _ = self.indexpath{
+                 ViewHelper.shared().showLoader(self)
+                 }
         }
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
+    private func getHost(){
+        ViewHelper.shared().showLoader(self)
+        VMObject.getNearByHosts(completion: { (items) in
+            DispatchQueue.main.async {
+                self.loaderView.isHidden = true
+                self.object = items!
+                self.collView.reloadData()
+            }
+        })
     }
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
             self.collView.scrollToItem(at: index, at: .left, animated: false)
             ViewHelper.shared().hideLoader()
+            self.indexpath = nil
         }
     }
     
     @IBAction func loadMenu(_ sender:UIButton){
-        
         self.view.addSubview(menuView)
-        
-        
     }
     
     @IBAction func searchHost(_ sender:UIButton){
-        
         let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
         vc.startSearch = { searchModal in
             self.searchModal = searchModal
         }
         self.navigationController?.pushViewController(vc, animated: true)
-        
-        
     }
+    
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
     }
@@ -114,8 +113,6 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
-        
-        
         let volItem = object[indexPath.row]
         cell.imageData = volItem.images ?? []
         cell.dependency = self
@@ -130,6 +127,13 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         if self.location != nil{
             let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
             self.titleLabel.text = "Hosts nearby \(Int(distance/1000)) km"
+        }else{
+            if showMatching{
+                self.titleLabel.text = "Recomm. hosts. Matching:\(volItem.totalMatching ?? "") "
+            }else{
+                self.titleLabel.text = "New Hosts, signed up \((volItem.addedOn ?? "").getDate().getDay()) \((volItem.addedOn ?? "").getDate().getMonth()) "
+            }
+       
         }
         
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "

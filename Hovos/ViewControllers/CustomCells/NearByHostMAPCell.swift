@@ -17,6 +17,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     var locManager = CLLocationManager()
     private var infoWindow = CustomAnnotation()
     weak var vc :LandingVC!
+         var mapResponsibleDelegate:MapViewResponsable!
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,22 +50,23 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
                     marker.iconView = markerView
                     marker.map = self.mapView
                     marker.isTappable = false
-                    for item in Hosts!{
-                        let lattitude = Double((item.location?.latitude)!)!
-                        let longitude = Double((item.location?.longitude)!)!
-                        
-                        let marker = customMarker()
-                        marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
-                        marker.title = item.member?.firstName
-                        marker.snippet = item.currentLocation
-                        
-                        let markerImage = UIImage.init(named: "mappin")
-                        let markerView = UIImageView(image: markerImage)
-                        
-                        marker.iconView = markerView
-                        marker.info = item
-                        marker.map = self.mapView
-                    }
+                    
+                    for i in 0..<Hosts!.count{
+                        let lattitude = Double((Hosts![i].location?.latitude)!)!
+                        let longitude = Double((Hosts![i].location?.longitude)!)!
+                                           
+                                           let marker = customMarker()
+                                           marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
+                        marker.title = Hosts![i].member?.firstName
+                        marker.snippet = Hosts![i].currentLocation
+                                           
+                                           let markerImage = UIImage.init(named: "mappin")
+                                           let markerView = UIImageView(image: markerImage)
+                                           marker.index = i
+                                           marker.iconView = markerView
+                                           marker.info = Hosts![i]
+                                           marker.map = self.mapView
+                                       }
                   }
               }
             )
@@ -80,11 +82,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
     
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         if VMObject.Hosts != nil{
-            let mapvc = MapViewController(nibName: "MapViewController", bundle: nil)
-            vc.modalPresentationStyle = .fullScreen
-            mapvc.currentLocation = locManager.location!
-            mapvc.Hosts = VMObject.Hosts
-            vc.present(mapvc, animated: true, completion: nil)
+            mapResponsibleDelegate.mapViewClicked(loc: locManager.location!)
         }
     }
     
@@ -104,6 +102,17 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         infoWindow.center.y =  infoWindow.center.y + 100
         return infoWindow
         
+    }
+    func mapView(_ mapView: GMSMapView, didTapInfoWindowOf marker: GMSMarker) {
+        if let cMarker = marker as? customMarker{
+            let hostVC = vc.storyboard?.instantiateViewController(withIdentifier:  "HostsVC") as! HostsVC
+            hostVC.indexpath =  IndexPath(row: cMarker.index, section: 0)
+            hostVC.object = VMObject.Hosts
+            hostVC.location = VMObject.location
+            if let vc =  getNavigationController(){
+                   vc.pushViewController(hostVC, animated: false)
+            }
+        }
     }
     
 }
@@ -138,4 +147,5 @@ class CustomAnnotation:UIView{
 
 class customMarker:GMSMarker,GMUClusterItem{
     var info = VolunteerItem()
+    var index = -1
 }

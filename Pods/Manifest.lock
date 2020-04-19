@@ -1,4 +1,16 @@
 PODS:
+  - Adyen (3.5.0):
+    - Adyen/Card (= 3.5.0)
+    - Adyen/Core (= 3.5.0)
+    - Adyen/DropIn (= 3.5.0)
+  - Adyen/Card (3.5.0):
+    - Adyen/Core
+    - Adyen3DS2 (>= 2.1.0-rc.5)
+  - Adyen/Core (3.5.0)
+  - Adyen/DropIn (3.5.0):
+    - Adyen/Card
+    - Adyen/Core
+  - Adyen3DS2 (2.1.0-rc.5)
   - Alamofire (4.9.0)
   - AppAuth (1.2.0):
     - AppAuth/Core (= 1.2.0)
@@ -54,6 +66,7 @@ PODS:
   - Kingfisher/Core (5.8.1)
 
 DEPENDENCIES:
+  - Adyen
   - Alamofire
   - FBSDKLoginKit
   - Google-Maps-iOS-Utils
@@ -75,9 +88,13 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Kingfisher
   trunk:
+    - Adyen
+    - Adyen3DS2
     - Google-Maps-iOS-Utils
 
 SPEC CHECKSUMS:
+  Adyen: b153a4113e8953097c982b2aafc65846eb1519ec
+  Adyen3DS2: 7fae32b63e108bf24375c791652862c458b05c5d
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
   FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
@@ -90,6 +107,6 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
   Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
 
-PODFILE CHECKSUM: bf341e2f2a3d4211e7b0948508e1e8bb788d683c
+PODFILE CHECKSUM: 81ff3ab013159f1090c878823ce4c9e3f44d431e
 
 COCOAPODS: 1.8.4

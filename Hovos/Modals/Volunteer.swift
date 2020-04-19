@@ -36,6 +36,7 @@ struct VolunteerItem:Codable{
     var memberListingId:String?
     var title:String?
     var isPaid:String?
+    var addedOn:String?
     var photo:String?
     var slogan:String?
     var status:String?
@@ -75,6 +76,7 @@ struct VolunteerItem:Codable{
     var reviews:[review]?
     var mealDescription:String?
     var paymentDescription:String?
+    var totalMatching:String?
     func getFullimage(completion:@escaping (UIImage?)->()){
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: URL(string:(self.image!))!)

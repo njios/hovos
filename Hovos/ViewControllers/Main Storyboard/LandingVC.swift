@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
+protocol MapViewResponsable {
+    func mapViewClicked(loc:CLLocation)
+}
 
 class LandingVC: UIViewController {
 
@@ -53,6 +57,8 @@ class LandingVC: UIViewController {
     @IBAction func volunteerSignup(_ sender:UIButton){
         self.performSegue(withIdentifier: "volunteer", sender: nil)
     }
+    
+    
     
     @IBAction func hostSignup(_ sender:UIButton){
            self.performSegue(withIdentifier: "host", sender: nil)
@@ -106,8 +112,8 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
         case 1:
              let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
              if VMObject.Hosts == nil {
-             cell.VMObject = VMObject
-           
+                cell.VMObject = VMObject
+                cell.mapResponsibleDelegate = self
                 cell.loadMap(dependency: self)
              }
                 return cell
@@ -150,16 +156,16 @@ extension LandingVC:Menudelegates{
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
            registerVC?.type = "h"
             if registerVC != nil{
-                self.navigationController?.viewControllers = [self,registerVC!]
+                self.navigationController?.pushViewController(registerVC!, animated: false)
+               // self.navigationController?.viewControllers = [self,registerVC!]
             }
             break
         case .registerVolunteer:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-                      
-                       if registerVC != nil{
+            if registerVC != nil{
                         registerVC?.type = "v"
-                           self.navigationController?.viewControllers = [self,registerVC!]
-                       }
+                             self.navigationController?.pushViewController(registerVC!, animated: false)
+                }
             break
         case .other:
             countries.isHidden = true
@@ -179,11 +185,22 @@ extension LandingVC:Menudelegates{
     }
 }
 
-extension LandingVC:ListViewDelegate{
+extension LandingVC:ListViewDelegate,MapViewResponsable{
     func collViewdidUpdate(index: IndexPath) {
         let vc = storyboard?.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
         vc.indexpath = index
         vc.object = VMObject.Volunteers
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
+    func mapViewClicked(loc:CLLocation) {
+                  
+        let mapvc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
+        mapvc.location = VMObject.location
+        mapvc.mapItems = VMObject.Hosts
+        mapvc.isOrange = true
+        self.navigationController?.pushViewController(mapvc, animated: true)
+                    
+    }
 }
+

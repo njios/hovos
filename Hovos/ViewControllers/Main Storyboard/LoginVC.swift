@@ -34,7 +34,7 @@ class LoginVC: UIViewController,GIDSignInDelegate {
             if status == true{
                        
                      let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+                    let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
                     let appdel = UIApplication.shared.delegate as? AppDelegate
                    appdel?.window?.rootViewController = vc
             }else{

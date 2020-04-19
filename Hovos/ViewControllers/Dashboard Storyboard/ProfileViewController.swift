@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+           @IBOutlet weak var headerTitle:UILabel?
            @IBOutlet weak var imageV:UIImageView?
            @IBOutlet weak var name:UILabel?
            @IBOutlet weak var place:CustomLabels?
@@ -33,6 +34,7 @@ class ProfileViewController: UIViewController {
            var countries = [String]()
            var imageData = [images]()
            let photosDelegate = PhotosCollection()
+           
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +64,7 @@ class ProfileViewController: UIViewController {
     
     private func loadUI(volItem:Listing){
         imageData = volItem.images ?? []
+                                         headerTitle?.text = volItem.name ?? ""
                                          name?.text = volItem.name ?? ""
                                          countries = Array(volItem.countries!.values) as! [String]
                                          countryTable.reloadData()

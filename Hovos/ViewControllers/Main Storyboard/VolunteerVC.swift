@@ -26,7 +26,6 @@ class VolunteerVC: UIViewController {
       if let _ = self.indexpath{
         ViewHelper.shared().showLoader(self)
         }
-       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -42,10 +41,7 @@ class VolunteerVC: UIViewController {
     }
     
     @IBAction func loadMenu(_ sender:UIButton){
-         
          self.view.addSubview(menuView)
-    
-         
      }
     
     
@@ -56,9 +52,8 @@ class VolunteerVC: UIViewController {
               vc.startSearch = { searchModal in
                 DispatchQueue.main.async {
                     self.object = searchModal
-                                   self.collView.reloadData()
+                    self.collView.reloadData()
                 }
-               
               }
               self.navigationController?.pushViewController(vc, animated: true)
     }

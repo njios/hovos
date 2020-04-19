@@ -19,6 +19,10 @@ struct Auth:Codable {
 struct SharedUser{
     static var manager = SharedUser()
     var auth = Auth()
+    
+    func updateUser(){
+        
+    }
 }
 
 struct Listing:Codable {

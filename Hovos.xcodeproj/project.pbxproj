@@ -12,6 +12,9 @@
 		AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C078623AA18D200EC19BC /* MenuVC.swift */; };
 		AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */; };
 		AC1CFD682421DA91008FE498 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1CFD672421DA91008FE498 /* SettingsViewController.swift */; };
+		AC25C0CE244C8FA60050C752 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0CD244C8FA60050C752 /* MessageViewController.swift */; };
+		AC25C0D0244CA5000050C752 /* MessageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0CF244CA5000050C752 /* MessageModal.swift */; };
+		AC25C0D2244CD3660050C752 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0D1244CD3660050C752 /* ChatViewController.swift */; };
 		AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */; };
 		AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */; };
 		AC2F9C0324121734007DF013 /* languageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2F9C0124121734007DF013 /* languageVC.swift */; };
@@ -42,6 +45,9 @@
 		AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63950B23940A36000EA4F9 /* Main.storyboard */; };
 		AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AC63950E23940A38000EA4F9 /* Assets.xcassets */; };
 		AC63951223940A38000EA4F9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63951023940A38000EA4F9 /* LaunchScreen.storyboard */; };
+		AC68ABC024406212004E1A94 /* RecommendedVolunteers.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC68ABBF24406212004E1A94 /* RecommendedVolunteers.swift */; };
+		AC68ABC22440FEA7004E1A94 /* NewHosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC68ABC12440FEA7004E1A94 /* NewHosts.swift */; };
+		AC73E66B244A488800F2474C /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC73E66A244A488800F2474C /* MapViewController.swift */; };
 		AC763FBD23FA66BF00D187F8 /* CalenderHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC763FBC23FA66BF00D187F8 /* CalenderHelper.swift */; };
 		AC7E65C423EDC9AC00F384F0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */; };
 		AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7E7D6C23AB6E840017430B /* MenuVC.xib */; };
@@ -54,8 +60,11 @@
 		AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */; };
 		AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */; };
 		AC8E132823F9AFD900E2AA0A /* CalenderVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8E132723F9AFD900E2AA0A /* CalenderVC.swift */; };
-		ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA0A38F23F05CC900E46F97 /* MapViewController.xib */; };
-		ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA0A39123F05D6500E46F97 /* MapViewController.swift */; };
+		AC98655C244B239C008F113A /* AccountInformationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98655B244B239C008F113A /* AccountInformationVC.swift */; };
+		AC98655E244B4B5E008F113A /* IdentifyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98655D244B4B5E008F113A /* IdentifyVC.swift */; };
+		AC986560244B52F4008F113A /* ContactVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC98655F244B52F4008F113A /* ContactVC.swift */; };
+		AC986562244B859B008F113A /* PaymentHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC986561244B859B008F113A /* PaymentHelper.swift */; };
+		AC986564244B8E9D008F113A /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC986563244B8E9D008F113A /* PaymentViewController.swift */; };
 		ACB0921C23F84EA800932DC6 /* HostSearchVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */; };
 		ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921D23F8523000932DC6 /* Jobs.swift */; };
 		ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */; };
@@ -103,6 +112,9 @@
 		AC0C078623AA18D200EC19BC /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AC1CFD672421DA91008FE498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AC25C0CD244C8FA60050C752 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
+		AC25C0CF244CA5000050C752 /* MessageModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModal.swift; sourceTree = "<group>"; };
+		AC25C0D1244CD3660050C752 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		AC263DA723AFB6E0001F2FEB /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
 		AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVM.swift; sourceTree = "<group>"; };
 		AC2F9C0124121734007DF013 /* languageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = languageVC.swift; sourceTree = "<group>"; };
@@ -135,6 +147,9 @@
 		AC63950E23940A38000EA4F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AC63951123940A38000EA4F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AC63951323940A38000EA4F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC68ABBF24406212004E1A94 /* RecommendedVolunteers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendedVolunteers.swift; sourceTree = "<group>"; };
+		AC68ABC12440FEA7004E1A94 /* NewHosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewHosts.swift; sourceTree = "<group>"; };
+		AC73E66A244A488800F2474C /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		AC763FBC23FA66BF00D187F8 /* CalenderHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderHelper.swift; sourceTree = "<group>"; };
 		AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AC7E7D6C23AB6E840017430B /* MenuVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MenuVC.xib; sourceTree = "<group>"; };
@@ -147,8 +162,11 @@
 		AC8E132323F9AD0100E2AA0A /* CalenderMonthCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderMonthCell.swift; sourceTree = "<group>"; };
 		AC8E132523F9AD1100E2AA0A /* CalenderDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderDateCell.swift; sourceTree = "<group>"; };
 		AC8E132723F9AFD900E2AA0A /* CalenderVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderVC.swift; sourceTree = "<group>"; };
-		ACA0A38F23F05CC900E46F97 /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
-		ACA0A39123F05D6500E46F97 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AC98655B244B239C008F113A /* AccountInformationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInformationVC.swift; sourceTree = "<group>"; };
+		AC98655D244B4B5E008F113A /* IdentifyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentifyVC.swift; sourceTree = "<group>"; };
+		AC98655F244B52F4008F113A /* ContactVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactVC.swift; sourceTree = "<group>"; };
+		AC986561244B859B008F113A /* PaymentHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHelper.swift; sourceTree = "<group>"; };
+		AC986563244B8E9D008F113A /* PaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchVM.swift; sourceTree = "<group>"; };
 		ACB0921D23F8523000932DC6 /* Jobs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jobs.swift; sourceTree = "<group>"; };
 		ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostSearchModel.swift; sourceTree = "<group>"; };
@@ -234,6 +252,29 @@
 			path = SeachViews;
 			sourceTree = "<group>";
 		};
+		AC5389E524287493006604CA /* Main Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */,
+				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
+				ACD3E7A2240CBB5D004B0137 /* VolunteerSearchVM.swift */,
+				ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */,
+				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
+				ACE276D123E7E97600000331 /* FaceVM.swift */,
+				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
+				AC49F1E023A8C0750043B10B /* SignUPVM.swift */,
+			);
+			path = "Main Storyboard";
+			sourceTree = "<group>";
+		};
+		AC5389E6242874AD006604CA /* Dashboard Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */,
+			);
+			path = "Dashboard Storyboard";
+			sourceTree = "<group>";
+		};
 		AC6394F923940A36000EA4F9 = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +310,7 @@
 		AC8B37B823D9726900B7231F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				AC98655A244B2358008F113A /* Settings */,
 				ACDEECAF24268DF800E1AC8C /* Dashboard Storyboard */,
 				ACDEECAE24268C8F00E1AC8C /* Main Storyboard */,
 				AC8E132223F9ABA900E2AA0A /* SearchView */,
@@ -283,15 +325,8 @@
 		AC8B37B923D9727300B7231F /* ViewModals */ = {
 			isa = PBXGroup;
 			children = (
-				AC49F1E023A8C0750043B10B /* SignUPVM.swift */,
-				ACB2764B23B8FAA400E2CE2A /* LandingVM.swift */,
-				ACC2BF8C23AEB5AD008D9130 /* ForgetPasswordVM.swift */,
-				AC263DAC23AFB89F001F2FEB /* ChangePasswordVM.swift */,
-				AC49F1DE23A8C0560043B10B /* LoginVM.swift */,
-				ACE276D123E7E97600000331 /* FaceVM.swift */,
-				AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */,
-				ACB0921B23F84EA800932DC6 /* HostSearchVM.swift */,
-				ACD3E7A2240CBB5D004B0137 /* VolunteerSearchVM.swift */,
+				AC5389E6242874AD006604CA /* Dashboard Storyboard */,
+				AC5389E524287493006604CA /* Main Storyboard */,
 			);
 			path = ViewModals;
 			sourceTree = "<group>";
@@ -305,6 +340,7 @@
 				ACB0921D23F8523000932DC6 /* Jobs.swift */,
 				ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */,
 				ACD3E7A4240CBBE0004B0137 /* VolunteerSearchModal.swift */,
+				AC25C0CF244CA5000050C752 /* MessageModal.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -332,7 +368,6 @@
 		AC8B37BD23D9742C00B7231F /* ViewClasses */ = {
 			isa = PBXGroup;
 			children = (
-				ACA0A39123F05D6500E46F97 /* MapViewController.swift */,
 				AC0C078623AA18D200EC19BC /* MenuVC.swift */,
 				ACC6F2F423D6CE140043CBDB /* CustomMap.swift */,
 				ACC686E023F130350019F3D3 /* GalleryVC.swift */,
@@ -344,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */,
+				AC68ABBF24406212004E1A94 /* RecommendedVolunteers.swift */,
+				AC68ABC12440FEA7004E1A94 /* NewHosts.swift */,
 			);
 			path = CollViewCustomClasses;
 			sourceTree = "<group>";
@@ -383,12 +420,23 @@
 			path = SearchView;
 			sourceTree = "<group>";
 		};
+		AC98655A244B2358008F113A /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AC98655D244B4B5E008F113A /* IdentifyVC.swift */,
+				AC98655B244B239C008F113A /* AccountInformationVC.swift */,
+				AC98655F244B52F4008F113A /* ContactVC.swift */,
+				AC986563244B8E9D008F113A /* PaymentViewController.swift */,
+				AC1CFD672421DA91008FE498 /* SettingsViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		ACC686DB23F12E3E0019F3D3 /* SingleViews */ = {
 			isa = PBXGroup;
 			children = (
 				AC535B9C23F514560080B563 /* SeachViews */,
 				ACC686DD23F12E7E0019F3D3 /* CustomCells */,
-				ACA0A38F23F05CC900E46F97 /* MapViewController.xib */,
 				AC7E7D6C23AB6E840017430B /* MenuVC.xib */,
 				AC45CCD823B40D3200FD53BA /* ContinentView.xib */,
 				ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */,
@@ -445,6 +493,7 @@
 				AC49F1D823A8B8250043B10B /* LandingVC.swift */,
 				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
 				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
+				AC73E66A244A488800F2474C /* MapViewController.swift */,
 			);
 			path = "Main Storyboard";
 			sourceTree = "<group>";
@@ -452,11 +501,12 @@
 		ACDEECAF24268DF800E1AC8C /* Dashboard Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				AC1CFD672421DA91008FE498 /* SettingsViewController.swift */,
 				AC3348BC2420893000C16BAE /* ProfileViewController.swift */,
 				AC7E65C323EDC9AC00F384F0 /* TabBarController.swift */,
 				AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */,
 				ACDEECB024268E6A00E1AC8C /* AboutHovosVC.swift */,
+				AC25C0CD244C8FA60050C752 /* MessageViewController.swift */,
+				AC25C0D1244CD3660050C752 /* ChatViewController.swift */,
 			);
 			path = "Dashboard Storyboard";
 			sourceTree = "<group>";
@@ -471,6 +521,7 @@
 				AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */,
 				ACCE4F0523B3DAFB00891F0B /* CustomLabels.swift */,
 				AC763FBC23FA66BF00D187F8 /* CalenderHelper.swift */,
+				AC986561244B859B008F113A /* PaymentHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -549,7 +600,6 @@
 				AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */,
 				AC8E131D23F996F300E2AA0A /* CalenderVC.xib in Resources */,
 				ACCE4F0023B3CDAC00891F0B /* lato_regular.ttf in Resources */,
-				ACA0A39023F05CC900E46F97 /* MapViewController.xib in Resources */,
 				ACC686DF23F12EE90019F3D3 /* GalleryVC.xib in Resources */,
 				AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */,
 				AC7E7D6D23AB6E840017430B /* MenuVC.xib in Resources */,
@@ -640,7 +690,9 @@
 				ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */,
 				ACD3E7A5240CBBE0004B0137 /* VolunteerSearchModal.swift in Sources */,
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
+				AC98655C244B239C008F113A /* AccountInformationVC.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
+				AC986564244B8E9D008F113A /* PaymentViewController.swift in Sources */,
 				ACCE4F0623B3DAFB00891F0B /* CustomLabels.swift in Sources */,
 				AC3348BD2420893000C16BAE /* ProfileViewController.swift in Sources */,
 				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
@@ -662,9 +714,11 @@
 				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
 				AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */,
+				AC73E66B244A488800F2474C /* MapViewController.swift in Sources */,
 				AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */,
 				ACDF193523F683DC00A8883F /* JobsCell.swift in Sources */,
 				AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */,
+				AC68ABC22440FEA7004E1A94 /* NewHosts.swift in Sources */,
 				ACB2764C23B8FAA400E2CE2A /* LandingVM.swift in Sources */,
 				AC8B37C223D9775000B7231F /* LandingVCSliderCell.swift in Sources */,
 				AC7E65C423EDC9AC00F384F0 /* TabBarController.swift in Sources */,
@@ -676,7 +730,11 @@
 				AC2F9C0324121734007DF013 /* languageVC.swift in Sources */,
 				AC513AB4240392F900EBC56E /* VolunteerSearchVC.swift in Sources */,
 				ACB2764E23B8FBDC00E2CE2A /* Volunteer.swift in Sources */,
-				ACA0A39223F05D6500E46F97 /* MapViewController.swift in Sources */,
+				AC25C0D0244CA5000050C752 /* MessageModal.swift in Sources */,
+				AC25C0D2244CD3660050C752 /* ChatViewController.swift in Sources */,
+				AC98655E244B4B5E008F113A /* IdentifyVC.swift in Sources */,
+				AC986560244B52F4008F113A /* ContactVC.swift in Sources */,
+				AC68ABC024406212004E1A94 /* RecommendedVolunteers.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,
 				AC535B9B23F512B10080B563 /* HostSearchVC.swift in Sources */,
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
@@ -684,8 +742,10 @@
 				AC49F1E523A8C68F0043B10B /* SignUpVC.swift in Sources */,
 				DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */,
 				AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */,
+				AC986562244B859B008F113A /* PaymentHelper.swift in Sources */,
 				ACC2BF8B23AEB552008D9130 /* ForgetPasswordVC.swift in Sources */,
 				ACC2BF8D23AEB5AD008D9130 /* ForgetPasswordVM.swift in Sources */,
+				AC25C0CE244C8FA60050C752 /* MessageViewController.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
 				ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */,
 				AC763FBD23FA66BF00D187F8 /* CalenderHelper.swift in Sources */,

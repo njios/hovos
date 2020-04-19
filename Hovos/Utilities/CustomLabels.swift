@@ -77,3 +77,49 @@ class CustomLabels: UILabel {
     
     
 }
+
+
+class CustomButtons: UIButton {
+    
+    @IBInspectable var isComplete:Bool = false{
+        didSet{
+            let data = self.titleLabel?.text?.split(separator: " ")
+            let yourAttributes = [NSAttributedString.Key.foregroundColor: self.titleLabel?.textColor! ?? UIColor.white, NSAttributedString.Key.font: self.titleLabel?.font! ?? UIFont.systemFont(ofSize: 15),NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue] as [NSAttributedString.Key : Any]
+            let yourOtherAttributes = [NSAttributedString.Key.foregroundColor: self.titleLabel?.textColor, NSAttributedString.Key.font: self.titleLabel?.font!]
+               var complete = ""
+               for i in 1..<data!.count{
+                   complete = complete + data![i] + " "
+               }
+                if isComplete == false{
+                
+                let partOne = NSMutableAttributedString(string: String(data![0]), attributes: yourAttributes as [NSAttributedString.Key : Any])
+                let partTwo = NSMutableAttributedString(string: " "+complete, attributes: yourOtherAttributes as [NSAttributedString.Key : Any])
+                let combination = NSMutableAttributedString()
+                combination.append(partOne)
+                combination.append(partTwo)
+                    self.titleLabel?.attributedText = combination
+                }else{
+                    let partOne = NSMutableAttributedString(string: String(data![0]), attributes: yourAttributes as [NSAttributedString.Key : Any])
+                    let partTwo = NSMutableAttributedString(string: " "+complete, attributes: yourAttributes as [NSAttributedString.Key : Any])
+                    let combination = NSMutableAttributedString()
+                    combination.append(partOne)
+                    combination.append(partTwo)
+                    self.titleLabel?.attributedText = combination
+                }
+                
+        }
+    }
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    
+      
+    }
+    
+    
+}

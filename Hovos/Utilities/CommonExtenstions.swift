@@ -79,6 +79,12 @@ extension Date{
         let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
         return "\(comp.day ?? 0)"
     }
+    
+    func getTime()->String{
+        let calenderComp = Calendar.current
+        let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
+        return "\(comp.hour ?? 0)" + ":" + " \(comp.minute ?? 0)"
+    }
 }
 
 extension UICollectionView {
@@ -136,3 +142,28 @@ extension UIView {
 
 
 
+func topViewController()->UIViewController?{
+   
+if var  topController = UIApplication.shared.keyWindow?.rootViewController {
+    while let presentedViewController = topController.presentedViewController {
+        topController = presentedViewController
+    }
+    return topController
+  }
+    return nil
+}
+
+
+func getNavigationController()->UINavigationController?{
+    if var  topController = UIApplication.shared.keyWindow?.rootViewController {
+      while let presentedViewController = topController.presentedViewController {
+          topController = presentedViewController
+      }
+        if topController is UINavigationController{
+            return topController as? UINavigationController
+        }else{
+        return topController.navigationController
+        }
+    }
+      return nil
+}

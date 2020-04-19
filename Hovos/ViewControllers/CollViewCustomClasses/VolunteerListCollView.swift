@@ -11,6 +11,39 @@ import UIKit
 import Kingfisher
 protocol ListViewDelegate {
     func collViewdidUpdate(index:IndexPath)
+    func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String)
+}
+extension ListViewDelegate{
+    
+    func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String){
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+   
+          if SharedUser.manager.auth.role!.lowercased() == "v"{
+            let hostVC = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
+            hostVC.indexpath = index
+            hostVC.object = object
+            if type == "New"{
+                hostVC.showMatching = false
+            }else{
+                 hostVC.showMatching = true
+            }
+            if let vc =  getNavigationController(){
+                vc.pushViewController(hostVC, animated: false)
+                //vc.present(hostVC, animated: false, completion: nil)
+                }
+          }else{
+            
+            let volVC = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
+            volVC.indexpath = index
+            volVC.object = object
+           
+            if let vc =  getNavigationController(){
+              vc.pushViewController(volVC, animated: false)
+                //  vc.present(volVC, animated: false, completion: nil)
+            }
+        }
+       
+    }
 }
 class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     var cache = [String:UIImage]()
@@ -32,7 +65,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             
             
             cell.place?.text = (modalObject?[indexPath.row].location?.country ?? "") + ", " + (modalObject?[indexPath.row].location?.city ?? "")
-            
+            cell.matching?.text = (modalObject?[indexPath.row].totalMatching ?? "")
             return cell
         }
         
@@ -80,6 +113,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var countryTable:UITableView!
         @IBOutlet weak var photosCollview:UICollectionView!
         @IBOutlet weak var photosHeight:NSLayoutConstraint!
+        @IBOutlet weak var matching:UILabel!
         var countries = [String]()
         var imageData = [images]()
         weak var dependency:UIViewController!

@@ -25,7 +25,7 @@ var locationManager: CLLocationManager?
         
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+             let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
             window?.rootViewController = vc
         }
         

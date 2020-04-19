@@ -34,6 +34,11 @@ enum ApiEndPoints{
     case jobs
     case languages
     case user
+    case smsOtp
+    case contactUs
+    case paymentMethod
+    case paymentProcess
+    case getMessages
     var rawValue:String{
         switch self {
         case .login:
@@ -69,6 +74,16 @@ enum ApiEndPoints{
         return "/api/get/languages"
             case .user:
             return "/api/user/"
+        case .smsOtp:
+            return "/api/user/otp/"
+        case .contactUs:
+             return "/page/contact_us/"
+        case .paymentMethod:
+            return "/api/adyen/payment_methods/"
+        case .paymentProcess:
+            return "/api/adyen/process/"
+        case .getMessages:
+            return "/api/user/messages/all/"
         }
     }
        

@@ -13,4 +13,5 @@ target 'Hovos' do
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
+  pod 'Adyen'
 end
