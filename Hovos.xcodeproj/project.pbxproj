@@ -23,6 +23,8 @@
 		AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */; };
 		AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */; };
 		AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */; };
+		AC415EA124542B2500E96977 /* EditProfile_ContinentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC415EA024542B2500E96977 /* EditProfile_ContinentsVC.swift */; };
+		AC415EA324543B5200E96977 /* EditProfile_ContriesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC415EA224543B5200E96977 /* EditProfile_ContriesVC.swift */; };
 		AC454F2A23AFF0A0002DB736 /* Dashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */; };
 		AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC45CCD823B40D3200FD53BA /* ContinentView.xib */; };
 		AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */; };
@@ -100,6 +102,10 @@
 		ACE276D223E7E97600000331 /* FaceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D123E7E97600000331 /* FaceVM.swift */; };
 		ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE276D323E7F24100000331 /* ContinentCell.xib */; };
 		ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D523E7F34600000331 /* ContinentCell.swift */; };
+		ACF6319B24548110002CCBBB /* EditProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF6319A24548110002CCBBB /* EditProfileModal.swift */; };
+		ACF6319D2454BD16002CCBBB /* Edirprofile_SelectSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF6319C2454BD15002CCBBB /* Edirprofile_SelectSkillsVC.swift */; };
+		ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF6319E2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift */; };
+		ACF631A12454CF8E002CCBBB /* EditProfile_languagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF631A02454CF8E002CCBBB /* EditProfile_languagesVC.swift */; };
 		ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8C82123C711DB009537B5 /* HostsVC.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
@@ -123,6 +129,8 @@
 		AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVM.swift; sourceTree = "<group>"; };
 		AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearchVC.xib; sourceTree = "<group>"; };
+		AC415EA024542B2500E96977 /* EditProfile_ContinentsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_ContinentsVC.swift; sourceTree = "<group>"; };
+		AC415EA224543B5200E96977 /* EditProfile_ContriesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_ContriesVC.swift; sourceTree = "<group>"; };
 		AC454F2923AFF0A0002DB736 /* Dashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Dashboard.storyboard; sourceTree = "<group>"; };
 		AC45CCD823B40D3200FD53BA /* ContinentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentView.xib; sourceTree = "<group>"; };
 		AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentView.swift; sourceTree = "<group>"; };
@@ -202,6 +210,10 @@
 		ACE276D123E7E97600000331 /* FaceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceVM.swift; sourceTree = "<group>"; };
 		ACE276D323E7F24100000331 /* ContinentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentCell.xib; sourceTree = "<group>"; };
 		ACE276D523E7F34600000331 /* ContinentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentCell.swift; sourceTree = "<group>"; };
+		ACF6319A24548110002CCBBB /* EditProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileModal.swift; sourceTree = "<group>"; };
+		ACF6319C2454BD15002CCBBB /* Edirprofile_SelectSkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edirprofile_SelectSkillsVC.swift; sourceTree = "<group>"; };
+		ACF6319E2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editprofile_AboutSkillsVC.swift; sourceTree = "<group>"; };
+		ACF631A02454CF8E002CCBBB /* EditProfile_languagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_languagesVC.swift; sourceTree = "<group>"; };
 		ACF8C82123C711DB009537B5 /* HostsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostsVC.swift; sourceTree = "<group>"; };
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
@@ -341,6 +353,7 @@
 				ACB0921F23F85DBE00932DC6 /* HostSearchModel.swift */,
 				ACD3E7A4240CBBE0004B0137 /* VolunteerSearchModal.swift */,
 				AC25C0CF244CA5000050C752 /* MessageModal.swift */,
+				ACF6319A24548110002CCBBB /* EditProfileModal.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -428,6 +441,11 @@
 				AC98655F244B52F4008F113A /* ContactVC.swift */,
 				AC986563244B8E9D008F113A /* PaymentViewController.swift */,
 				AC1CFD672421DA91008FE498 /* SettingsViewController.swift */,
+				AC415EA024542B2500E96977 /* EditProfile_ContinentsVC.swift */,
+				AC415EA224543B5200E96977 /* EditProfile_ContriesVC.swift */,
+				ACF6319C2454BD15002CCBBB /* Edirprofile_SelectSkillsVC.swift */,
+				ACF6319E2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift */,
+				ACF631A02454CF8E002CCBBB /* EditProfile_languagesVC.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -685,10 +703,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC415EA124542B2500E96977 /* EditProfile_ContinentsVC.swift in Sources */,
 				ACDEECB124268E6A00E1AC8C /* AboutHovosVC.swift in Sources */,
 				AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */,
 				ACB0922023F85DBE00932DC6 /* HostSearchModel.swift in Sources */,
 				ACD3E7A5240CBBE0004B0137 /* VolunteerSearchModal.swift in Sources */,
+				AC415EA324543B5200E96977 /* EditProfile_ContriesVC.swift in Sources */,
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
 				AC98655C244B239C008F113A /* AccountInformationVC.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
@@ -701,8 +721,10 @@
 				AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */,
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
+				ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */,
 				AC1CFD682421DA91008FE498 /* SettingsViewController.swift in Sources */,
 				ACD3E7A8240CE17D004B0137 /* SkillsVC.swift in Sources */,
+				ACF6319B24548110002CCBBB /* EditProfileModal.swift in Sources */,
 				AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,
 				ACB0921E23F8523000932DC6 /* Jobs.swift in Sources */,
@@ -711,6 +733,7 @@
 				AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */,
 				ACD3E7A3240CBB5D004B0137 /* VolunteerSearchVM.swift in Sources */,
 				ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */,
+				ACF631A12454CF8E002CCBBB /* EditProfile_languagesVC.swift in Sources */,
 				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
 				AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */,
@@ -748,6 +771,7 @@
 				AC25C0CE244C8FA60050C752 /* MessageViewController.swift in Sources */,
 				AC263DA823AFB6E0001F2FEB /* ChangePasswordVC.swift in Sources */,
 				ACC686E123F130350019F3D3 /* GalleryVC.swift in Sources */,
+				ACF6319D2454BD16002CCBBB /* Edirprofile_SelectSkillsVC.swift in Sources */,
 				AC763FBD23FA66BF00D187F8 /* CalenderHelper.swift in Sources */,
 				ACB0921C23F84EA800932DC6 /* HostSearchVM.swift in Sources */,
 				AC535BA023F515E80080B563 /* CustomEditViews.swift in Sources */,

@@ -12,6 +12,7 @@ class ChatViewController: UIViewController {
  @IBOutlet weak var chatTable:UITableView!
  @IBOutlet weak var profileImage:UIImageView!
  @IBOutlet weak var name:UILabel!
+    @IBOutlet weak var textViewContainer:UIView!
  var messageItem:MessageModal!
     var chat = [MessageModal]()
     override func viewDidLoad() {
@@ -53,6 +54,21 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     
     
 }
+
+extension ChatViewController:UITextViewDelegate{
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimateSize = textView.sizeThatFits(size)
+        
+        textViewContainer.constraints.forEach { (constraints) in
+            if constraints.firstAttribute == .height{
+                constraints.constant = estimateSize.height + 10
+                
+            }
+        }
+    }
+}
+
 
 class ChatCell:UITableViewCell{
     @IBOutlet weak var baloonImage:UIImageView!

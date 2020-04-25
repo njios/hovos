@@ -31,6 +31,7 @@ enum ApiEndPoints{
     case hostsRecommended
     case hostsLatest
     case facetData
+    case volunteerFacet
     case jobs
     case languages
     case user
@@ -68,6 +69,9 @@ enum ApiEndPoints{
             return "/api/get/hosts/latest/"
         case .facetData:
             return "/api/get/hosts/facet/"
+            
+        case .volunteerFacet:
+            return "/api/get/travellers/facet/"
         case .jobs:
             return "/api/get/jobs"
         case .languages:

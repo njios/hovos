@@ -14,9 +14,6 @@ struct facets:Codable{
 }
 
 struct countries:Codable,Equatable{
-    
-    
-    
     var counts:String?
     var continentId:String?
     var latitude:String?
@@ -24,6 +21,7 @@ struct countries:Codable,Equatable{
     var title:String?
     var zoom:String?
     var countryId:String?
+    
 }
 struct continents:Codable,Hashable{
     
@@ -35,4 +33,5 @@ struct continents:Codable,Hashable{
     var zoom:String?
     var countryCode:String?
     var countryId:String?
+    
 }
