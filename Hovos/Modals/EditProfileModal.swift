@@ -29,10 +29,16 @@ class ProfilePassByID {
     var selectedSkills = [String]()
     var aboutSkills = ""
     var selectedLanguages = [String]()
+    var selectedSlogan = ""
+    var describeYourself = ""
+    var age = ""
+    var gender = ""
 }
 
 class ProfileForDisplay {
     var selectedContinents = [String:[String]]()
     var selectedSkills = [String]()
     var selectedLanguages = [String]()
+     var selectedSlogan = ""
+    var describeYourself = ""
 }

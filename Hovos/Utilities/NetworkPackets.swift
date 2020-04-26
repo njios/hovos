@@ -27,6 +27,7 @@ struct NetworkPacket {
     var encoding:URLEncoding?
 }
 func ApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
+    
     Alamofire.request(packet.url!, method: HTTPMethod(rawValue: packet.method!)!, parameters: packet.data, encoding: packet.encoding ?? URLEncoding.default, headers: packet.header).responseJSON { (response) in
 
         if response.response?.statusCode == 200 || response.response?.statusCode == 201{

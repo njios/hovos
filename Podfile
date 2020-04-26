@@ -10,8 +10,11 @@ target 'Hovos' do
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
   pod 'FBSDKLoginKit'
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 4.0'
   pod 'IQKeyboardManagerSwift'
   pod 'Kingfisher'
   pod 'Adyen'
+  pod 'DropDown'
+  pod 'GooglePlacePicker'
+  pod 'GooglePlaces'
 end

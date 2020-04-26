@@ -11,6 +11,7 @@ import GoogleMaps
 import Alamofire
 import GoogleMaps
 import GoogleMapsUtils
+import CoreLocation
 class DashboardVC: UIViewController,GMSMapViewDelegate {
     @IBOutlet weak var recommended:UICollectionView!
     @IBOutlet weak var latest:UICollectionView!
@@ -27,13 +28,17 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     var VMObject = DashBoardVM()
     var landingVMObject = LandingVM()
     var delegate:ListViewDelegate!
+    var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         menuView.frame = self.view.frame
         menuView.delegate = self
-        VMObject.getLocation(completion: updateUI)
-        
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        if locationManager.location != nil {
+            VMObject.getLocation(location:locationManager.location! ,completion: updateUI(status:))
+        }
         if SharedUser.manager.auth.listing?.isPaid != nil{
             membershipHightConstraints.constant = 0
         }
@@ -66,21 +71,28 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         mapView.settings.scrollGestures = false
         mapView.settings.zoomGestures = false
     }
-    private func updateUI(){
+    private func updateUI(status:Int){
         
         recommendedDelegates.modalObject = VMObject.recommendedItems
         latestDelegates.modalObject = VMObject.latestItems
+        if status == 1{
         recommended.delegate = recommendedDelegates
         recommended.dataSource = recommendedDelegates
         recommendedDelegates.delegate = self
         recommended.reloadData()
+        }
+          if status == 2{
         latest.delegate = latestDelegates
         latest.dataSource = latestDelegates
         latestDelegates.delegate = self
         latest.reloadData()
+        }
+        if status == 0{
         loadMap()
+        
         landingVMObject.Hosts = VMObject.mapItems
-        landingVMObject.location = VMObject.locationManager.location
+        landingVMObject.location = VMObject.location
+        }
         
     }
     @IBAction func loadMenu(_ sender:UIButton){
@@ -96,11 +108,11 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     private func loadMap(){
          if SharedUser.manager.auth.role!.lowercased() == "v"{
                       DispatchQueue.main.async {
-                           
-                        self.mapView.camera = GMSCameraPosition.camera(withLatitude: (self.VMObject.locationManager.location?.coordinate.latitude)!, longitude: (self.VMObject.locationManager.location?.coordinate.longitude)!, zoom: 10.0)
+                       
+                        self.mapView.camera = GMSCameraPosition.camera(withLatitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude), zoom: 10.0)
                             
                             let marker = customMarker()
-                            marker.position = CLLocationCoordinate2D(latitude: (self.VMObject.locationManager.location?.coordinate.latitude)!, longitude: (self.VMObject.locationManager.location?.coordinate.longitude)!)
+                            marker.position = CLLocationCoordinate2D(latitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude))
                             let markerImage = UIImage.init(named: "greenLocation")
                             let markerView = UIImageView(image: markerImage)
                          
@@ -124,7 +136,8 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
                                 marker.info = self.VMObject.mapItems[i]
                                 marker.map = self.mapView
                             }
-                          }
+                          
+            }
                 }else{
             
         }
@@ -133,7 +146,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
            let storyboard = UIStoryboard(name: "Main", bundle: nil)
            let mapVc = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
-        mapVc.location = VMObject.locationManager.location
+        mapVc.location = VMObject.location
         mapVc.mapItems = VMObject.mapItems
                mapVc.isOrange = false
         self.navigationController?.pushViewController(mapVc, animated: true)
@@ -196,5 +209,17 @@ extension DashboardVC:ListViewDelegate{
         
         
         
+    }
+}
+extension DashboardVC:CLLocationManagerDelegate{
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if manager.location != nil {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                self.VMObject.getLocation(location:locations[0] ,completion: self.updateUI(status:))
+            }
+             manager.stopUpdatingLocation()
+        }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 import Adyen
 
 class PaymentHelper:DropInComponentDelegate{
-    
+    var dropInComponent:DropInComponent!
     func didSubmit(_ data: PaymentComponentData, from component: DropInComponent) {
         let header = ["auth":SharedUser.manager.auth.auth ?? "",
                       "id":SharedUser.manager.auth.user?.listingId ?? "",
@@ -45,6 +45,7 @@ class PaymentHelper:DropInComponentDelegate{
         showAlert(vc: topViewController()!, mssg: error.localizedDescription)
     }
     
+    
     var paymentMethods:PaymentMethods!
     func getPaymentMethod(){
         let header = ["auth":SharedUser.manager.auth.auth ?? "",
@@ -71,10 +72,11 @@ class PaymentHelper:DropInComponentDelegate{
     
     func configPaymentMethod(){
         let configuration = DropInComponent.PaymentMethodsConfiguration()
-        configuration.card.publicKey = "pub.v2.8714252761729407.aHR0cHM6Ly9ob3Zvcy50ZXN0LmV2ZXJzZXJ2ZXJzLm5sOjg5OTk.EAB8VoOrK7RHCpCuRjSKnMZsBpvpkD8wduGpeYfwW9Q" // Your public key, retrieved from the Customer Area.
+        configuration.card.publicKey = constants.testPaymentKey.rawValue
+        // Your public key, retrieved from the Customer Area.
         // Check specific payment method pages to confirm if you need to configure additional required parameters.
         // For example, to enable the Card form, you need to provide your Client Encryption Public Key.
-        let dropInComponent = DropInComponent(paymentMethods: paymentMethods,
+         dropInComponent = DropInComponent(paymentMethods: paymentMethods,
         paymentMethodsConfiguration: configuration)
         dropInComponent.delegate = self
         dropInComponent.environment = .test

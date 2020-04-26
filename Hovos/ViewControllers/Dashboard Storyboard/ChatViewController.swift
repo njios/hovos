@@ -63,7 +63,6 @@ extension ChatViewController:UITextViewDelegate{
         textViewContainer.constraints.forEach { (constraints) in
             if constraints.firstAttribute == .height{
                 constraints.constant = estimateSize.height + 10
-                
             }
         }
     }
