@@ -8,10 +8,12 @@
 
 import UIKit
 import GoogleMaps
+
 class MapViewController: UIViewController,GMSMapViewDelegate {
     @IBOutlet weak var mapView:GMSMapView!
     @IBOutlet weak var headerView:UIView!
     @IBOutlet weak var hostsNearBy:CustomButtons!
+    
     private var infoWindow = CustomAnnotation()
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var location: CLLocation!
@@ -20,7 +22,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        
+      
         loadMap()
         if isOrange{
         
@@ -107,3 +109,5 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
         }
     }
 }
+
+

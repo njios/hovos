@@ -17,14 +17,14 @@ let dropDown = DropDown()
 var placeholder = "Tell a bit yourself. Your hosts are interested to know what kind of person you are. Write a few words about your work, education, hobbies and what drives you."
     override func viewDidLoad() {
         super.viewDidLoad()
-        if  EditProfile.sharedManger().profilePassById.describeYourself == ""{
+        if  SharedUser.manager.auth.user?.personalDescription == ""{
         descriptionText.text = placeholder
         }else{
-             EditProfile.sharedManger().profilePassById.describeYourself = descriptionText.text
+            descriptionText.text = SharedUser.manager.auth.user?.personalDescription
         }
         
-        agebutton.setTitle(EditProfile.sharedManger().profilePassById.age, for: .normal)
-        genderButton.setTitle(EditProfile.sharedManger().profilePassById.gender, for: .normal)
+        agebutton.setTitle(SharedUser.manager.auth.user?.age, for: .normal)
+        genderButton.setTitle(SharedUser.manager.auth.user?.gender, for: .normal)
         // Do any additional setup after loading the view.
     }
 
@@ -32,7 +32,7 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
            if textView.text == ""{
                textView.text = placeholder
            }else{
-               EditProfile.sharedManger().profilePassById.describeYourself = textView.text
+               SharedUser.manager.auth.user?.personalDescription = textView.text
            }
        }
        
@@ -52,9 +52,9 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         }
         dropDown.dataSource = ages
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-        EditProfile.sharedManger().profilePassById.age = item
+        SharedUser.manager.auth.user?.age = item
             self.dropDown.hide()
-            self.agebutton.setTitle(EditProfile.sharedManger().profilePassById.age, for: .normal)
+            self.agebutton.setTitle(SharedUser.manager.auth.user?.age, for: .normal)
                  }
         dropDown.show()
     }
@@ -65,8 +65,8 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["male", "female"]
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            EditProfile.sharedManger().profilePassById.gender = item
-            self.genderButton.setTitle(EditProfile.sharedManger().profilePassById.gender, for: .normal)
+           SharedUser.manager.auth.user?.gender = item
+            self.genderButton.setTitle(SharedUser.manager.auth.user?.gender, for: .normal)
             self.dropDown.hide()
         }
           dropDown.show()

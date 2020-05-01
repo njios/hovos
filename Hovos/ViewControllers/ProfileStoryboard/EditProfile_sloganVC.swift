@@ -13,38 +13,26 @@ class EditProfile_sloganVC: UIViewController,UITableViewDelegate,UITableViewData
     @IBOutlet weak var tblView:UITableView!
     @IBOutlet weak var sloganTextField:UITextView!
     @IBOutlet weak var sloganHeight:NSLayoutConstraint!
-    var skills = [Jobs]()
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        if EditProfile.sharedManger().profilePassById.selectedSlogan == ""{
+        if SharedUser.manager.auth.listing?.slogan == ""{
             sloganTextField.text = "Create your own slogan"
         }else{
-             sloganTextField.text = EditProfile.sharedManger().profilePassById.selectedSlogan
+             sloganTextField.text = SharedUser.manager.auth.listing?.slogan
         }
         var packet = NetworkPacket()
         packet.apiPath = ApiEndPoints.languages.rawValue
-        ViewHelper.shared().showLoader(self)
-        getApiCall(url: URL(string: packet.url ?? "")!) { (data, status, code) in
-            if code == 200{
-                DispatchQueue.main.async {
-                    ViewHelper.shared().hideLoader()
-                    self.skills = try! JSONDecoder().decode([Jobs].self, from: data!)
-                    self.tblView.dataSource = self
-                    self.tblView.delegate = self
-                    self.tblView.reloadData()
-                }
-                
-            }
-        }
-        
-        
+        self.tblView.dataSource = self
+        self.tblView.delegate = self
+        self.tblView.reloadData()
         // Do any additional setup after loading the view.
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileContinentCell") as! EditProfileContinentCell
-        cell.continetName.text = (skills[indexPath.row].title ?? "").capitalized
-        if  EditProfile.sharedManger().profilePassById.selectedSlogan == (skills[indexPath.row].value ?? "") {
+        cell.continetName.text = (slogans[indexPath.row]).capitalized
+        if  SharedUser.manager.auth.listing?.slogan == (slogans[indexPath.row]) {
             cell.selectimage.image = UIImage(named: "selectedBlueTick")
             cell.continetName.font = UIFont(name: "Lato-Bold", size: 20.0)
             cell.continetName.textColor = .darkGray
@@ -58,19 +46,19 @@ class EditProfile_sloganVC: UIViewController,UITableViewDelegate,UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return skills.count
+        return slogans.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
-        if  EditProfile.sharedManger().profilePassById.selectedSlogan == (skills[indexPath.row].value ?? ""){
-            EditProfile.sharedManger().profilePassById.selectedSlogan = ""
-             EditProfile.sharedManger().profileForDisplay.selectedSlogan = ""
+        if  SharedUser.manager.auth.listing?.slogan == (slogans[indexPath.row]){
+            SharedUser.manager.auth.listing?.slogan = ""
+             
              sloganTextField.text = "Create your own slogan"
         }else{
-            EditProfile.sharedManger().profilePassById.selectedSlogan = (skills[indexPath.row].value ?? "")
-            EditProfile.sharedManger().profileForDisplay.selectedSlogan = (skills[indexPath.row].title ?? "")
-            sloganTextField.text = EditProfile.sharedManger().profileForDisplay.selectedSlogan
+            SharedUser.manager.auth.listing?.slogan = slogans[indexPath.row]
+   
+            sloganTextField.text = SharedUser.manager.auth.listing?.slogan
         }
         tableView.reloadData()
     }
@@ -91,12 +79,12 @@ class EditProfile_sloganVC: UIViewController,UITableViewDelegate,UITableViewData
         if textView.text == ""{
             textView.text = "Create your own slogan"
         }else{
-            EditProfile.sharedManger().profilePassById.selectedSlogan = textView.text
+            SharedUser.manager.auth.listing?.slogan = textView.text
         }
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if  EditProfile.sharedManger().profilePassById.selectedSlogan == ""{
+        if  SharedUser.manager.auth.listing?.slogan == ""{
         textView.text = ""
         }
     }

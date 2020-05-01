@@ -14,8 +14,10 @@ class IdentifyVC: UIViewController {
     @IBOutlet weak var countryCode:UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        if (SharedUser.manager.auth.user?.phoneNumber ?? "") != ""{
+        phoneno.text = (SharedUser.manager.auth.user?.phoneNumber ?? "").components(separatedBy: "-")[1]
+        
+        }// Do any additional setup after loading the view.
     }
     
 

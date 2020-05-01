@@ -18,7 +18,7 @@ extension ListViewDelegate{
     func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
    
-          if SharedUser.manager.auth.role!.lowercased() == "v"{
+          if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             let hostVC = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             hostVC.indexpath = index
             hostVC.object = object

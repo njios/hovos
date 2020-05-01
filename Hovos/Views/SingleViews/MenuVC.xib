@@ -28,16 +28,16 @@
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHB-g2-8b9">
-                    <rect key="frame" x="150" y="44" width="254" height="100"/>
+                    <rect key="frame" x="195" y="49" width="209" height="250"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8TH-Mi-k9y">
-                            <rect key="frame" x="0.0" y="0.0" width="254" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="209" height="250"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" red="0.94117647058823528" green="0.96078431372549022" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="Qs7-VI-okM"/>
+                        <constraint firstAttribute="height" constant="250" id="Qs7-VI-okM"/>
                         <constraint firstItem="8TH-Mi-k9y" firstAttribute="leading" secondItem="eHB-g2-8b9" secondAttribute="leading" id="ccN-Vb-Nfe"/>
                         <constraint firstAttribute="trailing" secondItem="8TH-Mi-k9y" secondAttribute="trailing" id="dFm-xW-UUe"/>
                         <constraint firstItem="8TH-Mi-k9y" firstAttribute="top" secondItem="eHB-g2-8b9" secondAttribute="top" id="yOl-sK-zcp"/>
@@ -53,10 +53,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ANC-gI-3j6" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7bO-bQ-pws"/>
+                <constraint firstItem="eHB-g2-8b9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="195" id="NDN-2y-cJJ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="ANC-gI-3j6" secondAttribute="bottom" constant="5" id="WBK-ei-anw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eHB-g2-8b9" secondAttribute="trailing" constant="10" id="ejF-U5-YPl"/>
-                <constraint firstItem="eHB-g2-8b9" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="150" id="g4U-IM-uHf"/>
-                <constraint firstItem="eHB-g2-8b9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="gBA-ui-ADL"/>
+                <constraint firstItem="eHB-g2-8b9" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="5" id="gBA-ui-ADL"/>
                 <constraint firstItem="ANC-gI-3j6" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="mqp-1p-1hA"/>
                 <constraint firstItem="ANC-gI-3j6" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="t5Q-I6-HPb"/>
             </constraints>

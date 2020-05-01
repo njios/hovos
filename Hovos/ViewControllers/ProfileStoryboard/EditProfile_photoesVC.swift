@@ -12,7 +12,7 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
     
 @IBOutlet weak var collView:UICollectionView!
 var images = [UIImage]()
-
+    @IBOutlet weak var placeholder:UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +20,9 @@ var images = [UIImage]()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if images.count > 0{
+            placeholder.isHidden = true
+        }
         return images.count
     }
     
@@ -60,7 +63,6 @@ var images = [UIImage]()
                }
         let action3 = UIAlertAction(title: "CANCEL", style: .cancel) { (action) in
             alert.dismiss(animated: false) {
-               
             }
             
         }

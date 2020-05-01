@@ -38,7 +38,7 @@ class Edirprofile_SelectSkillsVC: UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileContinentCell") as! EditProfileContinentCell
         cell.continetName.text = (skills[indexPath.row].title ?? "").capitalized
-        if  EditProfile.sharedManger().profilePassById.selectedSkills.contains(skills[indexPath.row].value ?? "") {
+        if  SharedUser.manager.auth.listing?.jobs?.contains(where: {String($0.key) == (skills[indexPath.row].value ?? "")}) ?? false {
             cell.selectimage.image = UIImage(named: "selectedBlueTick")
             cell.continetName.font = UIFont(name: "Lato-Bold", size: 20.0)
             cell.continetName.textColor = .darkGray
@@ -57,17 +57,10 @@ class Edirprofile_SelectSkillsVC: UIViewController,UITableViewDelegate,UITableVi
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
-        if  EditProfile.sharedManger().profilePassById.selectedSkills.contains(skills[indexPath.row].value ?? ""){
-            EditProfile.sharedManger().profilePassById.selectedSkills.removeAll { (value) -> Bool in
-                if value == (skills[indexPath.row].value ?? ""){
-                    return true
-                }else{
-                    return false
-                }
-            }
+        if  SharedUser.manager.auth.listing?.jobs?.contains(where: {String($0.key) == (skills[indexPath.row].value ?? "")}) ?? false{
+            SharedUser.manager.auth.listing?.jobs?.removeValue(forKey: Int(skills[indexPath.row].value ?? "") ?? 0)
         }else{
-            EditProfile.sharedManger().profilePassById.selectedSkills.append((skills[indexPath.row].value ?? ""))
-            EditProfile.sharedManger().profileForDisplay.selectedSkills.append((skills[indexPath.row].title ?? ""))
+            SharedUser.manager.auth.listing?.jobs?[Int(skills[indexPath.row].value ?? "") ?? 0] = skills[indexPath.row].title ?? ""
         }
         tableView.reloadData()
     }

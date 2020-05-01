@@ -44,7 +44,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         }
         
         
-        if SharedUser.manager.auth.role!.lowercased() == "v"{
+        if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             nearByLabel.text = "Hosts nearby"
             RecommendedLabel.text = "Recommended Hosts"
             NewLabel.text = "New Hosts"
@@ -70,6 +70,8 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         mapView.delegate = self
         mapView.settings.scrollGestures = false
         mapView.settings.zoomGestures = false
+        
+       
     }
     private func updateUI(status:Int){
         
@@ -102,11 +104,16 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        
+        if SharedUser.manager.auth.listing?.isPublished == "N"{
+                   let stb = UIStoryboard(name: "Profile", bundle: nil)
+                   let vc = stb.instantiateViewController(withIdentifier: "ProfileIncompleteVC") as! ProfileIncompleteVC
+                   vc.modalPresentationStyle = .overCurrentContext
+                   present(vc, animated: false, completion: nil)
+               }
     }
     
     private func loadMap(){
-         if SharedUser.manager.auth.role!.lowercased() == "v"{
+         if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
                       DispatchQueue.main.async {
                        
                         self.mapView.camera = GMSCameraPosition.camera(withLatitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude), zoom: 10.0)

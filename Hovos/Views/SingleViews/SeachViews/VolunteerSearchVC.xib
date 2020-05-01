@@ -499,7 +499,7 @@
         <image name="dateBlue" width="64" height="64"/>
         <image name="greaySearch" width="64" height="64"/>
         <image name="greyCheck" width="24" height="24"/>
-        <image name="selectedBlueTick" width="24" height="24"/>
+        <image name="selectedBlueTick" width="25" height="25"/>
         <namedColor name="greenColor">
             <color red="0.20000000000000001" green="0.792156862745098" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

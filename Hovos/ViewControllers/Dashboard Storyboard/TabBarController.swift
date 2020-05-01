@@ -17,20 +17,57 @@ class TabBarController: UIViewController {
     @IBOutlet weak var profile:UIView!
     @IBOutlet weak var fav:UIView!
     @IBOutlet weak var setting:UIView!
-    
+     @IBOutlet weak var cover:UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        cover.isHidden = false
+            if let data = UserDefaults.standard.data(forKey: constants.accessToken.rawValue){
+                let decoder = JSONDecoder()
+                SharedUser.manager.auth = try! decoder.decode(Auth.self, from: data)
+            }
+        
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "API_KEY":constants.Api_key.rawValue,
+                          "id":SharedUser.manager.auth.id ?? ""]
+        
+                          var recommendedRequest = NetworkPacket()
+                          recommendedRequest.apiPath = ApiEndPoints.user.rawValue
+                          recommendedRequest.header = header
+                          recommendedRequest.method = "GET"
+                   ApiCall(packet: recommendedRequest) { (data, status, code) in
+                            if code == 200{
+                                let decoder = JSONDecoder()
+                                let userData = try? decoder.decode(Auth.self, from: data!)
+                                SharedUser.manager.auth.listing = userData?.listing
+                                SharedUser.manager.auth.user = userData?.user
+                                if let updatedData = try? JSONEncoder().encode(SharedUser.manager.auth){
+                                UserDefaults.standard.set(updatedData, forKey: constants.accessToken.rawValue)
+                                }
+                                    DispatchQueue.main.async {
+                                    self.updateUser()
+                                }
+                              
+                            }
+                          
+                }
+        
+    }
+    
+    
+    func updateUser(){
+          self.cover.isHidden = true
         home.alpha = 1.0
         message.alpha = 0.5
         profile.alpha = 0.5
         fav.alpha = 0.5
         setting.alpha = 0.5
-        if let data = UserDefaults.standard.data(forKey: constants.accessToken.rawValue){
-            let decoder = JSONDecoder()
-            SharedUser.manager.auth = try! decoder.decode(Auth.self, from: data)
-        }
-        if SharedUser.manager.auth.role!.lowercased() == "v"{
+        
+        
+        
+        
+        if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
         
             self.view.backgroundColor = UIColor(named: "greenColor")
             backView.backgroundColor = UIColor(named: "greenColor")
@@ -45,9 +82,9 @@ class TabBarController: UIViewController {
         }
         vc!.view.frame =  CGRect(x: 0, y: 0, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height)
         self.addChild(vc!)
+      
         self.containerView.addSubview(vc!.view)
     }
-    
     @IBAction func addChild(_ sender:UIButton){
         var vc :UIViewController!
         if sender.tag == 0{

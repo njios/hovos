@@ -38,11 +38,11 @@ class EditProfile_languagesVC: UIViewController,UITableViewDelegate,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileContinentCell") as! EditProfileContinentCell
         cell.continetName.text = (skills[indexPath.row].title ?? "").capitalized
-        if  EditProfile.sharedManger().profilePassById.selectedLanguages.contains(skills[indexPath.row].value ?? "") {
+        if  SharedUser.manager.auth.user?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
             cell.selectimage.image = UIImage(named: "selectedBlueTick")
             cell.continetName.font = UIFont(name: "Lato-Bold", size: 20.0)
             cell.continetName.textColor = .darkGray
-           
+            
         }else{
             cell.selectimage.image = UIImage(named: "greyCheck")
             cell.continetName.textColor = .lightGray
@@ -56,18 +56,12 @@ class EditProfile_languagesVC: UIViewController,UITableViewDelegate,UITableViewD
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     
-        if  EditProfile.sharedManger().profilePassById.selectedLanguages.contains(skills[indexPath.row].value ?? ""){
-            EditProfile.sharedManger().profilePassById.selectedLanguages.removeAll { (value) -> Bool in
-                if value == (skills[indexPath.row].value ?? ""){
-                    return true
-                }else{
-                    return false
-                }
-            }
+        
+        if  SharedUser.manager.auth.user?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
+            SharedUser.manager.auth.user?.languages?.removeValue(forKey: (skills[indexPath.row].value ?? ""))
+            
         }else{
-            EditProfile.sharedManger().profilePassById.selectedLanguages.append((skills[indexPath.row].value ?? ""))
-            EditProfile.sharedManger().profileForDisplay.selectedLanguages.append((skills[indexPath.row].title ?? ""))
+            SharedUser.manager.auth.user?.languages?[(skills[indexPath.row].value ?? "")] = (skills[indexPath.row].title ?? "")
         }
         tableView.reloadData()
     }

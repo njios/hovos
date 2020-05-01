@@ -11,6 +11,7 @@ import GoogleSignIn
 import IQKeyboardManagerSwift
 import CoreLocation
 import GoogleMaps
+import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -21,7 +22,8 @@ var locationManager: CLLocationManager?
         IQKeyboardManager.shared.enable = true
         GIDSignIn.sharedInstance().clientID = "256440564385-h4159oo3clbprkg6t8f3btmdvi162l6p.apps.googleusercontent.com"
         
-        GMSServices.provideAPIKey("AIzaSyBIHDtisx3i8D0YzDIUMQGF5bXF5SY0q9Y")
+        GMSServices.provideAPIKey("AIzaSyAfBtuh3hG2lGXRv5KEcwtM3cy_WH3F_cY")
+        GMSPlacesClient.provideAPIKey("AIzaSyAfBtuh3hG2lGXRv5KEcwtM3cy_WH3F_cY")
         
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
             let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)

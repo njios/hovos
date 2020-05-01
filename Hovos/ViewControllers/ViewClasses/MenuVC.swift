@@ -57,7 +57,7 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
     private func commonInit(){
         let vc = Bundle.main.loadNibNamed("MenuVC", owner: self, options: nil)?[0] as? UIView
         self.addSubview(vc!)
-        heightConstraints.constant = CGFloat(options.count * 40)
+        heightConstraints.constant = CGFloat(options.count * 55)
         let nib = UINib(nibName: "MenuCell", bundle: nil)
         tbl.register(nib, forCellReuseIdentifier: "menuitem")
         if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) != nil{

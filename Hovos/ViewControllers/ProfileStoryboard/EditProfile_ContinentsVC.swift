@@ -29,11 +29,13 @@ class EditProfile_ContinentsVC: UIViewController,UITableViewDelegate,UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileContinentCell") as! EditProfileContinentCell
+        cell.listOfCountries = continentVC.VMObject.facetData?.returnCountries(index:indexPath.row)
         cell.continetName.text = continentVC.VMObject.facetData?.continents[indexPath.row].title ?? ""
-        if  (EditProfile.sharedManger().profilePassById.selectedContinets[continentVC.VMObject.facetData?.continents[indexPath.row].continentId ?? ""]?.count ?? 0) > 0 {
+         let listOfcountries = cell.isCountryExist()
+        if listOfcountries.count > 0 {
             cell.selectimage.image = UIImage(named: "selectedBlueTick")
                cell.continetName.textColor = UIColor(named: "greenColor")
-            cell.countries.text = EditProfile.sharedManger().profileForDisplay.selectedContinents[continentVC.VMObject.facetData?.continents[indexPath.row].title ?? ""]?.joined(separator: ",")
+            cell.countries.text = listOfcountries.joined(separator: ", ")
            }else{
             cell.selectimage.image = UIImage(named: "greyCheck")
                cell.continetName.textColor = .lightGray
@@ -47,12 +49,13 @@ class EditProfile_ContinentsVC: UIViewController,UITableViewDelegate,UITableView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! EditProfileContinentCell
         ViewHelper.shared().showLoader(self)
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditProfile_ContriesVC") as! EditProfile_ContriesVC
         vc.modalPresentationStyle = .overCurrentContext
         vc.continentId = continentVC.VMObject.facetData?.continents[indexPath.row].continentId ?? ""
         vc.selectedContinent = continentVC.VMObject.facetData?.continents[indexPath.row].title ?? ""
-        vc.facetdata = continentVC.VMObject.facetData
+        vc.facetdata = cell
         vc.countriesSelected = selectedCountries
         
         self.present(vc, animated: true){
@@ -70,4 +73,23 @@ class EditProfileContinentCell:UITableViewCell{
     @IBOutlet weak var selectimage:UIImageView!
     @IBOutlet weak var continetName:UILabel!
     @IBOutlet weak var countries:UILabel!
+    var listOfCountries:[countries]!
+    
+    func isCountryExist()->[String]{
+        var countryList = [String]()
+        for item in SharedUser.manager.auth.listing?.countries ?? [:]{
+            if listOfCountries.contains(where: { (country) -> Bool in
+                if (country.title ?? "") == item.value{
+                    return true
+                }else{
+                    return false
+                }
+            }){
+                countryList.append(item.value ?? "")
+            }
+        }
+        return countryList
+    }
 }
+
+

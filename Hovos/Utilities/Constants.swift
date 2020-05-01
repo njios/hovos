@@ -42,6 +42,11 @@ enum ApiEndPoints{
     case paymentMethod
     case paymentProcess
     case getMessages
+    case userSave
+    case volunteerStatus
+    case transactions
+    case postMessages
+    
     var rawValue:String{
         switch self {
         case .login:
@@ -90,6 +95,18 @@ enum ApiEndPoints{
             return "/api/adyen/process/"
         case .getMessages:
             return "/api/user/messages/all/"
+            
+        case .userSave:
+            return "/api/user/save"
+            
+        case .volunteerStatus:
+            return "/api/traveller/status/"
+            
+        case .transactions:
+            return "/api/get/transactions"
+        case .postMessages:
+            
+        return "/api/user/message/"
         }
     }
        

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 struct Auth:Codable {
     var auth:String?
     var id:String?
@@ -21,7 +22,25 @@ struct SharedUser{
     var auth = Auth()
     
     func updateUser(){
-        
+        var packet = NetworkPacket()
+               // recommended volunteer
+               let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                                    "id":SharedUser.manager.auth.user?.listingId ?? "",
+                                    "API_KEY":constants.Api_key.rawValue]
+               let ob = try! JSONEncoder().encode(SharedUser.manager.auth.user!)
+               packet.data = try! JSONSerialization.jsonObject(with: ob, options: []) as! [String : Any]
+    
+       
+               packet.apiPath = ApiEndPoints.userSave.rawValue
+      
+               packet.header =  header
+               packet.method = "POST"
+               ApiCallWithJsonEncoding(packet: packet) { (data, status, code) in
+                   print(status,code)
+                let updatedObject = try! JSONEncoder().encode(SharedUser.manager.auth)
+                UserDefaults.standard.set(updatedObject, forKey: constants.accessToken.rawValue)
+
+               }
     }
 }
 
@@ -82,7 +101,7 @@ struct Listing:Codable {
 
 struct User:Codable {
     var additionalDesc:String?
-    //var age:String?
+    var age:String?
     var appToken:String?
     var autoRenew:String?
     var currency:String?
@@ -109,6 +128,7 @@ struct User:Codable {
     var phoneNumber:String?
     var renewalAmount:String?
     var type:String?
+    var role:String?
     var languages:[String:String]?
     
 //    init(from decoder: Decoder) throws {
@@ -125,6 +145,7 @@ struct User:Codable {
     
     
 }
+
 
 
 

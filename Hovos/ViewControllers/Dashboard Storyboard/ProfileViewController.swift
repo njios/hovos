@@ -37,27 +37,7 @@ class ProfileViewController: UIViewController {
            
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // recommended volunteer
-               let header = ["auth":SharedUser.manager.auth.auth ?? "",
-                             "API_KEY":constants.Api_key.rawValue]
-               var recommendedRequest = NetworkPacket()
-               recommendedRequest.apiPath = ApiEndPoints.user.rawValue
-               recommendedRequest.header = header
-               recommendedRequest.method = "GET"
-        ApiCall(packet: recommendedRequest) { (data, status, code) in
-                 if code == 200{
-                     let decoder =  JSONDecoder()
-                     if let Volunteer = try? decoder.decode(Auth.self, from: data!){
-                        DispatchQueue.main.async {
-                            self.loadUI(volItem: Volunteer.listing!)
-                                 
-                        }
-                     }
-                 }
-               
-             }
-        
+        self.loadUI(volItem: SharedUser.manager.auth.listing ?? Listing())
        
         // Do any additional setup after loading the view.
     }
@@ -66,7 +46,7 @@ class ProfileViewController: UIViewController {
         imageData = volItem.images ?? []
                                          headerTitle?.text = volItem.name ?? ""
                                          name?.text = volItem.name ?? ""
-                                         countries = Array(volItem.countries!.values) as! [String]
+                                         countries = ((volItem.countries?.values) as? [String]) ?? []
                                          countryTable.reloadData()
                                          countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
                                          let country = volItem.location?.country ?? ""

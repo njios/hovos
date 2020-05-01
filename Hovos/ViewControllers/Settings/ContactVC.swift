@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactVC: UIViewController {
+class ContactVC: UIViewController,UITextViewDelegate {
 
      @IBOutlet weak var name:UILabel!
      @IBOutlet weak var email:UILabel!
@@ -20,6 +20,18 @@ class ContactVC: UIViewController {
         email.text = "  " + (SharedUser.manager.auth.user?.email! ?? "")
         
     
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "   Add your message here..."{
+            textView.text = ""
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == ""{
+            textView.text = "   Add your message here..."
+        }
     }
     
     @IBAction  func contactUpClicked(_ sender:UIButton){
@@ -41,7 +53,7 @@ class ContactVC: UIViewController {
                  ViewHelper.shared().hideLoader()
                 if code == 200{
                     Hovos.showAlert(vc: self, mssg: "Query submitted successfully")
-                    self.query.text = ""
+                    self.query.text = "   Add your message here..."
                 }else{
                     Hovos.showAlert(vc: self, mssg: "Error in submission, Try again ")
                 }

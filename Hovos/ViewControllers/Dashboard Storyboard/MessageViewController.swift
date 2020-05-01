@@ -34,6 +34,8 @@ class MessageViewController: UIViewController {
         
     }
     
+     
+    
     @IBAction func chatClicked(_ sender:UIButton){
         emptyImage.image = UIImage(named: "Nochat")
         self.dataTable.isHidden = true

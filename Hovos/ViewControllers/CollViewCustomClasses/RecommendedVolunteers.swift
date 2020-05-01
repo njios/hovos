@@ -26,12 +26,12 @@ class RecommendedVolunteers: NSObject, UICollectionViewDelegate,UICollectionView
             cell.imageV?.kf.indicatorType = .activity
             cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].images?[0].medium ?? ""))
              
-              if SharedUser.manager.auth.role!.lowercased() == "v"{
+              if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             cell.name?.text = (modalObject?[indexPath.row].title ?? "")
               }else{
                 cell.name?.text = (modalObject?[indexPath.row].name ?? "")
             }
-            if SharedUser.manager.auth.role!.lowercased() == "v"{
+            if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
                                 cell.name?.textColor = UIColor(named: "orangeColor")
                             }else{
                 

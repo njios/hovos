@@ -95,7 +95,7 @@ class DashBoardVM:NSObject {
         
         self.location = location
         
-            if SharedUser.manager.auth.role!.lowercased() == "h"{
+            if SharedUser.manager.auth.user?.role!.lowercased() == "h"{
                 getVolunteersData()
             }else{
                 getHostsData()

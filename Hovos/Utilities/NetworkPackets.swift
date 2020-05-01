@@ -37,6 +37,19 @@ func ApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
         }
     }
 }
+
+func ApiCallWithJsonEncoding(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
+    
+    Alamofire.request(packet.url!, method: HTTPMethod(rawValue: packet.method!)!, parameters: packet.data, encoding: JSONEncoding.default , headers: packet.header).responseJSON { (response) in
+
+        if response.response?.statusCode == 200 || response.response?.statusCode == 201{
+            completion(response.data!, true, 200)
+        }else{
+            completion(response.data, false, response.response?.statusCode ?? 0)
+        }
+    }
+}
+
 func getApiCall(url:URL,completion: @escaping (Data?,Bool,Int)->()){
 
     var request = URLRequest(url: url)

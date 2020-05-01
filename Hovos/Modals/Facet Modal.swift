@@ -11,6 +11,17 @@ import Foundation
 struct facets:Codable{
    var countries:[countries]
    var continents:[continents]
+    
+    
+    func returnCountries(index:Int)->[countries]{
+        var filteredCountries:[countries] = []
+        for item in self.countries{
+            if item.continentId == continents[index].continentId{
+                filteredCountries.append(item)
+            }
+        }
+        return filteredCountries
+    }
 }
 
 struct countries:Codable,Equatable{
@@ -21,6 +32,7 @@ struct countries:Codable,Equatable{
     var title:String?
     var zoom:String?
     var countryId:String?
+    var countryCode:String?
     
 }
 struct continents:Codable,Hashable{

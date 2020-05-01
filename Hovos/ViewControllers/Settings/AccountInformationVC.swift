@@ -29,11 +29,12 @@ class AccountInformationVC: UIViewController,UITextFieldDelegate {
         SharedUser.manager.auth.user?.firstName = firstName.text!
         SharedUser.manager.auth.user?.lastName = lastName.text!
         SharedUser.manager.auth.user?.email = email.text!
-        if textField.tag == 4{
-            
-        }else{
-            SharedUser.manager.updateUser()
+        if password.text != ""{
+            SharedUser.manager.auth.user?.password = password.text!
         }
+        
+            SharedUser.manager.updateUser()
+        
     }
     
 

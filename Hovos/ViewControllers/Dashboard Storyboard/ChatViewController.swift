@@ -8,11 +8,12 @@
 
 import UIKit
 
-class ChatViewController: UIViewController {
+class ChatViewController: UIViewController,UITextViewDelegate {
  @IBOutlet weak var chatTable:UITableView!
  @IBOutlet weak var profileImage:UIImageView!
  @IBOutlet weak var name:UILabel!
-    @IBOutlet weak var textViewContainer:UIView!
+ @IBOutlet weak var textViewContainer:UIView!
+@IBOutlet weak var messageText:UITextView!
  var messageItem:MessageModal!
     var chat = [MessageModal]()
     override func viewDidLoad() {
@@ -24,6 +25,55 @@ class ChatViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    @IBAction func sentClicked(_ sender:UIButton){
+        if let messageText = messageText.text{
+            
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                                "id":SharedUser.manager.auth.user?.listingId ?? "",
+                                "API_KEY":constants.Api_key.rawValue]
+        
+
+            let postData = NSMutableData(data: "text=\(messageText)".data(using: String.Encoding.utf8)!)
+            postData.append("&receiverId=\(messageItem.memberId ?? "")".data(using: String.Encoding.utf8)!)
+            postData.append("&receiverListingId=\(messageItem.listingId ?? "")".data(using: String.Encoding.utf8)!)
+
+            let request = NSMutableURLRequest(url: NSURL(string: "https://www.hovos.com/api/user/message/")! as URL,
+                                                    cachePolicy: .useProtocolCachePolicy,
+                                                timeoutInterval: 10.0)
+            request.httpMethod = "POST"
+            request.allHTTPHeaderFields = header
+            request.httpBody = postData as Data
+
+            let session = URLSession.shared
+            ViewHelper.shared().showLoader(self)
+            let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+              if (error != nil) {
+                print(error?.localizedDescription)
+              } else {
+                let httpResponse = response as? HTTPURLResponse
+                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
+                print(json)
+                DispatchQueue.main.async {
+                    self.messageText.text = "Write a message"
+                    ViewHelper.shared().hideLoader()
+                }
+                }
+            })
+
+            dataTask.resume()
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "Write a message"{
+            textView.text = ""
+        }
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == ""{
+            textView.text = "Write a message"
+        }
+    }
 }
 
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
@@ -55,7 +105,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     
 }
 
-extension ChatViewController:UITextViewDelegate{
+extension ChatViewController{
     func textViewDidChange(_ textView: UITextView) {
         let size = CGSize(width: textView.frame.width, height: .infinity)
         let estimateSize = textView.sizeThatFits(size)

@@ -18,8 +18,8 @@ I am travelling through Europe and I would like to get involved with project and
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if EditProfile.sharedManger().profilePassById.aboutSkills != ""{
-              textView.text = EditProfile.sharedManger().profilePassById.aboutSkills
+        if SharedUser.manager.auth.listing?.skillDescription != ""{
+              textView.text = SharedUser.manager.auth.listing?.skillDescription
         }else{
           textView.text = placeholder
         }
@@ -35,7 +35,7 @@ I am travelling through Europe and I would like to get involved with project and
         if textView.text == ""{
             textView.text = placeholder
         }else{
-            EditProfile.sharedManger().profilePassById.aboutSkills = textView.text
+            SharedUser.manager.auth.listing?.skillDescription = textView.text
         }
     }
 }

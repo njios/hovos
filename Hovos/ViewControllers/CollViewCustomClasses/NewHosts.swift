@@ -30,14 +30,14 @@ class NewHosts: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowL
           cell.lastSeen.text = "Signed up: \((modalObject?[indexPath.row].addedOn ?? "").getDate().getDay()) \((modalObject?[indexPath.row].addedOn ?? "").getDate().getMonth()) "
             
          
-            if SharedUser.manager.auth.role!.lowercased() == "v"{
+            if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
           cell.name?.text = (modalObject?[indexPath.row].title ?? "")
             }else{
                 cell.memberPic?.isHidden = true
               cell.name?.text = (modalObject?[indexPath.row].name ?? "")
           }
             
-         if SharedUser.manager.auth.role!.lowercased() == "v"{
+         if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
                                            cell.name?.textColor = UIColor(named: "orangeColor")
                                        }else{
                            

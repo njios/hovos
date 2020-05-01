@@ -11,4 +11,5 @@ import UIKit
 class ContinentCell:UITableViewCell{
     @IBOutlet weak var ttlLable:UILabel!
     @IBOutlet weak var selectImage:UIImageView!
+    var cellSelected = false
 }
