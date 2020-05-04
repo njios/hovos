@@ -115,6 +115,7 @@
 		ACE276D223E7E97600000331 /* FaceVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D123E7E97600000331 /* FaceVM.swift */; };
 		ACE276D423E7F24100000331 /* ContinentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACE276D323E7F24100000331 /* ContinentCell.xib */; };
 		ACE276D623E7F34600000331 /* ContinentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE276D523E7F34600000331 /* ContinentCell.swift */; };
+		ACEE5111245FFA7A004D8978 /* EditProfile_HostNeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEE5110245FFA7A004D8978 /* EditProfile_HostNeedVC.swift */; };
 		ACF6319D2454BD16002CCBBB /* Edirprofile_SelectSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF6319C2454BD15002CCBBB /* Edirprofile_SelectSkillsVC.swift */; };
 		ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF6319E2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift */; };
 		ACF631A12454CF8E002CCBBB /* EditProfile_languagesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF631A02454CF8E002CCBBB /* EditProfile_languagesVC.swift */; };
@@ -235,6 +236,7 @@
 		ACE276D123E7E97600000331 /* FaceVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceVM.swift; sourceTree = "<group>"; };
 		ACE276D323E7F24100000331 /* ContinentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentCell.xib; sourceTree = "<group>"; };
 		ACE276D523E7F34600000331 /* ContinentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentCell.swift; sourceTree = "<group>"; };
+		ACEE5110245FFA7A004D8978 /* EditProfile_HostNeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_HostNeedVC.swift; sourceTree = "<group>"; };
 		ACF6319C2454BD15002CCBBB /* Edirprofile_SelectSkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Edirprofile_SelectSkillsVC.swift; sourceTree = "<group>"; };
 		ACF6319E2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Editprofile_AboutSkillsVC.swift; sourceTree = "<group>"; };
 		ACF631A02454CF8E002CCBBB /* EditProfile_languagesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_languagesVC.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				ACDE9AC4245AAB5D00B55FE2 /* EditProfile_optionalLanguageVC.swift */,
 				ACDE9AC6245ABB0E00B55FE2 /* ProfileIncompleteVC.swift */,
 				AC1D8DE7245FD6EB00D3EF99 /* EditProfileHomeVC.swift */,
+				ACEE5110245FFA7A004D8978 /* EditProfile_HostNeedVC.swift */,
 			);
 			path = ProfileStoryboard;
 			sourceTree = "<group>";
@@ -812,6 +815,7 @@
 				AC986560244B52F4008F113A /* ContactVC.swift in Sources */,
 				AC68ABC024406212004E1A94 /* RecommendedVolunteers.swift in Sources */,
 				AC49F1E323A8C0FB0043B10B /* NetworkPackets.swift in Sources */,
+				ACEE5111245FFA7A004D8978 /* EditProfile_HostNeedVC.swift in Sources */,
 				AC535B9B23F512B10080B563 /* HostSearchVC.swift in Sources */,
 				DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */,
 				ACBB61AD245618340075F336 /* EditProfile_DatesVC.swift in Sources */,

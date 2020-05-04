@@ -63,6 +63,9 @@ struct Listing:Codable {
     var lang:String?
     var lastLogin:String?
     var description:String?
+    var volunteers:String?
+    var workingHours:String?
+    var workingDays:String?
     var publishedOn:String?
     var isCompanion:String?
     var companionAge:String?
@@ -73,8 +76,6 @@ struct Listing:Codable {
     var companion:String?
     var image:String?
     var name:String?
-    var workingDays:String?
-    var workingHours:String?
     var slug:String?
     var additionalDesc:String?
     var languageDesc:String?
