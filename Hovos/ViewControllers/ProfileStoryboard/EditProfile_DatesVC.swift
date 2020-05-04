@@ -31,11 +31,13 @@ class EditProfile_DatesVC: UIViewController {
            dateRange.isSelected = true
         datesView.isHidden = false
         cancelView.isHidden = false
+        SharedUser.manager.auth.listing?.isFlaxibleDates = "N"
            let vc = CalenderVC(nibName: "CalenderVC", bundle: nil)
         
            vc.datesSelected = { fromDate,toDate in
                self.fromLabel.text = fromDate
                self.toLabel.text = toDate
+            SharedUser.manager.auth.listing?.schedules = [schedules(end: toDate, start: fromDate)]
          
            }
            vc.modalPresentationStyle = .overCurrentContext
@@ -47,6 +49,7 @@ class EditProfile_DatesVC: UIViewController {
         dateRange.isSelected = false
         datesView.isHidden = true
         cancelView.isHidden = true
+        SharedUser.manager.auth.listing?.isFlaxibleDates = "Y"
     }
 
 }

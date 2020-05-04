@@ -18,6 +18,7 @@ class VolunteerVC: UIViewController {
     @IBOutlet weak var footerlabel:UILabel!
     @IBOutlet weak var collView:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
+    @IBOutlet weak var favButton:UIButton!
     weak var menu_delegate:LandingVC!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,22 @@ class VolunteerVC: UIViewController {
     
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected{
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                                     "id":SharedUser.manager.auth.user?.listingId ?? "",
+                                     "API_KEY":constants.Api_key.rawValue]
+                       var identifyYourself = NetworkPacket()
+                       identifyYourself.apiPath = ApiEndPoints.FavVolunteer.rawValue
+                       identifyYourself.header = header
+            identifyYourself.data = ["data":[object?[sender.tag].id ?? ""]]
+                       identifyYourself.method = "POST"
+                       ViewHelper.shared().showLoader(self)
+                       ApiCall(packet: identifyYourself) { (data, status, code) in
+                           ViewHelper.shared().hideLoader()
+                           print("fav selected \(code)")
+                       }
+        }
     }
     
     @IBAction func loadMenu(_ sender:UIButton){
@@ -131,6 +148,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.photosCollview.reloadData()
         cell.place?.setUnderLine()
         cell.photosCount.text = ""
+        favButton.tag = indexPath.row
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true

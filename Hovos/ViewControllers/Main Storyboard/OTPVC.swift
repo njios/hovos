@@ -15,7 +15,6 @@ class OTPVC: UIViewController {
     var email = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         text.text = "A reset code has been sent to your email id : \(email). Please enter the code below. "
     }
     
@@ -29,7 +28,6 @@ class OTPVC: UIViewController {
         for item in otp{
             code = code + item.text!
         }
-       
         vc.code = code
         vc.email = email
         self.navigationController?.pushViewController(vc, animated: true)
@@ -56,12 +54,10 @@ extension OTPVC:UITextFieldDelegate{
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-   
         if textField.text?.count == 0{
             DispatchQueue.main.asyncAfter(deadline: .now()+0.05, execute: {
                self.textFieldDidBeginEditing(textField)
             })
-             
             return true
         }else{
             self.textFieldDidBeginEditing(textField)

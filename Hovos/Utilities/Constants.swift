@@ -46,6 +46,10 @@ enum ApiEndPoints{
     case volunteerStatus
     case transactions
     case postMessages
+    case FavVolunteer
+    case FavHosts
+    case otpVerify(otp:String)
+    case vol_publish(id:String)
     
     var rawValue:String{
         switch self {
@@ -105,8 +109,16 @@ enum ApiEndPoints{
         case .transactions:
             return "/api/get/transactions"
         case .postMessages:
+            return "/api/user/message/"
+        case .FavHosts:
+            return "/api/user/config/favorite_hosts"
+        case .FavVolunteer:
+            return "/api/user/config/favorite_volunteers"
+        case .otpVerify(let otp):
+            return "/api/user/verify_otp/\(otp)"
             
-        return "/api/user/message/"
+        case .vol_publish(let id):
+            return "/api/traveller/\(id)"
         }
     }
        

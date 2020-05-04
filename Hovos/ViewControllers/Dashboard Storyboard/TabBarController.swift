@@ -40,9 +40,18 @@ class TabBarController: UIViewController {
                             if code == 200{
                                 let decoder = JSONDecoder()
                                 let userData = try? decoder.decode(Auth.self, from: data!)
-                                SharedUser.manager.auth.listing = userData?.listing
-                                SharedUser.manager.auth.user = userData?.user
+                                
+                                if userData?.user == nil {
+                                    let userData1 = try? decoder.decode(Auth1.self, from: data!)
+                                    SharedUser.manager.auth.user = userData1?.user
+                                    SharedUser.manager.auth.listing = Listing()
+                                }else{
+                                    SharedUser.manager.auth.listing = userData?.listing
+                                    SharedUser.manager.auth.user = userData?.user
+                                }
+                               
                                 if let updatedData = try? JSONEncoder().encode(SharedUser.manager.auth){
+                                    
                                 UserDefaults.standard.set(updatedData, forKey: constants.accessToken.rawValue)
                                 }
                                     DispatchQueue.main.async {

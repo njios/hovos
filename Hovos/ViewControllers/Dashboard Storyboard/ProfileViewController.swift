@@ -31,17 +31,27 @@ class ProfileViewController: UIViewController {
            @IBOutlet weak var countryTable:UITableView!
            @IBOutlet weak var photosCollview:UICollectionView!
            @IBOutlet weak var photosHeight:NSLayoutConstraint!
+           @IBOutlet weak var menuView:MenuVC!
+
            var countries = [String]()
            var imageData = [images]()
            let photosDelegate = PhotosCollection()
            
     override func viewDidLoad() {
         super.viewDidLoad()
+        menuView.frame = self.view.frame
+        menuView.delegate = self
+
         self.loadUI(volItem: SharedUser.manager.auth.listing ?? Listing())
        
         // Do any additional setup after loading the view.
     }
-    
+    @IBAction func loadMenu(_ sender:UIButton){
+           
+           self.view.addSubview(menuView)
+           
+           
+       }
     private func loadUI(volItem:Listing){
         imageData = volItem.images ?? []
                                          headerTitle?.text = volItem.name ?? ""
@@ -120,3 +130,27 @@ func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) ->
 }
        
    }
+extension ProfileViewController:Menudelegates{
+    func menuItemDidSelect(for action: Action) {
+        self.navigationController?.popToRootViewController(animated: false)
+        switch action {
+        case .logout:
+            UserDefaults.standard.removeObject(forKey: constants.accessToken.rawValue)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyboard.instantiateViewController(withIdentifier: "mainnav")
+            let appdel = UIApplication.shared.delegate as? AppDelegate
+            appdel?.window?.rootViewController = vc
+            break
+        case .hostlist:
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
+            vc.modalPresentationStyle = .overCurrentContext
+            //vc.VMObject = landingVMObject
+            self.present(vc, animated: true, completion: nil)
+            break
+        default:
+            break
+        }
+        
+    }
+}

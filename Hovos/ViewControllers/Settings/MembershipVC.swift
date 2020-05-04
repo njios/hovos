@@ -21,10 +21,11 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
             DispatchQueue.main.async {
                 if self.transaction.count == 0{
                     self.historyTable.isHidden = true
-                }
+                }else{
                 self.historyTable.dataSource = self
                 self.historyTable.delegate = self
                 self.historyTable.reloadData()
+                }
             }
         }
     }
@@ -90,6 +91,37 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
            
         }
     }
+    
+    @IBAction func cancelMyAccount(_ sender:UIButton){
+    
+          var packet = NetworkPacket()
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                                           "id":SharedUser.manager.auth.user?.listingId ?? "",
+                                           "API_KEY":constants.Api_key.rawValue]
+                    
+                      packet.apiPath = ApiEndPoints.volunteerStatus.rawValue
+             
+                      packet.header =  header
+                      packet.method = "POST"
+                      
+           packet.data = ["action":"delete"]
+        ViewHelper.shared().showLoader(self)
+        ApiCallWithJsonEncoding(packet: packet) { (data, status, code) in
+            print(status,code)
+            if code == 200 {
+            DispatchQueue.main.async {
+                ViewHelper.shared().hideLoader()
+                UserDefaults.standard.removeObject(forKey: constants.accessToken.rawValue)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "mainnav")
+                let appdel = UIApplication.shared.delegate as? AppDelegate
+                appdel?.window?.rootViewController = vc
+            }
+            }
+        }
+    }
+
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if transaction.count >= 3{
             historyHieght.constant = 250

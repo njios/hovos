@@ -23,6 +23,7 @@ class HostsVC: UIViewController {
     @IBOutlet weak var searchText:UILabel!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
+    @IBOutlet weak var favButton:UIButton!
     var showMatching = false
     weak var menu_delegate:LandingVC!
     var searchModal:HostSearchModel!{
@@ -56,19 +57,19 @@ class HostsVC: UIViewController {
             self.collView.reloadData()
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
         menuView.delegate = menu_delegate
-
+        
         if object.count == 0{
             getHost()
         }else{
             if let _ = self.indexpath{
-                 ViewHelper.shared().showLoader(self)
-                 }
+                ViewHelper.shared().showLoader(self)
+            }
         }
-        
     }
     
     private func getHost(){
@@ -81,6 +82,7 @@ class HostsVC: UIViewController {
             }
         })
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
             self.collView.scrollToItem(at: index, at: .left, animated: false)
@@ -103,6 +105,21 @@ class HostsVC: UIViewController {
     
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "id":SharedUser.manager.auth.user?.listingId ?? "",
+                          "API_KEY":constants.Api_key.rawValue]
+            var identifyYourself = NetworkPacket()
+            identifyYourself.apiPath = ApiEndPoints.FavHosts.rawValue
+            identifyYourself.header = header
+            identifyYourself.data = ["data":object[sender.tag].id ?? ""]
+            identifyYourself.method = "POST"
+            ViewHelper.shared().showLoader(self)
+            ApiCall(packet: identifyYourself) { (data, status, code) in
+                ViewHelper.shared().hideLoader()
+                print("fav selected \(code)")
+            }
+        }
     }
     
 }
@@ -133,7 +150,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             }else{
                 self.titleLabel.text = "New Hosts, signed up \((volItem.addedOn ?? "").getDate().getDay()) \((volItem.addedOn ?? "").getDate().getMonth()) "
             }
-       
+            
         }
         
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
@@ -172,6 +189,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.place!.setUnderLine()
         cell.mealDesc.text = volItem.mealDescription ?? ""
         cell.photosCount.text = ""
+        favButton.tag = indexPath.row
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true

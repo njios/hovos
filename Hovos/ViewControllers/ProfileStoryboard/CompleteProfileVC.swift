@@ -150,7 +150,26 @@ class CompleteProfileVC: UIViewController {
              self.addChild(vc!)
              self.containerView.addSubview(vc!.view)
         }else{
-            
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                                           "id":SharedUser.manager.auth.user?.listingId ?? "",
+                                           "API_KEY":constants.Api_key.rawValue]
+                             var identifyYourself = NetworkPacket()
+            identifyYourself.apiPath = ApiEndPoints.vol_publish(id: SharedUser.manager.auth.user?.id ?? "").rawValue
+                
+                             identifyYourself.header = header
+            identifyYourself.data = try! JSONSerialization.jsonObject(with: JSONEncoder().encode(SharedUser.manager.auth.listing), options: []) as! [String : Any] 
+                             identifyYourself.method = "POST"
+                             ViewHelper.shared().showLoader(self)
+                             ApiCall(packet: identifyYourself) { (data, status, code) in
+                                 ViewHelper.shared().hideLoader()
+                                 if code == 200{
+                                     DispatchQueue.main.async{
+                                       
+                                     }
+                                 }else{
+                                     Hovos.showAlert(vc: self, mssg: "Error in publish")
+                                 }
+                        }
         }
              
     }

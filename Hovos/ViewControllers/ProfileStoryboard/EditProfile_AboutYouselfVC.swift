@@ -22,7 +22,7 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         }else{
             descriptionText.text = SharedUser.manager.auth.user?.personalDescription
         }
-        
+        SharedUser.manager.auth.user?.age = "18"
         agebutton.setTitle(SharedUser.manager.auth.user?.age, for: .normal)
         genderButton.setTitle(SharedUser.manager.auth.user?.gender, for: .normal)
         // Do any additional setup after loading the view.

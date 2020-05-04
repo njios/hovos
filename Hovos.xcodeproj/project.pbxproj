@@ -14,6 +14,7 @@
 		AC0C078723AA18D200EC19BC /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0C078623AA18D200EC19BC /* MenuVC.swift */; };
 		AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */; };
 		AC1CFD682421DA91008FE498 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1CFD672421DA91008FE498 /* SettingsViewController.swift */; };
+		AC1D8DE8245FD6EB00D3EF99 /* EditProfileHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1D8DE7245FD6EB00D3EF99 /* EditProfileHomeVC.swift */; };
 		AC25C0CE244C8FA60050C752 /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0CD244C8FA60050C752 /* MessageViewController.swift */; };
 		AC25C0D0244CA5000050C752 /* MessageModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0CF244CA5000050C752 /* MessageModal.swift */; };
 		AC25C0D2244CD3660050C752 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC25C0D1244CD3660050C752 /* ChatViewController.swift */; };
@@ -131,6 +132,7 @@
 		AC0C078623AA18D200EC19BC /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 		AC0EB06B23B001DC00DF9489 /* DashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardVC.swift; sourceTree = "<group>"; };
 		AC1CFD672421DA91008FE498 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AC1D8DE7245FD6EB00D3EF99 /* EditProfileHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileHomeVC.swift; sourceTree = "<group>"; };
 		AC25C0CD244C8FA60050C752 /* MessageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		AC25C0CF244CA5000050C752 /* MessageModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModal.swift; sourceTree = "<group>"; };
 		AC25C0D1244CD3660050C752 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				AC046C9E245AA22200DC84F9 /* CompleteProfileVC.swift */,
 				ACDE9AC4245AAB5D00B55FE2 /* EditProfile_optionalLanguageVC.swift */,
 				ACDE9AC6245ABB0E00B55FE2 /* ProfileIncompleteVC.swift */,
+				AC1D8DE7245FD6EB00D3EF99 /* EditProfileHomeVC.swift */,
 			);
 			path = ProfileStoryboard;
 			sourceTree = "<group>";
@@ -780,6 +783,7 @@
 				ACF631A12454CF8E002CCBBB /* EditProfile_languagesVC.swift in Sources */,
 				AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */,
 				AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */,
+				AC1D8DE8245FD6EB00D3EF99 /* EditProfileHomeVC.swift in Sources */,
 				AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */,
 				AC73E66B244A488800F2474C /* MapViewController.swift in Sources */,
 				AC8B37C423D97C0200B7231F /* NearByHostMAPCell.swift in Sources */,

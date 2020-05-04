@@ -61,6 +61,24 @@ extension EditProfile_locationVVC: GMSAutocompleteViewControllerDelegate {
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
     placeText.text = place.formattedAddress
     updateMap(lat: place.coordinate.latitude, long: place.coordinate.longitude)
+    
+    
+    var city = ""
+    var countryCode = ""
+    var country = ""
+    
+    for item in place.addressComponents!{
+        if item.types.first == "country"{
+            country = item.name
+            countryCode = item.shortName ?? ""
+        }
+        if item.types.first == "administrative_area_level_1"{
+                   city = item.shortName ?? ""
+               }
+    }
+    
+    SharedUser.manager.auth.listing?.location = location(latitude: "\(place.coordinate.latitude)", city: city, country: country, countryCode: countryCode, countryId: "", location: place.formattedAddress, longitude: "\(place.coordinate.longitude)")
+    
     dismiss(animated: true, completion: nil)
   }
 func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {

@@ -20,8 +20,14 @@ class SignUpVc: UIViewController {
     @IBOutlet weak var titleCheck:UIImageView!
     @IBOutlet weak var subtitleCheck:UIImageView!
     @IBOutlet weak var icon:UIImageView!
-     @IBOutlet weak var signUpButton:UIView!
-     @IBOutlet weak var headerView:UIView!
+    @IBOutlet weak var signUpButton:UIView!
+    @IBOutlet weak var headerView:UIView!
+    
+    @IBOutlet weak var firstnameIcon:UIImageView!
+    @IBOutlet weak var lastnameIcon:UIImageView!
+    @IBOutlet weak var emailIcon:UIImageView!
+    @IBOutlet weak var passwordIcon:UIImageView!
+    @IBOutlet weak var eyeIcon:UIImageView!
     
     var type:String? = "v" // used to identify Volunteer or host
     var vmObject:SignUPVM?
@@ -36,9 +42,16 @@ class SignUpVc: UIViewController {
             titleCheck.image = UIImage(named: "selectedBlueTick")
             titlelabel.textColor = UIColor(named: "greenColor")
             titleDetaillabel.textColor = UIColor(named: "greenColor")
-        
             signUpButton.backgroundColor = UIColor(named: "greenColor")
             headerView.backgroundColor = UIColor(named: "greenColor")
+            
+            
+            firstnameIcon.image = UIImage(named: "usernameVolunteer")
+            lastnameIcon.image = UIImage(named: "usernameVolunteer")
+            emailIcon.image = UIImage(named: "email_volunteer")
+            passwordIcon.image = UIImage(named: "lock_volunteer")
+            eyeIcon.image = UIImage(named: "blueEyes")
+            
             
         }else{
             titlelabel.text = "I am a host"
@@ -51,8 +64,16 @@ class SignUpVc: UIViewController {
             titleDetaillabel.textColor = UIColor(named: "orangeColor")
             signUpButton.backgroundColor = UIColor(named: "orangeColor")
             headerView.backgroundColor = UIColor(named: "orangeColor")
+            
+            firstnameIcon.image = UIImage(named: "user")
+            lastnameIcon.image = UIImage(named: "user")
+            emailIcon.image = UIImage(named: "emailId")
+            passwordIcon.image = UIImage(named: "password")
+            eyeIcon.image = UIImage(named: "eyeprotected")
+            
         }
     }
+    
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: password.text!, type: type!, completion:updateUiAfterSignup(status:data:))
@@ -72,6 +93,11 @@ class SignUpVc: UIViewController {
             titleDetaillabel.textColor = UIColor(named: "greenColor")
             signUpButton.backgroundColor = UIColor(named: "greenColor")
             headerView.backgroundColor = UIColor(named: "greenColor")
+            firstnameIcon.image = UIImage(named: "usernameVolunteer")
+            lastnameIcon.image = UIImage(named: "usernameVolunteer")
+            emailIcon.image = UIImage(named: "email_volunteer")
+            passwordIcon.image = UIImage(named: "lock_volunteer")
+            eyeIcon.image = UIImage(named: "blueEyes")
         }else{
             titlelabel.text = "I am a host"
             subtitle.text = "I am a volunteer"
@@ -83,6 +109,12 @@ class SignUpVc: UIViewController {
             titleDetaillabel.textColor = UIColor(named: "orangeColor")
             signUpButton.backgroundColor = UIColor(named: "orangeColor")
             headerView.backgroundColor = UIColor(named: "orangeColor")
+            
+            firstnameIcon.image = UIImage(named: "user")
+            lastnameIcon.image = UIImage(named: "user")
+            emailIcon.image = UIImage(named: "emailId")
+            passwordIcon.image = UIImage(named: "password")
+            eyeIcon.image = UIImage(named: "eyeprotected")
         }
     }
     

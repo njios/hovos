@@ -16,7 +16,13 @@ struct Auth:Codable {
     var user:User?
     var listing:Listing?
 }
-
+struct Auth1:Codable {
+    var auth:String?
+    var id:String?
+    var role:String?
+    var user:User?
+   
+}
 struct SharedUser{
     static var manager = SharedUser()
     var auth = Auth()
@@ -81,7 +87,7 @@ struct Listing:Codable {
     var images:[images]?
     var accommodations:[Int:String]?
     var accommodationImages:[images]?
-    var jobs:[Int:String]?
+    var jobs:[String:String]?
     var countries:[String:String?]?
     var schedules:[schedules]?
     var friends:[friends]?
@@ -146,6 +152,27 @@ struct User:Codable {
     
 }
 
+func getParams()->[String : Any]{
 
-
-
+    var jobs = [""]
+    var MemberLocation = location()
+    if let jobsExist = SharedUser.manager.auth.listing?.jobs{
+         jobs = Array<String>(jobsExist.keys)
+  
+    }
+    if let locationMember = SharedUser.manager.auth.listing?.location{
+        MemberLocation = locationMember
+    }
+    
+let volunteerSaveParams:[String:Any] = ["additionalDesc":SharedUser.manager.auth.listing?.additionalDesc ?? "",
+                           "countries":SharedUser.manager.auth.listing?.countries ?? [:],
+                           "jobs": jobs,
+                           "location": MemberLocation,
+                           "skillDescription":SharedUser.manager.auth.listing?.skillDescription ?? "",
+                           "slogans":SharedUser.manager.auth.listing?.slogan ?? "",
+                           "member": SharedUser.manager.auth.user!,
+    "jobs": jobs,
+    ] as [String : Any]
+        
+        return volunteerSaveParams
+}

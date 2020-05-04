@@ -58,9 +58,14 @@ class Edirprofile_SelectSkillsVC: UIViewController,UITableViewDelegate,UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      
         if  SharedUser.manager.auth.listing?.jobs?.contains(where: {String($0.key) == (skills[indexPath.row].value ?? "")}) ?? false{
-            SharedUser.manager.auth.listing?.jobs?.removeValue(forKey: Int(skills[indexPath.row].value ?? "") ?? 0)
+            SharedUser.manager.auth.listing?.jobs?.removeValue(forKey: skills[indexPath.row].value ?? "")
         }else{
-            SharedUser.manager.auth.listing?.jobs?[Int(skills[indexPath.row].value ?? "") ?? 0] = skills[indexPath.row].title ?? ""
+            if SharedUser.manager.auth.listing?.jobs == nil {
+                SharedUser.manager.auth.listing?.jobs = [:]
+                SharedUser.manager.auth.listing?.jobs?[skills[indexPath.row].value ?? ""] = skills[indexPath.row].title ?? ""
+            }else{
+            SharedUser.manager.auth.listing?.jobs?[skills[indexPath.row].value ?? ""] = skills[indexPath.row].title ?? ""
+            }
         }
         tableView.reloadData()
     }

@@ -114,6 +114,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var photosCollview:UICollectionView!
         @IBOutlet weak var photosHeight:NSLayoutConstraint!
         @IBOutlet weak var matching:UILabel!
+        
         var countries = [String]()
         var imageData = [images]()
         weak var dependency:UIViewController!
