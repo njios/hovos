@@ -142,3 +142,197 @@ func imageWith(name: String?) -> UIImage? {
       }
       return nil
 }
+
+@IBDesignable
+extension UIImageView{
+    
+    @IBInspectable var hostImage:UIImage{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+            self.image = newValue
+            }
+        }
+        get{
+            return self.image!
+        }
+    }
+    @IBInspectable var volImage:UIImage{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+            self.image = newValue
+            }
+        }
+        get{
+            return self.image!
+        }
+    }
+}
+
+@IBDesignable
+extension UIButton{
+    
+    @IBInspectable var hostcolore:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+            self.backgroundColor = newValue
+            }
+        }
+        get{
+            return self.backgroundColor!
+        }
+    }
+    @IBInspectable var volcolor:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+            self.backgroundColor = newValue
+            }
+        }
+        get{
+            return self.backgroundColor!
+        }
+    }
+    
+    @IBInspectable var hostImages:UIImage{
+        set{
+             if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+            self.setImage(newValue, for: .normal)
+            }
+        }
+        get{
+            return self.image(for: .normal)!
+        }
+    }
+    @IBInspectable var volImages:UIImage{
+        set{
+             if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+            self.setImage(newValue, for: .normal)
+            }
+        }
+        get{
+            return self.image(for: .normal)!
+        }
+    }
+    
+    @IBInspectable var hostSelectedImages:UIImage{
+           set{
+                if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+               self.setImage(newValue, for: .selected)
+               }
+           }
+           get{
+               return self.image(for: .selected)!
+           }
+       }
+    
+       @IBInspectable var volSelectedImages:UIImage{
+           set{
+                if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+               self.setImage(newValue, for: .selected)
+               }
+           }
+           get{
+               return self.image(for: .selected)!
+           }
+       }
+    
+    @IBInspectable var hostText:String{
+        set{
+             if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                self.setTitle(newValue, for: .normal)
+            }
+        }
+        get{
+            return (self.titleLabel?.text!)!
+        }
+    }
+    
+    @IBInspectable var volText:String{
+        set{
+             if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+             self.setTitle(newValue, for: .normal)
+            }
+        }
+        get{
+            return (self.titleLabel?.text!)!
+        }
+    }
+    
+}
+
+@IBDesignable
+extension UILabel{
+    @IBInspectable var hostText:String{
+            set{
+                 if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                    if newValue == " "{
+                       self.text = ""
+                    }else{
+                    self.text = newValue
+                   }
+                }
+            }
+            get{
+                return self.text!
+            }
+        }
+        
+        @IBInspectable var volText:String{
+            set{
+                 if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                    if newValue == " "{
+                        self.text = ""
+                     }else{
+                     self.text = newValue
+                    }
+                }
+            }
+            get{
+                return self.text!
+            }
+        }
+        @IBInspectable var hostcolore:UIColor{
+            set{
+                if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                self.backgroundColor = newValue
+                }
+            }
+            get{
+                return self.backgroundColor!
+            }
+        }
+        @IBInspectable var volcolor:UIColor{
+            set{
+                if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                self.backgroundColor = newValue
+                }
+            }
+            get{
+                return self.backgroundColor!
+            }
+        }
+    }
+
+@IBDesignable
+extension UIPageControl{
+    
+    @IBInspectable var hostcolore:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                self.currentPageIndicatorTintColor = newValue
+            }
+        }
+        get{
+            return self.currentPageIndicatorTintColor!
+        }
+    }
+    @IBInspectable var volcolor:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+           self.currentPageIndicatorTintColor = newValue
+            }
+        }
+        get{
+            return self.currentPageIndicatorTintColor!
+        }
+    }
+}

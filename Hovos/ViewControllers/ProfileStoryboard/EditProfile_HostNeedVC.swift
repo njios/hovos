@@ -45,9 +45,16 @@ class EditProfile_HostNeedVC: UIViewController,UITextViewDelegate {
          worksHour.setThumbImage(hoursImage, for: .normal)
          worksDay.setThumbImage(dayImage, for: .normal)
          
-        
+        if let titleString = SharedUser.manager.auth.listing?.title, titleString != ""{
          listingTitleTextView.text = SharedUser.manager.auth.listing?.title
+        }else{
+           listingTitleTextView.text = titlePlaceholder
+        }
+          if let descString = SharedUser.manager.auth.listing?.description, descString != ""{
          describeTextField.text = SharedUser.manager.auth.listing?.description
+          }else{
+           describeTextField.text = describePlaceholder
+        }
     }
 
     @IBAction func volunterSliderAction(_ sender:UISlider){

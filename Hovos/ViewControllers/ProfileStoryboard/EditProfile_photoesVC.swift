@@ -11,11 +11,19 @@ import UIKit
 class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
 @IBOutlet weak var collView:UICollectionView!
-var images = [UIImage]()
+    var images = [UIImage]()
     @IBOutlet weak var placeholder:UIImageView!
+    @IBOutlet weak var titletext:UILabel!
+    var type = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        if type == "place"{
+            titletext.text = "Photos of your place"
+        }
+        if type == "accommodations"{
+            titletext.text = "Accommodation photos"
+        }
         // Do any additional setup after loading the view.
     }
     

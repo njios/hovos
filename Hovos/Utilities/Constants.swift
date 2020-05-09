@@ -36,6 +36,7 @@ enum ApiEndPoints{
     case volunteerFacet
     case jobs
     case languages
+    case accomodation
     case user
     case smsOtp
     case contactUs
@@ -50,6 +51,7 @@ enum ApiEndPoints{
     case FavHosts
     case otpVerify(otp:String)
     case vol_publish(id:String)
+    case host_publish(id:String)
     
     var rawValue:String{
         switch self {
@@ -87,6 +89,8 @@ enum ApiEndPoints{
             return "/api/get/jobs"
         case .languages:
         return "/api/get/languages"
+        case .accomodation:
+            return "/api/get/accommodations"
             case .user:
             return "/api/user/"
         case .smsOtp:
@@ -119,6 +123,8 @@ enum ApiEndPoints{
             
         case .vol_publish(let id):
             return "/api/traveller/\(id)"
+        case .host_publish(let id):
+             return "/api/host/\(id)"
         }
     }
        

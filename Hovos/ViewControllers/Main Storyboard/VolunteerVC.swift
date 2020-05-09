@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Alamofire
 class VolunteerVC: UIViewController {
   
     var object:[VolunteerItem]?
@@ -46,10 +46,13 @@ class VolunteerVC: UIViewController {
                                      "API_KEY":constants.Api_key.rawValue]
                        var identifyYourself = NetworkPacket()
                        identifyYourself.apiPath = ApiEndPoints.FavVolunteer.rawValue
-                       identifyYourself.header = header
-            identifyYourself.data = ["data":[object?[sender.tag].id ?? ""]]
+                     
+            var param = ["data":""]
                        identifyYourself.method = "POST"
                        ViewHelper.shared().showLoader(self)
+            
+        
+            
                        ApiCall(packet: identifyYourself) { (data, status, code) in
                            ViewHelper.shared().hideLoader()
                            print("fav selected \(code)")

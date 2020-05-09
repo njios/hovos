@@ -104,7 +104,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         
     }
     override func viewWillAppear(_ animated: Bool) {
-        if ((SharedUser.manager.auth.user?.listingId) == nil) {
+        if ((SharedUser.manager.auth.user?.listingId) == nil) || ((SharedUser.manager.auth.listing?.isPublished ?? "n").lowercased() == "n") {
                    let stb = UIStoryboard(name: "Profile", bundle: nil)
                    let vc = stb.instantiateViewController(withIdentifier: "ProfileIncompleteVC") as! ProfileIncompleteVC
                    vc.modalPresentationStyle = .overCurrentContext

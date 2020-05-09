@@ -11,10 +11,10 @@ import GoogleSignIn
 import FBSDKLoginKit
 class LoginVC: UIViewController,GIDSignInDelegate {
     
-
-     @IBOutlet weak var emailId:UITextField!
-     @IBOutlet weak var password:UITextField!
-     
+    
+    @IBOutlet weak var emailId:UITextField!
+    @IBOutlet weak var password:UITextField!
+    
     
     var type:String? // used to identify Volunteer or host
     var vmObject:LoginVM?
@@ -23,20 +23,20 @@ class LoginVC: UIViewController,GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.presentingViewController = self
         GIDSignIn.sharedInstance()?.delegate = self
     }
+    
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         vmObject?.signUp(emailId: emailId.text!, password: password.text!, completion: updateUiAfterSignup(status:data:))
-       }
+    }
     
-     func updateUiAfterSignup(status:Bool,data:Data?){
+    func updateUiAfterSignup(status:Bool,data:Data?){
         DispatchQueue.main.async {
             ViewHelper.shared().hideLoader()
             if status == true{
-                       
-                     let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                    let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
-                    let appdel = UIApplication.shared.delegate as? AppDelegate
-                   appdel?.window?.rootViewController = vc
+                let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
+                let appdel = UIApplication.shared.delegate as? AppDelegate
+                appdel?.window?.rootViewController = vc
             }else{
                 let alert = UIAlertController(title: "Error!", message: data?.html2String, preferredStyle: .alert)
                 let okButton = UIAlertAction(title: "close", style: .cancel, handler: nil)
@@ -46,43 +46,42 @@ class LoginVC: UIViewController,GIDSignInDelegate {
         }
     }
     
-
     @IBAction func googleSignInClicked(_ sender:UIButton){
         GIDSignIn.sharedInstance()?.signIn()
     }
     
     @IBAction private func loginWithReadPermissions() {
-           let loginManager = LoginManager()
-        loginManager.logIn(permissions: [], from: self) { (result, error) in
+        let loginManager = LoginManager()
+        loginManager.logIn(permissions: ["email"], from: self) { (result, error) in
             if error == nil{
                 self.loginManagerDidComplete(result!)
             }
         }
-        
-       }
+    }
     
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if error == nil{
-//            UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-//            let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-//             let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
-//             let appdel = UIApplication.shared.delegate as? AppDelegate
-//            appdel?.window?.rootViewController = vc
+            ViewHelper.shared().showLoader(self)
+            vmObject?.signUp(emailId: user?.profile?.email ?? "", password: "$APPLEPREAUTH", completion: updateUiAfterSignup(status:data:))
         }
-     }
-     
-     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+    }
     
-     }
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        
+    }
     
     private func loginManagerDidComplete(_ result: LoginManagerLoginResult) {
-//          print(result)
-//        UserDefaults.standard.set(true, forKey: constants.accessToken.rawValue)
-//          let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-//           let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
-//           let appdel = UIApplication.shared.delegate as? AppDelegate
-//          appdel?.window?.rootViewController = vc
-       }
-
+        ViewHelper.shared().showLoader(self)
+        let req = GraphRequest(graphPath: "me", parameters: ["fields":"email,name"], tokenString: result.token?.tokenString , version: nil, httpMethod: HTTPMethod(rawValue: "GET"))
+        
+        req.start { (connection, result, error) in
+            if(error == nil) {
+                self.vmObject?.signUp(emailId: (result as? [String:String])?["email"] ?? "", password: "$APPLEPREAUTH", completion: self.updateUiAfterSignup(status:data:))
+            } else {
+                ViewHelper.shared().hideLoader()
+            }
+        }
+    }
+    
 }
 

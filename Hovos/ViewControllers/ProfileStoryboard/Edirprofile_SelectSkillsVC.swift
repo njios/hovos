@@ -39,7 +39,12 @@ class Edirprofile_SelectSkillsVC: UIViewController,UITableViewDelegate,UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "EditProfileContinentCell") as! EditProfileContinentCell
         cell.continetName.text = (skills[indexPath.row].title ?? "").capitalized
         if  SharedUser.manager.auth.listing?.jobs?.contains(where: {String($0.key) == (skills[indexPath.row].value ?? "")}) ?? false {
-            cell.selectimage.image = UIImage(named: "selectedBlueTick")
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                 cell.selectimage.image = UIImage(named: "selectedBlueTick")
+            }else{
+                 cell.selectimage.image = UIImage(named: "selectedTick")
+            }
+           
             cell.continetName.font = UIFont(name: "Lato-Bold", size: 20.0)
             cell.continetName.textColor = .darkGray
            

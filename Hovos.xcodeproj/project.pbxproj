@@ -47,6 +47,7 @@
 		AC535B9E23F514750080B563 /* CustomEditViews.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC535B9D23F514750080B563 /* CustomEditViews.xib */; };
 		AC535BA023F515E80080B563 /* CustomEditViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC535B9F23F515E80080B563 /* CustomEditViews.swift */; };
 		AC538D5D23AF4BAC00C54CC4 /* OTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */; };
+		AC5B08C324603255007A8B2B /* EditProfile_ExchangeDealVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5B08C224603255007A8B2B /* EditProfile_ExchangeDealVc.swift */; };
 		AC63950623940A36000EA4F9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950523940A36000EA4F9 /* AppDelegate.swift */; };
 		AC63950A23940A36000EA4F9 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC63950923940A36000EA4F9 /* LoginVC.swift */; };
 		AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC63950B23940A36000EA4F9 /* Main.storyboard */; };
@@ -166,6 +167,7 @@
 		AC535B9D23F514750080B563 /* CustomEditViews.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomEditViews.xib; sourceTree = "<group>"; };
 		AC535B9F23F515E80080B563 /* CustomEditViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomEditViews.swift; sourceTree = "<group>"; };
 		AC538D5C23AF4BAC00C54CC4 /* OTPVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPVC.swift; sourceTree = "<group>"; };
+		AC5B08C224603255007A8B2B /* EditProfile_ExchangeDealVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfile_ExchangeDealVc.swift; sourceTree = "<group>"; };
 		AC63950223940A36000EA4F9 /* Hovos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hovos.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC63950523940A36000EA4F9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AC63950923940A36000EA4F9 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				ACDE9AC6245ABB0E00B55FE2 /* ProfileIncompleteVC.swift */,
 				AC1D8DE7245FD6EB00D3EF99 /* EditProfileHomeVC.swift */,
 				ACEE5110245FFA7A004D8978 /* EditProfile_HostNeedVC.swift */,
+				AC5B08C224603255007A8B2B /* EditProfile_ExchangeDealVc.swift */,
 			);
 			path = ProfileStoryboard;
 			sourceTree = "<group>";
@@ -769,6 +772,7 @@
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
 				AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */,
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
+				AC5B08C324603255007A8B2B /* EditProfile_ExchangeDealVc.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
 				ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */,
 				AC1CFD682421DA91008FE498 /* SettingsViewController.swift in Sources */,

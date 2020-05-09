@@ -86,7 +86,7 @@ struct Listing:Codable {
     var dislikes:String?
     var location:location?
     var images:[images]?
-    var accommodations:[Int:String]?
+    var accommodations:[String:String]?
     var accommodationImages:[images]?
     var jobs:[String:String]?
     var countries:[String:String?]?
@@ -96,6 +96,9 @@ struct Listing:Codable {
     var reviews:[review]?
     var mealDescription:String?
     var paymentDescription:String?
+    var accDescription:String?
+    var paymentOption:String?
+    var mealsOption:String?
     func getFullimage(completion:@escaping (UIImage?)->()){
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: URL(string:(self.image!))!)
