@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+
 protocol ListViewDelegate {
     func collViewdidUpdate(index:IndexPath)
     func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String)
@@ -22,21 +23,36 @@ extension ListViewDelegate{
             let hostVC = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             hostVC.indexpath = index
             hostVC.object = object
+       
             if type == "New"{
                 hostVC.showMatching = false
             }else{
                  hostVC.showMatching = true
             }
+            
             if let vc =  getNavigationController(){
                 vc.pushViewController(hostVC, animated: false)
                 //vc.present(hostVC, animated: false, completion: nil)
                 }
+            
           }else{
             
             let volVC = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
             volVC.indexpath = index
             volVC.object = object
-           
+          
+            if type == "New"{
+                volVC.type = .latest
+            }
+            
+            if type == "nearBy"{
+                volVC.type = .neraby
+            }
+            
+            if type == "Recom"{
+                volVC.type = .recommended
+            }
+            
             if let vc =  getNavigationController(){
               vc.pushViewController(volVC, animated: false)
                 //  vc.present(volVC, animated: false, completion: nil)

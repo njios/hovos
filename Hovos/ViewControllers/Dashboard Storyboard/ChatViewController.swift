@@ -48,11 +48,10 @@ class ChatViewController: UIViewController,UITextViewDelegate {
             ViewHelper.shared().showLoader(self)
             let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
               if (error != nil) {
-                print(error?.localizedDescription)
+                print((error?.localizedDescription) ?? "")
               } else {
-                let httpResponse = response as? HTTPURLResponse
-                let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-                print(json)
+               
+                print(String(data: data!, encoding: .utf8) ?? "")
                 DispatchQueue.main.async {
                     self.messageText.text = "Write a message"
                     ViewHelper.shared().hideLoader()

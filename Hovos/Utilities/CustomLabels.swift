@@ -171,6 +171,27 @@ extension UIImageView{
 @IBDesignable
 extension UIButton{
     
+    @IBInspectable var hostTitlecolor:UIColor{
+                 set{
+                     if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                        self.setTitleColor(newValue, for: .normal)
+                     }
+                 }
+                 get{
+                    return (self.titleLabel?.textColor!)!
+                 }
+             }
+             @IBInspectable var volTitlecolor:UIColor{
+                 set{
+                     if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                       self.setTitleColor(newValue, for: .normal)
+                     }
+                 }
+                 get{
+                    return (self.titleLabel?.textColor!)!
+                 }
+             }
+    
     @IBInspectable var hostcolore:UIColor{
         set{
             if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
@@ -191,6 +212,28 @@ extension UIButton{
             return self.backgroundColor!
         }
     }
+    
+    
+    @IBInspectable var hostBordercolor:UIColor{
+           set{
+               if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                self.layer.borderColor = newValue.cgColor
+            }
+           }
+           get{
+            return UIColor(cgColor: self.layer.borderColor!)
+           }
+       }
+       @IBInspectable var volBordercolor:UIColor{
+           set{
+               if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+              self.layer.borderColor = newValue.cgColor
+               }
+           }
+           get{
+            return UIColor(cgColor: self.layer.borderColor!)
+           }
+       }
     
     @IBInspectable var hostImages:UIImage{
         set{
@@ -257,6 +300,10 @@ extension UIButton{
         }
     }
     
+    
+  
+    
+    
 }
 
 @IBDesignable
@@ -290,6 +337,8 @@ extension UILabel{
                 return self.text!
             }
         }
+    
+    
         @IBInspectable var hostcolore:UIColor{
             set{
                 if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
@@ -310,6 +359,49 @@ extension UILabel{
                 return self.backgroundColor!
             }
         }
+    
+    @IBInspectable var hostTitlecolor:UIColor{
+               set{
+                   if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                   self.textColor = newValue
+                   }
+               }
+               get{
+                   return self.textColor!
+               }
+           }
+           @IBInspectable var volTitlecolor:UIColor{
+               set{
+                   if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                   self.textColor = newValue
+                   }
+               }
+               get{
+                   return self.textColor!
+               }
+           }
+    
+    @IBInspectable var hostReverseTitlecolor:UIColor{
+                 set{
+                     if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                     self.textColor = newValue
+                     }
+                 }
+                 get{
+                     return self.textColor!
+                 }
+             }
+             @IBInspectable var volReverseTitlecolor:UIColor{
+                 set{
+                     if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                     self.textColor = newValue
+                     }
+                 }
+                 get{
+                     return self.textColor!
+                 }
+             }
+    
     }
 
 @IBDesignable
@@ -333,6 +425,32 @@ extension UIPageControl{
         }
         get{
             return self.currentPageIndicatorTintColor!
+        }
+    }
+}
+
+
+@IBDesignable
+extension UISwitch{
+    
+    @IBInspectable var hostcolore:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+                self.onTintColor = newValue
+            }
+        }
+        get{
+            return self.onTintColor!
+        }
+    }
+    @IBInspectable var volcolor:UIColor{
+        set{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+           self.onTintColor = newValue
+            }
+        }
+        get{
+            return self.onTintColor!
         }
     }
 }

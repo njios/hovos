@@ -19,7 +19,11 @@ class SettingsViewController: UIViewController {
         menuView.frame = self.view.frame
                menuView.delegate = self
         name.text = (SharedUser.manager.auth.user?.firstName ?? "" ) + " " + (SharedUser.manager.auth.user?.lastName ?? "")
-       
+        if let imageUrl = SharedUser.manager.auth.user?.image?.medium{
+            profileIMG.kf.indicatorType = .activity
+            profileIMG.kf.setImage(with: URL(string: imageUrl)!)
+        }
+    
     }
     @IBAction func loadMenu(_ sender:UIButton){
               

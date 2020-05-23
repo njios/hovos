@@ -198,7 +198,7 @@ extension LandingVC:ListViewDelegate,MapViewResponsable{
         let mapvc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapvc.location = VMObject.location
         mapvc.mapItems = VMObject.Hosts
-        mapvc.isOrange = true
+      
         self.navigationController?.pushViewController(mapvc, animated: true)
                     
     }

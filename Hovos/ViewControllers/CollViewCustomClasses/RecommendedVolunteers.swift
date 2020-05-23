@@ -37,6 +37,7 @@ class RecommendedVolunteers: NSObject, UICollectionViewDelegate,UICollectionView
                 
                                 cell.name?.textColor = UIColor(named: "greenColor")
                             }
+            
             cell.place?.text = (modalObject?[indexPath.row].location?.country ?? "") + ", " + (modalObject?[indexPath.row].location?.city ?? "")
             cell.matching?.text = (modalObject?[indexPath.row].totalMatching ?? "")
             return cell

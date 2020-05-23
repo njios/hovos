@@ -152,7 +152,7 @@ struct ListingUser:Codable {
     var type:String?
     var role:String?
     var languages:[String:String]?
-    
+    var ratings:ratings?
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
 //

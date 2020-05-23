@@ -417,7 +417,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3K7-hc-HdF">
                                                     <rect key="frame" x="30" y="5" width="354" height="0.0"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUe-He-RUd">
@@ -566,7 +566,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8oD-oq-KHa">
                                                             <rect key="frame" x="5" y="10" width="287" height="69"/>
                                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                                            <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greyCheck" translatesAutoresizingMaskIntoConstraints="NO" id="MTj-8s-31K">
@@ -731,7 +731,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oHc-K7-CHz">
                                                     <rect key="frame" x="0.0" y="15" width="349" height="58"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6OF-LM-YkU">
@@ -915,8 +915,8 @@
                                     <constraint firstItem="Qf0-1P-7Lw" firstAttribute="top" secondItem="tTO-XG-y3Q" secondAttribute="top" constant="10" id="oXt-aL-BMP"/>
                                 </constraints>
                             </view>
-                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePublished" translatesAutoresizingMaskIntoConstraints="NO" id="bm8-Hi-gDy">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="916"/>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profilePublished" translatesAutoresizingMaskIntoConstraints="NO" id="bm8-Hi-gDy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gS7-J8-mzZ">
                                 <rect key="frame" x="0.0" y="782" width="414" height="80"/>
@@ -924,7 +924,7 @@
                                     <constraint firstAttribute="height" constant="80" id="ESF-m5-Bm4"/>
                                 </constraints>
                                 <connections>
-                                    <action selector="goback:" destination="tea-dF-6aW" eventType="touchUpInside" id="RrN-KM-c4I"/>
+                                    <action selector="goback:" destination="tea-dF-6aW" eventType="touchUpInside" id="vv5-27-C5Q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -938,7 +938,7 @@
                             <constraint firstItem="gS7-J8-mzZ" firstAttribute="bottom" secondItem="krq-Nh-3Ff" secondAttribute="bottom" id="RLh-1C-Syb"/>
                             <constraint firstItem="JJc-5Y-Qja" firstAttribute="top" secondItem="9us-Y3-VEW" secondAttribute="top" id="V7j-Uf-Epm"/>
                             <constraint firstItem="gS7-J8-mzZ" firstAttribute="leading" secondItem="bm8-Hi-gDy" secondAttribute="leading" id="alT-hD-5a0"/>
-                            <constraint firstAttribute="bottom" secondItem="bm8-Hi-gDy" secondAttribute="bottom" constant="-20" id="du2-wg-43Y"/>
+                            <constraint firstItem="krq-Nh-3Ff" firstAttribute="bottom" secondItem="bm8-Hi-gDy" secondAttribute="bottom" id="bVy-NA-3rt"/>
                             <constraint firstItem="tTO-XG-y3Q" firstAttribute="trailing" secondItem="krq-Nh-3Ff" secondAttribute="trailing" id="lwz-ys-fxM"/>
                             <constraint firstItem="bm8-Hi-gDy" firstAttribute="leading" secondItem="krq-Nh-3Ff" secondAttribute="leading" id="m8G-U2-OCW"/>
                             <constraint firstItem="krq-Nh-3Ff" firstAttribute="bottom" secondItem="tTO-XG-y3Q" secondAttribute="bottom" id="rCC-i5-TqJ"/>
@@ -946,15 +946,11 @@
                             <constraint firstItem="bm8-Hi-gDy" firstAttribute="top" secondItem="9us-Y3-VEW" secondAttribute="top" id="zZl-g5-sJY"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="krq-Nh-3Ff"/>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="bm8-Hi-gDy"/>
-                                <exclude reference="gS7-J8-mzZ"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" id="218-ea-9Ny"/>
                     <connections>
+                        <outlet property="completeProfile" destination="bm8-Hi-gDy" id="Lxg-1R-mTp"/>
+                        <outlet property="completeProfileButton" destination="gS7-J8-mzZ" id="sta-a1-eZF"/>
                         <outlet property="containerView" destination="JJc-5Y-Qja" id="I1h-UM-4qD"/>
                         <outlet property="nextButton" destination="Qf0-1P-7Lw" id="f77-2K-5PO"/>
                         <outlet property="pageControl" destination="LyU-bN-AZ3" id="sCG-dI-sRc"/>
@@ -1167,7 +1163,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ICY-SR-gdH">
                                                     <rect key="frame" x="0.0" y="15" width="349" height="58"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBn-S5-iCC">
@@ -1288,7 +1284,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jae-GF-zRe">
                                                     <rect key="frame" x="0.0" y="15" width="349" height="58"/>
                                                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
-                                                    <color key="textColor" systemColor="systemGrayColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="textColor" systemColor="systemGrayColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntw-JC-Jiv">
@@ -2657,7 +2653,7 @@
             <color red="0.20000000000000001" green="0.792156862745098" blue="0.77254901960784317" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="orangeColor">
-            <color red="1" green="0.35294117647058826" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.41176470588235292" blue="0.19607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2CF9ECA5B1B073A347B5C8E0 /* Pods_Hovos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1391DE148A75807616E94B57 /* Pods_Hovos.framework */; };
+		AC01DE8624683265008924E2 /* HostProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC01DE8524683265008924E2 /* HostProfileViewController.swift */; };
 		AC046C9C245A9B6800DC84F9 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AC046C9B245A9B6800DC84F9 /* Profile.storyboard */; };
 		AC046C9F245AA22200DC84F9 /* CompleteProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC046C9E245AA22200DC84F9 /* CompleteProfileVC.swift */; };
 		AC05FEB023DEB2B6006AEE72 /* LandingVCVolunteersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */; };
@@ -25,6 +26,7 @@
 		AC31B414245C1AB400B379DD /* Themehelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC31B413245C1AB400B379DD /* Themehelper.swift */; };
 		AC31B416245C1CAA00B379DD /* Slogans.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC31B415245C1CAA00B379DD /* Slogans.swift */; };
 		AC3348BD2420893000C16BAE /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3348BC2420893000C16BAE /* ProfileViewController.swift */; };
+		AC37530F246BCF3A004A486B /* RegistrationAddVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37530E246BCF3A004A486B /* RegistrationAddVC.swift */; };
 		AC3CB46B23ED2F0200A8C74F /* AboutUsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */; };
 		AC3CB46D23ED354F00A8C74F /* DashBoardVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */; };
 		AC3F2ACE24037F050006A63B /* VolunteerSearchVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */; };
@@ -91,6 +93,7 @@
 		ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC6F2F423D6CE140043CBDB /* CustomMap.swift */; };
 		ACC6F2F723D6DE0A0043CBDB /* CustomAnnotation.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */; };
 		ACC86A8723BF119F00D58388 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC86A8623BF119F00D58388 /* User.swift */; };
+		ACCAA2942469C4FD0090279D /* MessageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCAA2932469C4FD0090279D /* MessageVC.swift */; };
 		ACCE4EFB23B3CDAC00891F0B /* lato_black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */; };
 		ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF223B3CDAB00891F0B /* lato.xml */; };
 		ACCE4EFD23B3CDAC00891F0B /* roboto_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ACCE4EF323B3CDAB00891F0B /* roboto_light.ttf */; };
@@ -128,6 +131,7 @@
 /* Begin PBXFileReference section */
 		0C76A3EF4E0B2D8DDC6E9E30 /* Pods-Hovos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.debug.xcconfig"; sourceTree = "<group>"; };
 		1391DE148A75807616E94B57 /* Pods_Hovos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Hovos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC01DE8524683265008924E2 /* HostProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostProfileViewController.swift; sourceTree = "<group>"; };
 		AC046C9B245A9B6800DC84F9 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		AC046C9E245AA22200DC84F9 /* CompleteProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompleteProfileVC.swift; sourceTree = "<group>"; };
 		AC05FEAF23DEB2B6006AEE72 /* LandingVCVolunteersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVCVolunteersCell.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		AC31B413245C1AB400B379DD /* Themehelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themehelper.swift; sourceTree = "<group>"; };
 		AC31B415245C1CAA00B379DD /* Slogans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slogans.swift; sourceTree = "<group>"; };
 		AC3348BC2420893000C16BAE /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AC37530E246BCF3A004A486B /* RegistrationAddVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAddVC.swift; sourceTree = "<group>"; };
 		AC3CB46A23ED2F0200A8C74F /* AboutUsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVC.swift; sourceTree = "<group>"; };
 		AC3CB46C23ED354F00A8C74F /* DashBoardVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashBoardVM.swift; sourceTree = "<group>"; };
 		AC3F2ACD24037F050006A63B /* VolunteerSearchVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolunteerSearchVC.xib; sourceTree = "<group>"; };
@@ -213,6 +218,7 @@
 		ACC6F2F423D6CE140043CBDB /* CustomMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMap.swift; sourceTree = "<group>"; };
 		ACC6F2F623D6DE0A0043CBDB /* CustomAnnotation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAnnotation.xib; sourceTree = "<group>"; };
 		ACC86A8623BF119F00D58388 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		ACCAA2932469C4FD0090279D /* MessageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageVC.swift; sourceTree = "<group>"; };
 		ACCE4EF123B3CDAB00891F0B /* lato_black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = lato_black.ttf; sourceTree = "<group>"; };
 		ACCE4EF223B3CDAB00891F0B /* lato.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lato.xml; sourceTree = "<group>"; };
 		ACCE4EF323B3CDAB00891F0B /* roboto_light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = roboto_light.ttf; sourceTree = "<group>"; };
@@ -560,6 +566,8 @@
 				ACC2BF8A23AEB551008D9130 /* ForgetPasswordVC.swift */,
 				ACF8C82123C711DB009537B5 /* HostsVC.swift */,
 				AC73E66A244A488800F2474C /* MapViewController.swift */,
+				ACCAA2932469C4FD0090279D /* MessageVC.swift */,
+				AC37530E246BCF3A004A486B /* RegistrationAddVC.swift */,
 			);
 			path = "Main Storyboard";
 			sourceTree = "<group>";
@@ -573,6 +581,7 @@
 				ACDEECB024268E6A00E1AC8C /* AboutHovosVC.swift */,
 				AC25C0CD244C8FA60050C752 /* MessageViewController.swift */,
 				AC25C0D1244CD3660050C752 /* ChatViewController.swift */,
+				AC01DE8524683265008924E2 /* HostProfileViewController.swift */,
 			);
 			path = "Dashboard Storyboard";
 			sourceTree = "<group>";
@@ -761,6 +770,7 @@
 				ACD3E7A5240CBBE0004B0137 /* VolunteerSearchModal.swift in Sources */,
 				AC415EA324543B5200E96977 /* EditProfile_ContriesVC.swift in Sources */,
 				AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */,
+				AC37530F246BCF3A004A486B /* RegistrationAddVC.swift in Sources */,
 				AC98655C244B239C008F113A /* AccountInformationVC.swift in Sources */,
 				AC0EB06C23B001DC00DF9489 /* DashboardVC.swift in Sources */,
 				AC986564244B8E9D008F113A /* PaymentViewController.swift in Sources */,
@@ -768,10 +778,12 @@
 				AC3348BD2420893000C16BAE /* ProfileViewController.swift in Sources */,
 				ACC6F2F523D6CE140043CBDB /* CustomMap.swift in Sources */,
 				ACC86A8723BF119F00D58388 /* User.swift in Sources */,
+				AC01DE8624683265008924E2 /* HostProfileViewController.swift in Sources */,
 				ACBB61A72455C9F20075F336 /* EditProfile_AboutYouselfVC.swift in Sources */,
 				AC263DAD23AFB89F001F2FEB /* ChangePasswordVM.swift in Sources */,
 				AC8E132423F9AD0100E2AA0A /* CalenderMonthCell.swift in Sources */,
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
+				ACCAA2942469C4FD0090279D /* MessageVC.swift in Sources */,
 				AC5B08C324603255007A8B2B /* EditProfile_ExchangeDealVc.swift in Sources */,
 				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
 				ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */,

@@ -18,18 +18,26 @@ class EditProfile_locationVVC: UIViewController,CLLocationManagerDelegate {
     var locationManager = CLLocationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        placeText.text = SharedUser.manager.auth.listing?.location?.location ?? ""
+        if let loc = SharedUser.manager.auth.listing?.location?.location, loc != "" {
+        placeText.text = loc
+        }else{
+          placeText.text = "Search"
+        }
         // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        if let loc = SharedUser.manager.auth.listing?.location,loc.longitude != ""{
+        
+            updateMap(lat:Double(loc.latitude ?? "0.0")! ,long:Double(loc.longitude ?? "0.0")!)
+        }else{
        if locationManager.location != nil {
         updateMap(lat:locationManager.location!.coordinate.latitude,long:locationManager.location!.coordinate.longitude)
         }else{
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+        }
         }
     }
     

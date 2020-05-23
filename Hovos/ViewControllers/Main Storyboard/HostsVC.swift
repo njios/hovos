@@ -62,13 +62,8 @@ class HostsVC: UIViewController {
         super.viewDidLoad()
         menuView.frame = self.view.frame
         menuView.delegate = menu_delegate
-        
         if object.count == 0{
             getHost()
-        }else{
-            if let _ = self.indexpath{
-                ViewHelper.shared().showLoader(self)
-            }
         }
     }
     
@@ -85,9 +80,13 @@ class HostsVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
+            ViewHelper.shared().showLoader(self)
+            self.collView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
             self.collView.scrollToItem(at: index, at: .left, animated: false)
             ViewHelper.shared().hideLoader()
             self.indexpath = nil
+            }
         }
     }
     
@@ -122,6 +121,31 @@ class HostsVC: UIViewController {
         }
     }
     
+    @IBAction func contactSelected(_ sender:UIButton){
+        if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            if SharedUser.manager.auth.user?.isPaid == "Y"{
+           let vc = storyboard?.instantiateViewController(withIdentifier: "MessageVC") as! MessageVC
+            vc.user = object[footerlabel.tag]
+           vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: false, completion: nil)
+            }else{
+                let stb = UIStoryboard(name: "Dashboard", bundle: nil)
+                let vc = stb.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
+                          
+                    vc.modalPresentationStyle = .overCurrentContext
+                  self.present(vc, animated: false, completion: nil)
+                
+            }
+        }else{
+            let vc = storyboard?.instantiateViewController(withIdentifier: "RegistrationAddVC") as! RegistrationAddVC
+             vc.isHost = true
+             vc.modalPresentationStyle = .overCurrentContext
+             self.present(vc, animated: false, completion: nil)
+        }
+        
+    }
+
+    
 }
 extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -154,6 +178,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }
         
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
+        footerlabel.tag = indexPath.row
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
         cell.place?.text = country + ", " + city
@@ -194,6 +219,60 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true
         }
+        
+        
+        if let payment = volItem.member?.ratings?.payment, payment == "Y"{
+            cell.verifiedStatus[0].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[0].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[0].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[0].image = UIImage(named: "startUnselected")
+        }
+        
+        if let phone = volItem.member?.ratings?.phone, phone == "Y"{
+            cell.verifiedStatus[1].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[1].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[1].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[1].image = UIImage(named: "startUnselected")
+        }
+        if let response = volItem.member?.ratings?.response, response == "Y"{
+            cell.verifiedStatus[2].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[2].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[2].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[2].image = UIImage(named: "startUnselected")
+        }
+        if let review = volItem.member?.ratings?.reviews, review == "Y"{
+            cell.verifiedStatus[3].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[3].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[3].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[3].image = UIImage(named: "startUnselected")
+        }
+        if let email = volItem.member?.ratings?.email, email == "Y"{
+            cell.verifiedStatus[4].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[4].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[4].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[4].image = UIImage(named: "startUnselected")
+        }
+        if let passport = volItem.member?.ratings?.passport, passport == "Y"{
+            cell.verifiedStatus[5].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[5].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[5].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[5].image = UIImage(named: "startUnselected")
+        }
+        if let experience = volItem.member?.ratings?.experienced, experience == "Y"{
+            cell.verifiedStatus[6].font = UIFont(name: "Lato-bold", size: 15.0)
+            cell.startSelection[6].image = UIImage(named: "starSelected")
+        }else{
+            cell.verifiedStatus[6].font = UIFont(name: "Lato-Regular", size: 15.0)
+            cell.startSelection[6].image = UIImage(named: "startUnselected")
+        }
+
+        
         return cell
     }
     

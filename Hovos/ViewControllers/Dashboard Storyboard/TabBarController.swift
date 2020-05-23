@@ -30,7 +30,7 @@ class TabBarController: UIViewController {
         
             let header = ["auth":SharedUser.manager.auth.auth ?? "",
                           "API_KEY":constants.Api_key.rawValue,
-                          "id":SharedUser.manager.auth.id ?? ""]
+                         ]
         
                           var recommendedRequest = NetworkPacket()
                           recommendedRequest.apiPath = ApiEndPoints.user.rawValue
@@ -39,15 +39,15 @@ class TabBarController: UIViewController {
                    ApiCall(packet: recommendedRequest) { (data, status, code) in
                             if code == 200{
                                 let decoder = JSONDecoder()
-                                let userData = try? decoder.decode(Auth.self, from: data!)
+                                let userData = try! decoder.decode(Auth.self, from: data!)
                                 
-                                if userData?.user == nil {
-                                    let userData1 = try? decoder.decode(Auth1.self, from: data!)
-                                    SharedUser.manager.auth.user = userData1?.user
+                                if userData.user == nil {
+                                    let userData1 = try! decoder.decode(Auth1.self, from: data!)
+                                    SharedUser.manager.auth.user = userData1.user
                                     SharedUser.manager.auth.listing = Listing()
                                 }else{
-                                    SharedUser.manager.auth.listing = userData?.listing
-                                    SharedUser.manager.auth.user = userData?.user
+                                    SharedUser.manager.auth.listing = userData.listing
+                                    SharedUser.manager.auth.user = userData.user
                                 }
                                
                                 if let updatedData = try? JSONEncoder().encode(SharedUser.manager.auth){
@@ -119,7 +119,11 @@ class TabBarController: UIViewController {
             profile.alpha = 1.0
             fav.alpha = 0.5
             setting.alpha = 0.5
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
              vc = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController")
+            }else{
+                 vc = storyboard?.instantiateViewController(withIdentifier: "HostProfileViewController")
+            }
         }
         if sender.tag == 4{
             home.alpha = 0.5

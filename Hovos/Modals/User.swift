@@ -92,7 +92,7 @@ struct Listing:Codable {
     var countries:[String:String?]?
     var schedules:[schedules]?
     var friends:[friends]?
-    var member:User?
+    var member:User1?
     var reviews:[review]?
     var mealDescription:String?
     var paymentDescription:String?
@@ -140,7 +140,7 @@ struct User:Codable {
     var type:String?
     var role:String?
     var languages:[String:String]?
-    
+    var ratings:ratings?
 //    init(from decoder: Decoder) throws {
 //        let container = try decoder.container(keyedBy: CodingKeys.self)
 //
@@ -153,6 +153,66 @@ struct User:Codable {
 //
 //    }
     
+    
+}
+
+
+struct User1:Codable {
+    var additionalDesc:String?
+    var age:String?
+    var appToken:String?
+    var autoRenew:String?
+    var currency:String?
+    var currencyCode:String?
+    var currencySign:String?
+    var email:String?
+    var expiredOn:String?
+    var firstName:String?
+    var fid_autoRenew:String?
+    var fid_spammer:String?
+    var gender:String?
+    var id:String?
+    var image:images?
+    var isDocumentVerified:String?
+    var isEmailverified:String?
+    var isPaid:String?
+    var isPhoneVerified:String?
+    var language:String?
+    var languageDescription:String?
+    var lastName:String?
+    var listingId:String?
+    var password:String?
+    var personalDescription:String?
+    var phoneNumber:String?
+    var renewalAmount:String?
+    var type:String?
+    var role:String?
+    var languages:[String:String]?
+    var ratings:ratings?
+//    init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//
+//        if let value = try? container.decode(Int.self, forKey: .age) {
+//            age = String(value)
+//        } else {
+//            age = try container.decode(String.self, forKey: .id)
+//        }
+//
+//
+//    }
+    
+    
+}
+
+struct ratings:Codable {
+    
+        var email: String?
+        var passport: String?
+        var phone: String?
+        var experienced: String?
+        var payment: String?
+        var reviews: String?
+        var response: String?
     
 }
 

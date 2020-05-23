@@ -18,18 +18,11 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
     fileprivate var locationMarker : GMSMarker? = GMSMarker()
     var location: CLLocation!
     var mapItems:[VolunteerItem]!
-    var isOrange = false
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-      
         loadMap()
-        if isOrange{
-        
-            headerView.backgroundColor = UIColor(named: "orangeColor")
-        }else{
-            headerView.backgroundColor = UIColor(named: "greenColor")
-        }
         // Do any additional setup after loading the view.
     }
     

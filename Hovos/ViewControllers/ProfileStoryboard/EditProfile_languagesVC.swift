@@ -58,8 +58,8 @@ class EditProfile_languagesVC: UIViewController,UITableViewDelegate,UITableViewD
                        cell.continetName.textColor = .lightGray
                    }
         }else{
-        if  SharedUser.manager.auth.user?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
-            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+        if  SharedUser.manager.auth.listing?.member?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
+            if SharedUser.manager.auth.listing?.member?.role?.lowercased() == "v"{
                cell.selectimage.image = UIImage(named: "selectedBlueTick")
             }else{
                cell.selectimage.image = UIImage(named: "selectedTick")
@@ -88,11 +88,11 @@ class EditProfile_languagesVC: UIViewController,UITableViewDelegate,UITableViewD
                        SharedUser.manager.auth.listing?.accommodations?[(skills[indexPath.row].value ?? "")] = (skills[indexPath.row].title ?? "")
                    }
         }else{
-        if  SharedUser.manager.auth.user?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
-            SharedUser.manager.auth.user?.languages?.removeValue(forKey: (skills[indexPath.row].value ?? ""))
+        if  SharedUser.manager.auth.listing?.member?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
+            SharedUser.manager.auth.listing?.member?.languages?.removeValue(forKey: (skills[indexPath.row].value ?? ""))
             
         }else{
-            SharedUser.manager.auth.user?.languages?[(skills[indexPath.row].value ?? "")] = (skills[indexPath.row].title ?? "")
+            SharedUser.manager.auth.listing?.member?.languages?[(skills[indexPath.row].value ?? "")] = (skills[indexPath.row].title ?? "")
         }
         }
 
