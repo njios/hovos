@@ -107,7 +107,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         if let cMarker = marker as? customMarker{
             let hostVC = vc.storyboard?.instantiateViewController(withIdentifier:  "HostsVC") as! HostsVC
             hostVC.indexpath =  IndexPath(row: cMarker.index, section: 0)
-            hostVC.object = VMObject.Hosts
+            hostVC.object.hosts = VMObject.Hosts
             hostVC.location = VMObject.location
             if let vc =  getNavigationController(){
                    vc.pushViewController(hostVC, animated: false)
@@ -145,7 +145,7 @@ class CustomAnnotation:UIView{
     }
 }
 
-class customMarker:GMSMarker,GMUClusterItem{
+class customMarker:GMSMarker{
     var info = VolunteerItem()
     var index = -1
 }

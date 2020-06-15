@@ -36,32 +36,7 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
         searchTextView.delegate = self
         vmObject = VolunteerSearchVM(dependency: self)
      }
-//
-//    @objc func jobsSelected(_ sender:UIButton){
-//
-//        if (searchModel.jobsArray.contains(vmObject.jobs[sender.tag].title ?? "")){
-//            sender.isSelected = false
-//            sender.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-//
-//            for i in 0 ..< (searchModel.jobsArray.count){
-//                if searchModel.jobsArray[i] == (vmObject.jobs[sender.tag].title ?? ""){
-//                searchModel.jobsArray.remove(at: i)
-//                    searchModel.jobs.remove(at: i)
-//                break
-//                }
-//            }
-//
-//        }else{
-//            sender.isSelected = true
-//            sender.backgroundColor = UIColor(named: "orangeColor")
-//            searchModel.jobs.append(vmObject.jobs[sender.tag].value ?? "")
-//            searchModel.jobsArray.append(vmObject.jobs[sender.tag].title ?? "")
-//        }
-//
-//        print("--->",searchModel.jobsArray.joined(separator: "|"))
-//        print("--->",searchModel.jobs)
-//    }
-   
+
     func SearchText(with text: String) {
         vmObject.modal.qs = text
     }

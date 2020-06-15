@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/googlemaps/google-maps-ios-utils.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-ios-utils)
+![Run unit tests](https://github.com/googlemaps/google-maps-ios-utils/workflows/Run%20unit%20tests/badge.svg)
 [![pod](https://img.shields.io/cocoapods/v/Google-Maps-iOS-Utils.svg)](https://cocoapods.org/pods/Google-Maps-iOS-Utils)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ![GitHub contributors](https://img.shields.io/github/contributors/googlemaps/google-maps-ios-utils)
 ![Apache-2.0](https://img.shields.io/badge/license-Apache-blue)
 
@@ -35,7 +36,7 @@ In your `Podfile`:
 use_frameworks!
 
 target 'TARGET_NAME' do
-    pod 'Google-Maps-iOS-Utils', '~> 3.0.2'
+    pod 'Google-Maps-iOS-Utils', '~> 3.1.4'
 end
 ```
 
@@ -47,7 +48,40 @@ $ pod install
 
 ### [Carthage](https://github.com/Carthage/Carthage)
 
-Coming soon! See [#249].
+In your `Cartfile`:
+
+```
+github "googlemaps/google-maps-ios-utils"
+```
+
+See the [Carthage doc] for further installation instructions.
+
+## Samples and Example Usage
+
+e.g. Displaying KML data
+
+```swift
+import GoogleMapsUtils
+
+func renderKml() {
+    // Parse KML
+    let path: String = // Path to your KML file...
+    let kmlUrl = URL(fileURLWithPath: path)
+    let kmlParser = GMUKmlParser(url: kmlUrl)
+    kmlParser.parse()
+
+    // Render parsed KML
+    let renderer = GMUGeometryRenderer(
+        map: mapView,
+        geometries: kmlParser.placemarks,
+        styles: kmlParser.styles,
+        styleMaps: kmlParser.styleMaps
+    )
+    renderer.render()
+}
+```
+
+You can see more example usages in our [sample][samples] projects.
 
 ## Support
 
@@ -61,7 +95,7 @@ You can also reach us on our [Discord channel].
 For more information, check out the detailed guide on the
 [Google Developers site][devsite-guide].
 
-[#249]: https://github.com/googlemaps/google-maps-ios-utils/issues/249
+[Carthage doc]: Carthage.md
 [Discord channel]: https://discord.gg/9fwRNWg
 [contributing]: CONTRIBUTING.md
 [code of conduct]: CODE_OF_CONDUCT.md
@@ -71,3 +105,4 @@ For more information, check out the detailed guide on the
 [customizing-markers]: CustomMarkers.md
 [geometry-rendering]: GeometryRendering.md
 [heatmap-rendering]: HeatmapRendering.md
+[samples]: https://github.com/googlemaps/google-maps-ios-utils/tree/master/samples

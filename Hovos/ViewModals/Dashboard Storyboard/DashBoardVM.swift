@@ -10,6 +10,7 @@ import Foundation
 import CoreLocation
 import UIKit
 class DashBoardVM:NSObject {
+  
     var mapItems = [VolunteerItem]()
     var recommendedItems = [VolunteerItem]()
     var latestItems = [VolunteerItem]()

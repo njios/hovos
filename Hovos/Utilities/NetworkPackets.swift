@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import UIKit
 struct NetworkPacket {
-     var url:String?
+    var url:String?
     var apiPath:String?{
        // var completeUrl:String
         get{

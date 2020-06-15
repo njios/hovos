@@ -21,7 +21,7 @@ class NewHosts: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowL
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "listCell", for: indexPath) as! listCell
           cell.imageV?.image = UIImage(named: "bg")
-            if let imageUrl = modalObject?[indexPath.row].image {
+            if let imageUrl = modalObject?[indexPath.row].image?.medium {
           cell.imageV?.kf.indicatorType = .activity
           cell.imageV?.kf.setImage(with: URL(string: imageUrl))
             }else{

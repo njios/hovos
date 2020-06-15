@@ -19,6 +19,7 @@ class LandingVC: UIViewController {
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var countries:ContinentView!
     var VMObject:LandingVM!
+    var searchModel = HostSearchModel()
     // variable to save the last position visited, default to zero
     private var lastContentOffset: CGFloat = 0
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class LandingVC: UIViewController {
         menuView.delegate = self
         countries.delegate = self
         countries.host = true
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,7 +51,7 @@ class LandingVC: UIViewController {
                 vollist.VMObject = VMObject
                 vollist.menu_delegate = self
                 vollist.location = VMObject.location
-                vollist.object = VMObject.Hosts
+                vollist.object.hosts = VMObject.Hosts
                   }
         
     }
@@ -58,7 +60,15 @@ class LandingVC: UIViewController {
         self.performSegue(withIdentifier: "volunteer", sender: nil)
     }
     
-    
+    @IBAction func titleSearchClicked(_ sender:UIButton){
+        let cell = tblView.cellForRow(at: IndexPath(row: 0, section: 0)) as! LandingVCSliderCell
+        let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
+            vollist.VMObject = VMObject
+            vollist.menu_delegate = self
+            searchModel.qs = cell.sliderTitle.text!
+            vollist.copyModal = searchModel
+        self.navigationController?.pushViewController(vollist, animated: false)
+    }
     
     @IBAction func hostSignup(_ sender:UIButton){
            self.performSegue(withIdentifier: "host", sender: nil)
@@ -66,9 +76,13 @@ class LandingVC: UIViewController {
     
     @IBAction func loginClicked(_ sender:UIButton){
             
-            let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
-        self.navigationController?.pushViewController(loginVC!, animated: true)
+       let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+        let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
+        if registerVC != nil, loginVC != nil{
+            self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
         }
+        
+    }
     
     @IBAction func loadMenu(_ sender:UIButton){
         self.view.addSubview(menuView)
@@ -140,7 +154,10 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
 extension LandingVC:Menudelegates{
     
     func menuItemDidSelect(for action: Action) {
-        
+        let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
+            vollist.VMObject = VMObject
+            vollist.menu_delegate = self
+ 
         self.navigationController?.popToRootViewController(animated: false)
 
         switch action {
@@ -171,11 +188,22 @@ extension LandingVC:Menudelegates{
             countries.isHidden = true
             self.showProgressAlert()
         case .hostlist:
-            performSegue(withIdentifier: "hostlist", sender: nil)
+      self.navigationController?.pushViewController(vollist, animated: false)
         case .volunteers:
             performSegue(withIdentifier: "vollist", sender: nil)
         case .AboutUS:
              performSegue(withIdentifier: "AboutUS", sender: nil)
+            break
+        case .Response(let data):
+            let countriesData = data as? [continents:[countries]]
+                    let keys = Array<continents>(countriesData!.keys)
+                    searchModel.continent = keys.first?.title ?? ""
+                    searchModel.countries = (countriesData?[keys.first!]?.map({ $0.title }))! as! [String]
+                    searchModel.conti = keys.first?.continentId
+                    searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryCode }))! as! [String]).joined(separator: "|")
+        
+            vollist.copyModal = searchModel
+            self.navigationController?.pushViewController(vollist, animated: false)
             break
         default:
             break
@@ -183,6 +211,8 @@ extension LandingVC:Menudelegates{
         
        
     }
+    
+   
 }
 
 extension LandingVC:ListViewDelegate,MapViewResponsable{

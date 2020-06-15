@@ -52,7 +52,7 @@ struct VolunteerItem:Codable{
     var currentLocation:String?
     var isFlaxibleDates:String?
     var companion:String?
-    var image:String?
+    var image:images?
     var name:String?
     var workingDays:String?
     var workingHours:String?
@@ -79,7 +79,7 @@ struct VolunteerItem:Codable{
     var totalMatching:String?
     func getFullimage(completion:@escaping (UIImage?)->()){
         DispatchQueue.global().async {
-            let data = try? Data(contentsOf: URL(string:(self.image!))!)
+            let data = try? Data(contentsOf: URL(string:(self.image?.medium!)!)!)
             let image = UIImage(data: data ?? Data())
            completion(image ?? UIImage())
         }

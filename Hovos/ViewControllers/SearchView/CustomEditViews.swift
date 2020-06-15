@@ -74,16 +74,26 @@ class CustomEditViews:UIView,UITextFieldDelegate{
             textField.resignFirstResponder()
         }
         if self.tag == 222{
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                textField.resignFirstResponder()
+            }
+            
             delegate?.showContinent()
         }
         if self.tag == 333{
+           DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                   textField.resignFirstResponder()
+               }
             delegate?.showCountries()
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        
         if self.tag == 111{
         delegate?.SearchText(with: textField.text!)
+
         textField.resignFirstResponder()
         }
     }

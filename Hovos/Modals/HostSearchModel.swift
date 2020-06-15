@@ -16,7 +16,8 @@ struct HostSearchModel:Codable{
 //    var exchangeDate:String = ""
     var jobsArray = [String]()
 //
-    
+    var min_offset = 0
+    var max_offset = 12
     var qs:String!
     var dt:String!
     var jobs = [String]()

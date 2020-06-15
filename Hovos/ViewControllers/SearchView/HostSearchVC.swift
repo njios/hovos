@@ -25,7 +25,8 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
      @IBOutlet weak var collView:UICollectionView!
      @IBOutlet weak var heightConstraint:NSLayoutConstraint!
      var vmObject = HostSearchVM()
-   
+    weak var dependency:HostsVC!
+    var copySearchModel:HostSearchModel!
      var searchModel = HostSearchModel(){
         didSet{
             if searchModel.jobs.count > 0 || searchModel.conti != nil || searchModel.dt != nil || searchModel.qs != nil {
@@ -62,6 +63,49 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
                 }
             }
         }
+       
+        
+    }
+    
+    @IBAction func clearClicked(_ sender:UIButton){
+        searchModel = HostSearchModel()
+        searchTextView.serachText.text = ""
+        continentView.serachText.text = ""
+        countriesView.serachText.text = ""
+        anytime.isSelected = true
+        dateRange.isSelected = false
+        self.fromLabel.text = "Start Date"
+        self.toLabel.text = "End Date"
+        collView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if copySearchModel != nil{
+               searchModel = copySearchModel
+               }
+        
+               if let value = searchModel.qs, value != ""{
+                   searchTextView.serachText.text = value
+               }
+               
+               if searchModel.continent != "" {
+                   continentView.serachText.text = searchModel.continent
+               }
+               if searchModel.countries.count > 0 {
+                   countriesView.serachText.text = searchModel.countries.joined(separator: ",")
+               }
+               
+               if let value = searchModel.dt,value != "" {
+                   self.fromLabel.text = String(searchModel.dt.split(separator: "|").first!)
+                   self.toLabel.text = String(searchModel.dt.split(separator: "|").last!)
+                anytime.isSelected = false
+                                  dateRange.isSelected = true
+               }else{
+                anytime.isSelected = true
+                      dateRange.isSelected = false
+        }
+               
+               collView.reloadData()
     }
     
     @objc func jobsSelected(_ sender:UIButton){
@@ -102,9 +146,28 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
       }
     
     @IBAction func searchClicked(_ sender:UIButton){
-           startSearch(searchModel)
-           goback(sender)
+        ViewHelper.shared().showLoader(self)
+        dependency.searchModal = searchModel
+        
+        dependency.searchHostApi(completion: {
+            DispatchQueue.main.async {
+                ViewHelper.shared().hideLoader()
+                self.goback(sender)
+            }
+        })
+           
        }
+    
+    @IBAction func showContinent(_ sender:UIButton){
+        searchTextView.resignFirstResponder()
+      showContinent()
+    }
+    
+    @IBAction func showCountries(_ sender:UIButton){
+        searchTextView.resignFirstResponder()
+      showCountries()
+    }
+    
     @IBAction func anyTimeClicked(_ sender:UIButton){
         anytime.isSelected = true
         dateRange.isSelected = false
@@ -138,7 +201,7 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "JobsCell", for: indexPath) as! JobsCell
         cell.jobsItem.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-        if searchModel.jobs.contains(vmObject.jobs![indexPath.row].title ?? ""){
+        if searchModel.jobsArray.contains(vmObject.jobs![indexPath.row].title ?? ""){
             cell.jobsItem.isSelected = true
             cell.jobsItem.backgroundColor = UIColor(named: "orangeColor")
         }else{
@@ -162,7 +225,7 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         searchModel.continent = keys.first?.title ?? ""
         searchModel.countries = (countriesData?[keys.first!]?.map({ $0.title }))! as! [String]
         searchModel.conti = keys.first?.continentId
-        searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryId }))! as! [String]).joined(separator: ",")
+        searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryCode }))! as! [String]).joined(separator: "|")
         countries.isHidden = true
       }
       

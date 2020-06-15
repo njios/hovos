@@ -39,15 +39,15 @@ class TabBarController: UIViewController {
                    ApiCall(packet: recommendedRequest) { (data, status, code) in
                             if code == 200{
                                 let decoder = JSONDecoder()
-                                let userData = try! decoder.decode(Auth.self, from: data!)
+                                let userData = try? decoder.decode(Auth.self, from: data!)
                                 
-                                if userData.user == nil {
+                                if userData?.user == nil {
                                     let userData1 = try! decoder.decode(Auth1.self, from: data!)
                                     SharedUser.manager.auth.user = userData1.user
                                     SharedUser.manager.auth.listing = Listing()
                                 }else{
-                                    SharedUser.manager.auth.listing = userData.listing
-                                    SharedUser.manager.auth.user = userData.user
+                                    SharedUser.manager.auth.listing = userData?.listing
+                                    SharedUser.manager.auth.user = userData?.user
                                 }
                                
                                 if let updatedData = try? JSONEncoder().encode(SharedUser.manager.auth){

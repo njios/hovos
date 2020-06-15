@@ -23,6 +23,13 @@ extension UIViewController{
         self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    @IBAction func gobackToRoot(_ sender:UIButton){
+          if let nvc = self.navigationController{
+          nvc.popToRootViewController(animated: false)
+          }
+      }
+    
     func showProgressAlert(){
         let alert = UIAlertController(title: "No Content", message: "Work in progress.", preferredStyle: .alert)
         let alertaction = UIAlertAction(title: "Close", style: .cancel, handler: nil)

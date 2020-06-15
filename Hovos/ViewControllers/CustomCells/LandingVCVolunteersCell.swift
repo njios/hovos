@@ -30,6 +30,7 @@ class LandingVCVolunteersCell: UITableViewCell {
                 self.collView.delegate = self.listDelegates
                 self.collView.dataSource = self.listDelegates
                 self.collView.reloadData()
+               
             }
         }
      }

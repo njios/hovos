@@ -13,6 +13,7 @@ class LandingVCSliderCell: UITableViewCell {
     @IBOutlet weak var sliderCollView:UICollectionView!
     @IBOutlet weak var nextButton:UIButton!
     @IBOutlet weak var prevButton:UIButton!
+    @IBOutlet weak var titleButton:UIButton!
     @IBOutlet weak var sliderTitle:CustomLabels!
     @IBOutlet weak var sliderSubTitle:UILabel!
     var sliderIndex = 0
@@ -67,6 +68,8 @@ class LandingVCSliderCell: UITableViewCell {
                           "Spiritual Projects",
                           "Forest Work"
                      ]
+    
+   
     
     var detailOfImage = [  "Put your creativity to work and create art while you volunteer.",
                            "if you have experience with children, this volunteer opportunity is perfect!",

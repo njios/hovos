@@ -11,102 +11,116 @@ PODS:
     - Adyen/Card
     - Adyen/Core
   - Adyen3DS2 (2.1.0-rc.5)
-  - Alamofire (4.9.0)
-  - AppAuth (1.2.0):
-    - AppAuth/Core (= 1.2.0)
-    - AppAuth/ExternalUserAgent (= 1.2.0)
-  - AppAuth/Core (1.2.0)
-  - AppAuth/ExternalUserAgent (1.2.0)
-  - FBSDKCoreKit (5.7.0):
-    - FBSDKCoreKit/Basics (= 5.7.0)
-    - FBSDKCoreKit/Core (= 5.7.0)
-  - FBSDKCoreKit/Basics (5.7.0)
-  - FBSDKCoreKit/Core (5.7.0):
+  - Alamofire (4.9.1)
+  - AppAuth (1.3.0):
+    - AppAuth/Core (= 1.3.0)
+    - AppAuth/ExternalUserAgent (= 1.3.0)
+  - AppAuth/Core (1.3.0)
+  - AppAuth/ExternalUserAgent (1.3.0)
+  - DropDown (2.3.13)
+  - FBSDKCoreKit (7.0.0):
+    - FBSDKCoreKit/Basics (= 7.0.0)
+    - FBSDKCoreKit/Core (= 7.0.0)
+  - FBSDKCoreKit/Basics (7.0.0)
+  - FBSDKCoreKit/Core (7.0.0):
     - FBSDKCoreKit/Basics
-  - FBSDKLoginKit (5.7.0):
-    - FBSDKLoginKit/Login (= 5.7.0)
-  - FBSDKLoginKit/Login (5.7.0):
-    - FBSDKCoreKit (~> 5.0)
-  - Google-Maps-iOS-Utils (3.0.2):
-    - Google-Maps-iOS-Utils/Clustering (= 3.0.2)
-    - Google-Maps-iOS-Utils/Geometry (= 3.0.2)
-    - Google-Maps-iOS-Utils/Heatmap (= 3.0.2)
-    - Google-Maps-iOS-Utils/QuadTree (= 3.0.2)
+  - FBSDKLoginKit (7.0.0):
+    - FBSDKLoginKit/Login (= 7.0.0)
+  - FBSDKLoginKit/Login (7.0.0):
+    - FBSDKCoreKit (~> 7.0.0)
+  - Google-Maps-iOS-Utils (3.1.4):
+    - Google-Maps-iOS-Utils/Clustering (= 3.1.4)
+    - Google-Maps-iOS-Utils/Geometry (= 3.1.4)
+    - Google-Maps-iOS-Utils/Heatmap (= 3.1.4)
+    - Google-Maps-iOS-Utils/QuadTree (= 3.1.4)
     - GoogleMaps
-  - Google-Maps-iOS-Utils/Clustering (3.0.2):
+  - Google-Maps-iOS-Utils/Clustering (3.1.4):
     - Google-Maps-iOS-Utils/QuadTree
     - GoogleMaps
-  - Google-Maps-iOS-Utils/Geometry (3.0.2):
+  - Google-Maps-iOS-Utils/Geometry (3.1.4):
     - GoogleMaps
-  - Google-Maps-iOS-Utils/Heatmap (3.0.2):
+  - Google-Maps-iOS-Utils/Heatmap (3.1.4):
     - Google-Maps-iOS-Utils/QuadTree
     - GoogleMaps
-  - Google-Maps-iOS-Utils/QuadTree (3.0.2):
+  - Google-Maps-iOS-Utils/QuadTree (3.1.4):
     - GoogleMaps
-  - GoogleMaps (3.4.0):
-    - GoogleMaps/Maps (= 3.4.0)
-  - GoogleMaps/Base (3.4.0)
-  - GoogleMaps/Maps (3.4.0):
+  - GoogleMaps (3.1.0):
+    - GoogleMaps/Maps (= 3.1.0)
+  - GoogleMaps/Base (3.1.0)
+  - GoogleMaps/Maps (3.1.0):
     - GoogleMaps/Base
-  - GoogleSignIn (5.0.0):
-    - AppAuth (~> 1.1)
+  - GooglePlacePicker (3.1.0):
+    - GoogleMaps (= 3.1.0)
+    - GooglePlaces (= 3.1.0)
+  - GooglePlaces (3.1.0):
+    - GoogleMaps/Base (= 3.1.0)
+  - GoogleSignIn (5.0.2):
+    - AppAuth (~> 1.2)
     - GTMAppAuth (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
   - GTMAppAuth (1.0.0):
     - AppAuth/Core (~> 1.0)
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.2.2):
-    - GTMSessionFetcher/Full (= 1.2.2)
-  - GTMSessionFetcher/Core (1.2.2)
-  - GTMSessionFetcher/Full (1.2.2):
-    - GTMSessionFetcher/Core (= 1.2.2)
-  - IQKeyboardManagerSwift (6.5.1)
-  - Kingfisher (5.8.1):
-    - Kingfisher/Core (= 5.8.1)
-  - Kingfisher/Core (5.8.1)
+  - GTMSessionFetcher (1.4.0):
+    - GTMSessionFetcher/Full (= 1.4.0)
+  - GTMSessionFetcher/Core (1.4.0)
+  - GTMSessionFetcher/Full (1.4.0):
+    - GTMSessionFetcher/Core (= 1.4.0)
+  - IQKeyboardManagerSwift (6.5.5)
+  - Kingfisher (5.14.0):
+    - Kingfisher/Core (= 5.14.0)
+  - Kingfisher/Core (5.14.0)
 
 DEPENDENCIES:
   - Adyen
-  - Alamofire
+  - Alamofire (~> 4.0)
+  - DropDown
   - FBSDKLoginKit
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - GooglePlacePicker
+  - GooglePlaces
   - GoogleSignIn
   - IQKeyboardManagerSwift
   - Kingfisher
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
+    - Adyen
+    - Adyen3DS2
     - Alamofire
     - AppAuth
+    - DropDown
     - FBSDKCoreKit
     - FBSDKLoginKit
+    - Google-Maps-iOS-Utils
     - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
     - GoogleSignIn
     - GTMAppAuth
     - GTMSessionFetcher
     - IQKeyboardManagerSwift
     - Kingfisher
-  trunk:
-    - Adyen
-    - Adyen3DS2
-    - Google-Maps-iOS-Utils
 
 SPEC CHECKSUMS:
   Adyen: b153a4113e8953097c982b2aafc65846eb1519ec
   Adyen3DS2: 7fae32b63e108bf24375c791652862c458b05c5d
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  AppAuth: bce82c76043657c99d91e7882e8a9e1a93650cd4
-  FBSDKCoreKit: 0d2d450fe9447e204fa6e912e0df76dd36693699
-  FBSDKLoginKit: 4127e8260b96e0e4cc8ba0c10c95ee63941aa24a
-  Google-Maps-iOS-Utils: bfc24e492f3a88a2dffec1b6e0a5bd86fc49486f
-  GoogleMaps: 67f4a604f80dd6a22d09c2a507a3a395b9f23060
-  GoogleSignIn: a62edd0516721d2a3db1259a5681b91f9b41c06a
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
+  FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
+  Google-Maps-iOS-Utils: 1e51ca272b4f4befdf3577bf46f58c22ef22062c
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  GooglePlacePicker: fa975116ac202ac29822c0a79758ea1c4db5a95f
+  GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  GoogleSignIn: 7137d297ddc022a7e0aa4619c86d72c909fa7213
   GTMAppAuth: 4deac854479704f348309e7b66189e604cf5e01e
-  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
-  IQKeyboardManagerSwift: 9ac7524fad9f9fe9a3b98c927e7772471ca546d2
-  Kingfisher: de969e451c81ca6c07a454bc36fea84b8b08c3c7
+  GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
+  IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
+  Kingfisher: 7b64389a43139c903ec434788344c288217c792d
 
-PODFILE CHECKSUM: 81ff3ab013159f1090c878823ce4c9e3f44d431e
+PODFILE CHECKSUM: 50dff1250d8417df1a7b547940a88c321a4d97e8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.2

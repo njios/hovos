@@ -22,7 +22,7 @@ extension ListViewDelegate{
           if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             let hostVC = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             hostVC.indexpath = index
-            hostVC.object = object
+            hostVC.object.hosts = object
        
             if type == "New"{
                 hostVC.showMatching = false
@@ -39,7 +39,7 @@ extension ListViewDelegate{
             
             let volVC = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
             volVC.indexpath = index
-            volVC.object = object
+            volVC.object?.travellers = object
           
             if type == "New"{
                 volVC.type = .latest
@@ -64,9 +64,9 @@ extension ListViewDelegate{
 class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource {
     var cache = [String:UIImage]()
     var delegate:ListViewDelegate!
-    var modalObject:[VolunteerItem]?
+    var modalObject:Volunteer? = Volunteer()
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return modalObject?.count ?? 0
+            return modalObject?.travellers?.count ?? 0
         }
         
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,14 +74,15 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             cell.imageV?.image = nil
           
             cell.imageV?.kf.indicatorType = .activity
-            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+            cell.imageV?.kf.setImage(with: URL(string: modalObject?.travellers![indexPath.row].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
              
+          
             
-            cell.name?.text = (modalObject?[indexPath.row].member?.firstName ?? "") + " " + (modalObject?[indexPath.row].member?.lastName ?? "")
+            cell.name?.text = (modalObject?.travellers![indexPath.row].member?.firstName ?? "") + " " + (modalObject?.travellers![indexPath.row].member?.lastName ?? "")
             
             
-            cell.place?.text = (modalObject?[indexPath.row].location?.country ?? "") + ", " + (modalObject?[indexPath.row].location?.city ?? "")
-            cell.matching?.text = (modalObject?[indexPath.row].totalMatching ?? "")
+            cell.place?.text = (modalObject?.travellers![indexPath.row].location?.country ?? "") + ", " + (modalObject?.travellers![indexPath.row].location?.city ?? "")
+            cell.matching?.text = (modalObject?.travellers![indexPath.row].totalMatching ?? "")
             return cell
         }
         
@@ -130,7 +131,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var photosCollview:UICollectionView!
         @IBOutlet weak var photosHeight:NSLayoutConstraint!
         @IBOutlet weak var matching:UILabel!
-        
+        @IBOutlet weak var countryButton:UIButton!
         var countries = [String]()
         var imageData = [images]()
         weak var dependency:UIViewController!

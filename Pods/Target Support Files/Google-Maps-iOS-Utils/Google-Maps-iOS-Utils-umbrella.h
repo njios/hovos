@@ -15,6 +15,7 @@
 #import "GMUNonHierarchicalDistanceBasedAlgorithm.h"
 #import "GMUSimpleClusterAlgorithm.h"
 #import "GMUWrappingDictionaryKey.h"
+#import "GMSMarker+GMUClusteritem.h"
 #import "GMUCluster.h"
 #import "GMUClusterItem.h"
 #import "GMUClusterManager+Testing.h"

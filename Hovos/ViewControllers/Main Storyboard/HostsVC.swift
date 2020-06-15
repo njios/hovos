@@ -10,7 +10,7 @@ import UIKit
 import CoreLocation
 class HostsVC: UIViewController {
     
-    var object = [VolunteerItem]()
+    var object = Volunteer()
     var name = ""
     var indexpath:IndexPath?
     var location:CLLocation!
@@ -26,66 +26,117 @@ class HostsVC: UIViewController {
     @IBOutlet weak var favButton:UIButton!
     var showMatching = false
     weak var menu_delegate:LandingVC!
-    var searchModal:HostSearchModel!{
-        didSet{
-            let countriesText = searchModal.countries.joined(separator: ",")
-            let continent = (searchModal.continent )
-            let date = (searchModal.dt ?? "")
-            let qs = (searchModal.qs ?? "")
-            let jobs = searchModal.jobsArray.joined(separator: ",")
-            object.removeAll()
-            ViewHelper.shared().showLoader(self)
-            VMObject.getHostBySearch(modal: searchModal) { (items) in
-                DispatchQueue.main.async {
-                    ViewHelper.shared().hideLoader()
-                    self.searchText.text = qs + "," + continent + "," + countriesText + "," + date + "," + jobs
-                    var isContinue = true
-                    while isContinue {
-                        if self.searchText.text?.first! == ","{
-                            self.searchText.text?.removeFirst()
-                        }else{
-                            isContinue = false
-                        }
-                    }
-                    _ = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
-                    _ = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
-                    _ = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
-                    self.object = items!
-                    self.collView.reloadData()
-                }
-            }
-            self.collView.reloadData()
-        }
-    }
-    
+    var loadMore:(()->([VolunteerItem]))!
+    var copyModal:HostSearchModel!
+    var searchModal:HostSearchModel!
+    var searchInCountry = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        if let modal = copyModal{
+            searchModal = modal
+            searchHostApi(completion: { })
+        }
         menuView.frame = self.view.frame
+       
         menuView.delegate = menu_delegate
-        if object.count == 0{
-            getHost()
+        if object.hosts?.count == 0 || object.hosts == nil{
+            if searchModal == nil {
+                getHost()
+            }else{
+                self.loaderView.isHidden = false
+            }
+        }else{
+             self.loaderView.isHidden = true
         }
     }
     
     private func getHost(){
-        ViewHelper.shared().showLoader(self)
-        VMObject.getNearByHosts(completion: { (items) in
+        self.loaderView.isHidden = false
+        VMObject.getAllHosts(completion: { (items) in
             DispatchQueue.main.async {
                 self.loaderView.isHidden = true
-                self.object = items!
+                self.object.hosts = items!
                 self.collView.reloadData()
+                self.loaderView.isHidden = true
             }
         })
     }
+    
+    
+    @IBAction func searchByCountryClicked(_ sender:UIButton){
+        searchModal = HostSearchModel()
+        let volItem = object.hosts![sender.tag]
+        searchModal.cntry = volItem.location!.countryCode!
+        searchModal.countries = [volItem.location!.country!]
+        searchInCountry = volItem.location!.country!
+         searchModal.latlng = "\(volItem.location!.latitude!)|\(volItem.location!.longitude!)"
+         self.loaderView?.isHidden = false
+        searchHostApi {
+            
+        }
+    }
+    
+    func searchHostApi(_ minOffset:Int = 0, _ maxOffset:Int = 12,completion:@escaping (()->())){
+        let countriesText = searchModal.countries.joined(separator: ",")
+        searchModal.min_offset = minOffset
+        searchModal.max_offset = maxOffset
+        let continent = (searchModal.continent )
+        let date = (searchModal.dt?.replacingOccurrences(of: "|", with: "-"))
+        var qs = ""
+        if let value = searchModal.qs{
+            qs = value
+        }
+        let jobs = searchModal.jobsArray.joined(separator: ",")
+        if searchModal.min_offset == 0{
+            object.hosts?.removeAll()
+        }
+        if qs.last == " "{
+            qs.removeLast()
+        }
+        if location != nil && searchModal.latlng == ""{
+            searchModal.latlng = "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"
+        }
+        VMObject.getHostBySearchWithSearchItems(modal: searchModal) { (vol) in
+            DispatchQueue.main.async {
+                self.loaderView?.isHidden = true
+                self.searchText.text = qs + ","
+                self.searchText.text =  self.searchText.text! + continent + ","
+                self.searchText.text =  self.searchText.text! + countriesText + ","
+                self.searchText.text =  self.searchText.text! + (date ?? "") + ","
+                self.searchText.text =  self.searchText.text! + jobs
+                var isContinue = true
+                while isContinue {
+                    if self.searchText.text?.first == ","{
+                        self.searchText.text?.removeFirst()
+                    }else if self.searchText.text?.last == ","{
+                        self.searchText.text?.removeLast()
+                    }else{
+                        isContinue = false
+                    }
+                }
+                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
+                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
+                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
+                if self.searchModal.min_offset == 0{
+                    self.object = vol!
+                }else{
+                    self.object.hosts?.append(contentsOf: (vol?.hosts!)!)
+                }
+                self.collView.reloadData()
+                completion()
+            }
+        }
+    }
+    
     
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
             ViewHelper.shared().showLoader(self)
             self.collView.reloadData()
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-            self.collView.scrollToItem(at: index, at: .left, animated: false)
-            ViewHelper.shared().hideLoader()
-            self.indexpath = nil
+                self.collView.scrollToItem(at: index, at: .left, animated: false)
+                ViewHelper.shared().hideLoader()
+                self.indexpath = nil
             }
         }
     }
@@ -96,8 +147,9 @@ class HostsVC: UIViewController {
     
     @IBAction func searchHost(_ sender:UIButton){
         let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
-        vc.startSearch = { searchModal in
-            self.searchModal = searchModal
+        vc.dependency = self
+        if searchModal != nil{
+            vc.copySearchModel = searchModal
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -111,7 +163,7 @@ class HostsVC: UIViewController {
             var identifyYourself = NetworkPacket()
             identifyYourself.apiPath = ApiEndPoints.FavHosts.rawValue
             identifyYourself.header = header
-            identifyYourself.data = ["data":object[sender.tag].id ?? ""]
+            identifyYourself.data = ["data":object.hosts?[sender.tag].id ?? ""]
             identifyYourself.method = "POST"
             ViewHelper.shared().showLoader(self)
             ApiCall(packet: identifyYourself) { (data, status, code) in
@@ -124,37 +176,38 @@ class HostsVC: UIViewController {
     @IBAction func contactSelected(_ sender:UIButton){
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
             if SharedUser.manager.auth.user?.isPaid == "Y"{
-           let vc = storyboard?.instantiateViewController(withIdentifier: "MessageVC") as! MessageVC
-            vc.user = object[footerlabel.tag]
-           vc.modalPresentationStyle = .overCurrentContext
-            self.present(vc, animated: false, completion: nil)
+                let vc = storyboard?.instantiateViewController(withIdentifier: "MessageVC") as! MessageVC
+                vc.user = object.hosts?[footerlabel.tag]
+                vc.modalPresentationStyle = .overCurrentContext
+                self.present(vc, animated: false, completion: nil)
             }else{
                 let stb = UIStoryboard(name: "Dashboard", bundle: nil)
                 let vc = stb.instantiateViewController(withIdentifier: "PaymentViewController") as! PaymentViewController
-                          
-                    vc.modalPresentationStyle = .overCurrentContext
-                  self.present(vc, animated: false, completion: nil)
+                
+                vc.modalPresentationStyle = .overCurrentContext
+                self.present(vc, animated: false, completion: nil)
                 
             }
         }else{
             let vc = storyboard?.instantiateViewController(withIdentifier: "RegistrationAddVC") as! RegistrationAddVC
-             vc.isHost = true
-             vc.modalPresentationStyle = .overCurrentContext
-             self.present(vc, animated: false, completion: nil)
+            vc.isHost = true
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: false, completion: nil)
         }
         
     }
-
+    
     
 }
 extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return object.count
+        return object.hosts?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
-        let volItem = object[indexPath.row]
+        let volItem = object.hosts![indexPath.row]
         cell.imageData = volItem.images ?? []
         cell.dependency = self
         cell.AddGesture()
@@ -166,16 +219,25 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         
         if self.location != nil{
-            let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
+            let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.latitude ?? "")!, longitude: Double(volItem.location?.longitude ?? "")!))
             self.titleLabel.text = "Hosts nearby \(Int(distance/1000)) km"
         }else{
-            if showMatching{
-                self.titleLabel.text = "Recomm. hosts. Matching:\(volItem.totalMatching ?? "") "
+            if searchModal == nil{
+                if showMatching{
+                    self.titleLabel.text = "Recomm. hosts. Matching:\(volItem.totalMatching ?? "") "
+                }else{
+                    self.titleLabel.text = "New Hosts, signed up \((volItem.addedOn ?? "").getDate().getDay()) \((volItem.addedOn ?? "").getDate().getMonth()) "
+                }
             }else{
-                self.titleLabel.text = "New Hosts, signed up \((volItem.addedOn ?? "").getDate().getDay()) \((volItem.addedOn ?? "").getDate().getMonth()) "
+                self.titleLabel.text = "Hosts, \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
             }
-            
         }
+        
+        if searchInCountry != ""{
+             self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
+        }
+        
+        
         
         footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
         footerlabel.tag = indexPath.row
@@ -191,7 +253,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         cell.imageV?.image = nil
         cell.imageV?.kf.indicatorType = .activity
-        cell.imageV?.kf.setImage(with: URL(string: volItem.image ?? ""))
+        cell.imageV?.kf.setImage(with: URL(string: volItem.image?.medium ?? ""))
         
         cell.memberPic?.kf.indicatorType = .activity
         cell.memberPic?.kf.setImage(with: URL(string:volItem.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
@@ -215,6 +277,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.mealDesc.text = volItem.mealDescription ?? ""
         cell.photosCount.text = ""
         favButton.tag = indexPath.row
+        cell.countryButton.tag = indexPath.row
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true
@@ -271,8 +334,28 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             cell.verifiedStatus[6].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[6].image = UIImage(named: "startUnselected")
         }
-
         
+        
+        if indexPath.item == object.hosts!.count-1{
+            if searchModal == nil{
+                ViewHelper.shared().showLoader(self)
+                if LandingVM().location == nil{
+                    LandingVM().getAllHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
+                        self.object.hosts!.append(contentsOf: (items!))
+                        collectionView.reloadData()
+                        ViewHelper.shared().hideLoader()
+                    }
+                }else{
+                LandingVM().getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
+                    self.object.hosts!.append(contentsOf: (items!))
+                    collectionView.reloadData()
+                    ViewHelper.shared().hideLoader()
+                }
+                }
+            }else{
+                searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {})
+            }
+        }
         return cell
     }
     
@@ -280,11 +363,14 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         var hieght = collectionView.frame.height
         
         if #available(iOS 13.0, *) {
-            hieght = self.view.frame.size.height - collectionView.frame.origin.y
             let window = UIApplication.shared.keyWindow
-            let topPadding = window?.safeAreaInsets.top
-            let bottomPadding = window?.safeAreaInsets.bottom
-            hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
+            if (window?.safeAreaInsets.bottom ?? 0.0) > 0.0{
+                hieght = self.view.frame.size.height - collectionView.frame.origin.y
+                
+                let topPadding = window?.safeAreaInsets.top
+                let bottomPadding = window?.safeAreaInsets.bottom
+                hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
+            }
         }
         return CGSize(width: self.view.frame.size.width, height: hieght)
         
