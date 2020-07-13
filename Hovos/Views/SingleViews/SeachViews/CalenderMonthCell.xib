@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="lato_bold.ttf">
+            <string>Lato-Bold</string>
+        </array>
+        <array key="lato_regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CalenderMonthCell" rowHeight="343" id="VhH-ul-TGj" customClass="CalenderMonthCell" customModule="Hovos" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="343"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VhH-ul-TGj" id="uRv-LJ-0lm">
+                <rect key="frame" x="0.0" y="0.0" width="458" height="343"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2KO-Sv-xpN">
+                        <rect key="frame" x="169" y="25" width="120" height="24"/>
+                        <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="20"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="B8E-gb-RzI">
+                        <rect key="frame" x="0.0" y="59" width="458" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6o-1k-GTw">
+                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kdG-KI-gTI">
+                                <rect key="frame" x="65.5" y="0.0" width="65.5" height="30"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZY-T3-jy8">
+                                <rect key="frame" x="131" y="0.0" width="65.5" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o7E-ep-OiQ">
+                                <rect key="frame" x="196.5" y="0.0" width="65" height="30"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9b-3N-wTQ">
+                                <rect key="frame" x="261.5" y="0.0" width="65.5" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0vx-fp-d9I">
+                                <rect key="frame" x="327" y="0.0" width="65.5" height="30"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJZ-88-naT">
+                                <rect key="frame" x="392.5" y="0.0" width="65.5" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="o7E-ep-OiQ" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="2Vj-xS-mQA"/>
+                            <constraint firstItem="0vx-fp-d9I" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="8qT-Ag-ako"/>
+                            <constraint firstItem="KJZ-88-naT" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="ARd-jn-yaa"/>
+                            <constraint firstItem="g9b-3N-wTQ" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="LV0-D1-2sh"/>
+                            <constraint firstAttribute="height" constant="30" id="Qth-qs-VxW"/>
+                            <constraint firstItem="KZY-T3-jy8" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="pxO-OT-w9W"/>
+                            <constraint firstItem="kdG-KI-gTI" firstAttribute="width" secondItem="Q6o-1k-GTw" secondAttribute="width" id="rRN-f4-22f"/>
+                        </constraints>
+                    </stackView>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Li9-n4-Olu">
+                        <rect key="frame" x="0.0" y="89" width="458" height="254"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="RXh-Bg-ZzI">
+                            <size key="itemSize" width="50" height="50"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="border">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="B8E-gb-RzI" firstAttribute="leading" secondItem="uRv-LJ-0lm" secondAttribute="leading" id="2DJ-V0-fGD"/>
+                    <constraint firstAttribute="trailing" secondItem="Li9-n4-Olu" secondAttribute="trailing" id="5Nz-wL-YMh"/>
+                    <constraint firstItem="2KO-Sv-xpN" firstAttribute="top" secondItem="uRv-LJ-0lm" secondAttribute="top" constant="25" id="GqY-7z-NrP"/>
+                    <constraint firstItem="Li9-n4-Olu" firstAttribute="leading" secondItem="uRv-LJ-0lm" secondAttribute="leading" id="ScQ-ml-UhI"/>
+                    <constraint firstItem="2KO-Sv-xpN" firstAttribute="centerX" secondItem="uRv-LJ-0lm" secondAttribute="centerX" id="VC0-9x-IF5"/>
+                    <constraint firstItem="Li9-n4-Olu" firstAttribute="top" secondItem="B8E-gb-RzI" secondAttribute="bottom" id="fm7-Ar-QZA"/>
+                    <constraint firstAttribute="bottom" secondItem="Li9-n4-Olu" secondAttribute="bottom" id="oCf-sv-UJp"/>
+                    <constraint firstAttribute="trailing" secondItem="B8E-gb-RzI" secondAttribute="trailing" id="sE3-sN-43C"/>
+                    <constraint firstItem="B8E-gb-RzI" firstAttribute="top" secondItem="2KO-Sv-xpN" secondAttribute="bottom" constant="10" id="thJ-bY-LOI"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="dateCollView" destination="Li9-n4-Olu" id="iZf-4h-3qR"/>
+                <outlet property="month" destination="2KO-Sv-xpN" id="EQE-Ga-frC"/>
+            </connections>
+            <point key="canvasLocation" x="388.40579710144931" y="-278.90625"/>
+        </tableViewCell>
+    </objects>
+</document>
