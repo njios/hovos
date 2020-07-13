@@ -42,7 +42,9 @@ class PaymentViewController: UIViewController,DropInComponentDelegate {
                                     self.dismiss(animated: true){
                                         DispatchQueue.main.async {
 
-                                            Hovos.showAlert(vc: topViewController()!, mssg: "Payment process successfully")
+                                            let vc = PaymentConfirmVC(nibName: "PaymentConfirmVC", bundle: nil)
+                                            vc.modalPresentationStyle = .overCurrentContext
+                                            self.present(vc, animated: true, completion: nil)
                                         }
                                     }
                                    

@@ -22,6 +22,7 @@ class VolunteerVC: UIViewController {
     var indexpath:IndexPath?
     let photosDelegate = PhotosCollection()
     @IBOutlet weak var titleLabel:UILabel!
+    @IBOutlet weak var searchText:UILabel!
     @IBOutlet weak var footerlabel:UILabel!
     @IBOutlet weak var collView:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
@@ -30,6 +31,44 @@ class VolunteerVC: UIViewController {
     weak var menu_delegate:LandingVC!
     var location:CLLocation!
     var type:typeOfVolunteer = .all
+    var searchInCountry = ""
+    let vc = VolunteerSearchVC( nibName: "VolunteerSearchVC", bundle: nil)
+    var volSearchModal:VolunteerSearchModel!{
+        didSet{
+            let countriesText = volSearchModal.countries.joined(separator: ",")
+            let continent = (volSearchModal.continent )
+            let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: "-"))
+            var skills = volSearchModal.skillsArray.joined(separator: ",")
+            var qs = ""
+            if let value = volSearchModal.qs{
+                qs = value
+            }
+            let jobs = volSearchModal.skillsArray.joined(separator: ",")
+            
+            if qs.last == " "{
+                qs.removeLast()
+            }
+            searchText.text = qs + ","
+            searchText.text =  searchText.text! + continent + ","
+            searchText.text =  searchText.text! + countriesText + ","
+            searchText.text =  searchText.text! + (date ?? "") + ","
+            searchText.text =  searchText.text! + volSearchModal.age + ","
+            searchText.text =  searchText.text! + skills + ","
+            var isContinue = true
+            while isContinue {
+                if self.searchText.text?.first == ","{
+                    self.searchText.text?.removeFirst()
+                }else if self.searchText.text?.last == ","{
+                    self.searchText.text?.removeLast()
+                }else{
+                    isContinue = false
+                }
+            }
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
@@ -38,6 +77,39 @@ class VolunteerVC: UIViewController {
         if type == .recommended{
             searchButton.isHidden = true
         }
+       
+        if  object?.travellers == nil {
+             ViewHelper.shared().showLoader(self)
+            LandingVM().getVolunteerList() { (items) in
+                          self.object = items
+                self.collView.reloadData()
+                          ViewHelper.shared().hideLoader()
+            }
+        }
+    }
+    
+    @IBAction func searchByCountryClicked(_ sender:UIButton){
+        var SearchModal = VolunteerSearchModel()
+        let vmobject = VolunteerSearchVM(dependency: vc)
+        let volItem = object?.travellers![sender.tag]
+        SearchModal.cntry = (volItem?.location!.countryCode)!
+        SearchModal.countries = [(volItem?.location!.country)!]
+        searchInCountry = (volItem?.location!.country)!
+       // SearchModal.latlng = "\(volItem?.location!.latitude! ?? "")|\(volItem?.location!.longitude! ?? "")"
+        
+        self.object?.travellers?.removeAll()
+        self.collView.reloadData()
+        ViewHelper.shared().showLoader(self)
+        vmobject.searchVolunteer(object: SearchModal) { (Volunteer) in
+            ViewHelper.shared().hideLoader()
+            DispatchQueue.main.async {
+
+                self.object = Volunteer
+                self.collView.reloadData()
+            }
+        }
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -73,17 +145,20 @@ class VolunteerVC: UIViewController {
     
     
     @IBAction func searchClicked(_ sender:UIButton){
-        let vc = 
-            
-            VolunteerSearchVC(nibName: "VolunteerSearchVC", bundle: nil)
-        vc.startSearch = { searchModal in
+        
+        vc.startSearch = { Modal,SearchModal in
             DispatchQueue.main.async {
-                self.object?.travellers = searchModal
+                self.object = Modal
+                self.volSearchModal = SearchModal
                 self.collView.reloadData()
             }
         }
+        if volSearchModal != nil {
+            vc.copySearchModel = volSearchModal
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
+    
     @IBAction func contactSelected(_ sender:UIButton){
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
             let vc = storyboard?.instantiateViewController(withIdentifier: "MessageVC") as! MessageVC
@@ -108,10 +183,15 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
         let volItem = object!.travellers![indexPath.row]
+         cell.imageMain = (volItem.image?.medium ?? "")
         cell.imageData = volItem.images ?? []
         cell.dependency = self
         cell.AddGesture()
-        cell.name?.text = volItem.name ?? ""
+        if let age = volItem.member?.age{
+        cell.name?.text = (volItem.name ?? "") + " (\(age))"
+        }else{
+             cell.name?.text = (volItem.name ?? "")
+        }
         cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()
         cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
@@ -130,13 +210,20 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             titleLabel.text = "Recomm. volunteers, matching : \(volItem.totalMatching ?? "")"
         }
         
+        if searchInCountry != ""{
+            self.titleLabel.text = "Volunteers in \(searchInCountry), \(indexPath.row + 1 ) of \(object?.totalResults ?? 0)"
+        }
+        
+        if volSearchModal != nil{
+            
+        }
         
         footerlabel.tag = indexPath.row
-        footerlabel.text = "  CONTACT \(cell.name!.text!.uppercased())  "
+        footerlabel.text = "  CONTACT \((volItem.name ?? ""))  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
         cell.place?.text = country + ", " + city
-        cell.volunteerSlogan.text = " \"\(volItem.slogan ?? "")\" "
+        cell.volunteerSlogan.text = (volItem.slogan ?? "") == "" ? "" : "\"\((volItem.slogan ?? ""))\""
         cell.skills.text = volItem.skillDescription ?? ""
         let personalDesc = volItem.member?.personalDescription ?? ""
         let additionalDesc = volItem.additionalDesc ?? ""
@@ -147,7 +234,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.imageV?.kf.setImage(with: URL(string: volItem.image?.medium ?? ""))
         let lastSeen = "Last seen on \((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
         let memberSince = "member since \((volItem.publishedOn ?? "").getDate().getYear())"
-        
+        cell.countryButton.tag = indexPath.row
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
         
         cell.location.text = (volItem.location?.country ?? "") + ", Last seen on " + "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
@@ -159,10 +246,10 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.jobs.text = jobs?.joined(separator: " | ") //"Elderly care | Help in the house | Hostel support | House sitting | Teaching"
         var schedule:String = ""
         for item in volItem.schedules ?? []{
-            schedule = schedule + item.start! + " - " + item.end!
+            schedule = schedule + item.start + " - " + item.end
             schedule = schedule + "\n"
         }
-        cell.schedule.text = schedule
+        cell.schedule.text = schedule == "" ? "Open for offers" : schedule
         
         let rem = (volItem.images?.count ?? 0) % 3
         var quo = (volItem.images?.count ?? 0) / 3
@@ -194,7 +281,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             cell.photosCount.isComplete = true
         }
         
-        if let payment = volItem.member?.ratings?.payment, payment == "Y"{
+        if let payment = volItem.member?.rating?.payment, payment == "Y"{
             cell.verifiedStatus[0].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[0].image = UIImage(named: "starSelected")
         }else{
@@ -202,42 +289,42 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             cell.startSelection[0].image = UIImage(named: "startUnselected")
         }
         
-        if let phone = volItem.member?.ratings?.phone, phone == "Y"{
+        if let phone = volItem.member?.rating?.phone, phone == "Y"{
             cell.verifiedStatus[1].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[1].image = UIImage(named: "starSelected")
         }else{
             cell.verifiedStatus[1].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[1].image = UIImage(named: "startUnselected")
         }
-        if let response = volItem.member?.ratings?.response, response == "Y"{
+        if let response = volItem.member?.rating?.response, response == "Y"{
             cell.verifiedStatus[2].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[2].image = UIImage(named: "starSelected")
         }else{
             cell.verifiedStatus[2].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[2].image = UIImage(named: "startUnselected")
         }
-        if let review = volItem.member?.ratings?.reviews, review == "Y"{
+        if let review = volItem.member?.rating?.reviews, review == "Y"{
             cell.verifiedStatus[3].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[3].image = UIImage(named: "starSelected")
         }else{
             cell.verifiedStatus[3].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[3].image = UIImage(named: "startUnselected")
         }
-        if let email = volItem.member?.ratings?.email, email == "Y"{
+        if let email = volItem.member?.rating?.email, email == "Y"{
             cell.verifiedStatus[4].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[4].image = UIImage(named: "starSelected")
         }else{
             cell.verifiedStatus[4].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[4].image = UIImage(named: "startUnselected")
         }
-        if let passport = volItem.member?.ratings?.passport, passport == "Y"{
+        if let passport = volItem.member?.rating?.passport, passport == "Y"{
             cell.verifiedStatus[5].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[5].image = UIImage(named: "starSelected")
         }else{
             cell.verifiedStatus[5].font = UIFont(name: "Lato-Regular", size: 15.0)
             cell.startSelection[5].image = UIImage(named: "startUnselected")
         }
-        if let experience = volItem.member?.ratings?.experienced, experience == "Y"{
+        if let experience = volItem.member?.rating?.experienced, experience == "Y"{
             cell.verifiedStatus[6].font = UIFont(name: "Lato-bold", size: 15.0)
             cell.startSelection[6].image = UIImage(named: "starSelected")
         }else{
@@ -260,19 +347,19 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var hieght = collectionView.frame.height
-              
-              if #available(iOS 13.0, *) {
-                  let window = UIApplication.shared.keyWindow
-                  if (window?.safeAreaInsets.bottom ?? 0.0) > 0.0{
-                      hieght = self.view.frame.size.height - collectionView.frame.origin.y
-                      
-                      let topPadding = window?.safeAreaInsets.top
-                      let bottomPadding = window?.safeAreaInsets.bottom
-                      hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
-                  }
-              }
-              return CGSize(width: self.view.frame.size.width, height: hieght)
-              
+        
+        if #available(iOS 13.0, *) {
+            let window = UIApplication.shared.keyWindow
+            if (window?.safeAreaInsets.bottom ?? 0.0) > 0.0{
+                hieght = self.view.frame.size.height - collectionView.frame.origin.y
+                
+                let topPadding = window?.safeAreaInsets.top
+                let bottomPadding = window?.safeAreaInsets.bottom
+                hieght = hieght - (topPadding ?? 0) - (bottomPadding ?? 0)
+            }
+        }
+        return CGSize(width: self.view.frame.size.width, height: hieght)
+        
     }
     
 }

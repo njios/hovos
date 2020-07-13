@@ -23,6 +23,21 @@ class EditProfileHomeVC: UIViewController {
     }
     
 
+    override func viewWillDisappear(_ animated: Bool) {
+        if SharedUser.manager.auth.user?.role?.lowercased() == "h"{
+            SharedUser.manager.saveHost { (status,mssg)  in
+                if status == true{
+                    print("profile update")
+                }
+            }
+        }else{
+            SharedUser.manager.saveVolunteer { (status,mssg) in
+                if status == true{
+                                   print("profile update")
+                               }
+            }
+        }
+    }
     @IBAction func hostAccomodationClicked(_ sender:UIButton){
         let vc = storyboard?.instantiateViewController(withIdentifier: "EditProfile_languagesVC") as! EditProfile_languagesVC
             vc.type = "accommodations"

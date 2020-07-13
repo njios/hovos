@@ -23,7 +23,7 @@ struct CalenderHelper{
         mmmddyyy.timeZone = calendar.timeZone
         mmmddyyy.dateFormat = "MMM dd, yyyy"
         currentDate = dateFormatter.date(from: dateFormatter.string(from: Date()))!
-        dateComponents = calendar.dateComponents([.month,.day,.year], from: dateFormatter.date(from: dateFormatter.string(from: Date()))!)
+        dateComponents = calendar.dateComponents([.month,.day,.year,.minute,.hour,.second], from: dateFormatter.date(from: dateFormatter.string(from: Date()))!)
         for i in dateComponents.month! ..< dateComponents.month!+12{
             months.append(getMonth(i%12))
         }

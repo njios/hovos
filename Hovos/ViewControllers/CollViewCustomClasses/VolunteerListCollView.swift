@@ -74,7 +74,7 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             cell.imageV?.image = nil
           
             cell.imageV?.kf.indicatorType = .activity
-            cell.imageV?.kf.setImage(with: URL(string: modalObject?.travellers![indexPath.row].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+            cell.imageV?.kf.setImage(with: URL(string: modalObject?.travellers![indexPath.row].member?.image?.medium ?? ""))
              
           
             
@@ -134,19 +134,26 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         @IBOutlet weak var countryButton:UIButton!
         var countries = [String]()
         var imageData = [images]()
+        var imageMain = ""
         weak var dependency:UIViewController!
         
+        override func awakeFromNib() {
+           
+        }
        
         func AddGesture(){
+             imageData.append(images(large: imageMain, medium: imageMain, title: imageMain))
             let gestureRecogniser = UITapGestureRecognizer(target: self, action: #selector(tapedOnimage))
                gestureRecogniser.numberOfTapsRequired = 2
                imageV?.addGestureRecognizer(gestureRecogniser)
         }
         
         @objc func tapedOnimage(){
-            if imageData.count > 0 {
+            if imageData.count > 0{
             let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
+            
             vc.imageData = imageData
+                vc.name = name?.text
             vc.modalPresentationStyle = .fullScreen
             dependency.present(vc, animated: true, completion: nil)
             }

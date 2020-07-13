@@ -18,7 +18,7 @@ class SignUPVM: NSObject {
                        "apptoken":"testtoken123",
                        "firstName":firstname,
                        "lastName":lastname,
-                       "type":type]
+                       "type":type.uppercased()]
         packet.method = HTTPMethod.post.rawValue
         packet.encoding = Alamofire.URLEncoding.httpBody
         ApiCall(packet: packet) { (data, status, code) in

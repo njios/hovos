@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HostProfileViewController: UIViewController {
+class HostProfileViewController: UIViewController,UpdateProfile {
     @IBOutlet weak var imageV:UIImageView?
     @IBOutlet weak var name:UILabel?
     @IBOutlet weak var place:CustomLabels?
@@ -49,22 +49,44 @@ class HostProfileViewController: UIViewController {
         super.viewDidLoad()
         menuView.frame = self.view.frame
         menuView.delegate = self
-        self.loadUI(volItem: SharedUser.manager.auth.listing ?? Listing())
+   SharedUser.manager.delegate = self
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        SharedUser.manager.delegate = nil
+    }
+    
     @IBAction func loadMenu(_ sender:UIButton){
         
         self.view.addSubview(menuView)
-        
-        
+
     }
+    
+    func reloadData() {
+        self.loadUI(volItem: SharedUser.manager.auth.listing ?? Listing())
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+          
+            self.loadUI(volItem: SharedUser.manager.auth.listing ?? Listing())
+    }
+    
     private func loadUI(volItem:Listing){
         headerTitle?.text = volItem.title
         postTitle?.text = volItem.title
+        
+        let f_name = SharedUser.manager.auth.user?.firstName ?? ""
+        let l_name = SharedUser.manager.auth.user?.lastName ?? ""
+        
         let age = "(" + (SharedUser.manager.auth.user?.age ?? "") + ")"
-        name?.text = "\(volItem.member?.firstName ?? "") \(age)"
+        if age != "()"{
+        name?.text = "\(f_name) \(l_name) \(age)"
+        }else{
+           name?.text = "\(f_name) \(l_name) "
+        }
         imageV?.kf.indicatorType = .activity
-        if let url = URL(string: volItem.image ?? ""){
+        if let url = URL(string: volItem.image?.medium ?? ""){
             imageV?.kf.setImage(with: url)
         }
         place?.text = volItem.location?.country ?? ""
@@ -81,7 +103,7 @@ class HostProfileViewController: UIViewController {
         additionalInfo.text = additionalInfo.text! + "\n" + (volItem.description ?? "")
         var schedule:String = ""
         for item in volItem.schedules ?? []{
-            schedule = schedule + item.start! + " - " + item.end!
+            schedule = schedule + item.start + " - " + item.end
             schedule = schedule + "\n"
             
         }
@@ -123,8 +145,9 @@ class HostProfileViewController: UIViewController {
         aboutMe?.text = aboutMe!.text! + "(\(volItem.member?.firstName ?? ""))"
         
         
-        let jobs = volItem.jobs?.values
-        countries = Array(jobs!)
+        if let jobs = volItem.jobs?.values{
+        countries = Array(jobs)
+        }
         countryHeight.constant = CGFloat((countries.count) * 30)
         countryTable.reloadData()
         

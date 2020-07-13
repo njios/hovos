@@ -25,6 +25,7 @@ struct VolunteerSearchModel:Codable{
     var conti:String!
     var latlng:String!
     var radius:String!
-    var age:String!
+    var age:String! = ""
+    var gender:String!
     
 }

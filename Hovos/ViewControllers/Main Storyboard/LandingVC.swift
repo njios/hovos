@@ -52,6 +52,7 @@ class LandingVC: UIViewController {
                 vollist.menu_delegate = self
                 vollist.location = VMObject.location
                 vollist.object.hosts = VMObject.Hosts
+              
                   }
         
     }
@@ -65,7 +66,9 @@ class LandingVC: UIViewController {
         let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             vollist.VMObject = VMObject
             vollist.menu_delegate = self
-            searchModel.qs = cell.sliderTitle.text!
+        let value = cell.titlesOfimage[cell.sliderIndex]
+        searchModel.jobs = [cell.valueOfImages[value]!]
+            searchModel.jobsArray = [value]
             vollist.copyModal = searchModel
         self.navigationController?.pushViewController(vollist, animated: false)
     }
@@ -157,8 +160,8 @@ extension LandingVC:Menudelegates{
         let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             vollist.VMObject = VMObject
             vollist.menu_delegate = self
- 
-        self.navigationController?.popToRootViewController(animated: false)
+            vollist.isAllHost = true
+          self.navigationController?.popToRootViewController(animated: false)
 
         switch action {
         case .login:

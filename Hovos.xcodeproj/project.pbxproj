@@ -36,7 +36,7 @@
 		AC45CCD923B40D3200FD53BA /* ContinentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC45CCD823B40D3200FD53BA /* ContinentView.xib */; };
 		AC45CCDD23B40E5C00FD53BA /* ContinentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */; };
 		AC49F1D923A8B8250043B10B /* LandingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1D823A8B8250043B10B /* LandingVC.swift */; };
-		AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DA23A8BD2D0043B10B /* Constants.swift */; };
+		AC49F1DB23A8BD2D0043B10B /* Edpoints+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DA23A8BD2D0043B10B /* Edpoints+Constants.swift */; };
 		AC49F1DD23A8BE0E0043B10B /* CommonExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DC23A8BE0E0043B10B /* CommonExtenstions.swift */; };
 		AC49F1DF23A8C0560043B10B /* LoginVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1DE23A8C0560043B10B /* LoginVM.swift */; };
 		AC49F1E123A8C0750043B10B /* SignUPVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC49F1E023A8C0750043B10B /* SignUPVM.swift */; };
@@ -126,6 +126,8 @@
 		ACF8C82223C711DC009537B5 /* HostsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF8C82123C711DB009537B5 /* HostsVC.swift */; };
 		DC892D4623A79F77008D5C1B /* ViewCustomization.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC892D4523A79F77008D5C1B /* ViewCustomization.swift */; };
 		DCB8793523A9433400EB9D7A /* VolunteerListCollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */; };
+		E7291EFC24BB0BE4008662E3 /* PaymentConfirmVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7291EFA24BB0BE4008662E3 /* PaymentConfirmVC.swift */; };
+		E7291EFD24BB0BE4008662E3 /* PaymentConfirmVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7291EFB24BB0BE4008662E3 /* PaymentConfirmVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,7 +161,7 @@
 		AC45CCD823B40D3200FD53BA /* ContinentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContinentView.xib; sourceTree = "<group>"; };
 		AC45CCDC23B40E5B00FD53BA /* ContinentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinentView.swift; sourceTree = "<group>"; };
 		AC49F1D823A8B8250043B10B /* LandingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingVC.swift; sourceTree = "<group>"; };
-		AC49F1DA23A8BD2D0043B10B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		AC49F1DA23A8BD2D0043B10B /* Edpoints+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Edpoints+Constants.swift"; sourceTree = "<group>"; };
 		AC49F1DC23A8BE0E0043B10B /* CommonExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtenstions.swift; sourceTree = "<group>"; };
 		AC49F1DE23A8C0560043B10B /* LoginVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVM.swift; sourceTree = "<group>"; };
 		AC49F1E023A8C0750043B10B /* SignUPVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUPVM.swift; sourceTree = "<group>"; };
@@ -252,6 +254,8 @@
 		B0DD8A67A029E1D323BF39BD /* Pods-Hovos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hovos.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hovos/Pods-Hovos.release.xcconfig"; sourceTree = "<group>"; };
 		DC892D4523A79F77008D5C1B /* ViewCustomization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCustomization.swift; sourceTree = "<group>"; };
 		DCB8793423A9433400EB9D7A /* VolunteerListCollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolunteerListCollView.swift; sourceTree = "<group>"; };
+		E7291EFA24BB0BE4008662E3 /* PaymentConfirmVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentConfirmVC.swift; sourceTree = "<group>"; };
+		E7291EFB24BB0BE4008662E3 /* PaymentConfirmVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentConfirmVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -568,6 +572,8 @@
 				AC73E66A244A488800F2474C /* MapViewController.swift */,
 				ACCAA2932469C4FD0090279D /* MessageVC.swift */,
 				AC37530E246BCF3A004A486B /* RegistrationAddVC.swift */,
+				E7291EFA24BB0BE4008662E3 /* PaymentConfirmVC.swift */,
+				E7291EFB24BB0BE4008662E3 /* PaymentConfirmVC.xib */,
 			);
 			path = "Main Storyboard";
 			sourceTree = "<group>";
@@ -590,7 +596,7 @@
 			isa = PBXGroup;
 			children = (
 				DC892D4523A79F77008D5C1B /* ViewCustomization.swift */,
-				AC49F1DA23A8BD2D0043B10B /* Constants.swift */,
+				AC49F1DA23A8BD2D0043B10B /* Edpoints+Constants.swift */,
 				AC49F1DC23A8BE0E0043B10B /* CommonExtenstions.swift */,
 				AC49F1E223A8C0FB0043B10B /* NetworkPackets.swift */,
 				AC49F1E623A8C9BE0043B10B /* ViewHelper.swift */,
@@ -690,6 +696,7 @@
 				ACDF193323F682D900A8883F /* JobsCell.xib in Resources */,
 				AC63950F23940A38000EA4F9 /* Assets.xcassets in Resources */,
 				ACCE4F0223B3CDAC00891F0B /* roboto_black.ttf in Resources */,
+				E7291EFD24BB0BE4008662E3 /* PaymentConfirmVC.xib in Resources */,
 				AC2F9C0424121734007DF013 /* languageVC.xib in Resources */,
 				AC63950D23940A36000EA4F9 /* Main.storyboard in Resources */,
 				ACCE4EFC23B3CDAC00891F0B /* lato.xml in Resources */,
@@ -785,10 +792,11 @@
 				ACE276D023E7E7E000000331 /* Facet Modal.swift in Sources */,
 				ACCAA2942469C4FD0090279D /* MessageVC.swift in Sources */,
 				AC5B08C324603255007A8B2B /* EditProfile_ExchangeDealVc.swift in Sources */,
-				AC49F1DB23A8BD2D0043B10B /* Constants.swift in Sources */,
+				AC49F1DB23A8BD2D0043B10B /* Edpoints+Constants.swift in Sources */,
 				ACF6319F2454C9EA002CCBBB /* Editprofile_AboutSkillsVC.swift in Sources */,
 				AC1CFD682421DA91008FE498 /* SettingsViewController.swift in Sources */,
 				ACD3E7A8240CE17D004B0137 /* SkillsVC.swift in Sources */,
+				E7291EFC24BB0BE4008662E3 /* PaymentConfirmVC.swift in Sources */,
 				AC8E132623F9AD1100E2AA0A /* CalenderDateCell.swift in Sources */,
 				ACDE9AC5245AAB5D00B55FE2 /* EditProfile_optionalLanguageVC.swift in Sources */,
 				ACDE3A5D23C0CF3100357609 /* VolunteerVC.swift in Sources */,

@@ -17,8 +17,8 @@ class EditProfile_optionalLanguageVC:UIViewController,UITextViewDelegate {
         override func viewDidLoad() {
             super.viewDidLoad()
 
-            if SharedUser.manager.auth.listing?.languageDesc != ""{
-                  textView.text = SharedUser.manager.auth.listing?.languageDesc
+            if SharedUser.manager.auth.listing?.member?.languageDescription != ""{
+                  textView.text = SharedUser.manager.auth.listing?.member?.languageDescription
             }else{
               textView.text = placeholder
             }
@@ -34,7 +34,7 @@ class EditProfile_optionalLanguageVC:UIViewController,UITextViewDelegate {
             if textView.text == ""{
                 textView.text = placeholder
             }else{
-                SharedUser.manager.auth.listing?.languageDesc = textView.text
+                SharedUser.manager.auth.listing?.member?.languageDescription = textView.text
             }
         }
     }

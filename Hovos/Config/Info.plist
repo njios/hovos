@@ -77,5 +77,9 @@
 	<string>Used to fetch near by Hosts.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Used to fetch near by Hosts.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To submit your photo to hovos</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>To submit your photo to hovos</string>
 </dict>
 </plist>

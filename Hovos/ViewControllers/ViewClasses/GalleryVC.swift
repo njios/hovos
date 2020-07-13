@@ -11,12 +11,14 @@ import Kingfisher
 class GalleryVC: UIViewController {
 
     @IBOutlet weak var titleOfImage:UILabel!
+    @IBOutlet weak var nameOfUser:UILabel!
+    @IBOutlet weak var countOfImager:UILabel!
     @IBOutlet weak var image:UIImageView!
     var imageData = [images]()
-  
+    var name:String!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nameOfUser.text = "\(name!)'s images"
        let leftGestureRecogniser  = UISwipeGestureRecognizer(target: self, action: #selector(swipeMethod(gesture:)))
         leftGestureRecogniser.direction = UISwipeGestureRecognizer.Direction.left
          self.view.addGestureRecognizer(leftGestureRecogniser)
@@ -27,7 +29,7 @@ class GalleryVC: UIViewController {
         image.kf.setImage(with: URL(string: imageData[0].medium ?? ""))
         image.tag = 0
         titleOfImage.text = imageData[0].title ?? ""
-       
+        countOfImager.text = "\(image.tag+1)/\(imageData.count)"
         // Do any additional setup after loading the view.
     }
     
@@ -39,11 +41,13 @@ class GalleryVC: UIViewController {
             image.kf.indicatorType = .activity
             image.kf.setImage(with: URL(string: imageData[image.tag].medium ?? ""))
             titleOfImage.text = imageData[image.tag].title ?? ""
+            countOfImager.text = "\(image.tag+1)/\(imageData.count)"
         case .left:
             image.tag = (image.tag + 1) >= imageData.count ? imageData.count - 1 : (image.tag + 1)
             image.kf.indicatorType = .activity
             image.kf.setImage(with: URL(string: imageData[image.tag].medium ?? ""))
             titleOfImage.text = imageData[image.tag].title ?? ""
+             countOfImager.text = "\(image.tag+1)/\(imageData.count)"
         default:
             break
         }

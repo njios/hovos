@@ -60,7 +60,7 @@ class LandingVM {
         }
     }
     
-    func getAllHosts(_ minOffeset:Int = 0,_ maxOffset:Int = 12,completion:@escaping ([VolunteerItem]?)->()){
+    func getAllHosts(_ minOffeset:Int = 0,_ maxOffset:Int = 12,completion:@escaping (Volunteer?)->()){
         
        var packet = NetworkPacket()
         packet.apiPath = ApiEndPoints.hostsAll.rawValue
@@ -72,7 +72,7 @@ class LandingVM {
             if code == 200{
                 let decoder =  JSONDecoder()
                let volunteerList = try! decoder.decode(Volunteer.self, from: data!)
-                completion(volunteerList.hosts)
+                completion(volunteerList)
                
             }else{
                 completion(nil)

@@ -18,7 +18,7 @@ I am travelling through Europe and I would like to get involved with project and
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if SharedUser.manager.auth.listing?.skillDescription != ""{
+        if SharedUser.manager.auth.listing?.skillDescription != "" && SharedUser.manager.auth.listing?.skillDescription != nil{
               textView.text = SharedUser.manager.auth.listing?.skillDescription
         }else{
           textView.text = placeholder

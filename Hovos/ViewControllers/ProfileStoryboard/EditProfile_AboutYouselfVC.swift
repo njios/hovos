@@ -22,17 +22,18 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         }else{
             descriptionText.text = SharedUser.manager.auth.listing?.member?.personalDescription
         }
+        
         if  SharedUser.manager.auth.listing?.member?.age == "0"{
               SharedUser.manager.auth.listing?.member?.age = "18"
                   agebutton.setTitle("\(SharedUser.manager.auth.listing?.member?.age ?? "18")", for: .normal)
                }else{
-            let age = SharedUser.manager.auth.listing?.member?.age ?? "18"
+            let age = (SharedUser.manager.auth.listing?.member?.age ?? "18") == "" ? "18" : (SharedUser.manager.auth.listing?.member?.age ?? "18")
             SharedUser.manager.auth.listing?.member?.age = age
                 agebutton.setTitle("\(SharedUser.manager.auth.listing?.member?.age ?? "18")", for: .normal)
                }
+   
         
-      
-        genderButton.setTitle(SharedUser.manager.auth.listing?.member?.gender, for: .normal)
+        genderButton.setTitle((SharedUser.manager.auth.listing?.member?.gender ?? "M") == "M" ? "Male" : "Female", for: .normal)
         // Do any additional setup after loading the view.
     }
 
@@ -73,8 +74,8 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         // The list of items to display. Can be changed dynamically
         dropDown.dataSource = ["male", "female"]
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-           SharedUser.manager.auth.listing?.member?.gender = item
-            self.genderButton.setTitle(SharedUser.manager.auth.listing?.member?.gender, for: .normal)
+            SharedUser.manager.auth.listing?.member?.gender = item == "male" ? "M" : "F"
+            self.genderButton.setTitle(item, for: .normal)
             self.dropDown.hide()
         }
           dropDown.show()

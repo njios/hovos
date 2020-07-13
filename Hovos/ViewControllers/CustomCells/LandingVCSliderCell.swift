@@ -68,6 +68,31 @@ class LandingVCSliderCell: UITableViewCell {
                           "Spiritual Projects",
                           "Forest Work"
                      ]
+    var valueOfImages:[String:String] = [ "Art Projects" : "14",
+                             "Au Pair" : "",
+                             "Internet Support" : "16",
+                             "House sitting" : "20",
+                             "Animal care" : "12",
+                             "Boat Handler" : "18",
+                             "Charity Work" : "13",
+                             "Child care" : "17",
+                             "Computer" : "15",
+                             "Construction" : "2",
+                             "Eco project" : "11",
+                             "Elderly care" : "10",
+                             "Farm Work" : "3",
+                             "Gardening Project" : "1",
+                             "Help in the house" : "5",
+                             "Language practice" : "4",
+                             "Maintenance tasks" : "8",
+                             "Pet sitting" : "19",
+                             "Teaching projects" : "6",
+                             "Tourist support" : "9",
+                             "Music Practice" : "",
+                             "Hostel Support" : "21",
+                             "Spiritual Projects" : "",
+                             "Forest Work" : ""
+                        ]
     
    
     

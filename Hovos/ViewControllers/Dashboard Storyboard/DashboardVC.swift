@@ -193,7 +193,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
             let jobs = custom.info.jobs?.values
             infoWindow.jobs.text = jobs?.joined(separator: " | ")
             infoWindow.img.kf.indicatorType = .activity
-            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium ?? ""))
         }
         infoWindow.center = mapView.projection.point(for: marker.position)
         infoWindow.center.y =  infoWindow.center.y + 100
@@ -223,10 +223,15 @@ extension DashboardVC:Menudelegates{
         case .hostlist:
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
-            vc.modalPresentationStyle = .overCurrentContext
-            vc.VMObject = landingVMObject
-            self.present(vc, animated: true, completion: nil)
+           
+            vc.VMObject = (self.parent as! TabBarController).VMObject
+            vc.isAllHost = true
+            self.navigationController?.pushViewController(vc, animated: true)
             break
+        case .volunteers:
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
+               self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
         }

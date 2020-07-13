@@ -25,6 +25,7 @@ struct NetworkPacket {
                                   "API_KEY":constants.Api_key.rawValue]
     var data:[String:Any] = [:]
     var encoding:URLEncoding?
+    var rawData = Data()
 }
 func ApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
     
@@ -54,6 +55,32 @@ func getApiCall(url:URL,completion: @escaping (Data?,Bool,Int)->()){
 
     var request = URLRequest(url: url)
     request.httpMethod = "GET"
+
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      
+        guard let res = response as? HTTPURLResponse else {
+                 print(String(describing: error))
+            return
+        }
+        if res.statusCode == 200 || res.statusCode == 201{
+         completion(data, true, 200)
+     }else{
+         completion(data, false, res.statusCode )
+     }
+    }
+    task.resume()
+        
+    
+}
+
+
+func postApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
+    let url = URL(string: packet.url!)
+    var request = URLRequest(url: url!)
+    request.httpMethod = packet.method ?? "POST"
+    request.allHTTPHeaderFields = packet.header
+    request.httpBody = try! JSONSerialization.data(withJSONObject: packet.data, options: [])
+
 
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
       

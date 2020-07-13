@@ -70,7 +70,7 @@ struct VolunteerItem:Codable{
     var accommodationImages:[images]?
     var jobs:[Int:String]?
     var countries:[String:String?]?
-    var schedules:[schedules]?
+    var schedules:[Schedules]?
     var friends:[friends]?
     var member:ListingUser?
     var reviews:[review]?
@@ -95,6 +95,25 @@ struct location:Codable{
        var countryId:String?
        var location:String?
        var longitude:String?
+    init() {
+        self.latitude = ""
+        self.longitude = ""
+        self.city = ""
+        self.country = ""
+        self.countryCode = ""
+        self.countryId = ""
+        self.location = ""
+        }
+    
+    init(latitude:String,city:String,country:String,countryCode:String,countryId:String,location:String,longitude:String) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.city = city
+        self.country = country
+        self.countryCode = countryCode
+        self.countryId = countryId
+        self.location = location
+    }
     }
 
 struct review:Codable {
@@ -109,11 +128,14 @@ struct images:Codable{
    var large:String?
    var medium:String?
    var title:String?
+    
 }
 
-struct schedules:Codable {
-    var end:String?
-    var start:String?
+
+
+struct Schedules:Codable {
+    var end:String
+    var start:String
 }
 
 struct friends:Codable {
@@ -123,7 +145,7 @@ struct friends:Codable {
 
 struct ListingUser:Codable {
     var additionalDesc:String?
- 
+    var age:String?
     var appToken:String?
     var autoRenew:String?
     var currency:String?
@@ -152,18 +174,85 @@ struct ListingUser:Codable {
     var type:String?
     var role:String?
     var languages:[String:String]?
-    var ratings:ratings?
-//    init(from decoder: Decoder) throws {
-//        let container = try decoder.container(keyedBy: CodingKeys.self)
-//
-//        if let value = try? container.decode(Int.self, forKey: .age) {
-//            age = String(value)
-//        } else {
-//            age = try container.decode(String.self, forKey: .id)
-//        }
-//
-//
-//    }
+    var rating:ratings?
+
+   
+    private enum CodingKeys : String, CodingKey {
+        case additionalDesc = "additionalDesc"
+        case appToken = "appToken"
+        case autoRenew = "autoRenew"
+        case currency = "currency"
+        case currencyCode = "currencyCode"
+        case currencySign = "currencySign"
+        case email = "email"
+        case expiredOn = "expiredOn"
+        case firstName = "firstName"
+        case fid_autoRenew = "fid_autoRenew"
+        case fid_spammer = "fid_spammer"
+        case gender = "gender"
+        case id = "id"
+        case image = "image"
+        case isDocumentVerified = "isDocumentVerified"
+        case isEmailverified = "isEmailverified"
+        case isPaid = "isPaid"
+        case isPhoneVerified = "isPhoneVerified"
+        case language = "language"
+        case languageDescription = "languageDescription"
+        case lastName = "lastName"
+        case listingId = "listingId"
+        case password = "password"
+        case personalDescription = "personalDescription"
+        case phoneNumber = "phoneNumber"
+        case renewalAmount = "renewalAmount"
+        case type = "type"
+        case role = "role"
+        case languages = "languages"
+        case rating = "ratings"
+        case age = "age"
+    }
     
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        if let stringage =  try? values.decode(String.self, forKey: .age){
+            age = stringage
+        }
+        if let intAge = try?  values.decode(Int.self, forKey: .age){
+               age = String(intAge)
+           }
+        
+         additionalDesc =  try? values.decode(String.self, forKey: .additionalDesc)
+         age =  try? values.decode(String.self, forKey: .age)
+         appToken =  try? values.decode(String.self, forKey: .appToken)
+         autoRenew =  try? values.decode(String.self, forKey: .autoRenew)
+         currency =  try? values.decode(String.self, forKey: .currency)
+         currencyCode =  try? values.decode(String.self, forKey: .currencyCode)
+         currencySign =  try? values.decode(String.self, forKey: .currencySign)
+         email =  try? values.decode(String.self, forKey: .email)
+         expiredOn =  try? values.decode(String.self, forKey: .expiredOn)
+         firstName =  try? values.decode(String.self, forKey: .firstName)
+         fid_autoRenew =  try? values.decode(String.self, forKey: .fid_autoRenew)
+         fid_spammer =  try? values.decode(String.self, forKey: .fid_spammer)
+         gender =  try? values.decode(String.self, forKey: .gender)
+         id =  try? values.decode(String.self, forKey: .id)
+         image =  try? values.decode(images.self, forKey: .image)
+         isDocumentVerified =  try? values.decode(String.self, forKey: .isDocumentVerified)
+         isEmailverified =  try? values.decode(String.self, forKey: .isEmailverified)
+         isPaid =  try? values.decode(String.self, forKey: .isPaid)
+         isPhoneVerified =  try? values.decode(String.self, forKey: .isPhoneVerified)
+        language =  try? values.decode(String.self, forKey: .language)
+        languageDescription =  try? values.decode(String.self, forKey: .languageDescription)
+        lastName =  try? values.decode(String.self, forKey: .lastName)
+        listingId =  try? values.decode(String.self, forKey: .listingId)
+        password =  try? values.decode(String.self, forKey: .password)
+        personalDescription =  try? values.decode(String.self, forKey: .personalDescription)
+        phoneNumber =  try? values.decode(String.self, forKey: .phoneNumber)
+        renewalAmount =  try? values.decode(String.self, forKey: .renewalAmount)
+        type =  try? values.decode(String.self, forKey: .type)
+        role =  try? values.decode(String.self, forKey: .role)
+        languages =  try? values.decode([String:String].self, forKey: .languages)
+        rating =  try? values.decode(ratings.self, forKey: .rating)
+        
+    }
     
 }

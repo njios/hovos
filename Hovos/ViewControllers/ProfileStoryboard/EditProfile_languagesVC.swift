@@ -58,8 +58,8 @@ class EditProfile_languagesVC: UIViewController,UITableViewDelegate,UITableViewD
                        cell.continetName.textColor = .lightGray
                    }
         }else{
-        if  SharedUser.manager.auth.listing?.member?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
-            if SharedUser.manager.auth.listing?.member?.role?.lowercased() == "v"{
+            if  SharedUser.manager.auth.listing?.member?.languages?.contains(where: {$0.key == (skills[indexPath.row].value ?? "")}) ?? false{
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
                cell.selectimage.image = UIImage(named: "selectedBlueTick")
             }else{
                cell.selectimage.image = UIImage(named: "selectedTick")

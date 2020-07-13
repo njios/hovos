@@ -44,6 +44,9 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
                 if code == 200{
                     DispatchQueue.main.async{
                          self.optVerifyView.isHidden = false
+                        for item in self.otp{
+                            item.text = ""
+                        }
                         self.otp[0].becomeFirstResponder()
                     }
                 }else{
@@ -72,9 +75,16 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
                                 for item in self.otp{
                                     item.text = ""
                                 }
+                                for item in self.otp{
+                                    item.text = ""
+                                }
                                 self.optVerifyView.isHidden = true
                              }
                          }else{
+                            for item in self.otp{
+                                item.text = ""
+                            }
+                             self.optVerifyView.isHidden = true
                              Hovos.showAlert(vc: self, mssg: "OTP is not valid.")
                          }
                 }
@@ -125,8 +135,22 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
         } else if let originalImage = info[.originalImage] as? UIImage {
             selectedImage = originalImage
         }
-        if let selectedImages = selectedImage {
-           uploadImage(tmpImage: selectedImages, completion: nil)
+        if selectedImage != nil {
+            uploadImage(tmpImage: selectedImage!) { status,mssg  in
+                if status == true{
+                    DispatchQueue.main.async {
+                    self.activity.isHidden = true
+                        self.suceeslabel.isHidden = false
+                        self.suceeslabel.text = mssg
+                        self.uploadButton.isHidden = true
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                    self.activity.isHidden = true
+                        Hovos.showAlert(vc: self, mssg: mssg)
+                    }
+                }
+            }
             self.activity.isHidden = false
              dismiss(animated: false, completion: nil)
         }
@@ -136,70 +160,52 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
         dismiss(animated: false, completion: nil)
     }
     
-    func uploadImage(tmpImage:UIImage?,completion:(()->())?){
-        // the image in UIImage type
-        guard let image = tmpImage else { return  }
-
-        let filename = "document.png"
-
-        // generate boundary string using a unique per-app string
-        let boundary = UUID().uuidString
-
-       
-
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-
-        // Set the URLRequest to POST and to the specified URL
-        var urlRequest = URLRequest(url: URL(string: "https://www.hovos.com/api/user/documents")!)
-        urlRequest.httpMethod = "POST"
-        urlRequest.allHTTPHeaderFields = ["auth":SharedUser.manager.auth.auth ?? "",
-        "id":SharedUser.manager.auth.user?.listingId ?? "",
-        "API_KEY":constants.Api_key.rawValue]
-        // Set Content-Type Header to multipart/form-data, this is equivalent to submitting form data with file upload in a web browser
-        // And the boundary is also set here
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        var data = Data()
-
-        // Add the image data to the raw http request data
-        data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"fileToUpload\"; filename=\"\(filename)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: image/png\r\n\r\n".data(using: .utf8)!)
-        data.append(image.pngData()!)
-
-        // End the raw http request data, note that there is 2 extra dash ("-") at the end, this is to indicate the end of the data
-        // According to the HTTP 1.1 specification https://tools.ietf.org/html/rfc7230
-        data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-
-        // Send a POST request to the URL, with the data we created earlier
-        session.uploadTask(with: urlRequest, from: data, completionHandler: { responseData, response, error in
-            
-            if(error != nil){
-                print("\(error!.localizedDescription)")
-                DispatchQueue.main.async {
-                     self.activity.isHidden = true
-                    Hovos.showAlert(vc: self, mssg: error!.localizedDescription)
-                }
-                
-            }
-            
-            guard let responseData = responseData else {
-                print("no response data")
-                Hovos.showAlert(vc: self, mssg: "no response data")
-                return
-            }
+    func uploadImage(tmpImage:UIImage,completion: @escaping ((Bool,String)->())){
+         
+         let parameters = [
+             "filename": "custom"
+         ]
+         
+         var url = ""
+             url = "https://www.hovos.com/api/user/documents"
         
-            if let responseString = String(data: responseData, encoding: .utf8) {
-                print("uploaded to: \(responseString)")
-                DispatchQueue.main.async {
-                self.activity.isHidden = true
-                    self.suceeslabel.isHidden = false
-                    self.uploadButton.isHidden = true
-                }
-            }
-        }).resume()
-    }
+         
+         let headers: HTTPHeaders = [
+             "Content-Type" : "multipart/form-data",
+             "auth":SharedUser.manager.auth.auth ?? "",
+             "API_KEY":constants.Api_key.rawValue,
+              "id":SharedUser.manager.auth.user?.listingId ?? "",
+         ]
+         
+         Alamofire.upload(multipartFormData: { (multipartFormData) in
+             
+             for (key, value) in parameters {
+                 multipartFormData.append(value.data(using: .utf8)!, withName: key)
+             }
+             if let data = tmpImage.jpegData(compressionQuality: 0.5){
+                 multipartFormData.append(data, withName: "fd-file", fileName: "hovos.png", mimeType: "image/png")
+             }
+             
+         }, usingThreshold: UInt64.init(), to: url, method: .post, headers: headers) { (result) in
+             switch result{
+             case .success(let upload, _, _):
+                 upload.responseJSON { response in
+                     
+                     if (response.response!).statusCode == 200 {
+                         print("Succesfully uploaded")
+            
+                        completion(true,response.result.value as! String)
+                         return
+                     }
+                    completion(false,response.result.error?.localizedDescription ?? "Error in upload")
+                 }
+             case .failure(let error):
+                 print("Error in upload: \(error.localizedDescription)")
+                 completion(false,error.localizedDescription)
+             }
+         }
+     }
+    
 }
 
 func showAlert(vc:UIViewController,mssg:String){

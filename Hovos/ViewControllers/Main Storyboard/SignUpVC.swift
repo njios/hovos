@@ -124,7 +124,10 @@ class SignUpVc: UIViewController {
             if status == true{
                 
                 let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
-                let vc = storyboard.instantiateViewController(withIdentifier: "tabvc")
+                
+                let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav") as! UINavigationController
+                (vc.viewControllers.first as! TabBarController).registration = true
+               
                 let appdel = UIApplication.shared.delegate as? AppDelegate
                 appdel?.window?.rootViewController = vc
             }else{

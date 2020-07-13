@@ -18,10 +18,11 @@ class TabBarController: UIViewController {
     @IBOutlet weak var fav:UIView!
     @IBOutlet weak var setting:UIView!
      @IBOutlet weak var cover:UIView!
-    
+    var registration = false
+    var VMObject:LandingVM!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        VMObject = LandingVM()
         cover.isHidden = false
             if let data = UserDefaults.standard.data(forKey: constants.accessToken.rawValue){
                 let decoder = JSONDecoder()
@@ -39,15 +40,21 @@ class TabBarController: UIViewController {
                    ApiCall(packet: recommendedRequest) { (data, status, code) in
                             if code == 200{
                                 let decoder = JSONDecoder()
-                                let userData = try? decoder.decode(Auth.self, from: data!)
+                                let userData = try! decoder.decode(Auth.self, from: data!)
                                 
-                                if userData?.user == nil {
+                                if userData.user == nil {
                                     let userData1 = try! decoder.decode(Auth1.self, from: data!)
                                     SharedUser.manager.auth.user = userData1.user
                                     SharedUser.manager.auth.listing = Listing()
+                                    SharedUser.manager.auth.listing?.member = User1()
                                 }else{
-                                    SharedUser.manager.auth.listing = userData?.listing
-                                    SharedUser.manager.auth.user = userData?.user
+                                    if userData.listing == nil {
+                                      SharedUser.manager.auth.listing = Listing()
+                                      SharedUser.manager.auth.listing?.member = User1()
+                                    }else{
+                                    SharedUser.manager.auth.listing = userData.listing
+                                    }
+                                    SharedUser.manager.auth.user = userData.user
                                 }
                                
                                 if let updatedData = try? JSONEncoder().encode(SharedUser.manager.auth){
@@ -55,7 +62,19 @@ class TabBarController: UIViewController {
                                 UserDefaults.standard.set(updatedData, forKey: constants.accessToken.rawValue)
                                 }
                                     DispatchQueue.main.async {
+                                        if self.registration == true{
+                                            
+                                            let stb = UIStoryboard(name: "Profile", bundle: nil)
+                                            let vc = stb.instantiateViewController(withIdentifier: "CompleteProfileVC")
+                                            vc.modalPresentationStyle = .overCurrentContext
+                                            topViewController()?.present(vc, animated: false, completion: {
+                                                DispatchQueue.main.async {
+                                                     self.updateUser()
+                                                }
+                                            })
+                                        }else{
                                     self.updateUser()
+                                        }
                                 }
                               
                             }

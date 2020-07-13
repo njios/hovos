@@ -165,30 +165,18 @@ class CompleteProfileVC: UIViewController {
             self.addChild(vc!)
             self.containerView.addSubview(vc!.view)
         }else{
-            let header = ["auth":SharedUser.manager.auth.auth ?? "",
-                          "id":SharedUser.manager.auth.user?.listingId ?? "",
-                          "API_KEY":constants.Api_key.rawValue]
-            var identifyYourself = NetworkPacket()
-            identifyYourself.apiPath = ApiEndPoints.vol_publish(id: SharedUser.manager.auth.user?.listingId ?? "").rawValue
-            
-            identifyYourself.header = header
-            identifyYourself.data = try! JSONSerialization.jsonObject(with: JSONEncoder().encode(SharedUser.manager.auth.listing), options: []) as! [String : Any]
-            let member = try! JSONSerialization.jsonObject(with: JSONEncoder().encode(SharedUser.manager.auth.listing?.member), options: []) as! [String : Any]
-            identifyYourself.data["member"] = member
-            identifyYourself.method = "POST"
             ViewHelper.shared().showLoader(self)
-            ApiCallWithJsonEncoding (packet: identifyYourself) { (data, status, code) in
-                ViewHelper.shared().hideLoader()
-                if code == 200{
-                    SharedUser.manager.updateUser()
+            SharedUser.manager.saveVolunteer { status,mssg  in
+                if status{
                     DispatchQueue.main.async{
                         self.completeProfile.isHidden = false
                         self.completeProfileButton.isHidden = false
                     }
                 }else{
-                    Hovos.showAlert(vc: self, mssg: "Error in publish")
+                         Hovos.showAlert(vc: self, mssg: mssg)
                 }
             }
+            
         }
         
     }
@@ -261,28 +249,16 @@ class CompleteProfileVC: UIViewController {
             self.addChild(vc!)
             self.containerView.addSubview(vc!.view)
         }else{
-            let header = ["auth":SharedUser.manager.auth.auth ?? "",
-                          "id":SharedUser.manager.auth.user?.listingId ?? "",
-                          "API_KEY":constants.Api_key.rawValue]
-            var identifyYourself = NetworkPacket()
-            identifyYourself.apiPath = ApiEndPoints.host_publish(id: SharedUser.manager.auth.user?.listingId ?? "").rawValue
             
-            identifyYourself.header = header
-            identifyYourself.data = try! JSONSerialization.jsonObject(with: JSONEncoder().encode(SharedUser.manager.auth.listing), options: []) as! [String : Any]
-            let member = try! JSONSerialization.jsonObject(with: JSONEncoder().encode(SharedUser.manager.auth.listing?.member), options: []) as! [String : Any]
-            identifyYourself.data["member"] = member
-            identifyYourself.method = "POST"
             ViewHelper.shared().showLoader(self)
-            ApiCallWithJsonEncoding(packet: identifyYourself) { (data, status, code) in
-                ViewHelper.shared().hideLoader()
-                if code == 200{
-                      SharedUser.manager.updateUser()
+            SharedUser.manager.saveHost{ (status,mssg) in
+                if status{
                     DispatchQueue.main.async{
                         self.completeProfile.isHidden = false
                         self.completeProfileButton.isHidden = false
                     }
                 }else{
-                    Hovos.showAlert(vc: self, mssg: "Error in publish")
+                         Hovos.showAlert(vc: self, mssg: mssg)
                 }
             }
         }
@@ -344,25 +320,4 @@ class CompleteProfileVC: UIViewController {
         
     }
     
-    private func getVolparameters()->[String:Any]{
-        let schedule = try!  JSONEncoder().encode((SharedUser.manager.auth.listing?.schedules! ?? [schedules()])!)
-        return  [
-            "additionalDesc": SharedUser.manager.auth.user?.additionalDesc ?? "",
-            // "companion": "Y",
-            "countries": (SharedUser.manager.auth.listing?.countries ?? [:])!,
-            //"isAllergic": "N",
-            //"isCompanion": "Y",
-            //"isDriving": "N",
-            //"isFlaxibleDates": "Y",
-            //"isSmoker": "N",
-            //"isVegetarian": "N",
-            "jobs": Array(SharedUser.manager.auth.listing?.jobs?.keys ?? [:].keys),
-            "location": (SharedUser.manager.auth.listing?.location ?? [:])!,
-            "name": SharedUser.manager.auth.user?.firstName ?? "",
-            "placeDescription": SharedUser.manager.auth.listing?.placeDescription ?? "",
-            "schedules": try! JSONSerialization.jsonObject(with: schedule, options: []),
-            "skillDescription": SharedUser.manager.auth.listing?.skillDescription ?? "",
-            "slogan": SharedUser.manager.auth.listing?.slogan ?? ""
-        ]
-    }
 }
