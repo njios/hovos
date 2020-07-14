@@ -72,9 +72,9 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         dropDown.anchorView = sender // UIView or UIBarButtonItem
 
         // The list of items to display. Can be changed dynamically
-        dropDown.dataSource = ["male", "female"]
+        dropDown.dataSource = ["Male", "Female"]
         dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
-            SharedUser.manager.auth.listing?.member?.gender = item == "male" ? "M" : "F"
+            SharedUser.manager.auth.listing?.member?.gender = item == "Male" ? "M" : "F"
             self.genderButton.setTitle(item, for: .normal)
             self.dropDown.hide()
         }
