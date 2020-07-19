@@ -169,7 +169,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="goback:" destination="-1" eventType="touchUpInside" id="j3r-8I-ah3"/>
+                        <action selector="goToHomeScreen:" destination="-1" eventType="touchUpInside" id="utO-B0-w2L"/>
                     </connections>
                 </button>
             </subviews>

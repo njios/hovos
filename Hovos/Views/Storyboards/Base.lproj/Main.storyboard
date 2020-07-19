@@ -1444,6 +1444,9 @@
                                     <userDefinedRuntimeAttribute type="number" keyPath="border">
                                         <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="textFieldPlaceHolder" value="Password"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="leftIcon" value="HostPassword"/>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="actionButtonImage" value="eyeprotected"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hXD-R3-8If">
@@ -1699,7 +1702,7 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Ub-pv-7v6">
-                                        <rect key="frame" x="40" y="11.5" width="255" height="20"/>
+                                        <rect key="frame" x="40" y="12" width="255" height="19"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
@@ -1746,7 +1749,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i11-7W-Izj">
-                                <rect key="frame" x="77.5" y="594" width="220" height="34"/>
+                                <rect key="frame" x="74" y="594" width="227" height="33"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                 <state key="normal" title="No account yet? Create one">
                                     <color key="titleColor" name="orangeColor"/>
@@ -1756,7 +1759,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kNP-DG-SJt">
-                                <rect key="frame" x="246" y="482" width="109" height="29"/>
+                                <rect key="frame" x="241" y="482" width="114" height="29"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                 <state key="normal" title="Forgot password?">
                                     <color key="titleColor" name="orangeColor"/>
@@ -1782,7 +1785,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Hu-no-rhm">
-                                        <rect key="frame" x="70" y="14" width="42.5" height="22"/>
+                                        <rect key="frame" x="70" y="14.5" width="45" height="21"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                                         <color key="textColor" red="0.98039215690000003" green="0.96078431369999995" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -1938,7 +1941,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVZ-2w-c5q">
-                                <rect key="frame" x="99" y="438.5" width="177" height="32"/>
+                                <rect key="frame" x="95.5" y="438.5" width="184" height="31"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                 <state key="normal" title="Already a member? Login">
                                     <color key="titleColor" name="orangeColor"/>
@@ -1990,13 +1993,13 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0QM-cE-j4x">
-                                        <rect key="frame" x="20" y="324" width="335" height="19.5"/>
+                                        <rect key="frame" x="20" y="324" width="335" height="19"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="6vi-Fk-1cD">
-                                        <rect key="frame" x="37.5" y="368.5" width="300" height="50"/>
+                                        <rect key="frame" x="37.5" y="368" width="300" height="50"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTw-gW-drv">
                                                 <rect key="frame" x="0.0" y="0.0" width="46" height="50"/>
@@ -2191,7 +2194,7 @@
                                 <rect key="frame" x="20" y="258.5" width="335" height="43.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cKM-Sm-bEz">
-                                        <rect key="frame" x="10" y="11.5" width="280" height="20"/>
+                                        <rect key="frame" x="10" y="12" width="280" height="19"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
@@ -2231,7 +2234,7 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="c18-ub-uLk">
-                                        <rect key="frame" x="10" y="11.5" width="285" height="20"/>
+                                        <rect key="frame" x="10" y="12" width="285" height="19"/>
                                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
@@ -4272,6 +4275,7 @@
     <resources>
         <image name="HostEmail" width="40" height="40"/>
         <image name="HostName" width="40" height="40"/>
+        <image name="HostPassword" width="40" height="40"/>
         <image name="backAngle" width="32" height="32"/>
         <image name="backIcon" width="64" height="64"/>
         <image name="blackMenu" width="64" height="64"/>

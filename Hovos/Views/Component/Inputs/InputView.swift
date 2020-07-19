@@ -21,26 +21,19 @@ extension InputViewDelegates{
 @IBDesignable
 class InputView:UIView,InputViewDelegates{
     
-     @IBOutlet weak var titleImage:UIImageView!
-     @IBOutlet weak var inputTextView:UITextField!
-     @IBOutlet weak var actionButton:UIButton!
+    @IBOutlet weak var titleImage:UIImageView!
+    @IBOutlet weak var inputTextView:UITextField!
+    @IBOutlet weak var actionButton:UIButton!
+    private var title_image:UIImage!
+    private var input_text:String!
+    private var action_button_image:UIImage!
     
-     private var title_image:UIImage!
-     private var input_text:String!
-     private var action_button_image:UIImage!
-    
-     var delegate:InputViewDelegates!
-    
-    
-  
+    var delegate:InputViewDelegates!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.frame = super.frame
     }
-
-    
-
     
     @IBInspectable var leftIcon:UIImage?{
         get{
@@ -56,7 +49,7 @@ class InputView:UIView,InputViewDelegates{
             return input_text
         }
         set{
-        
+            
             input_text = newValue
         }
     }
@@ -71,9 +64,7 @@ class InputView:UIView,InputViewDelegates{
         }
     }
     
-   
-    
-   @IBAction func actionButtonClicked(_ sender:UIButton){
+    @IBAction func actionButtonClicked(_ sender:UIButton){
         if (delegate == nil){
             delegate = self
         }
