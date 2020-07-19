@@ -72,7 +72,11 @@ class VolunteerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
+          if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+          }else{
         menuView.delegate = menu_delegate
+        }
         location = CLLocationManager().location
         if type == .recommended{
             searchButton.isHidden = true

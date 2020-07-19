@@ -17,7 +17,6 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     @IBOutlet weak var latest:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var mapView:GMSMapView!
-  
     @IBOutlet weak var RecommendedLabel:CustomLabels!
     @IBOutlet weak var NewLabel:CustomLabels!
     @IBOutlet weak var forwardAngle1:UIImageView!
@@ -111,7 +110,9 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
             present(vc, animated: false, completion: nil)
         }
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: false, completion: nil)
+    }
     private func loadMap(){
       
             DispatchQueue.main.async {
@@ -226,12 +227,13 @@ extension DashboardVC:Menudelegates{
            
             vc.VMObject = (self.parent as! TabBarController).VMObject
             vc.isAllHost = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: false)
             break
         case .volunteers:
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
-               self.navigationController?.pushViewController(vc, animated: true)
+         
+               self.navigationController?.pushViewController(vc, animated: false)
         default:
             break
         }

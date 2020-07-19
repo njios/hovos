@@ -45,6 +45,5 @@ class PaymentConfirmVC: UIViewController {
          let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
         (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = vc
     }
-    
-   
+
 }

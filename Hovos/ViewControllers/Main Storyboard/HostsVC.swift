@@ -38,8 +38,12 @@ class HostsVC: UIViewController {
             searchHostApi(completion: { })
         }
         menuView.frame = self.view.frame
-       
-        menuView.delegate = menu_delegate
+       if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+           menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+         }else{
+       menuView.delegate = menu_delegate
+       }
+        
         if object.hosts?.count == 0 || object.hosts == nil{
             if searchModal == nil {
                 getHost()
