@@ -41,16 +41,41 @@ struct Auth:Codable {
         
     }
 }
+
 struct Auth1:Codable {
     var auth:String?
     var id:String?
     var role:String?
     var user:User?
-    
+    var listing:Listing?
+    private enum CoadingKeys:String,CodingKey{
+           case auth = "auth"
+           case id = "id"
+           case role = "role"
+           case user = "user"
+          
+       }
+       
+       init(from decoder: Decoder) throws {
+           let values = try decoder.container(keyedBy: CodingKeys.self)
+           if let stringage =  try? values.decode(String.self, forKey: .id){
+               id = stringage
+           }
+           if let intAge = try?  values.decode(Int.self, forKey: .id){
+               id = String(intAge)
+           }
+           auth = try? values.decode(String.self, forKey: .auth)
+           role = try? values.decode(String.self, forKey: .role)
+           user = try? values.decode(User.self, forKey: .user)
+         
+       }
+       init() {
+           
+       }
 }
 struct SharedUser{
     static var manager = SharedUser()
-    var auth = Auth()
+    var auth = Auth1()
     var delegate:UpdateProfile!
     func updateUser(){
         var packet = NetworkPacket()

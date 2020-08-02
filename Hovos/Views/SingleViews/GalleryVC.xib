@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GalleryVC" customModule="Hovos" customModuleProvider="target">
             <connections>
                 <outlet property="countOfImager" destination="efv-bb-gbr" id="Ir7-Je-DKw"/>
+                <outlet property="headerView" destination="WYs-Wt-d4k" id="wd5-Kp-eqJ"/>
                 <outlet property="image" destination="chc-cR-qjQ" id="YCc-ki-bk8"/>
                 <outlet property="nameOfUser" destination="x5T-Ep-CFG" id="fce-q4-SuE"/>
                 <outlet property="titleOfImage" destination="GO7-2i-pEq" id="7HD-u7-lI0"/>
@@ -28,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYs-Wt-d4k">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WYs-Wt-d4k" customClass="ThemeView" customModule="Hovos" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="44" width="414" height="70"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhH-kD-gAO">
@@ -43,7 +44,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x5T-Ep-CFG">
-                            <rect key="frame" x="70" y="24.5" width="44.5" height="21"/>
+                            <rect key="frame" x="70" y="24" width="42.5" height="22"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                             <color key="textColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -69,7 +70,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efv-bb-gbr">
-                            <rect key="frame" x="10" y="14.5" width="50" height="21"/>
+                            <rect key="frame" x="10" y="14" width="50" height="22"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="50" id="fcw-4Z-pqS"/>
                             </constraints>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum Action{
+enum MenuAction{
     case registerHost
     case registerVolunteer
     case logout
@@ -31,7 +31,7 @@ enum Action{
 }
 
 protocol Menudelegates {
-    func menuItemDidSelect(for action:Action)
+    func menuItemDidSelect(for MenuAction:MenuAction)
   
 }
 
@@ -92,30 +92,30 @@ class MenuVC: UIView,UITableViewDelegate,UITableViewDataSource {
         self.removeFromSuperview()
     if UserDefaults.standard.value(forKey: constants.accessToken.rawValue) == nil{
         if indexPath.row == 0{
-        self.delegate.menuItemDidSelect(for: Action.login)
+        self.delegate.menuItemDidSelect(for: MenuAction.login)
         }
     else if indexPath.row == 1{
-        self.delegate.menuItemDidSelect(for: Action.registerVolunteer)
+        self.delegate.menuItemDidSelect(for: MenuAction.registerVolunteer)
     }else if indexPath.row == 2{
-        self.delegate.menuItemDidSelect(for: Action.registerHost)
+        self.delegate.menuItemDidSelect(for: MenuAction.registerHost)
     }else if indexPath.row == 3{
-          self.delegate.menuItemDidSelect(for: Action.hostlist)
+          self.delegate.menuItemDidSelect(for: MenuAction.hostlist)
         }else if indexPath.row == 4{
-          self.delegate.menuItemDidSelect(for: Action.volunteers)
+          self.delegate.menuItemDidSelect(for: MenuAction.volunteers)
     }else if indexPath.row == 5{
-          self.delegate.menuItemDidSelect(for: Action.AboutUS)
+          self.delegate.menuItemDidSelect(for: MenuAction.AboutUS)
     }
     }else{
          if indexPath.row == 0{
-               self.delegate.menuItemDidSelect(for: Action.hostlist)
+               self.delegate.menuItemDidSelect(for: MenuAction.hostlist)
            }else if indexPath.row == 1{
-               self.delegate.menuItemDidSelect(for: Action.volunteers)
+               self.delegate.menuItemDidSelect(for: MenuAction.volunteers)
            }else if indexPath.row == 2{
-                 self.delegate.menuItemDidSelect(for: Action.settings)
+                 self.delegate.menuItemDidSelect(for: MenuAction.settings)
                }else if indexPath.row == 3{
-                 self.delegate.menuItemDidSelect(for: Action.helpCenter)
+                 self.delegate.menuItemDidSelect(for: MenuAction.helpCenter)
            }else if indexPath.row == 4{
-                 self.delegate.menuItemDidSelect(for: Action.logout)
+                 self.delegate.menuItemDidSelect(for: MenuAction.logout)
            }
         }
     }

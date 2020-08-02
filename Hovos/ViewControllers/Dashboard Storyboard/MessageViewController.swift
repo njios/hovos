@@ -96,6 +96,7 @@ extension MessageViewController:UITableViewDelegate,UITableViewDataSource{
         
         cell.name.text = messageItem.from ?? ""
         cell.place.text = (messageItem.country ?? "") + ", " + (messageItem.city ?? "")
+        cell.place.text!.first == "," ? cell.place.text!.removeFirst() : cell.place.text!.first
         cell.mssgData.text = messageItem.text ?? ""
         
         if messageItem.isRead ?? false {

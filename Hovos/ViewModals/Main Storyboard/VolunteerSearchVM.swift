@@ -36,76 +36,76 @@ class VolunteerSearchVM{
                     }
             }
             
+            
             let temp = Array(modal.age.split(separator: "|"))
-            var ages = temp.map({String($0)})
-            if  ages.contains((volunteerSearchVC.age1.titleLabel?.text!)!){
-                volunteerSearchVC.age1.backgroundColor = UIColor(named: "greenColor")
-                volunteerSearchVC.age1.setTitleColor(.white, for: .normal)
-            }else{
-                volunteerSearchVC.age1.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-                volunteerSearchVC.age1.setTitleColor(.darkGray, for: .normal)
-            }
-            if  ages.contains((volunteerSearchVC.age2.titleLabel?.text!)!){
-                volunteerSearchVC.age2.backgroundColor = UIColor(named: "greenColor")
-                volunteerSearchVC.age2.setTitleColor(.white, for: .normal)
-            }else{
-                volunteerSearchVC.age2.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-                volunteerSearchVC.age2.setTitleColor(.darkGray, for: .normal)
-            }
-            if  ages.contains((volunteerSearchVC.age3.titleLabel?.text!)!){
-                volunteerSearchVC.age3.backgroundColor = UIColor(named: "greenColor")
-                volunteerSearchVC.age3.setTitleColor(.white, for: .normal)
-            }else{
-                volunteerSearchVC.age3.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-                volunteerSearchVC.age3.setTitleColor(.darkGray, for: .normal)
-            }
-            if  ages.contains((volunteerSearchVC.age4.titleLabel?.text!)!){
-                volunteerSearchVC.age4.backgroundColor = UIColor(named: "greenColor")
-                volunteerSearchVC.age4.setTitleColor(.white, for: .normal)
-            }else{
-                volunteerSearchVC.age4.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
-                volunteerSearchVC.age4.setTitleColor(.darkGray, for: .normal)
-            }
+            let ages = temp.map({String($0)})
             
-            
-            
-            if  modal.qs == nil{
-                volunteerSearchVC.searchTextView.serachText.text = ""
-            }else{
-                volunteerSearchVC.searchTextView.serachText.text = modal.qs
+            DispatchQueue.main.async {
+                if  ages.contains((self.volunteerSearchVC.age1.titleLabel?.text!)!){
+                    self.volunteerSearchVC.age1.backgroundColor = UIColor(named: "greenColor")
+                    self.volunteerSearchVC.age1.setTitleColor(.white, for: .normal)
+                }else{
+                    self.volunteerSearchVC.age1.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                    self.volunteerSearchVC.age1.setTitleColor(.darkGray, for: .normal)
+                }
+                if  ages.contains((self.volunteerSearchVC.age2.titleLabel?.text!)!){
+                    self.volunteerSearchVC.age2.backgroundColor = UIColor(named: "greenColor")
+                    self.volunteerSearchVC.age2.setTitleColor(.white, for: .normal)
+                }else{
+                    self.volunteerSearchVC.age2.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                    self.volunteerSearchVC.age2.setTitleColor(.darkGray, for: .normal)
+                }
+                if  ages.contains((self.volunteerSearchVC.age3.titleLabel?.text!)!){
+                    self.volunteerSearchVC.age3.backgroundColor = UIColor(named: "greenColor")
+                    self.volunteerSearchVC.age3.setTitleColor(.white, for: .normal)
+                }else{
+                    self.volunteerSearchVC.age3.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                    self.volunteerSearchVC.age3.setTitleColor(.darkGray, for: .normal)
+                }
+                if  ages.contains((self.volunteerSearchVC.age4.titleLabel?.text!)!){
+                    self.volunteerSearchVC.age4.backgroundColor = UIColor(named: "greenColor")
+                    self.volunteerSearchVC.age4.setTitleColor(.white, for: .normal)
+                }else{
+                    self.volunteerSearchVC.age4.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                    self.volunteerSearchVC.age4.setTitleColor(.darkGray, for: .normal)
+                }
+                if  self.modal.qs == nil{
+                    self.volunteerSearchVC.searchTextView.serachText.text = ""
+                          }else{
+                    self.volunteerSearchVC.searchTextView.serachText.text = self.modal.qs
+                          }
+                          
+                if self.modal.dt == nil{
+                    self.volunteerSearchVC.anytime.isSelected = true
+                    self.volunteerSearchVC.dateRange.isSelected = false
+                    self.volunteerSearchVC.fromLabel.text = "Start Date"
+                    self.volunteerSearchVC.toLabel.text = "End Date"
+                          }else{
+                    self.volunteerSearchVC.anytime.isSelected = false
+                    self.volunteerSearchVC.dateRange.isSelected = true
+                    self.volunteerSearchVC.fromLabel.text = String(self.modal.dt.split(separator: "|").first ?? "Start Date")
+                    self.volunteerSearchVC.toLabel.text = String(self.modal.dt.split(separator: "|").last ?? "End Date")
+                          }
+                          
+                if self.modal.conti != nil {
+                    self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.countriesButton, text: self.modal.countries.joined(separator: ", "), textLabel: self.volunteerSearchVC.countrieslabel)
+                          }else{
+                    self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.countriesButton, textLabel: self.volunteerSearchVC.countrieslabel)
+                          }
+                          
+                if  self.modal.skillsArray.count > 0{
+                    self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.skillsButton, text: self.modal.skillsArray.joined(separator: ", "), textLabel: self.volunteerSearchVC.skillsLabel)
+                          }else{
+                    self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.skillsButton, textLabel: self.volunteerSearchVC.skillsLabel)
+                          }
+                          
+                if  self.modal.languagesArray.count > 0{
+                    self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.languageButton, text: self.modal.languagesArray.joined(separator: ", "), textLabel: self.volunteerSearchVC.languageLabel)
+                          }else{
+                    self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.languageButton, textLabel: self.volunteerSearchVC.languageLabel)
+                          }
+                          
             }
-            
-            if modal.dt == nil{
-                volunteerSearchVC.anytime.isSelected = true
-                volunteerSearchVC.dateRange.isSelected = false
-                volunteerSearchVC.fromLabel.text = "Start Date"
-                volunteerSearchVC.toLabel.text = "End Date"
-            }else{
-                volunteerSearchVC.anytime.isSelected = false
-                volunteerSearchVC.dateRange.isSelected = true
-                volunteerSearchVC.fromLabel.text = String(modal.dt.split(separator: "|").first ?? "Start Date")
-                volunteerSearchVC.toLabel.text = String(modal.dt.split(separator: "|").last ?? "End Date")
-            }
-            
-            if modal.conti != nil {
-                volunteerSearchVC.changeApperance(button: volunteerSearchVC.countriesButton, text: modal.countries.joined(separator: ", "), textLabel: volunteerSearchVC.countrieslabel)
-            }else{
-                volunteerSearchVC.resetApperance(button: volunteerSearchVC.countriesButton, textLabel: volunteerSearchVC.countrieslabel)
-            }
-            
-            if  modal.skillsArray.count > 0{
-                volunteerSearchVC.changeApperance(button: volunteerSearchVC.skillsButton, text: modal.skillsArray.joined(separator: ", "), textLabel: volunteerSearchVC.skillsLabel)
-            }else{
-                volunteerSearchVC.resetApperance(button: volunteerSearchVC.skillsButton, textLabel: volunteerSearchVC.skillsLabel)
-            }
-            
-            if  modal.languagesArray.count > 0{
-                volunteerSearchVC.changeApperance(button: volunteerSearchVC.languageButton, text: modal.languagesArray.joined(separator: ", "), textLabel: volunteerSearchVC.languageLabel)
-            }else{
-                volunteerSearchVC.resetApperance(button: volunteerSearchVC.languageButton, textLabel: volunteerSearchVC.languageLabel)
-            }
-            
-           
         }
     }
     init(dependency:VolunteerSearchVC) {
@@ -150,11 +150,12 @@ class VolunteerSearchVM{
     
     func getDataWithModal(modalObject:@escaping (_ modalObject:Volunteer?)->()){
         
+        
         var str = "https://www.hovos.com\(ApiEndPoints.volunteersAll.rawValue)?"
         var qs = ""
         qs = qs + "cntry=\(modal.cntry ?? "")"
         qs = qs + "&conti=\(modal.conti ?? "")"
-        qs = qs + "&dt=\(modal.dt ?? "")"
+        qs = qs + "&dt=\(modal.queryDate!)"
         qs = qs + "&skills=\(modal.skills.joined(separator: "|"))"
         qs = qs + "&latlng=\(modal.latlng ?? "")"
         qs = qs + "&qs=\(modal.qs ?? "")"
@@ -182,7 +183,7 @@ class VolunteerSearchVM{
         var qs = ""
         qs = qs + "cntry=\(object.cntry ?? "")"
         qs = qs + "&conti=\(object.conti ?? "")"
-        qs = qs + "&dt=\(object.dt ?? "")"
+        qs = qs + "&dt=\(modal.queryDate!)"
         qs = qs + "&skills=\(object.skills.joined(separator: "|"))"
         qs = qs + "&latlng=\(object.latlng ?? "")"
         qs = qs + "&qs=\(object.qs ?? "")"

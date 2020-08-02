@@ -26,7 +26,7 @@ class TabBarController: UIViewController {
         cover.isHidden = false
             if let data = UserDefaults.standard.data(forKey: constants.accessToken.rawValue){
                 let decoder = JSONDecoder()
-                SharedUser.manager.auth = try! decoder.decode(Auth.self, from: data)
+                SharedUser.manager.auth = try! decoder.decode(Auth1.self, from: data)
             }
         
             let header = ["auth":SharedUser.manager.auth.auth ?? "",
@@ -37,13 +37,13 @@ class TabBarController: UIViewController {
                           recommendedRequest.apiPath = ApiEndPoints.user.rawValue
                           recommendedRequest.header = header
                           recommendedRequest.method = "GET"
-                   ApiCall(packet: recommendedRequest) { (data, status, code) in
+                   ApiCall(packet: recommendedRequest) { (newData, status, code) in
                             if code == 200{
                                 let decoder = JSONDecoder()
-                                let userData = try! decoder.decode(Auth.self, from: data!)
+                                let userData = try! decoder.decode(Auth.self, from: newData!)
                                 
                                 if userData.user == nil {
-                                    let userData1 = try! decoder.decode(Auth1.self, from: data!)
+                                    let userData1 = try! decoder.decode(Auth1.self, from: newData!)
                                     SharedUser.manager.auth.user = userData1.user
                                     SharedUser.manager.auth.listing = Listing()
                                     SharedUser.manager.auth.listing?.member = User1()

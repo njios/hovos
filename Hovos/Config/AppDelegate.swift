@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import CoreLocation
 import GoogleMaps
 import GooglePlaces
+import Adyen
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -35,9 +36,10 @@ var locationManager: CLLocationManager?
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        RedirectComponent.applicationDidOpen(from: url)
         return GIDSignIn.sharedInstance().handle(url)
     }
-
+  
 }
 
   

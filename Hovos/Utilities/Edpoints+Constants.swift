@@ -73,11 +73,11 @@ enum ApiEndPoints{
         case .volunteersAll:
             return "/api/get/travellers/all/"
         case .volunteersRecommended:
-             return "/api/traveller/recommended/"
+            return "/api/traveller/recommended/"
         case .volunteersNearBy:
             return "/api/get/travellers/nearby/"
         case .hostByLocation:
-              return "/api/get/hosts/nearby/"
+            return "/api/get/hosts/nearby/"
         case .hostsRecommended:
             return "/api/host/recommended/"
             
@@ -93,15 +93,15 @@ enum ApiEndPoints{
         case .jobs:
             return "/api/get/jobs"
         case .languages:
-        return "/api/get/languages"
+            return "/api/get/languages"
         case .accomodation:
             return "/api/get/accommodations"
-            case .user:
+        case .user:
             return "/api/user/"
         case .smsOtp:
             return "/api/user/otp/"
         case .contactUs:
-             return "/page/contact_us/"
+            return "/page/contact_us/"
         case .paymentMethod:
             return "/api/adyen/payment_methods/"
         case .paymentProcess:
@@ -129,20 +129,21 @@ enum ApiEndPoints{
         case .vol_Registration(let id):
             return "/api/traveller/\(id)"
         case .host_Registration(let id):
-             return "/api/host/\(id)"
+            return "/api/host/\(id)"
         case .hostPublished(let id):
             return "/api/host/publish/\(id)"
         case .travellerPublish(let id):
             return "/api/traveller/publish/\(id)"
         }
     }
-       
+    
     
 }
 
 enum CalenderMonth{
     
     case month(month:Int)
+    case monthInString(month:String)
     func getMonth()->String{
         switch self {
         case .month(let month):
@@ -174,7 +175,35 @@ enum CalenderMonth{
             default:
                 return ""
             }
-        
+        case .monthInString(let month):
+            switch month {
+            case "Jan":
+                return "1"
+            case "Feb":
+                return "2"
+            case "Mar":
+                return "3"
+            case "Apr":
+                return "4"
+            case "May":
+                return "5"
+            case "Jun":
+                return "6"
+            case "Jul":
+                return "7"
+            case "Aug":
+                return "8"
+            case "Sep":
+                return "9"
+            case "Oct":
+                return "10"
+            case "Nov":
+                return "11"
+            case "Dec":
+                return "12"
+            default:
+                return ""
+            }
         }
     }
 }

@@ -33,7 +33,10 @@ class CompleteProfileVC: UIViewController {
     }
     
     @IBAction func closeTheScreen(_ sender:UIButton){
-        self.dismiss(animated: false, completion: nil)
+        
+      let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+                               let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
+                                 (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = vc
     }
     
     
@@ -169,11 +172,12 @@ class CompleteProfileVC: UIViewController {
             SharedUser.manager.saveVolunteer { status,mssg  in
                 if status{
                     DispatchQueue.main.async{
+                        
                         self.completeProfile.isHidden = false
                         self.completeProfileButton.isHidden = false
                     }
                 }else{
-                         Hovos.showAlert(vc: self, mssg: mssg)
+                    Hovos.showAlert(vc: self, mssg: mssg)
                 }
             }
             
@@ -254,11 +258,12 @@ class CompleteProfileVC: UIViewController {
             SharedUser.manager.saveHost{ (status,mssg) in
                 if status{
                     DispatchQueue.main.async{
+                       
                         self.completeProfile.isHidden = false
                         self.completeProfileButton.isHidden = false
                     }
                 }else{
-                         Hovos.showAlert(vc: self, mssg: mssg)
+                    Hovos.showAlert(vc: self, mssg: mssg)
                 }
             }
         }

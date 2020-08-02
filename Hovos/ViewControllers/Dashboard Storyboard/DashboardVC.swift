@@ -97,11 +97,16 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         
     }
     @IBAction func loadMenu(_ sender:UIButton){
-        
         self.view.addSubview(menuView)
-        
-        
     }
+    @IBAction func recommededAction(_ sender:UIButton){
+          
+       }
+
+    @IBAction func newAction(_ sender:UIButton){
+
+       }
+
     override func viewWillAppear(_ animated: Bool) {
         if ((SharedUser.manager.auth.user?.listingId) == nil) || ((SharedUser.manager.auth.listing?.isPublished ?? "n").lowercased() == "n") {
             let stb = UIStoryboard(name: "Profile", bundle: nil)
@@ -211,7 +216,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     
 }
 extension DashboardVC:Menudelegates{
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         self.navigationController?.popToRootViewController(animated: false)
         switch action {
         case .logout:

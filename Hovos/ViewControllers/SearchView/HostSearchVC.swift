@@ -219,7 +219,7 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.size.width / 2 ), height: 50)
     }
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         let countriesData = action.getData() as? [continents:[countries]]
         let keys = Array<continents>(countriesData!.keys)
         searchModel.continent = keys.first?.title ?? ""

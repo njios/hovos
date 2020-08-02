@@ -44,7 +44,7 @@ class DashBoardVM:NSObject {
             URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
             URLQueryItem(name: "radius", value: String(500)),
             URLQueryItem(name: "min_offset", value: String(0)),
-            URLQueryItem(name: "min_offset", value: String(0))
+            URLQueryItem(name: "max_offset", value: String(0))
         ]
         
         let url =  URL(string: (urlComponents.url?.absoluteString)!)
@@ -132,7 +132,7 @@ class DashBoardVM:NSObject {
             URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
             URLQueryItem(name: "radius", value: String(500)),
             URLQueryItem(name: "min_offset", value: String(0)),
-            URLQueryItem(name: "min_offset", value: String(0))
+            URLQueryItem(name: "max_offset", value: String(0))
         ]
         
         let url =  URL(string: (urlComponents.url?.absoluteString)!)

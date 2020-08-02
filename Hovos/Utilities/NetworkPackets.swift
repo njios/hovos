@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import UIKit
+
 struct NetworkPacket {
     var url:String?
     var apiPath:String?{
@@ -75,6 +76,7 @@ func getApiCall(url:URL,completion: @escaping (Data?,Bool,Int)->()){
 
 
 func postApiCall(packet:NetworkPacket,completion: @escaping (Data?,Bool,Int)->()){
+    
     let url = URL(string: packet.url!)
     var request = URLRequest(url: url!)
     request.httpMethod = packet.method ?? "POST"

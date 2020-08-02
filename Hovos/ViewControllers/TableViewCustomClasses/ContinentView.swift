@@ -86,7 +86,7 @@ class ContinentView: UIView,UITableViewDelegate,UITableViewDataSource {
         heightConstraint.constant = 0
         tbl.reloadData()
         self.isHidden = true
-        self.delegate.menuItemDidSelect(for: Action.Response(data: selectedData))
+        self.delegate.menuItemDidSelect(for: MenuAction.Response(data: selectedData))
         selectedData.removeAll()
     }
     

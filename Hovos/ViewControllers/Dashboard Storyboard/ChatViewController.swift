@@ -97,6 +97,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
        
         cell.data.text = chatItem.text ?? ""
         cell.time.text = chatItem.time ?? ""
+        
         return cell
       
     }

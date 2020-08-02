@@ -38,11 +38,11 @@ class HostsVC: UIViewController {
             searchHostApi(completion: { })
         }
         menuView.frame = self.view.frame
-       if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
-           menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
-         }else{
-       menuView.delegate = menu_delegate
-       }
+        if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+        }else{
+            menuView.delegate = menu_delegate
+        }
         
         if object.hosts?.count == 0 || object.hosts == nil{
             if searchModal == nil {
@@ -51,7 +51,7 @@ class HostsVC: UIViewController {
                 self.loaderView.isHidden = false
             }
         }else{
-             self.loaderView.isHidden = true
+            self.loaderView.isHidden = true
         }
     }
     
@@ -74,8 +74,8 @@ class HostsVC: UIViewController {
         searchModal.cntry = volItem.location!.countryCode
         searchModal.countries = [volItem.location!.country!]
         searchInCountry = volItem.location!.country!
-         //searchModal.latlng = "\(volItem.location!.latitude!)|\(volItem.location!.longitude!)"
-         self.loaderView?.isHidden = false
+        //searchModal.latlng = "\(volItem.location!.latitude!)|\(volItem.location!.longitude!)"
+        self.loaderView?.isHidden = false
         self.object.hosts?.removeAll()
         self.collView.reloadData()
         searchHostApi {
@@ -214,16 +214,16 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
-    
+        
         let volItem = object.hosts![indexPath.row]
-            cell.imageMain = (volItem.image?.medium ?? "")
+        cell.imageMain = (volItem.image?.medium ?? "")
         cell.imageData = volItem.images ?? []
         cell.dependency = self
         cell.AddGesture()
         if let age = volItem.member?.age{
-        cell.name?.text = (volItem.member?.firstName ?? "") + " (\(age))"
+            cell.name?.text = (volItem.member?.firstName ?? "") + " (\(age))"
         }else{
-        cell.name?.text = (volItem.member?.firstName ?? "")
+            cell.name?.text = (volItem.member?.firstName ?? "")
         }
         let jobs = volItem.jobs?.values
         cell.countries = Array(jobs!)
@@ -247,7 +247,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }
         
         if searchInCountry != ""{
-             self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
+            self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
         }
         
         
@@ -293,6 +293,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.mealDesc.text = volItem.mealDescription ?? ""
         cell.photosCount.text = ""
         favButton.tag = indexPath.row
+        favButton.isSelected = false
         cell.countryButton.tag = indexPath.row
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
@@ -355,18 +356,23 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         if indexPath.item == object.hosts!.count-1{
             if searchModal == nil{
                 ViewHelper.shared().showLoader(self)
-                if LandingVM().location == nil{
+                if location == nil{
                     LandingVM().getAllHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
                         self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
                         collectionView.reloadData()
                         ViewHelper.shared().hideLoader()
                     }
                 }else{
-                LandingVM().getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
-                    self.object.hosts!.append(contentsOf: (items!))
-                    collectionView.reloadData()
-                    ViewHelper.shared().hideLoader()
-                }
+                    let landingVMobject = LandingVM()
+                    landingVMobject.location = location
+                    landingVMobject.getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
+                        DispatchQueue.main.async {
+                            self.object.hosts!.append(contentsOf: (items!))
+                            collectionView.reloadData()
+                            ViewHelper.shared().hideLoader()
+                        }
+                        
+                    }
                 }
             }else{
                 searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {})
