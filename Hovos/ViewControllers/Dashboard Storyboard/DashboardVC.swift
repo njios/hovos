@@ -17,11 +17,11 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     @IBOutlet weak var latest:UICollectionView!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var mapView:GMSMapView!
-  
     @IBOutlet weak var RecommendedLabel:CustomLabels!
     @IBOutlet weak var NewLabel:CustomLabels!
     @IBOutlet weak var forwardAngle1:UIImageView!
     @IBOutlet weak var forwardAngle2:UIImageView!
+    
     @IBOutlet weak var membershipHightConstraints:NSLayoutConstraint!
     var recommendedDelegates = RecommendedVolunteers()
     var latestDelegates = NewHosts()
@@ -29,16 +29,21 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     var landingVMObject = LandingVM()
     var delegate:ListViewDelegate!
     var locationManager = CLLocationManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
         menuView.frame = self.view.frame
         menuView.delegate = self
         locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+       
         if locationManager.location != nil {
+            ViewHelper.shared().showLoader(self)
             VMObject.getLocation(location:locationManager.location! ,completion: updateUI(status:))
+        }else{
+             locationManager.startUpdatingLocation()
         }
+        
         if SharedUser.manager.auth.listing?.isPaid != nil{
             membershipHightConstraints.constant = 0
         }
@@ -48,7 +53,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
             
             RecommendedLabel.text = "Recommended Hosts"
             NewLabel.text = "New Hosts"
-           
+            
             RecommendedLabel.textColor = UIColor(named: "orangeColor")
             NewLabel.textColor = UIColor(named: "orangeColor")
             forwardAngle1.image = UIImage(named: "orangeAngle")
@@ -57,14 +62,14 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
             
             RecommendedLabel.text = "Recommended volunteers"
             NewLabel.text = "New volunteers"
-           
+            
             RecommendedLabel.textColor = UIColor(named: "greenColor")
             NewLabel.textColor = UIColor(named: "greenColor")
             membershipHightConstraints.constant = 0
             forwardAngle1.image = UIImage(named: "blueAngle")
             forwardAngle2.image = UIImage(named: "blueAngle")
         }
-
+        
         NewLabel.isComplete = true
         RecommendedLabel.isComplete = true
         mapView.delegate = self
@@ -74,35 +79,40 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         
     }
     private func updateUI(status:Int){
-        
+        ViewHelper.shared().hideLoader()
         recommendedDelegates.modalObject = VMObject.recommendedItems
         latestDelegates.modalObject = VMObject.latestItems
-        if status == 1{
-            recommended.delegate = recommendedDelegates
-            recommended.dataSource = recommendedDelegates
-            recommendedDelegates.delegate = self
-            recommended.reloadData()
-        }
-        if status == 2{
-            latest.delegate = latestDelegates
-            latest.dataSource = latestDelegates
-            latestDelegates.delegate = self
-            latest.reloadData()
-        }
-        if status == 0{
-            loadMap()
-            
-            landingVMObject.Hosts = VMObject.mapItems
-            landingVMObject.location = VMObject.location
-        }
+        
+        recommended.delegate = recommendedDelegates
+        recommended.dataSource = recommendedDelegates
+        recommendedDelegates.delegate = self
+        recommended.reloadData()
+        
+        latest.delegate = latestDelegates
+        latest.dataSource = latestDelegates
+        latestDelegates.delegate = self
+        latest.reloadData()
+        
+        loadMap()
+        landingVMObject.Hosts = VMObject.mapItems
+        landingVMObject.location = VMObject.location
+        
         
     }
     @IBAction func loadMenu(_ sender:UIButton){
-        
         self.view.addSubview(menuView)
-        
-        
     }
+    
+    @IBAction func recommededAction(_ sender:UIButton){
+        let indexPath = IndexPath(item: 0, section: 0)
+        delegate.collViewUpdateWithObject(index: indexPath, object: VMObject.recommendedItems, type: "Recom")
+    }
+    
+    @IBAction func newAction(_ sender:UIButton){
+        let indexPath = IndexPath(item: 0, section: 0)
+        delegate.collViewUpdateWithObject(index: indexPath, object: VMObject.latestItems, type: "New")
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         if ((SharedUser.manager.auth.user?.listingId) == nil) || ((SharedUser.manager.auth.listing?.isPublished ?? "n").lowercased() == "n") {
             let stb = UIStoryboard(name: "Profile", bundle: nil)
@@ -111,55 +121,57 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
             present(vc, animated: false, completion: nil)
         }
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.dismiss(animated: false, completion: nil)
+    }
     private func loadMap(){
-      
-            DispatchQueue.main.async {
-                
-                self.mapView.camera = GMSCameraPosition.camera(withLatitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude), zoom: 10.0)
+        
+        DispatchQueue.main.async {
+            
+            self.mapView.camera = GMSCameraPosition.camera(withLatitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude), zoom: 10.0)
+            
+            let marker = customMarker()
+            marker.position = CLLocationCoordinate2D(latitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude))
+            
+            var markerImage:UIImage!
+            if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
+                markerImage = UIImage.init(named: "greenLocation")
+            }else{
+                markerImage = UIImage.init(named: "locationRed")
+            }
+            
+            
+            let markerView = UIImageView(image: markerImage)
+            
+            marker.iconView = markerView
+            marker.map = self.mapView
+            marker.isTappable = false
+            for i in 0 ..< self.VMObject.mapItems.count{
+                let lattitude = Double((self.VMObject.mapItems[i].location?.latitude)!)!
+                let longitude = Double((self.VMObject.mapItems[i].location?.longitude)!)!
                 
                 let marker = customMarker()
-                marker.position = CLLocationCoordinate2D(latitude: (self.VMObject.location.coordinate.latitude), longitude: (self.VMObject.location.coordinate.longitude))
+                
+                marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
+                marker.title = self.VMObject.mapItems[i].member?.firstName
+                marker.snippet = self.VMObject.mapItems[i].currentLocation
+                
+                
                 
                 var markerImage:UIImage!
                 if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
-                      markerImage = UIImage.init(named: "greenLocation")
+                    markerImage = UIImage.init(named: "mappin")
                 }else{
-                     markerImage = UIImage.init(named: "locationRed")
+                    markerImage = UIImage.init(named: "mappin")
                 }
-               
-                
                 let markerView = UIImageView(image: markerImage)
-                
+                marker.index = i
                 marker.iconView = markerView
+                marker.info = self.VMObject.mapItems[i]
                 marker.map = self.mapView
-                marker.isTappable = false
-                for i in 0 ..< self.VMObject.mapItems.count{
-                    let lattitude = Double((self.VMObject.mapItems[i].location?.latitude)!)!
-                    let longitude = Double((self.VMObject.mapItems[i].location?.longitude)!)!
-                    
-                    let marker = customMarker()
-                    
-                    marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
-                    marker.title = self.VMObject.mapItems[i].member?.firstName
-                    marker.snippet = self.VMObject.mapItems[i].currentLocation
-                    
-                   
-                    
-                    var markerImage:UIImage!
-                    if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
-                                         markerImage = UIImage.init(named: "mappin")
-                    }else{
-                                        markerImage = UIImage.init(named: "mappin")
-                    }
-                    let markerView = UIImageView(image: markerImage)
-                    marker.index = i
-                    marker.iconView = markerView
-                    marker.info = self.VMObject.mapItems[i]
-                    marker.map = self.mapView
-                }
-                
             }
+            
+        }
         
     }
     
@@ -168,7 +180,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         let mapVc = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapVc.location = VMObject.location
         mapVc.mapItems = VMObject.mapItems
-      
+        
         self.navigationController?.pushViewController(mapVc, animated: true)
         
         
@@ -179,7 +191,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         let mapVc = storyboard.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapVc.location = VMObject.location
         mapVc.mapItems = VMObject.mapItems
-       
+        
         self.navigationController?.pushViewController(mapVc, animated: true)
     }
     
@@ -210,7 +222,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
     
 }
 extension DashboardVC:Menudelegates{
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         self.navigationController?.popToRootViewController(animated: false)
         switch action {
         case .logout:
@@ -223,15 +235,16 @@ extension DashboardVC:Menudelegates{
         case .hostlist:
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
-           
+            
             vc.VMObject = (self.parent as! TabBarController).VMObject
             vc.isAllHost = true
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(vc, animated: false)
             break
         case .volunteers:
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let vc = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
-               self.navigationController?.pushViewController(vc, animated: true)
+            
+            self.navigationController?.pushViewController(vc, animated: false)
         default:
             break
         }
@@ -251,6 +264,7 @@ extension DashboardVC:CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if manager.location != nil {
             DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                   ViewHelper.shared().showLoader(self)
                 self.VMObject.getLocation(location:locations[0] ,completion: self.updateUI(status:))
             }
             manager.stopUpdatingLocation()

@@ -45,7 +45,7 @@ class LandingVM {
             URLQueryItem(name: "latlng", value: "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"),
             URLQueryItem(name: "radius", value: String(500)),
             URLQueryItem(name: "min_offset", value: String(minOffeset)),
-            URLQueryItem(name: "min_offset", value: String(maxOffset))
+            URLQueryItem(name: "max_offset", value: String(maxOffset))
         ]
         
         let url =  URL(string: (urlComponents.url?.absoluteString)!)
@@ -86,7 +86,7 @@ class LandingVM {
         var qs = ""
         qs = qs + "cntry=\(modal.cntry ?? "")"
         qs = qs + "&conti=\(modal.conti ?? "")"
-        qs = qs + "&dt=\(modal.dt ?? "")"
+        qs = qs + "&dt=\(modal.queryDate ?? "")"
         qs = qs + "&jobs=\(modal.jobs.joined(separator: "|"))"
         qs = qs + "&latlng=\(modal.latlng ?? "")"
         qs = qs + "&qs=\(modal.qs ?? "")"
@@ -115,7 +115,7 @@ class LandingVM {
           qs = qs + "&max_offset=\(modal.max_offset)"
           qs = qs + "&cntry=\(modal.cntry ?? "")"
           qs = qs + "&conti=\(modal.conti ?? "")"
-          qs = qs + "&dt=\(modal.dt ?? "")"
+          qs = qs + "&dt=\(modal.queryDate ?? "")"
           qs = qs + "&jobs=\(modal.jobs.joined(separator: "|"))"
           qs = qs + "&latlng=\(modal.latlng ?? "")"
           qs = qs + "&qs=\(modal.qs ?? "")"

@@ -156,7 +156,7 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
 
 extension LandingVC:Menudelegates{
     
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             vollist.VMObject = VMObject
             vollist.menu_delegate = self

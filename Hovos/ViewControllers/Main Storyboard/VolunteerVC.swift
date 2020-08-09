@@ -35,55 +35,93 @@ class VolunteerVC: UIViewController {
     let vc = VolunteerSearchVC( nibName: "VolunteerSearchVC", bundle: nil)
     var volSearchModal:VolunteerSearchModel!{
         didSet{
-            let countriesText = volSearchModal.countries.joined(separator: ",")
+            searchText.text = ""
+            indexpath = nil
+            object?.travellers?.removeAll()
+            collView.reloadData()
+            let countriesText = volSearchModal.countries.joined(separator: ", ")
             let continent = (volSearchModal.continent )
-            let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: "-"))
-            var skills = volSearchModal.skillsArray.joined(separator: ",")
+            let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: " - "))
+            let skills = volSearchModal.skillsArray.joined(separator: ", ")
             var qs = ""
             if let value = volSearchModal.qs{
                 qs = value
             }
-            let jobs = volSearchModal.skillsArray.joined(separator: ",")
-            
+            let jobs = volSearchModal.skillsArray.joined(separator: ", ")
+            var rangeArray = [NSRange]()
             if qs.last == " "{
                 qs.removeLast()
             }
-            searchText.text = qs + ","
-            searchText.text =  searchText.text! + continent + ","
-            searchText.text =  searchText.text! + countriesText + ","
-            searchText.text =  searchText.text! + (date ?? "") + ","
-            searchText.text =  searchText.text! + volSearchModal.age + ","
-            searchText.text =  searchText.text! + skills + ","
+            
+            if qs.count > 0{
+                rangeArray.append(NSRange(location: 0, length: qs.count))
+                searchText.text = qs + ","
+            }
+            
+            if countriesText.count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: continent.count+countriesText.count + 2))
+                searchText.text =  searchText.text! + continent + ", "
+                searchText.text =  searchText.text! + countriesText + ", "
+            }
+            
+            if (date ?? "").count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: (date ?? "").count))
+                searchText.text =  searchText.text! + (date ?? "") + ", "
+            }
+            
+            if volSearchModal.age.count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: volSearchModal.age.count))
+                searchText.text =  searchText.text! + volSearchModal.age + ", "
+            }
+            
+            if skills.count > 0{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: skills.count))
+                searchText.text =  searchText.text! + skills + ", "
+            }
+            
+            
+            if let gender = volSearchModal.gender{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: (gender == "F" ? 5 : 4)))
+                searchText.text = searchText.text! + (gender == "F" ? "Female" : "Male") + ", "
+            }
+            
             var isContinue = true
             while isContinue {
-                if self.searchText.text?.first == ","{
+                if self.searchText.text?.first == "," || self.searchText.text?.first == " "{
                     self.searchText.text?.removeFirst()
-                }else if self.searchText.text?.last == ","{
+                }else if self.searchText.text?.last == "," || self.searchText.text?.last == " "{
                     self.searchText.text?.removeLast()
                 }else{
                     isContinue = false
                 }
             }
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
+            
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , ,", with: ", ")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", , ,", with: ", ")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", ,", with: ", ")
+            
+            self.searchText.attributedText = getUnderlineString(text: self.searchText.text!, range: rangeArray)
         }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
-        menuView.delegate = menu_delegate
+        if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+        }else{
+            menuView.delegate = menu_delegate
+        }
         location = CLLocationManager().location
         if type == .recommended{
             searchButton.isHidden = true
         }
-       
+        
         if  object?.travellers == nil {
-             ViewHelper.shared().showLoader(self)
+            ViewHelper.shared().showLoader(self)
             LandingVM().getVolunteerList() { (items) in
-                          self.object = items
+                self.object = items
                 self.collView.reloadData()
-                          ViewHelper.shared().hideLoader()
+                ViewHelper.shared().hideLoader()
             }
         }
     }
@@ -95,7 +133,7 @@ class VolunteerVC: UIViewController {
         SearchModal.cntry = (volItem?.location!.countryCode)!
         SearchModal.countries = [(volItem?.location!.country)!]
         searchInCountry = (volItem?.location!.country)!
-       // SearchModal.latlng = "\(volItem?.location!.latitude! ?? "")|\(volItem?.location!.longitude! ?? "")"
+        // SearchModal.latlng = "\(volItem?.location!.latitude! ?? "")|\(volItem?.location!.longitude! ?? "")"
         
         self.object?.travellers?.removeAll()
         self.collView.reloadData()
@@ -103,7 +141,7 @@ class VolunteerVC: UIViewController {
         vmobject.searchVolunteer(object: SearchModal) { (Volunteer) in
             ViewHelper.shared().hideLoader()
             DispatchQueue.main.async {
-
+                
                 self.object = Volunteer
                 self.collView.reloadData()
             }
@@ -121,7 +159,6 @@ class VolunteerVC: UIViewController {
                 ViewHelper.shared().hideLoader()
                 self.indexpath = nil
             }
-            
         }
     }
     
@@ -147,10 +184,12 @@ class VolunteerVC: UIViewController {
     @IBAction func searchClicked(_ sender:UIButton){
         
         vc.startSearch = { Modal,SearchModal in
+             self.volSearchModal = SearchModal
             DispatchQueue.main.async {
-                self.object = Modal
-                self.volSearchModal = SearchModal
-                self.collView.reloadData()
+            
+                    self.object = Modal
+                    self.collView.reloadData()
+                
             }
         }
         if volSearchModal != nil {
@@ -183,15 +222,19 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
         let volItem = object!.travellers![indexPath.row]
-         cell.imageMain = (volItem.image?.medium ?? "")
+        cell.imageMain = (volItem.image?.medium ?? "")
         cell.imageData = volItem.images ?? []
         cell.dependency = self
+        cell.role = "V"
+        cell.nameText = (volItem.name ?? "")
         cell.AddGesture()
+        
         if let age = volItem.member?.age{
-        cell.name?.text = (volItem.name ?? "") + " (\(age))"
+            cell.name?.text = (volItem.name ?? "") + " (\(age))"
         }else{
-             cell.name?.text = (volItem.name ?? "")
+            cell.name?.text = (volItem.name ?? "")
         }
+        
         cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()
         cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
@@ -270,6 +313,8 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             cell.photosHeight.constant = width  + 50
         }
         photosDelegate.objects = volItem.images
+        photosDelegate.dependency = self
+        photosDelegate.name = (volItem.name ?? "")
         cell.photosCollview.delegate = photosDelegate
         cell.photosCollview.dataSource = photosDelegate
         cell.photosCollview.reloadData()
@@ -367,6 +412,8 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
 
 class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
     var objects:[images]?
+    weak var dependency:UIViewController!
+    var name:String!
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return (objects?.count ?? 0) + 1
     }
@@ -389,6 +436,15 @@ class PhotosCollection:NSObject,UICollectionViewDelegate,UICollectionViewDataSou
         }else{
             return CGSize(width: (collectionView.frame.size.width/3 - 5), height: (collectionView.frame.size.width/3) - 5)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
+        vc.role = "V"
+        vc.imageData = objects!
+        vc.name = name
+        vc.modalPresentationStyle = .fullScreen
+        dependency?.present(vc, animated: true, completion: nil)
     }
     
 }

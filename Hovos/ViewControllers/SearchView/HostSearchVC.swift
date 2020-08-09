@@ -148,11 +148,12 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
     @IBAction func searchClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         dependency.searchModal = searchModel
-        
-        dependency.searchHostApi(completion: {
+        dependency.searchHostApi(completion: { vol in
             DispatchQueue.main.async {
+              
                 ViewHelper.shared().hideLoader()
                 self.goback(sender)
+                self.dependency.updateDataAfterSearch(vol: vol)
             }
         })
            
@@ -219,7 +220,7 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (collectionView.frame.size.width / 2 ), height: 50)
     }
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         let countriesData = action.getData() as? [continents:[countries]]
         let keys = Array<continents>(countriesData!.keys)
         searchModel.continent = keys.first?.title ?? ""

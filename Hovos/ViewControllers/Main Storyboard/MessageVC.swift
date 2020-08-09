@@ -31,7 +31,7 @@ class MessageVC: UIViewController,UITextViewDelegate {
             
             let postData = NSMutableData(data: "text=\(messageView)".data(using: String.Encoding.utf8)!)
             postData.append("&receiverId=\(user.memberId ?? "")".data(using: String.Encoding.utf8)!)
-            postData.append("&receiverListingId=\(user.memberListingId ?? "")".data(using: String.Encoding.utf8)!)
+            postData.append("&receiverListingId=\(user.id ?? "")".data(using: String.Encoding.utf8)!)
             
             let request = NSMutableURLRequest(url: NSURL(string: "https://www.hovos.com/api/user/message/")! as URL,
                                               cachePolicy: .useProtocolCachePolicy,

@@ -128,7 +128,7 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
     }
     
     @IBAction func searchClicked(_ sender:UIButton){
-        if clearButton.isHidden == false{
+        
             ViewHelper.shared().showLoader(self)
             vmObject.getDataWithModal { (modal) in
                 DispatchQueue.main.async {
@@ -139,7 +139,7 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
                     }
                 }
             }
-        }
+        
     }
     
     @IBAction func anyTimeClicked(_ sender:UIButton){
@@ -213,7 +213,7 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
         vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: false, completion: nil)
     }
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         let countriesData = action.getData() as? [continents:[countries]]
         let keys = Array<continents>(countriesData!.keys)
         vmObject.modal.continent = keys.first?.title ?? ""

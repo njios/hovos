@@ -9,7 +9,7 @@
 import UIKit
 
 class CalenderVC: UIViewController {
-
+    @IBOutlet weak var selectdateButton:UIButton!
     @IBOutlet weak var fromDate:UILabel!
     @IBOutlet weak var toDate:UILabel!
     @IBOutlet weak var calender:UITableView!
@@ -19,6 +19,8 @@ class CalenderVC: UIViewController {
         didSet{
             if firstDate != nil{
                 fromDate.text = CalenderHelper.shared.mmmddyyy.string(from: firstDate!)
+                selectdateButton.alpha = 0.5
+                selectdateButton.isUserInteractionEnabled = false
             }else{
                  fromDate.text = "----"
             }
@@ -26,8 +28,13 @@ class CalenderVC: UIViewController {
     }
     var last_Date:Date!{
     didSet{
+        
         if last_Date != nil{
             toDate.text = CalenderHelper.shared.mmmddyyy.string(from: last_Date!)
+            if firstDate != nil{
+                selectdateButton.alpha = 1.0
+                selectdateButton.isUserInteractionEnabled = true
+            }
         }else{
              toDate.text = "----"
         }

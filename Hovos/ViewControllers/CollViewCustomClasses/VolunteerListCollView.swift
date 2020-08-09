@@ -13,6 +13,7 @@ import Kingfisher
 protocol ListViewDelegate {
     func collViewdidUpdate(index:IndexPath)
     func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String)
+ 
 }
 extension ListViewDelegate{
     
@@ -135,6 +136,8 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
         var countries = [String]()
         var imageData = [images]()
         var imageMain = ""
+        var nameText = ""
+        var role = ""
         weak var dependency:UIViewController!
         
         override func awakeFromNib() {
@@ -152,8 +155,11 @@ class VolunteerListCollView: NSObject, UICollectionViewDelegate,UICollectionView
             if imageData.count > 0{
             let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
             
+                if role == "V"{
+                    vc.role = "V"
+                }
             vc.imageData = imageData
-                vc.name = name?.text
+                vc.name = nameText
             vc.modalPresentationStyle = .fullScreen
             dependency.present(vc, animated: true, completion: nil)
             }

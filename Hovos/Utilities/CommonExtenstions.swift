@@ -18,17 +18,17 @@ extension UIViewController{
     
     @IBAction func goback(_ sender:UIButton){
         if let nvc = self.navigationController{
-        nvc.popViewController(animated: true)
+            nvc.popViewController(animated: true)
         }else{
-        self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
     }
     
     @IBAction func gobackToRoot(_ sender:UIButton){
-          if let nvc = self.navigationController{
-          nvc.popToRootViewController(animated: false)
-          }
-      }
+        if let nvc = self.navigationController{
+            nvc.popToRootViewController(animated: false)
+        }
+    }
     
     func showProgressAlert(){
         let alert = UIAlertController(title: "No Content", message: "Work in progress.", preferredStyle: .alert)
@@ -37,10 +37,10 @@ extension UIViewController{
         self.present(alert, animated: true, completion: nil)
     }
     @IBAction func showAlert(_ sender:UIButton){
-           if let nvc = self.navigationController{
-          showProgressAlert()
-           }
-       }
+        if let nvc = self.navigationController{
+            showProgressAlert()
+        }
+    }
     
 }
 
@@ -97,80 +97,97 @@ extension Date{
 extension UICollectionView {
     func scrollToNextItem()->Bool {
         if self.contentOffset.x + self.bounds.size.width < self.contentSize.width{
-        let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
-        self.moveToFrame(contentOffset: contentOffset)
+            let contentOffset = CGFloat(floor(self.contentOffset.x + self.bounds.size.width))
+            self.moveToFrame(contentOffset: contentOffset)
             return true
         }else{
             return false
         }
     }
-
+    
     func scrollToPreviousItem()->Bool {
-         if self.contentOffset.x  > 0{
-        let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
-        self.moveToFrame(contentOffset: contentOffset)
-              return true
-         }else{
+        if self.contentOffset.x  > 0{
+            let contentOffset = CGFloat(floor(self.contentOffset.x - self.bounds.size.width))
+            self.moveToFrame(contentOffset: contentOffset)
+            return true
+        }else{
             return false
         }
     }
-
+    
     func moveToFrame(contentOffset : CGFloat) {
         self.setContentOffset(CGPoint(x: contentOffset, y: self.contentOffset.y), animated: true)
     }
 }
 extension UIView {
-
-  // OUTPUT 1
-  func dropShadow(scale: Bool = true) {
-    layer.masksToBounds = false
-    layer.shadowColor = UIColor.black.cgColor
-    layer.shadowOpacity = 0.3
-    layer.shadowRadius = 3
-    layer.shadowOffset = .zero
     
-    layer.shouldRasterize = true
-    layer.rasterizationScale = UIScreen.main.scale
-  }
-
-  // OUTPUT 2
-  func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
-    layer.masksToBounds = false
-    layer.shadowColor = color.cgColor
-    layer.shadowOpacity = opacity
-    layer.shadowOffset = offSet
-    layer.shadowRadius = radius
-
-    layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-    layer.shouldRasterize = true
-    layer.rasterizationScale = scale ? UIScreen.main.scale : 1
-  }
+    // OUTPUT 1
+    func dropShadow(scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.3
+        layer.shadowRadius = 3
+        layer.shadowOffset = .zero
+        
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
+    
+    // OUTPUT 2
+    func dropShadow(color: UIColor, opacity: Float = 0.5, offSet: CGSize, radius: CGFloat = 1, scale: Bool = true) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowOpacity = opacity
+        layer.shadowOffset = offSet
+        layer.shadowRadius = radius
+        
+        layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        layer.shouldRasterize = true
+        layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
 }
 
 
 
 func topViewController()->UIViewController?{
-   
-if var  topController = UIApplication.shared.keyWindow?.rootViewController {
-    while let presentedViewController = topController.presentedViewController {
-        topController = presentedViewController
+    
+    if var  topController = UIApplication.shared.keyWindow?.rootViewController {
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
+        return topController
     }
-    return topController
-  }
     return nil
 }
 
 
 func getNavigationController()->UINavigationController?{
     if var  topController = UIApplication.shared.keyWindow?.rootViewController {
-      while let presentedViewController = topController.presentedViewController {
-          topController = presentedViewController
-      }
+        while let presentedViewController = topController.presentedViewController {
+            topController = presentedViewController
+        }
         if topController is UINavigationController{
             return topController as? UINavigationController
         }else{
-        return topController.navigationController
+            return topController.navigationController
         }
     }
-      return nil
+    return nil
+}
+
+
+
+
+
+func getUnderlineString(text:String,range:[NSRange]) -> NSMutableAttributedString{
+    let underlineAttribute = [ NSAttributedString.Key.foregroundColor: UIColor.white ]
+    let underlineAttributedString = NSMutableAttributedString(string: text, attributes: underlineAttribute)
+ 
+    for item in range{
+    let anotherAttribute = [ NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue]
+        if item.length <= text.count{
+    underlineAttributedString.addAttributes(anotherAttribute, range: item)
+        }
+    }
+    return underlineAttributedString
 }

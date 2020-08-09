@@ -10,14 +10,21 @@ import UIKit
 import Kingfisher
 class GalleryVC: UIViewController {
 
+    @IBOutlet weak var headerView:ThemeView!
     @IBOutlet weak var titleOfImage:UILabel!
     @IBOutlet weak var nameOfUser:UILabel!
     @IBOutlet weak var countOfImager:UILabel!
     @IBOutlet weak var image:UIImageView!
     var imageData = [images]()
     var name:String!
+    var role = ""
     override func viewDidLoad() {
         super.viewDidLoad()
+        if role == "V"{
+            headerView.backgroundColor = UIColor(named: "greenColor")
+        }else  if role == "H"{
+             headerView.backgroundColor = UIColor(named: "orangeColor")
+        }
         nameOfUser.text = "\(name!)'s images"
        let leftGestureRecogniser  = UISwipeGestureRecognizer(target: self, action: #selector(swipeMethod(gesture:)))
         leftGestureRecogniser.direction = UISwipeGestureRecognizer.Direction.left

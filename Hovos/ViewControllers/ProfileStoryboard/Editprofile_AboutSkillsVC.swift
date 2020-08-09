@@ -28,7 +28,9 @@ I am travelling through Europe and I would like to get involved with project and
     
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholder{
         textView.text = ""
+        }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {

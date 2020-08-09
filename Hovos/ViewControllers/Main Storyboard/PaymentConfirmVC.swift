@@ -39,5 +39,11 @@ class PaymentConfirmVC: UIViewController {
         }
     }
 
-   
+    
+    @IBAction func goToHomeScreen(_ sender:UIButton){
+        let storyboard = UIStoryboard(name: "Dashboard", bundle: nil)
+         let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
+        (UIApplication.shared.delegate as! AppDelegate).window?.rootViewController = vc
+    }
+
 }

@@ -47,7 +47,7 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
                 URLQueryItem(name: "latlng", value: "\(String(position.target.latitude))|\(String(position.target.longitude))"),
                 URLQueryItem(name: "radius", value: String(500)),
                 URLQueryItem(name: "min_offset", value: String(0)),
-                URLQueryItem(name: "min_offset", value: String(0))
+                URLQueryItem(name: "max_offset", value: String(0))
             ]
             let url =  URL(string: (urlComponents.url?.absoluteString)!)
             loadingHieght.constant = 20

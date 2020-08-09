@@ -53,6 +53,13 @@ class ChatViewController: UIViewController,UITextViewDelegate {
                
                 print(String(data: data!, encoding: .utf8) ?? "")
                 DispatchQueue.main.async {
+                    var mymssg = MessageModal()
+                    mymssg.isMine = true
+                    mymssg.text = self.messageText.text
+                    mymssg.time = CalenderHelper.shared.hhmm.string(from: Date())
+                    self.chat.append(mymssg)
+                    
+                    self.chatTable.reloadData()
                     self.messageText.text = "Write a message"
                     ViewHelper.shared().hideLoader()
                 }
@@ -77,7 +84,7 @@ class ChatViewController: UIViewController,UITextViewDelegate {
 
 extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messageItem.chat?.count ?? 0
+        return chat.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,6 +104,7 @@ extension ChatViewController:UITableViewDelegate,UITableViewDataSource{
        
         cell.data.text = chatItem.text ?? ""
         cell.time.text = chatItem.time ?? ""
+        
         return cell
       
     }

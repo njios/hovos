@@ -209,7 +209,7 @@ class HostProfileViewController: UIViewController,UpdateProfile {
     }
 }
 extension HostProfileViewController:Menudelegates{
-    func menuItemDidSelect(for action: Action) {
+    func menuItemDidSelect(for action: MenuAction) {
         self.navigationController?.popToRootViewController(animated: false)
         switch action {
         case .logout:

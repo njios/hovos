@@ -35,11 +35,15 @@ class HostsVC: UIViewController {
         super.viewDidLoad()
         if let modal = copyModal{
             searchModal = modal
-            searchHostApi(completion: { })
+            searchHostApi(completion: { _ in })
         }
         menuView.frame = self.view.frame
-       
-        menuView.delegate = menu_delegate
+        if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
+            menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+        }else{
+            menuView.delegate = menu_delegate
+        }
+        
         if object.hosts?.count == 0 || object.hosts == nil{
             if searchModal == nil {
                 getHost()
@@ -47,7 +51,7 @@ class HostsVC: UIViewController {
                 self.loaderView.isHidden = false
             }
         }else{
-             self.loaderView.isHidden = true
+            self.loaderView.isHidden = true
         }
     }
     
@@ -70,65 +74,114 @@ class HostsVC: UIViewController {
         searchModal.cntry = volItem.location!.countryCode
         searchModal.countries = [volItem.location!.country!]
         searchInCountry = volItem.location!.country!
-         //searchModal.latlng = "\(volItem.location!.latitude!)|\(volItem.location!.longitude!)"
-         self.loaderView?.isHidden = false
+        //searchModal.latlng = "\(volItem.location!.latitude!)|\(volItem.location!.longitude!)"
+        self.loaderView?.isHidden = false
         self.object.hosts?.removeAll()
         self.collView.reloadData()
-        searchHostApi {
+        searchHostApi {_ in 
             
         }
     }
     
-    func searchHostApi(_ minOffset:Int = 0, _ maxOffset:Int = 12,completion:@escaping (()->())){
-        let countriesText = searchModal.countries.joined(separator: ",")
+    func searchHostApi(_ minOffset:Int = 0, _ maxOffset:Int = 12,completion:@escaping ((_ vol:Volunteer?)->())){
+        
+        
+        if location != nil && searchModal.latlng == ""{
+            searchModal.latlng = "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"
+        }
+        
         searchModal.min_offset = minOffset
         searchModal.max_offset = maxOffset
+        if searchModal.min_offset == 0{
+            object.hosts?.removeAll()
+        }
+        VMObject.getHostBySearchWithSearchItems(modal: searchModal) { (vol) in
+            
+            DispatchQueue.main.async {
+                if self.searchModal.min_offset == 0{
+                    self.indexpath = nil
+                    self.object.hosts?.removeAll()
+                    self.collView.reloadData()
+                    completion(vol)
+                }
+            }
+        }
+    }
+    
+    func updateDataAfterSearch(vol:Volunteer?){
+        self.searchText.text = ""
+        let countriesText = searchModal.countries.joined(separator: ", ")
+        
         let continent = (searchModal.continent )
-        let date = (searchModal.dt?.replacingOccurrences(of: "|", with: "-"))
+        let date = (searchModal.dt?.replacingOccurrences(of: "|", with: " - "))
         var qs = ""
         if let value = searchModal.qs{
             qs = value
         }
-        let jobs = searchModal.jobsArray.joined(separator: ",")
-        if searchModal.min_offset == 0{
-            object.hosts?.removeAll()
-        }
+        let jobs = searchModal.jobsArray.joined(separator: ", ")
+        
         if qs.last == " "{
             qs.removeLast()
         }
-        if location != nil && searchModal.latlng == ""{
-            searchModal.latlng = "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"
+        
+        self.loaderView?.isHidden = true
+        
+        var rangeArray = [NSRange]()
+        
+        if qs.count > 0{
+            rangeArray.append(NSRange(location: 0, length: qs.count))
+            self.searchText.text = qs + ", "
         }
-        VMObject.getHostBySearchWithSearchItems(modal: searchModal) { (vol) in
-            DispatchQueue.main.async {
-                self.loaderView?.isHidden = true
-                self.searchText.text = qs + ","
-                self.searchText.text =  self.searchText.text! + continent + ","
-                self.searchText.text =  self.searchText.text! + countriesText + ","
-                self.searchText.text =  self.searchText.text! + (date ?? "") + ","
-                self.searchText.text =  self.searchText.text! + jobs
-                var isContinue = true
-                while isContinue {
-                    if self.searchText.text?.first == ","{
-                        self.searchText.text?.removeFirst()
-                    }else if self.searchText.text?.last == ","{
-                        self.searchText.text?.removeLast()
-                    }else{
-                        isContinue = false
-                    }
-                }
-                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
-                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
-                self.searchText.text = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
-                if self.searchModal.min_offset == 0{
-                    self.object = vol!
-                }else{
-                    self.object.hosts?.append(contentsOf: (vol?.hosts!)!)
-                }
-                self.collView.reloadData()
-                completion()
+        
+        if continent.count > 0{
+            self.searchText.text =  self.searchText.text! + continent + ", "
+        }
+        
+        if countriesText.count > 0{
+            rangeArray.append(NSRange(location: self.searchText.text!.count, length: continent.count +  countriesText.count + 2))
+            self.searchText.text =  self.searchText.text! + countriesText + ", "
+        }
+        
+        if (date?.count ?? 0) > 0{
+            rangeArray.append(NSRange(location: self.searchText.text!.count, length: (date?.count ?? 0)))
+            self.searchText.text =  self.searchText.text! + (date ?? "") + ", "
+        }
+        
+        if jobs.count > 0{
+            rangeArray.append(NSRange(location: self.searchText.text!.count, length: jobs.count))
+            self.searchText.text =  self.searchText.text! + jobs
+        }
+        
+        
+        
+        
+        var isContinue = true
+        
+        while isContinue {
+            if self.searchText.text?.first == "," || self.searchText.text?.first == " "{
+                self.searchText.text?.removeFirst()
+            }else if self.searchText.text?.last == "," || self.searchText.text?.last == " "{
+                self.searchText.text?.removeLast()
+            }else{
+                isContinue = false
             }
         }
+        
+        self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , , ", with: ", ")
+        self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , ", with: ", ")
+        self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , ", with: ", ")
+        
+        if self.searchModal.min_offset == 0{
+            self.object = vol!
+            self.collView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
+            self.collView.reloadData()
+        }else{
+            self.object.hosts?.append(contentsOf: (vol?.hosts!)!)
+                self.collView.reloadData()
+        }
+        
+        self.searchText.attributedText = getUnderlineString(text: self.searchText.text!, range: rangeArray)
+ 
     }
     
     
@@ -149,10 +202,17 @@ class HostsVC: UIViewController {
     }
     
     @IBAction func searchHost(_ sender:UIButton){
+        //        indexpath = nil
+        //        object.hosts?.removeAll()
+        //        collView.reloadData()
+        
         let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
         vc.dependency = self
         if searchModal != nil{
             vc.copySearchModel = searchModal
+            DispatchQueue.main.async {
+                
+            }
         }
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -210,16 +270,16 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
-    
+        
         let volItem = object.hosts![indexPath.row]
-            cell.imageMain = (volItem.image?.medium ?? "")
+        cell.imageMain = (volItem.image?.medium ?? "")
         cell.imageData = volItem.images ?? []
         cell.dependency = self
         cell.AddGesture()
         if let age = volItem.member?.age{
-        cell.name?.text = (volItem.member?.firstName ?? "") + " (\(age))"
+            cell.name?.text = (volItem.member?.firstName ?? "") + " (\(age))"
         }else{
-        cell.name?.text = (volItem.member?.firstName ?? "")
+            cell.name?.text = (volItem.member?.firstName ?? "")
         }
         let jobs = volItem.jobs?.values
         cell.countries = Array(jobs!)
@@ -243,7 +303,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }
         
         if searchInCountry != ""{
-             self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
+            self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
         }
         
         
@@ -289,6 +349,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.mealDesc.text = volItem.mealDescription ?? ""
         cell.photosCount.text = ""
         favButton.tag = indexPath.row
+        favButton.isSelected = false
         cell.countryButton.tag = indexPath.row
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
@@ -351,21 +412,26 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         if indexPath.item == object.hosts!.count-1{
             if searchModal == nil{
                 ViewHelper.shared().showLoader(self)
-                if LandingVM().location == nil{
+                if location == nil{
                     LandingVM().getAllHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
                         self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
                         collectionView.reloadData()
                         ViewHelper.shared().hideLoader()
                     }
                 }else{
-                LandingVM().getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
-                    self.object.hosts!.append(contentsOf: (items!))
-                    collectionView.reloadData()
-                    ViewHelper.shared().hideLoader()
-                }
+                    let landingVMobject = LandingVM()
+                    landingVMobject.location = location
+                    landingVMobject.getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
+                        DispatchQueue.main.async {
+                            self.object.hosts!.append(contentsOf: (items!))
+                            collectionView.reloadData()
+                            ViewHelper.shared().hideLoader()
+                        }
+                        
+                    }
                 }
             }else{
-                searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {})
+                searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {_ in })
             }
         }
         return cell
