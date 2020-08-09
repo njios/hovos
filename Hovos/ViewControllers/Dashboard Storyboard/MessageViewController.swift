@@ -19,10 +19,13 @@ class MessageViewController: UIViewController {
         super.viewDidLoad()
         noChat.setTitle("CHATS (0)", for: .normal)
         noMssg.setTitle("MESSAGES (0)", for: .normal)
-        getMessages()
+        
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        getMessages()
+    }
     
     @IBAction func messageClicked(_ sender:UIButton){
         emptyImage.image = UIImage(named: "NoMssg")

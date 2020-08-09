@@ -35,43 +35,72 @@ class VolunteerVC: UIViewController {
     let vc = VolunteerSearchVC( nibName: "VolunteerSearchVC", bundle: nil)
     var volSearchModal:VolunteerSearchModel!{
         didSet{
-            let countriesText = volSearchModal.countries.joined(separator: ",")
+            searchText.text = ""
+            indexpath = nil
+            object?.travellers?.removeAll()
+            collView.reloadData()
+            let countriesText = volSearchModal.countries.joined(separator: ", ")
             let continent = (volSearchModal.continent )
-            let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: "-"))
-            var skills = volSearchModal.skillsArray.joined(separator: ",")
+            let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: " - "))
+            let skills = volSearchModal.skillsArray.joined(separator: ", ")
             var qs = ""
             if let value = volSearchModal.qs{
                 qs = value
             }
-            let jobs = volSearchModal.skillsArray.joined(separator: ",")
-            
+            let jobs = volSearchModal.skillsArray.joined(separator: ", ")
+            var rangeArray = [NSRange]()
             if qs.last == " "{
                 qs.removeLast()
             }
             
-            
-            searchText.text = qs + ","
-            searchText.text =  searchText.text! + continent + ","
-            searchText.text =  searchText.text! + countriesText + ","
-            searchText.text =  searchText.text! + (date ?? "") + ","
-            searchText.text =  searchText.text! + volSearchModal.age + ","
-            searchText.text =  searchText.text! + skills + ","
-            if let gender = volSearchModal.gender{
-                searchText.text = searchText.text! + (gender == "F" ? "Female" : "Male") + ","
+            if qs.count > 0{
+                rangeArray.append(NSRange(location: 0, length: qs.count))
+                searchText.text = qs + ","
             }
+            
+            if countriesText.count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: continent.count+countriesText.count + 2))
+                searchText.text =  searchText.text! + continent + ", "
+                searchText.text =  searchText.text! + countriesText + ", "
+            }
+            
+            if (date ?? "").count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: (date ?? "").count))
+                searchText.text =  searchText.text! + (date ?? "") + ", "
+            }
+            
+            if volSearchModal.age.count > 0 {
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: volSearchModal.age.count))
+                searchText.text =  searchText.text! + volSearchModal.age + ", "
+            }
+            
+            if skills.count > 0{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: skills.count))
+                searchText.text =  searchText.text! + skills + ", "
+            }
+            
+            
+            if let gender = volSearchModal.gender{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: (gender == "F" ? 5 : 4)))
+                searchText.text = searchText.text! + (gender == "F" ? "Female" : "Male") + ", "
+            }
+            
             var isContinue = true
             while isContinue {
-                if self.searchText.text?.first == ","{
+                if self.searchText.text?.first == "," || self.searchText.text?.first == " "{
                     self.searchText.text?.removeFirst()
-                }else if self.searchText.text?.last == ","{
+                }else if self.searchText.text?.last == "," || self.searchText.text?.last == " "{
                     self.searchText.text?.removeLast()
                 }else{
                     isContinue = false
                 }
             }
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,,", with: ",")
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,,", with: ",")
-            searchText.text = self.searchText.text?.replacingOccurrences(of: ",,", with: ",")
+            
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , ,", with: ", ")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", , ,", with: ", ")
+            searchText.text = self.searchText.text?.replacingOccurrences(of: ", ,", with: ", ")
+            
+            self.searchText.attributedText = getUnderlineString(text: self.searchText.text!, range: rangeArray)
         }
     }
     override func viewDidLoad() {
@@ -130,7 +159,6 @@ class VolunteerVC: UIViewController {
                 ViewHelper.shared().hideLoader()
                 self.indexpath = nil
             }
-            
         }
     }
     
@@ -156,10 +184,12 @@ class VolunteerVC: UIViewController {
     @IBAction func searchClicked(_ sender:UIButton){
         
         vc.startSearch = { Modal,SearchModal in
+             self.volSearchModal = SearchModal
             DispatchQueue.main.async {
-                self.object = Modal
-                self.volSearchModal = SearchModal
-                self.collView.reloadData()
+            
+                    self.object = Modal
+                    self.collView.reloadData()
+                
             }
         }
         if volSearchModal != nil {
@@ -204,7 +234,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         }else{
             cell.name?.text = (volItem.name ?? "")
         }
-    
+        
         cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()
         cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)

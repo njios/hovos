@@ -13,6 +13,7 @@ import Kingfisher
 protocol ListViewDelegate {
     func collViewdidUpdate(index:IndexPath)
     func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String)
+ 
 }
 extension ListViewDelegate{
     

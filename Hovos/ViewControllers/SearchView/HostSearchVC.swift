@@ -148,11 +148,12 @@ class HostSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Menudele
     @IBAction func searchClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         dependency.searchModal = searchModel
-        
-        dependency.searchHostApi(completion: {
+        dependency.searchHostApi(completion: { vol in
             DispatchQueue.main.async {
+              
                 ViewHelper.shared().hideLoader()
                 self.goback(sender)
+                self.dependency.updateDataAfterSearch(vol: vol)
             }
         })
            

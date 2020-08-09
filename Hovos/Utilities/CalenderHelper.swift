@@ -11,6 +11,7 @@ import Foundation
 struct CalenderHelper{
     var dateFormatter = DateFormatter()
     var mmmddyyy = DateFormatter()
+    var hhmm = DateFormatter()
     var dateComponents: DateComponents!
     var months = [String]()
     let calendar = Calendar.current
@@ -22,6 +23,8 @@ struct CalenderHelper{
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
         mmmddyyy.timeZone = calendar.timeZone
         mmmddyyy.dateFormat = "MMM dd, yyyy"
+        hhmm.timeZone = calendar.timeZone
+        hhmm.dateFormat = "h:mm a"
         currentDate = dateFormatter.date(from: dateFormatter.string(from: Date()))!
         dateComponents = calendar.dateComponents([.month,.day,.year,.minute,.hour,.second], from: dateFormatter.date(from: dateFormatter.string(from: Date()))!)
         for i in dateComponents.month! ..< dateComponents.month!+12{

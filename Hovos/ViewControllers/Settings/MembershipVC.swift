@@ -31,8 +31,8 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        status.text = (SharedUser.manager.auth.listing?.status ?? "") + ", free member"
-        
+        status.text = (SharedUser.manager.auth.listing?.status ?? "")
+        status.text = status.text! + ((SharedUser.manager.auth.listing?.isPaid ?? "") == "Y" ? ", paid member" : ", free member")
         if (SharedUser.manager.auth.listing?.status ?? "") == "onhold"{
             holdSwitch.isOn = true
         }
