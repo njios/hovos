@@ -17,4 +17,5 @@ target 'Hovos' do
   pod 'DropDown'
   pod 'GooglePlacePicker'
   pod 'GooglePlaces'
+  pod 'ExpandableLabel'
 end

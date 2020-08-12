@@ -13,8 +13,9 @@ class SkillsVC: UIViewController {
     @IBOutlet weak var collView:UICollectionView!
     var vmObject:VolunteerSearchVM!
     @IBOutlet weak var ttlLabel:UILabel!
-        @IBOutlet weak var selectButton:UIButton!
-        @IBOutlet weak var cancelButton:UIButton!
+    @IBOutlet weak var selectButton:UIButton!
+    @IBOutlet weak var cancelButton:UIButton!
+    var type = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         collView.register(UINib(nibName: "JobsCell", bundle: nil), forCellWithReuseIdentifier: "JobsCell")
@@ -51,6 +52,11 @@ class SkillsVC: UIViewController {
         }else{
             sender.isSelected = true
             sender.backgroundColor = UIColor(named: "orangeColor")
+            if type == "V"{
+                sender.backgroundColor = UIColor(named: "greenColor")
+            }else{
+               sender.backgroundColor = UIColor(named: "orangeColor")
+            }
             vmObject.modal.skills.append(vmObject.jobs[sender.tag].value ?? "")
             vmObject.modal.skillsArray.append(vmObject.jobs[sender.tag].title ?? "")
         }
@@ -79,7 +85,11 @@ extension SkillsVC:UICollectionViewDelegate,UICollectionViewDataSource,UICollect
            cell.jobsItem.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
         if vmObject.modal.skillsArray.contains(vmObject.jobs![indexPath.row].title ?? ""){
                cell.jobsItem.isSelected = true
+            if type == "V"{
+                cell.jobsItem.backgroundColor = UIColor(named: "greenColor")
+            }else{
                cell.jobsItem.backgroundColor = UIColor(named: "orangeColor")
+            }
            }else{
                cell.jobsItem.isSelected = false
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+
 class HostsVC: UIViewController {
     
     var object = Volunteer()
@@ -142,6 +143,8 @@ class HostsVC: UIViewController {
             self.searchText.text =  self.searchText.text! + countriesText + ", "
         }
         
+        
+        
         if (date?.count ?? 0) > 0{
             rangeArray.append(NSRange(location: self.searchText.text!.count, length: (date?.count ?? 0)))
             self.searchText.text =  self.searchText.text! + (date ?? "") + ", "
@@ -273,7 +276,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         let volItem = object.hosts![indexPath.row]
         cell.imageMain = (volItem.image?.medium ?? "")
-        cell.imageData = volItem.images ?? []
+        cell.imageData = [volItem.member?.image ?? images()] + (volItem.images ?? [])
         cell.dependency = self
         cell.AddGesture()
         if let age = volItem.member?.age{
@@ -281,6 +284,8 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }else{
             cell.name?.text = (volItem.member?.firstName ?? "")
         }
+        cell.role = "H"
+        cell.nameText = (volItem.member?.firstName ?? "")
         let jobs = volItem.jobs?.values
         cell.countries = Array(jobs!)
         cell.countryHeight.constant = CGFloat((cell.countries.count) * 30)
@@ -317,7 +322,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         cell.daysLabel.text = "\(volItem.workingDays ?? "") Days a week"
         
         cell.volunteerSlogan.text = volItem.title ?? ""
-        cell.additionalInfo.text = volItem.description ?? ""
+        cell.additionalInfo.text = "we need \(volItem.volunteers ?? "") volunteers \n" + (volItem.description ?? "")
         cell.paymentDescription.text = volItem.paymentDescription ?? ""
         
         cell.imageV?.image = nil
@@ -328,10 +333,10 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         cell.memberPic?.kf.indicatorType = .activity
         cell.memberPic?.kf.setImage(with: URL(string:volItem.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
-        let lastSeen = "Last seen on \((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        let lastSeen = "Last seen on \((volItem.member?.lastOnline ?? "").getDate().getMonth()) \((volItem.member?.lastOnline ?? "").getDate().getDay())"
         let memberSince = "member since \((volItem.publishedOn ?? "").getDate().getYear())"
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
-        cell.lastSeen.text = "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        cell.lastSeen.text = "\((volItem.member?.lastOnline ?? "").getDate().getMonth()) \((volItem.member?.lastOnline ?? "").getDate().getDay())"
         cell.year.text = "\((volItem.publishedOn ?? "").getDate().getYear())"
         
         let languages = volItem.member?.languages?.values
@@ -355,7 +360,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true
         }
-        
+        cell.aboutMelabel.text = "About me (\(volItem.member?.firstName ?? ""))"
         
         if let payment = volItem.member?.rating?.payment, payment == "Y"{
             cell.verifiedStatus[0].font = UIFont(name: "Lato-bold", size: 15.0)
@@ -434,6 +439,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
                 searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {_ in })
             }
         }
+        cell.reviews = volItem.reviews ?? []
         return cell
     }
     

@@ -32,8 +32,8 @@ class VolunteerSearchVM{
                     volunteerSearchVC.gender2.isSelected = true
                 }
                 if modal.gender == ""{
-                                   volunteerSearchVC.gender3.isSelected = true
-                    }
+                    volunteerSearchVC.gender3.isSelected = true
+                }
             }
             
             
@@ -41,6 +41,13 @@ class VolunteerSearchVM{
             let ages = temp.map({String($0)})
             
             DispatchQueue.main.async {
+                
+                if let companion = self.modal.isCompanion, companion == "Y"{
+                    self.volunteerSearchVC.gender3.isSelected = true
+                }else{
+                    self.volunteerSearchVC.gender3.isSelected = false
+                }
+                
                 if  ages.contains((self.volunteerSearchVC.age1.titleLabel?.text!)!){
                     self.volunteerSearchVC.age1.backgroundColor = UIColor(named: "greenColor")
                     self.volunteerSearchVC.age1.setTitleColor(.white, for: .normal)
@@ -71,40 +78,40 @@ class VolunteerSearchVM{
                 }
                 if  self.modal.qs == nil{
                     self.volunteerSearchVC.searchTextView.serachText.text = ""
-                          }else{
+                }else{
                     self.volunteerSearchVC.searchTextView.serachText.text = self.modal.qs
-                          }
-                          
+                }
+                
                 if self.modal.dt == nil{
                     self.volunteerSearchVC.anytime.isSelected = true
                     self.volunteerSearchVC.dateRange.isSelected = false
                     self.volunteerSearchVC.fromLabel.text = "Start Date"
                     self.volunteerSearchVC.toLabel.text = "End Date"
-                          }else{
+                }else{
                     self.volunteerSearchVC.anytime.isSelected = false
                     self.volunteerSearchVC.dateRange.isSelected = true
                     self.volunteerSearchVC.fromLabel.text = String(self.modal.dt.split(separator: "|").first ?? "Start Date")
                     self.volunteerSearchVC.toLabel.text = String(self.modal.dt.split(separator: "|").last ?? "End Date")
-                          }
-                          
+                }
+                
                 if self.modal.conti != nil {
                     self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.countriesButton, text: self.modal.countries.joined(separator: ", "), textLabel: self.volunteerSearchVC.countrieslabel)
-                          }else{
+                }else{
                     self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.countriesButton, textLabel: self.volunteerSearchVC.countrieslabel)
-                          }
-                          
+                }
+                
                 if  self.modal.skillsArray.count > 0{
                     self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.skillsButton, text: self.modal.skillsArray.joined(separator: ", "), textLabel: self.volunteerSearchVC.skillsLabel)
-                          }else{
+                }else{
                     self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.skillsButton, textLabel: self.volunteerSearchVC.skillsLabel)
-                          }
-                          
+                }
+                
                 if  self.modal.languagesArray.count > 0{
                     self.volunteerSearchVC.changeApperance(button: self.volunteerSearchVC.languageButton, text: self.modal.languagesArray.joined(separator: ", "), textLabel: self.volunteerSearchVC.languageLabel)
-                          }else{
+                }else{
                     self.volunteerSearchVC.resetApperance(button: self.volunteerSearchVC.languageButton, textLabel: self.volunteerSearchVC.languageLabel)
-                          }
-                          
+                }
+                
             }
         }
     }
@@ -161,6 +168,10 @@ class VolunteerSearchVM{
         qs = qs + "&qs=\(modal.qs ?? "")"
         qs = qs + "&age=\(modal.age ?? "")"
         qs = qs + "&gender=\(modal.gender ?? "")"
+        qs = qs + "&languages=\(modal.languagesArray.joined(separator: "|"))"
+        if let companion = modal.isCompanion, companion == "Y"{
+               qs = qs + "&isCompanion=\(companion)"
+               }
         str = str + qs.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let url =  URL(string: str)
         getApiCall(url: url! ) { (data, status, code) in
@@ -189,6 +200,10 @@ class VolunteerSearchVM{
         qs = qs + "&qs=\(object.qs ?? "")"
         qs = qs + "&age=\(object.age ?? "")"
         qs = qs + "&gender=\(object.gender ?? "")"
+        qs = qs + "&languages=\(modal.languagesArray.joined(separator: "|"))"
+        if let companion = object.isCompanion, companion == "Y"{
+        qs = qs + "&isCompanion=\(companion)"
+        }
         str = str + qs.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let url =  URL(string: str)
         getApiCall(url: url! ) { (data, status, code) in
@@ -202,7 +217,7 @@ class VolunteerSearchVM{
             }
         }
     }
-
+    
     
     
 }

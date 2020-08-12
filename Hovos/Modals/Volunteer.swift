@@ -77,6 +77,7 @@ struct VolunteerItem:Codable{
     var mealDescription:String?
     var paymentDescription:String?
     var totalMatching:String?
+    var volunteers:String?
     func getFullimage(completion:@escaping (UIImage?)->()){
         DispatchQueue.global().async {
             let data = try? Data(contentsOf: URL(string:(self.image?.medium!)!)!)
@@ -148,6 +149,7 @@ struct ListingUser:Codable {
     var age:String?
     var appToken:String?
     var autoRenew:String?
+    var lastOnline:String?
     var currency:String?
     var currencyCode:String?
     var currencySign:String?
@@ -191,6 +193,7 @@ struct ListingUser:Codable {
         case fid_spammer = "fid_spammer"
         case gender = "gender"
         case id = "id"
+        case lastOnline = "lastOnline"
         case image = "image"
         case isDocumentVerified = "isDocumentVerified"
         case isEmailverified = "isEmailverified"
@@ -252,7 +255,7 @@ struct ListingUser:Codable {
         role =  try? values.decode(String.self, forKey: .role)
         languages =  try? values.decode([String:String].self, forKey: .languages)
         rating =  try? values.decode(ratings.self, forKey: .rating)
-        
+        lastOnline = try? values.decode(String.self, forKey: .lastOnline)
     }
     
 }

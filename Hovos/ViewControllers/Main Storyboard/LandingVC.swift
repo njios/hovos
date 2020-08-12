@@ -13,8 +13,8 @@ protocol MapViewResponsable {
 }
 
 class LandingVC: UIViewController {
-
-  
+    
+    
     @IBOutlet weak var tblView:UITableView!
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var countries:ContinentView!
@@ -37,23 +37,23 @@ class LandingVC: UIViewController {
             if segue.identifier == "volunteer"{
                 vc.type = "v"
             }
-        else if segue.identifier == "host"{
-            vc.type = "h"
+            else if segue.identifier == "host"{
+                vc.type = "h"
             }
-    }
-    
+        }
+        
         if let vollist = segue.destination as? VolunteerVC{
             vollist.menu_delegate = self
             vollist.object = VMObject.Volunteers
         }
-    
-            if let vollist = segue.destination as? HostsVC{
-                vollist.VMObject = VMObject
-                vollist.menu_delegate = self
-                vollist.location = VMObject.location
-                vollist.object.hosts = VMObject.Hosts
-              
-                  }
+        
+        if let vollist = segue.destination as? HostsVC{
+            vollist.VMObject = VMObject
+            vollist.menu_delegate = self
+            vollist.location = VMObject.location
+            vollist.object.hosts = VMObject.Hosts
+            
+        }
         
     }
     
@@ -64,22 +64,22 @@ class LandingVC: UIViewController {
     @IBAction func titleSearchClicked(_ sender:UIButton){
         let cell = tblView.cellForRow(at: IndexPath(row: 0, section: 0)) as! LandingVCSliderCell
         let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
-            vollist.VMObject = VMObject
-            vollist.menu_delegate = self
+        vollist.VMObject = VMObject
+        vollist.menu_delegate = self
         let value = cell.titlesOfimage[cell.sliderIndex]
         searchModel.jobs = [cell.valueOfImages[value]!]
-            searchModel.jobsArray = [value]
-            vollist.copyModal = searchModel
+        searchModel.jobsArray = [value]
+        vollist.copyModal = searchModel
         self.navigationController?.pushViewController(vollist, animated: false)
     }
     
     @IBAction func hostSignup(_ sender:UIButton){
-           self.performSegue(withIdentifier: "host", sender: nil)
-       }
+        self.performSegue(withIdentifier: "host", sender: nil)
+    }
     
     @IBAction func loginClicked(_ sender:UIButton){
-            
-       let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
+        
+        let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
         let loginVC = storyboard?.instantiateViewController(withIdentifier: "LoginVC") as? LoginVC
         if registerVC != nil, loginVC != nil{
             self.navigationController?.viewControllers = [self,registerVC!,loginVC!]
@@ -91,19 +91,19 @@ class LandingVC: UIViewController {
         self.view.addSubview(menuView)
     }
     
-     @IBAction func loadHosts(_ sender:UIButton){
+    @IBAction func loadHosts(_ sender:UIButton){
         
         
-         performSegue(withIdentifier: "hostwithlocation", sender: nil)
+        performSegue(withIdentifier: "hostwithlocation", sender: nil)
         
-     }
+    }
     @IBAction func showVolunteers(_ sender:UIButton){
-      self.performSegue(withIdentifier: "vollist", sender: nil)
-      }
+        self.performSegue(withIdentifier: "vollist", sender: nil)
+    }
     
     @IBAction func loadCountries(_ sender:UIButton){
         countries.isHidden = false
-     }
+    }
 }
 
 extension LandingVC:UITableViewDelegate,UITableViewDataSource{
@@ -127,25 +127,25 @@ extension LandingVC:UITableViewDelegate,UITableViewDataSource{
             return cell
             
         case 1:
-             let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
-             if VMObject.Hosts == nil {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "NearByHostMAPCell") as! NearByHostMAPCell
+            if VMObject.Hosts == nil {
                 cell.VMObject = VMObject
                 cell.mapResponsibleDelegate = self
                 cell.loadMap(dependency: self)
-             }
-                return cell
+            }
+            return cell
         case 2:
             let cell = tableView.dequeueReusableCell(withIdentifier: "LandingVCVolunteersCell") as! LandingVCVolunteersCell
             if VMObject.Volunteers == nil{
-             cell.VMObject = VMObject
-             cell.getVolunteers(vc: self)
+                cell.VMObject = VMObject
+                cell.getVolunteers(vc: self)
             }
-                return cell
+            return cell
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "signup")
             return cell!
             
-           
+            
         default:
             return UITableViewCell()
         }
@@ -158,11 +158,11 @@ extension LandingVC:Menudelegates{
     
     func menuItemDidSelect(for action: MenuAction) {
         let vollist = storyboard?.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
-            vollist.VMObject = VMObject
-            vollist.menu_delegate = self
-            vollist.isAllHost = true
-          self.navigationController?.popToRootViewController(animated: false)
-
+        vollist.VMObject = VMObject
+        vollist.menu_delegate = self
+        vollist.isAllHost = true
+        self.navigationController?.popToRootViewController(animated: false)
+        
         switch action {
         case .login:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
@@ -174,37 +174,37 @@ extension LandingVC:Menudelegates{
             break
         case .registerHost:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
-           registerVC?.type = "h"
+            registerVC?.type = "h"
             if registerVC != nil{
                 self.navigationController?.pushViewController(registerVC!, animated: false)
-               // self.navigationController?.viewControllers = [self,registerVC!]
+                // self.navigationController?.viewControllers = [self,registerVC!]
             }
             break
         case .registerVolunteer:
             let registerVC = storyboard?.instantiateViewController(withIdentifier: "SignUpVc") as? SignUpVc
             if registerVC != nil{
-                        registerVC?.type = "v"
-                             self.navigationController?.pushViewController(registerVC!, animated: false)
-                }
+                registerVC?.type = "v"
+                self.navigationController?.pushViewController(registerVC!, animated: false)
+            }
             break
         case .other:
             countries.isHidden = true
             self.showProgressAlert()
         case .hostlist:
-      self.navigationController?.pushViewController(vollist, animated: false)
+            self.navigationController?.pushViewController(vollist, animated: false)
         case .volunteers:
             performSegue(withIdentifier: "vollist", sender: nil)
         case .AboutUS:
-             performSegue(withIdentifier: "AboutUS", sender: nil)
+            performSegue(withIdentifier: "AboutUS", sender: nil)
             break
         case .Response(let data):
             let countriesData = data as? [continents:[countries]]
-                    let keys = Array<continents>(countriesData!.keys)
-                    searchModel.continent = keys.first?.title ?? ""
-                    searchModel.countries = (countriesData?[keys.first!]?.map({ $0.title }))! as! [String]
-                    searchModel.conti = keys.first?.continentId
-                    searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryCode }))! as! [String]).joined(separator: "|")
-        
+            let keys = Array<continents>(countriesData!.keys)
+            searchModel.continent = keys.first?.title ?? ""
+            searchModel.countries = (countriesData?[keys.first!]?.map({ $0.title }))! as! [String]
+            searchModel.conti = keys.first?.continentId
+            searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryCode }))! as! [String]).joined(separator: "|")
+            
             vollist.copyModal = searchModel
             self.navigationController?.pushViewController(vollist, animated: false)
             break
@@ -212,10 +212,10 @@ extension LandingVC:Menudelegates{
             break
         }
         
-       
+        
     }
     
-   
+    
 }
 
 extension LandingVC:ListViewDelegate,MapViewResponsable{
@@ -227,13 +227,13 @@ extension LandingVC:ListViewDelegate,MapViewResponsable{
     }
     
     func mapViewClicked(loc:CLLocation) {
-                  
+        
         let mapvc = storyboard?.instantiateViewController(withIdentifier: "MapViewController") as! MapViewController
         mapvc.location = VMObject.location
         mapvc.mapItems = VMObject.Hosts
-      
+        
         self.navigationController?.pushViewController(mapvc, animated: true)
-                    
+        
     }
 }
 

@@ -18,6 +18,7 @@ PODS:
   - AppAuth/Core (1.3.0)
   - AppAuth/ExternalUserAgent (1.3.0)
   - DropDown (2.3.13)
+  - ExpandableLabel (0.5.2)
   - FBSDKCoreKit (7.0.0):
     - FBSDKCoreKit/Basics (= 7.0.0)
     - FBSDKCoreKit/Core (= 7.0.0)
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - Adyen
   - Alamofire (~> 4.0)
   - DropDown
+  - ExpandableLabel
   - FBSDKLoginKit
   - Google-Maps-iOS-Utils
   - GoogleMaps
@@ -91,6 +93,7 @@ SPEC REPOS:
     - Alamofire
     - AppAuth
     - DropDown
+    - ExpandableLabel
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Google-Maps-iOS-Utils
@@ -109,6 +112,7 @@ SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   AppAuth: 73574f3013a1e65b9601a3ddc8b3158cce68c09d
   DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  ExpandableLabel: c2fab6d27860c572d67134b30522a5917746171d
   FBSDKCoreKit: 8ad31cd09f793d1d7e84cf20fd6cebfe80ad318d
   FBSDKLoginKit: 5d1e321dc45ab1fa09198b77fc17c32a06f008c0
   Google-Maps-iOS-Utils: 1e51ca272b4f4befdf3577bf46f58c22ef22062c
@@ -121,6 +125,6 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Kingfisher: 7b64389a43139c903ec434788344c288217c792d
 
-PODFILE CHECKSUM: 50dff1250d8417df1a7b547940a88c321a4d97e8
+PODFILE CHECKSUM: 2ef12a32c95d39b05a4be222bd2ddbf487401897
 
 COCOAPODS: 1.9.2

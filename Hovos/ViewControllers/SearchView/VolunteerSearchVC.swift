@@ -78,18 +78,20 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
         case 0:
             gender1.isSelected = true
             gender2.isSelected = false
-            gender3.isSelected = false
             vmObject.modal.gender = "M"
         case 1:
             gender1.isSelected = false
             gender2.isSelected = true
-            gender3.isSelected = false
             vmObject.modal.gender = "F"
         case 2:
-            gender1.isSelected = false
-            gender2.isSelected = false
-            gender3.isSelected = true
-            vmObject.modal.gender = ""
+            
+            gender3.isSelected = !gender3.isSelected
+            if gender3.isSelected{
+            vmObject.modal.isCompanion = "Y"
+            }else{
+            vmObject.modal.isCompanion = ""
+            }
+            
         default:
             break
         }
@@ -99,6 +101,7 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
     @IBAction func showSkills(_ sender:UIButton) {
         let skillVc = SkillsVC(nibName: "SkillsVC", bundle: nil)
         skillVc.vmObject = vmObject
+        skillVc.type = "V"
         skillVc.modalPresentationStyle = .overCurrentContext
         self.present(skillVc, animated: false, completion: nil)
     }

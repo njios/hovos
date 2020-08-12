@@ -43,6 +43,7 @@ class VolunteerVC: UIViewController {
             let continent = (volSearchModal.continent )
             let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: " - "))
             let skills = volSearchModal.skillsArray.joined(separator: ", ")
+            let languaes = volSearchModal.languagesArray.joined(separator: "|")
             var qs = ""
             if let value = volSearchModal.qs{
                 qs = value
@@ -70,8 +71,8 @@ class VolunteerVC: UIViewController {
             }
             
             if volSearchModal.age.count > 0 {
-                rangeArray.append(NSRange(location: self.searchText.text!.count, length: volSearchModal.age.count))
-                searchText.text =  searchText.text! + volSearchModal.age + ", "
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: volSearchModal.age.count+4))
+                searchText.text =  "Age:" + searchText.text! + volSearchModal.age + ", "
             }
             
             if skills.count > 0{
@@ -79,6 +80,10 @@ class VolunteerVC: UIViewController {
                 searchText.text =  searchText.text! + skills + ", "
             }
             
+            if languaes.count > 0{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: languaes.count))
+                searchText.text =  searchText.text! + languaes + ", "
+            }
             
             if let gender = volSearchModal.gender{
                 rangeArray.append(NSRange(location: self.searchText.text!.count, length: (gender == "F" ? 5 : 4)))
@@ -186,10 +191,8 @@ class VolunteerVC: UIViewController {
         vc.startSearch = { Modal,SearchModal in
              self.volSearchModal = SearchModal
             DispatchQueue.main.async {
-            
                     self.object = Modal
                     self.collView.reloadData()
-                
             }
         }
         if volSearchModal != nil {
@@ -223,7 +226,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
         let volItem = object!.travellers![indexPath.row]
         cell.imageMain = (volItem.image?.medium ?? "")
-        cell.imageData = volItem.images ?? []
+        cell.imageData = [volItem.member?.image ?? images()] + (volItem.images ?? [])
         cell.dependency = self
         cell.role = "V"
         cell.nameText = (volItem.name ?? "")
@@ -269,18 +272,20 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.volunteerSlogan.text = (volItem.slogan ?? "") == "" ? "" : "\"\((volItem.slogan ?? ""))\""
         cell.skills.text = volItem.skillDescription ?? ""
         let personalDesc = volItem.member?.personalDescription ?? ""
-        let additionalDesc = volItem.additionalDesc ?? ""
-        cell.additionalInfo.text = personalDesc + "\n" + additionalDesc
+        let languageDesc = volItem.languageDesc ?? ""
+        
+        cell.additionalInfo.text = personalDesc + "\n" + languageDesc
+        
         cell.placeDescription.text = volItem.placeDescription ?? ""
         cell.imageV?.image = nil
         cell.imageV?.kf.indicatorType = .activity
         cell.imageV?.kf.setImage(with: URL(string: volItem.image?.medium ?? ""))
-        let lastSeen = "Last seen on \((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        let lastSeen = "Last seen on \((volItem.member?.lastOnline ?? "").getDate().getMonth()) \((volItem.member?.lastOnline ?? "").getDate().getDay())"
         let memberSince = "member since \((volItem.publishedOn ?? "").getDate().getYear())"
         cell.countryButton.tag = indexPath.row
         cell.lastSeen_memberSince.text = lastSeen + ", " + memberSince
         
-        cell.location.text = (volItem.location?.country ?? "") + ", Last seen on " + "\((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
+        cell.location.text = (volItem.location?.country ?? "") + ", Last seen on " + "\((volItem.member?.lastOnline ?? "").getDate().getMonth()) \((volItem.member?.lastOnline ?? "").getDate().getDay())"
         let languages = volItem.member?.languages?.values
         
         cell.language.text = languages?.joined(separator: " | ")
@@ -385,7 +390,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
                 ViewHelper.shared().hideLoader()
             }
         }
-        
+        cell.reviews = volItem.reviews ?? []
         return cell
     }
     

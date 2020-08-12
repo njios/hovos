@@ -58,7 +58,7 @@ struct VolunteerSearchModel:Codable{
     var radius:String!
     var age:String! = ""
     var gender:String!
-    
+    var isCompanion:String!
     var queryDate:String! = ""
     
     
