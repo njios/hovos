@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 class SignUpVc: UIViewController {
     @IBOutlet weak var emailId:UITextField!
-    @IBOutlet weak var inputViewPassword:InputView!
+    @IBOutlet weak var password:UITextField!
     @IBOutlet weak var firstName:UITextField!
     @IBOutlet weak var lastName:UITextField!
     @IBOutlet weak var titlelabel:UILabel!
@@ -25,8 +25,8 @@ class SignUpVc: UIViewController {
     @IBOutlet weak var firstnameIcon:UIImageView!
     @IBOutlet weak var lastnameIcon:UIImageView!
     @IBOutlet weak var emailIcon:UIImageView!
-    
-    
+    @IBOutlet weak var eyeIcon:UIImageView!
+     @IBOutlet weak var passwordIcon:UIImageView!
     
     var type:String? = "v" // used to identify Volunteer or host
     var vmObject:SignUPVM?
@@ -49,8 +49,8 @@ class SignUpVc: UIViewController {
                    firstnameIcon.image = UIImage(named: "VolName")
                    lastnameIcon.image = UIImage(named: "VolName")
                    emailIcon.image = UIImage(named: "VolEmail")
-                   inputViewPassword.actionButtonImage = UIImage(named: "VolPassword")
-                   inputViewPassword.leftIcon = UIImage(named: "blueEyes")
+                   passwordIcon.image = UIImage(named: "VolPassword")
+                   eyeIcon.image = UIImage(named: "blueEyes")
                    
                    
                    
@@ -69,8 +69,8 @@ class SignUpVc: UIViewController {
                    firstnameIcon.image = UIImage(named: "HostName")
                    lastnameIcon.image = UIImage(named: "HostName")
                    emailIcon.image = UIImage(named: "HostEmail")
-                   inputViewPassword.actionButtonImage = UIImage(named: "HostPassword")
-                   inputViewPassword.leftIcon = UIImage(named: "eyeprotected")
+                   passwordIcon.image = UIImage(named: "HostPassword")
+                   eyeIcon.image = UIImage(named: "eyeprotected")
                    
                    
                    
@@ -79,7 +79,7 @@ class SignUpVc: UIViewController {
     
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
-        vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: inputViewPassword.inputTextView.text!, type: type!, completion:updateUiAfterSignup(status:data:))
+        vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: password.text!, type: type!, completion:updateUiAfterSignup(status:data:))
     }
     
     @IBAction func switchUser(_ sender:UIButton){
@@ -99,8 +99,8 @@ class SignUpVc: UIViewController {
             firstnameIcon.image = UIImage(named: "VolName")
             lastnameIcon.image = UIImage(named: "VolName")
             emailIcon.image = UIImage(named: "VolEmail")
-            inputViewPassword.actionButtonImage = UIImage(named: "VolPassword")
-            inputViewPassword.leftIcon = UIImage(named: "blueEyes")
+            passwordIcon.image = UIImage(named: "VolPassword")
+            eyeIcon.image = UIImage(named: "blueEyes")
         }else{
             titlelabel.text = "I am a host"
             subtitle.text = "I am a volunteer"
@@ -115,8 +115,8 @@ class SignUpVc: UIViewController {
             firstnameIcon.image = UIImage(named: "HostName")
             lastnameIcon.image = UIImage(named: "HostName")
             emailIcon.image = UIImage(named: "HostEmail")
-            inputViewPassword.actionButtonImage = UIImage(named: "HostPassword")
-            inputViewPassword.leftIcon = UIImage(named: "eyeprotected")
+            passwordIcon.image = UIImage(named: "HostPassword")
+            eyeIcon.image = UIImage(named: "eyeprotected")
         }
     }
     

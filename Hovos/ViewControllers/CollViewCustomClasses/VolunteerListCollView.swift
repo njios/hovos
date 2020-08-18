@@ -119,7 +119,7 @@ class listCell:UICollectionViewCell{
     @IBOutlet weak var personaldesc:ExpandableLabel!
     @IBOutlet weak var photosCount:CustomLabels!
     @IBOutlet weak var language:UILabel!
-    @IBOutlet weak var additionalInfo:UILabel!
+    @IBOutlet weak var additionalInfo:ExpandableLabel!
     @IBOutlet weak var mealDesc:UILabel!
     @IBOutlet weak var skills:UILabel!
     @IBOutlet weak var placeDescription:UILabel!
@@ -141,13 +141,15 @@ class listCell:UICollectionViewCell{
     @IBOutlet weak var disliked:UIButton!
     @IBOutlet weak var reviewsTable:UITableView!
     @IBOutlet weak var reviewsHieght:NSLayoutConstraint!
+    
     var reviews = [review](){
         didSet{
             
-            reviewsTitle?.text = "Reviews(\(reviews.count))"
+            reviewsTitle?.text = "Reviews (\(reviews.count))"
             reviewsTable?.tag = 100
             reviewsHieght?.constant = CGFloat(reviews.count * 300)
             reviewsTable.reloadData()
+           
         }
     }
     
@@ -170,10 +172,11 @@ class listCell:UICollectionViewCell{
         attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(named: "orangeColor")  , range: NSRange(location: 0, length: attributedString.length))
         personaldesc?.collapsedAttributedLink = attributedString
         
+       
         
     }
     
- 
+    
     
     func AddGesture(){
         
@@ -183,6 +186,7 @@ class listCell:UICollectionViewCell{
     }
     
     @objc func tapedOnimage(){
+        removeNil()
         if imageData.count > 0{
             let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
             
@@ -198,12 +202,26 @@ class listCell:UICollectionViewCell{
     
     
     @IBAction func openTheGallery(_ sender:UIButton){
+        removeNil()
+        if imageData.count > 0{
         let vc = GalleryVC(nibName: "GalleryVC", bundle: nil)
-                      vc.role = "H"
-                      vc.imageData =  imageData
-                      vc.name = nameText
-                      vc.modalPresentationStyle = .fullScreen
-                      dependency?.present(vc, animated: true, completion: nil)
+        vc.role = "H"
+        vc.imageData =  imageData
+        vc.name = nameText
+        vc.modalPresentationStyle = .fullScreen
+        dependency?.present(vc, animated: true, completion: nil)
+        }
+    }
+    
+    
+    private func removeNil(){
+        imageData = imageData.filter({ (img) -> Bool in
+            if img.medium != nil{
+                return true
+            }else{
+                return false
+            }
+        })
     }
 }
 
@@ -235,7 +253,7 @@ extension listCell:UITableViewDelegate,UITableViewDataSource{
             cell.memberPic.kf.indicatorType = .activity
             cell.memberPic.kf.setImage(with: URL(string: reviewItem.member?.image?.medium ?? ""))
             cell.reviewDate.text = reviewItem.time ?? ""
-            cell.memberName.text = (reviewItem.member?.firstName ?? "") + (reviewItem.member?.lastName ?? "")
+            cell.memberName.text = (reviewItem.member?.firstName ?? "") 
             cell.review.text = reviewItem.review ?? ""
             return cell
         }else{

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct HostSearchModel:Codable{
+class HostSearchModel:Codable{
     
 //    var searchKeyword:String = ""
     var continent:String = ""

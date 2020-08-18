@@ -69,31 +69,26 @@ class languageVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
       
         }
         
-      func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                 let cell = tableView.cellForRow(at: indexPath) as! ContinentCell
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! ContinentCell
         cell.selectImage.image = UIImage(named: "selectedBlueTick")
-        
         cell.selectImage.isHidden = !cell.selectImage.isHidden
         if cell.selectImage.isHidden == false{
-
-               
-                vmObject.modal.languagesArray.append(vmObject.languages[indexPath.row].title ?? "")
-          
+        vmObject.modal.languagesArray.append(vmObject.languages[indexPath.row].title ?? "")
+        vmObject.modal.languagesIds.append(vmObject.languages[indexPath.row].value ?? "")
         cell.ttlLable.font = UIFont(name: "Lato-Bold", size: 18)
         }else{
-          for i in 0 ..< (vmObject.modal.languagesArray.count){
-                             if vmObject.modal.languagesArray[i] == (vmObject.languages[indexPath.row].title ?? ""){
-                                vmObject.modal.languagesArray.remove(at: i)
-                                    
-                                break
-                                }
-                            }
-                            
+            for i in 0 ..< (vmObject.modal.languagesArray.count){
+                if vmObject.modal.languagesArray[i] == (vmObject.languages[indexPath.row].title ?? ""){
+                    vmObject.modal.languagesArray.remove(at: i)
+                    vmObject.modal.languagesIds.remove(at: i)
+                    break
+                }
+            }
             cell.ttlLable.font = UIFont(name: "Lato-Regular", size: 18)
         }
-
-        }
+        
+    }
 
 
 }

@@ -185,11 +185,18 @@ class VolunteerSearchVC: UIViewController,UITextFieldDelegate,SearchDelegate,Men
         case 3:
             age4.isSelected = !age4.isSelected
             if age4.isSelected{
-                ages.append((sender.titleLabel?.text!)!)
+                ages.append("65-200")
                 
             }else{
-                ages = ages.filter({String($0) != (sender.titleLabel?.text!)!})
+                ages = ages.filter({String($0) != "65-200"})
             }
+            if age4.isSelected{
+                      age4.backgroundColor = UIColor(named: "greenColor")
+                      age4.setTitleColor(.white, for: .normal)
+                  }else{
+                      age4.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
+                      age4.setTitleColor(.darkGray, for: .normal)
+                  }
         default:
             break
         }

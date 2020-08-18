@@ -36,7 +36,7 @@ class HostsVC: UIViewController {
         super.viewDidLoad()
         if let modal = copyModal{
             searchModal = modal
-            searchHostApi(completion: { _ in })
+            searchHostApi(hostSearchModal: searchModal, completion: { _,_  in })
         }
         menuView.frame = self.view.frame
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
@@ -79,31 +79,34 @@ class HostsVC: UIViewController {
         self.loaderView?.isHidden = false
         self.object.hosts?.removeAll()
         self.collView.reloadData()
-        searchHostApi {_ in 
+        searchHostApi(hostSearchModal: searchModal) {_,_  in
             
         }
     }
     
-    func searchHostApi(_ minOffset:Int = 0, _ maxOffset:Int = 12,completion:@escaping ((_ vol:Volunteer?)->())){
+    func searchHostApi(hostSearchModal: HostSearchModel,_ minOffset:Int = 0, _ maxOffset:Int = 12,completion:@escaping ((_ vol:Volunteer?,_ searchModal:HostSearchModel)->())){
         
         
-        if location != nil && searchModal.latlng == ""{
+        if location != nil && hostSearchModal.latlng == ""{
             searchModal.latlng = "\(String(location.coordinate.latitude))|\(String(location.coordinate.longitude))"
         }
         
-        searchModal.min_offset = minOffset
-        searchModal.max_offset = maxOffset
-        if searchModal.min_offset == 0{
+        hostSearchModal.min_offset = minOffset
+        hostSearchModal.max_offset = maxOffset
+        if hostSearchModal.min_offset == 0{
             object.hosts?.removeAll()
         }
-        VMObject.getHostBySearchWithSearchItems(modal: searchModal) { (vol) in
+        let minOffset = hostSearchModal.min_offset
+        VMObject.getHostBySearchWithSearchItems(modal: hostSearchModal) { (vol) in
             
             DispatchQueue.main.async {
-                if self.searchModal.min_offset == 0{
+                if minOffset == 0{
                     self.indexpath = nil
                     self.object.hosts?.removeAll()
                     self.collView.reloadData()
-                    completion(vol)
+                    completion(vol, hostSearchModal)
+                }else{
+                     completion(vol, hostSearchModal)
                 }
             }
         }
@@ -276,7 +279,11 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         let volItem = object.hosts![indexPath.row]
         cell.imageMain = (volItem.image?.medium ?? "")
-        cell.imageData = [volItem.member?.image ?? images()] + (volItem.images ?? [])
+        if let img = volItem.member?.image {
+        cell.imageData = [img] + (volItem.images ?? [])
+        }else{
+            cell.imageData =  (volItem.images ?? [])
+        }
         cell.dependency = self
         cell.AddGesture()
         if let age = volItem.member?.age{
@@ -323,6 +330,12 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         
         cell.volunteerSlogan.text = volItem.title ?? ""
         cell.additionalInfo.text = "we need \(volItem.volunteers ?? "") volunteers \n" + (volItem.description ?? "")
+        cell.additionalInfo?.numberOfLines = 4
+        cell.additionalInfo?.collapsed = true
+          let attributedString = NSMutableAttributedString(string:"read more")
+           attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(named: "orangeColor")  , range: NSRange(location: 0, length: attributedString.length))
+             cell.additionalInfo?.collapsedAttributedLink = attributedString
+        
         cell.paymentDescription.text = volItem.paymentDescription ?? ""
         
         cell.imageV?.image = nil
@@ -436,10 +449,19 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
                     }
                 }
             }else{
-                searchHostApi(searchModal.min_offset+12,searchModal.max_offset+12, completion: {_ in })
+                ViewHelper.shared().showLoader(self)
+                searchHostApi(hostSearchModal: searchModal, searchModal.min_offset+12,searchModal.max_offset+12, completion: {items,_  in
+                    DispatchQueue.main.async {
+                        self.object.hosts!.append(contentsOf: ((items?.hosts ?? [])))
+                        collectionView.reloadData()
+                        ViewHelper.shared().hideLoader()
+                    }
+                })
             }
         }
         cell.reviews = volItem.reviews ?? []
+        cell.liked?.setTitle("\(volItem.likes ?? "0")", for: .normal)
+        cell.disliked?.setTitle("\(volItem.dislikes ?? "0")", for: .normal)
         return cell
     }
     

@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 import CoreLocation
+import ExpandableLabel
 enum typeOfVolunteer{
     case neraby
     case recommended
@@ -32,6 +33,7 @@ class VolunteerVC: UIViewController {
     var location:CLLocation!
     var type:typeOfVolunteer = .all
     var searchInCountry = ""
+    var newSearchModal:VolunteerSearchModel!
     let vc = VolunteerSearchVC( nibName: "VolunteerSearchVC", bundle: nil)
     var volSearchModal:VolunteerSearchModel!{
         didSet{
@@ -39,6 +41,7 @@ class VolunteerVC: UIViewController {
             indexpath = nil
             object?.travellers?.removeAll()
             collView.reloadData()
+            newSearchModal = volSearchModal
             let countriesText = volSearchModal.countries.joined(separator: ", ")
             let continent = (volSearchModal.continent )
             let date = (volSearchModal.dt?.replacingOccurrences(of: "|", with: " - "))
@@ -72,7 +75,13 @@ class VolunteerVC: UIViewController {
             
             if volSearchModal.age.count > 0 {
                 rangeArray.append(NSRange(location: self.searchText.text!.count, length: volSearchModal.age.count+4))
-                searchText.text =  "Age:" + searchText.text! + volSearchModal.age + ", "
+                searchText.text =  searchText.text! + "Age:"  + volSearchModal.age + ", "
+            }
+            
+            
+            if volSearchModal.isCompanion == "Y"{
+                rangeArray.append(NSRange(location: self.searchText.text!.count, length: "travel partners only".count))
+                searchText.text =  searchText.text! + "travel partners only"
             }
             
             if skills.count > 0{
@@ -189,10 +198,10 @@ class VolunteerVC: UIViewController {
     @IBAction func searchClicked(_ sender:UIButton){
         
         vc.startSearch = { Modal,SearchModal in
-             self.volSearchModal = SearchModal
+            self.volSearchModal = SearchModal
             DispatchQueue.main.async {
-                    self.object = Modal
-                    self.collView.reloadData()
+                self.object = Modal
+                self.collView.reloadData()
             }
         }
         if volSearchModal != nil {
@@ -226,12 +235,17 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "volunteer", for: indexPath) as! listCell
         let volItem = object!.travellers![indexPath.row]
         cell.imageMain = (volItem.image?.medium ?? "")
-        cell.imageData = [volItem.member?.image ?? images()] + (volItem.images ?? [])
+        
+        if let img = volItem.member?.image {
+            cell.imageData = [img] + (volItem.images ?? [])
+        }else{
+            cell.imageData =  (volItem.images ?? [])
+        }
         cell.dependency = self
         cell.role = "V"
         cell.nameText = (volItem.name ?? "")
         cell.AddGesture()
-        
+        cell.additionalInfo?.collapsed = true
         if let age = volItem.member?.age{
             cell.name?.text = (volItem.name ?? "") + " (\(age))"
         }else{
@@ -264,6 +278,8 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             
         }
         
+        
+        
         footerlabel.tag = indexPath.row
         footerlabel.text = "  CONTACT \((volItem.name ?? ""))  "
         let country = volItem.location?.country ?? ""
@@ -274,7 +290,18 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         let personalDesc = volItem.member?.personalDescription ?? ""
         let languageDesc = volItem.languageDesc ?? ""
         
-        cell.additionalInfo.text = personalDesc + "\n" + languageDesc
+        cell.additionalInfo.text = ""
+        
+        cell.additionalInfo.text = personalDesc + "\n" + languageDesc + "\n" + (volItem.additionalDesc ?? "")
+        
+        
+        cell.additionalInfo?.numberOfLines = 4
+        cell.additionalInfo?.collapsed = true
+        let attributedString = NSMutableAttributedString(string:"read more")
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(named: "greenColor")  , range: NSRange(location: 0, length: attributedString.length))
+        cell.additionalInfo?.collapsedAttributedLink = attributedString
+        
+        
         
         cell.placeDescription.text = volItem.placeDescription ?? ""
         cell.imageV?.image = nil
@@ -291,7 +318,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.language.text = languages?.joined(separator: " | ")
         cell.status.text = "I am open for meeting travelers"
         let jobs = volItem.jobs?.values
-        cell.jobs.text = jobs?.joined(separator: " | ") //"Elderly care | Help in the house | Hostel support | House sitting | Teaching"
+        cell.jobs.text = jobs?.joined(separator: " | ")
         var schedule:String = ""
         for item in volItem.schedules ?? []{
             schedule = schedule + item.start + " - " + item.end
@@ -383,14 +410,36 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         }
         
         if indexPath.item == object!.travellers!.count-1{
+            if volSearchModal == nil{
             ViewHelper.shared().showLoader(self)
             LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
                 self.object?.travellers?.append(contentsOf: (items?.travellers)!)
                 collectionView.reloadData()
                 ViewHelper.shared().hideLoader()
             }
+            }else{
+                if ((self.object?.totalResults) ?? 0)-1 > indexPath.row{
+                ViewHelper.shared().showLoader(self)
+                 
+                    
+                newSearchModal.min_offset = newSearchModal.min_offset + 12
+                newSearchModal.max_offset = newSearchModal.max_offset + 12
+                    
+                vc.vmObject.searchVolunteer(object: newSearchModal) { (volunteer) in
+                    DispatchQueue.main.async {
+                        self.object?.travellers?.append(contentsOf: (volunteer?.travellers)!)
+                                collectionView.reloadData()
+                                 ViewHelper.shared().hideLoader()
+                    }
+                    }
+               }
+            }
         }
+        
+        
         cell.reviews = volItem.reviews ?? []
+        cell.liked?.setTitle("\(volItem.likes ?? "0")", for: .normal)
+        cell.disliked?.setTitle("\(volItem.dislikes ?? "0")", for: .normal)
         return cell
     }
     

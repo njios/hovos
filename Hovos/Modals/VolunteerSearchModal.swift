@@ -16,8 +16,10 @@ struct VolunteerSearchModel:Codable{
     //    var exchangeDate:String = ""
     var skillsArray = [String]()
     var languagesArray = [String]()
+        var languagesIds = [String]()
     //
-    
+    var min_offset = 0
+    var max_offset = 12
     var qs:String!
     var dt:String!{
         didSet{

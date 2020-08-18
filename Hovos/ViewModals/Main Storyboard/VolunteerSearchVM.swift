@@ -69,7 +69,7 @@ class VolunteerSearchVM{
                     self.volunteerSearchVC.age3.backgroundColor = UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1.0)
                     self.volunteerSearchVC.age3.setTitleColor(.darkGray, for: .normal)
                 }
-                if  ages.contains((self.volunteerSearchVC.age4.titleLabel?.text!)!){
+                if  ages.contains("65-200"){
                     self.volunteerSearchVC.age4.backgroundColor = UIColor(named: "greenColor")
                     self.volunteerSearchVC.age4.setTitleColor(.white, for: .normal)
                 }else{
@@ -163,12 +163,12 @@ class VolunteerSearchVM{
         qs = qs + "cntry=\(modal.cntry ?? "")"
         qs = qs + "&conti=\(modal.conti ?? "")"
         qs = qs + "&dt=\(modal.queryDate!)"
-        qs = qs + "&skills=\(modal.skills.joined(separator: "|"))"
+        qs = qs + "&jobs=\(modal.skills.joined(separator: "|"))"
         qs = qs + "&latlng=\(modal.latlng ?? "")"
         qs = qs + "&qs=\(modal.qs ?? "")"
         qs = qs + "&age=\(modal.age ?? "")"
         qs = qs + "&gender=\(modal.gender ?? "")"
-        qs = qs + "&languages=\(modal.languagesArray.joined(separator: "|"))"
+        qs = qs + "&langs=\(modal.languagesIds.joined(separator: "|"))"
         if let companion = modal.isCompanion, companion == "Y"{
                qs = qs + "&isCompanion=\(companion)"
                }
@@ -195,15 +195,18 @@ class VolunteerSearchVM{
         qs = qs + "cntry=\(object.cntry ?? "")"
         qs = qs + "&conti=\(object.conti ?? "")"
         qs = qs + "&dt=\(modal.queryDate!)"
-        qs = qs + "&skills=\(object.skills.joined(separator: "|"))"
+        qs = qs + "&jobs=\(object.skills.joined(separator: "|"))"
         qs = qs + "&latlng=\(object.latlng ?? "")"
         qs = qs + "&qs=\(object.qs ?? "")"
         qs = qs + "&age=\(object.age ?? "")"
         qs = qs + "&gender=\(object.gender ?? "")"
-        qs = qs + "&languages=\(modal.languagesArray.joined(separator: "|"))"
+        qs = qs + "&langs=\(modal.languagesIds.joined(separator: "|"))"
         if let companion = object.isCompanion, companion == "Y"{
         qs = qs + "&isCompanion=\(companion)"
         }
+        qs = qs + "&min_offset=\(object.min_offset)"
+        qs = qs + "&max_offset=\(object.max_offset)"
+        
         str = str + qs.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
         let url =  URL(string: str)
         getApiCall(url: url! ) { (data, status, code) in

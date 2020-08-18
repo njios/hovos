@@ -19,7 +19,7 @@
                 <outlet property="age1" destination="cN4-4l-0Uk" id="tI4-kr-92o"/>
                 <outlet property="age2" destination="FQr-uf-Pc6" id="anN-WI-P1p"/>
                 <outlet property="age3" destination="Zez-kN-AgE" id="ZaK-kH-J90"/>
-                <outlet property="age4" destination="bKv-iL-QDw" id="Ua4-B0-tZj"/>
+                <outlet property="age4" destination="1ln-Wh-eWr" id="DXq-vs-Akh"/>
                 <outlet property="anytime" destination="XUH-xZ-HNh" id="SHB-1A-twG"/>
                 <outlet property="clearButton" destination="tfU-2U-5QW" id="cvb-4a-HGF"/>
                 <outlet property="countries" destination="rJH-Z6-Phz" id="TO7-51-2Ak"/>
@@ -343,13 +343,13 @@
                                                 <action selector="ageGroupSelected:" destination="-1" eventType="touchUpInside" id="Ril-1v-Naa"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bKv-iL-QDw">
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ln-Wh-eWr">
                                             <rect key="frame" x="304" y="0.0" width="91" height="55"/>
-                                            <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.94117647059999998" green="0.94117647059999998" blue="0.94117647059999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="20"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="65+">
-                                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <state key="selected">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -361,7 +361,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="ageGroupSelected:" destination="-1" eventType="touchUpInside" id="G8W-24-5Hf"/>
+                                                <action selector="ageGroupSelected:" destination="-1" eventType="touchUpInside" id="h7Z-nz-Cuo"/>
                                             </connections>
                                         </button>
                                     </subviews>
