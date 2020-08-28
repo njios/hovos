@@ -125,10 +125,36 @@ struct review:Codable {
 }
 
 struct images:Codable{
-  // var id:Int?
+   var id:String?
    var large:String?
    var medium:String?
    var title:String?
+    
+    private enum CoadingKeys:String,CodingKey{
+           case large = "large"
+           case id = "id"
+           case medium = "medium"
+           case title = "title"
+    
+       }
+       
+       init(from decoder: Decoder) throws {
+           let values = try decoder.container(keyedBy: CodingKeys.self)
+           if let stringId =  try? values.decode(String.self, forKey: .id){
+               id = stringId
+           }
+           if let intId = try?  values.decode(Int.self, forKey: .id){
+               id = String(intId)
+           }
+        
+           large = try? values.decode(String.self, forKey: .large)
+           medium = try? values.decode(String.self, forKey: .medium)
+           title = try? values.decode(String.self, forKey: .title)
+     
+       }
+       init() {
+           
+       }
     
 }
 

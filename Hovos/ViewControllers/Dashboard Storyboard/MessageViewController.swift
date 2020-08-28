@@ -112,7 +112,7 @@ extension MessageViewController:UITableViewDelegate,UITableViewDataSource{
             cell.mssgIcon.image = UIImage(named: "mail_sent")
         }
         cell.date.text = (messageItem.date ?? "").getDate().getMonth() + " " + (messageItem.date ?? "").getDate().getDay()
-        cell.date.text = cell.date.text! + ", " + (messageItem.time ?? "")
+        cell.date.text = cell.date.text! + ", " + (messageItem.date ?? "").getDate().getTimeWithAmPm()
         return cell
     }
     

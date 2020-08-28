@@ -58,6 +58,8 @@ enum ApiEndPoints{
     case host_Registration(id:String)
     case travellerPublish(id:String)
     case hostPublished(id:String)
+    case deleteTravellerImage(id:String)
+    case deleteHostImage(id:String)
     var rawValue:String{
         switch self {
         case .login:
@@ -134,6 +136,10 @@ enum ApiEndPoints{
             return "/api/host/publish/\(id)"
         case .travellerPublish(let id):
             return "/api/traveller/publish/\(id)"
+        case .deleteTravellerImage(let id):
+            return "/api/traveller/image/\(id)"
+        case .deleteHostImage(let id):
+             return "/api/host/image/\(id)"
         }
     }
     

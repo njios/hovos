@@ -31,6 +31,7 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         status.text = (SharedUser.manager.auth.listing?.status ?? "")
         status.text = status.text! + ((SharedUser.manager.auth.listing?.isPaid ?? "") == "Y" ? ", paid member" : ", free member")
         if (SharedUser.manager.auth.listing?.status ?? "") == "onhold"{
@@ -46,6 +47,7 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
+                
                 self.transaction = try! JSONDecoder().decode([Transactions].self, from: data!)
             }
         }
@@ -126,7 +128,7 @@ class MembershipVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         if transaction.count >= 3{
             historyHieght.constant = 250
         }else{
-            historyHieght.constant = CGFloat(50 * transaction.count)
+            historyHieght.constant = CGFloat(50 * transaction.count) + 70.0
         }
         self.view.layoutSubviews()
         self.view.layoutIfNeeded()

@@ -34,7 +34,7 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         super.viewDidLoad()
         delegate = self
         menuView.frame = self.view.frame
-        menuView.delegate = self
+       
         locationManager.delegate = self
        
         if locationManager.location != nil {
@@ -78,6 +78,8 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         
         
     }
+    
+
     private func updateUI(status:Int){
         ViewHelper.shared().hideLoader()
         recommendedDelegates.modalObject = VMObject.recommendedItems

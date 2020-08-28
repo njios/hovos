@@ -92,6 +92,12 @@ extension Date{
         let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
         return "\(comp.hour ?? 0)" + ":" + " \(comp.minute ?? 0)"
     }
+    
+    func getTimeWithAmPm()->String{
+        let calenderComp = Calendar.current
+        let comp = calenderComp.dateComponents(in: NSTimeZone.local, from: self)
+        return "\(comp.hour ?? 0)" + ":" + " \(comp.minute ?? 0) " +  ((comp.hour ?? 0) > 12 ? "PM" : "AM")
+    }
 }
 
 extension UICollectionView {

@@ -44,7 +44,7 @@ class ProfileViewController: UIViewController,UpdateProfile {
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
-        menuView.delegate = self
+     
         SharedUser.manager.delegate = self
         self.loadUI()
         
@@ -68,7 +68,7 @@ class ProfileViewController: UIViewController,UpdateProfile {
         let listing = SharedUser.manager.auth.listing
         
         headerTitle?.text = (user?.firstName ?? "")
-        headerTitle?.text = (headerTitle?.text!)! + (user?.lastName ?? "")
+        headerTitle?.text = (headerTitle?.text!)! + " " + (user?.lastName ?? "")
         
         imageV?.image = nil
         imageV?.kf.indicatorType = .activity
@@ -99,6 +99,12 @@ class ProfileViewController: UIViewController,UpdateProfile {
         status.text = "I am open for meeting travelers"
         skills.text = listing?.skillDescription ?? ""
         
+        var schedules:String = ""
+        for item in listing?.schedules ?? []{
+                  schedules = schedules + item.start + " - " + item.end
+                  schedules = schedules + "\n"
+              }
+        schedule.text = schedules == "" ? "Open for offers" : schedules
       
         let personalDesc = user?.personalDescription ?? ""
         let additionalDesc = listing?.additionalDesc ?? ""

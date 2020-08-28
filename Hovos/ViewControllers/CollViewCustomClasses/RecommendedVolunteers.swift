@@ -24,7 +24,7 @@ class RecommendedVolunteers: NSObject, UICollectionViewDelegate,UICollectionView
             cell.imageV?.image = nil
           
             cell.imageV?.kf.indicatorType = .activity
-            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].images?[0].medium ?? ""))
+            cell.imageV?.kf.setImage(with: URL(string: modalObject?[indexPath.row].image?.medium ?? ""))
              
               if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             cell.name?.text = (modalObject?[indexPath.row].title ?? "")

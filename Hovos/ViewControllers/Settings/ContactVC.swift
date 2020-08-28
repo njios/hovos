@@ -13,6 +13,7 @@ class ContactVC: UIViewController,UITextViewDelegate {
      @IBOutlet weak var name:UILabel!
      @IBOutlet weak var email:UILabel!
      @IBOutlet weak var query:UITextView!
+    
      override func viewDidLoad() {
         super.viewDidLoad()
 

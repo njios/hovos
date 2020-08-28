@@ -12,12 +12,31 @@ class MessageVC: UIViewController,UITextViewDelegate {
     
     @IBOutlet weak var titleText:UILabel!
     @IBOutlet weak var messageView:UITextView!
-    
+    @IBOutlet weak var headerView:UIView!
+    @IBOutlet weak var sendButton:UIButton!
     var user:VolunteerItem!
     override func viewDidLoad() {
         super.viewDidLoad()
         titleText.text = "Contact \(user.member?.firstName ?? "")"
         messageView.text = "Write a message to \(user.member?.firstName ?? "") to help you with your project..."
+        
+        if SharedUser.manager.auth.role == "H"{
+            headerView.backgroundColor = UIColor(named: "greenColor")
+            sendButton.backgroundColor = UIColor(named: "greenColor")
+        }
+        if SharedUser.manager.auth.role == "V"{
+            headerView.backgroundColor = UIColor(named: "orangeColor")
+            sendButton.backgroundColor = UIColor(named: "orangeColor")
+        }
+        
+        if SharedUser.manager.auth.role == "H"{
+            sendButton.backgroundColor = UIColor(named: "orangeColor")
+            
+        }
+        if SharedUser.manager.auth.role == "V"{
+            sendButton.backgroundColor = UIColor(named: "greenColor")
+            
+        }
         // Do any additional setup after loading the view.
     }
     

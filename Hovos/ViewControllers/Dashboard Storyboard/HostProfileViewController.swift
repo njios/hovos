@@ -48,7 +48,7 @@ class HostProfileViewController: UIViewController,UpdateProfile {
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
-        menuView.delegate = self
+     
    SharedUser.manager.delegate = self
         // Do any additional setup after loading the view.
     }

@@ -10,12 +10,22 @@ import UIKit
 import Alamofire
 import Kingfisher
 class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
-    
-    @IBOutlet weak var collView:UICollectionView!
-    var imageArray = [String]()
     @IBOutlet weak var placeholder:UIImageView!
     @IBOutlet weak var titletext:UILabel!
+    @IBOutlet weak var collView:UICollectionView!
+    @IBOutlet weak var deleteButton:UIButton!
+    var imageArray = [String]()
     var type = ""
+    var selectedIndexes = [String](){
+        didSet{
+            if selectedIndexes.count > 0{
+                deleteButton.isHidden = false
+            }else{
+                deleteButton.isHidden = true
+            }
+        }
+    }
+    var ids = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,15 +41,21 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        filteredData()
+    }
+    
+    private func filteredData(){
+        ids.removeAll()
+        imageArray.removeAll()
         if type == "accommodations"{
             for i in 0 ..< (SharedUser.manager.auth.listing?.accommodationImages?.count ?? 0){
-                
+                ids.append(SharedUser.manager.auth.listing?.accommodationImages?[i].id ?? "")
                 imageArray.append(SharedUser.manager.auth.listing?.accommodationImages?[i].medium ?? "")
                 
             }
         }else{
             for i in 0 ..< (SharedUser.manager.auth.listing?.images?.count ?? 0){
-                
+                ids.append(SharedUser.manager.auth.listing?.images?[i].id ?? "")
                 imageArray.append(SharedUser.manager.auth.listing?.images?[i].medium ?? "")
                 
             }
@@ -60,12 +76,121 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
         cell.image.kf.indicatorType = .activity
         let rescource = URL(string: imageArray[indexPath.row])
         cell.image.kf.setImage(with: rescource!)
+        if selectedIndexes.contains(ids[indexPath.row]){
+            cell.layoverimage.isHidden = false
+        }else{
+            cell.layoverimage.isHidden = true
+        }
         return cell
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: (self.view.frame.width/3 - 2), height: (self.view.frame.width/3 - 2))
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if selectedIndexes.contains(ids[indexPath.row]){
+            selectedIndexes = selectedIndexes.filter({ (item) -> Bool in
+                if item == ids[indexPath.row]{
+                    return false
+                }else{
+                    return true
+                }
+            })
+        }else{
+            selectedIndexes.append(ids[indexPath.row])
+        }
+        collectionView.reloadData()
+    }
+    
+    @IBAction func deleteImages(_ sender:UIButton){
+        if SharedUser.manager.auth.role == "V"{
+            
+            
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "id":SharedUser.manager.auth.user?.listingId ?? "",
+                          "API_KEY":constants.Api_key.rawValue]
+            
+            var packet = NetworkPacket()
+            
+            packet.apiPath = ApiEndPoints.deleteTravellerImage(id: selectedIndexes.joined(separator: ",")).rawValue
+            packet.method = HTTPMethod.delete.rawValue
+            packet.header = header
+            
+            ViewHelper.shared().showLoader(self)
+            ApiCall(packet: packet) { (data, status, code) in
+                if code == 200{
+                    
+                    let filteredImages = SharedUser.manager.auth.listing?.images?.filter({ (img) -> Bool in
+                        if self.selectedIndexes.contains(img.id ?? ""){
+                            return false
+                        }else{
+                            return true
+                        }
+                    })
+                    SharedUser.manager.auth.listing?.images = filteredImages
+                    
+                    
+                    self.selectedIndexes.removeAll()
+                    DispatchQueue.main.async {
+                        self.filteredData()
+                    }
+                }
+                ViewHelper.shared().hideLoader()
+            }
+            
+        }else{
+            
+            
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "id":SharedUser.manager.auth.user?.listingId ?? "",
+                          "API_KEY":constants.Api_key.rawValue]
+            
+            var packet = NetworkPacket()
+            
+            
+            packet.apiPath = ApiEndPoints.deleteHostImage(id: selectedIndexes.joined(separator: ",")).rawValue
+            
+            packet.method = HTTPMethod.delete.rawValue
+            packet.header = header
+            
+            ViewHelper.shared().showLoader(self)
+            ApiCall(packet: packet) { (data, status, code) in
+                if code == 200{
+                    
+                    
+                    if self.type == "place"{
+                        
+                        let filteredImages = SharedUser.manager.auth.listing?.images?.filter({ (img) -> Bool in
+                            if self.selectedIndexes.contains(img.id ?? ""){
+                                return false
+                            }else{
+                                return true
+                            }
+                        })
+                        SharedUser.manager.auth.listing?.images = filteredImages
+                    }else{
+                        let filteredImages = SharedUser.manager.auth.listing?.accommodationImages?.filter({ (img) -> Bool in
+                            if self.selectedIndexes.contains(img.id ?? ""){
+                                return false
+                            }else{
+                                return true
+                            }
+                        })
+                        SharedUser.manager.auth.listing?.accommodationImages = filteredImages
+                    }
+                    
+                    self.selectedIndexes.removeAll()
+                    DispatchQueue.main.async {
+                        self.filteredData()
+                    }
+                }
+                ViewHelper.shared().hideLoader()
+            }
+            
+        }
     }
     
     @IBAction func openCamera(_ sender:UIButton){
@@ -134,10 +259,10 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
             "filename": "custom"
         ]
         
-            if self.type == "accommodations"{
-        parameters["isAccommodation"] = "Y"
-            }else{
-             parameters["isAccommodation"] = "N"
+        if self.type == "accommodations"{
+            parameters["isAccommodation"] = "Y"
+        }else{
+            parameters["isAccommodation"] = "N"
         }
         
         var url = ""
@@ -185,7 +310,10 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
                                 SharedUser.manager.auth.listing?.images?.append(newImage)
                             }
                         }
-                        self.imageArray.append(newImage.medium ?? "")
+                        DispatchQueue.main.async {
+                            self.filteredData()
+                        }
+                        
                         completion()
                         return
                     }
@@ -201,4 +329,5 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
 }
 class Photocell:UICollectionViewCell{
     @IBOutlet weak var image:UIImageView!
+    @IBOutlet weak var layoverimage:UIView!
 }

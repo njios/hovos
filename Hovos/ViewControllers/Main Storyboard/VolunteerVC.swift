@@ -281,7 +281,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         
         
         footerlabel.tag = indexPath.row
-        footerlabel.text = "  CONTACT \((volItem.name ?? ""))  "
+        footerlabel.text = "  CONTACT \((volItem.name ?? "").uppercased())  "
         let country = volItem.location?.country ?? ""
         let city = volItem.location?.city ?? ""
         cell.place?.text = country + ", " + city
@@ -411,11 +411,15 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         
         if indexPath.item == object!.travellers!.count-1{
             if volSearchModal == nil{
-            ViewHelper.shared().showLoader(self)
+            
             LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                ViewHelper.shared().showLoader(self)
+                   DispatchQueue.main.async {
                 self.object?.travellers?.append(contentsOf: (items?.travellers)!)
                 collectionView.reloadData()
+        
                 ViewHelper.shared().hideLoader()
+                }
             }
             }else{
                 if ((self.object?.totalResults) ?? 0)-1 > indexPath.row{

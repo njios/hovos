@@ -20,7 +20,7 @@ var placeholder = "Tell a bit yourself. Your hosts are interested to know what k
         if  SharedUser.manager.auth.listing?.member?.personalDescription == ""{
         descriptionText.text = placeholder
         }else{
-            descriptionText.text = SharedUser.manager.auth.listing?.member?.personalDescription
+            descriptionText.text = (SharedUser.manager.auth.listing?.member?.personalDescription)! 
         }
         
         if  SharedUser.manager.auth.listing?.member?.age == "0"{

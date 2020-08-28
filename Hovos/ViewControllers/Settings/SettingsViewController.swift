@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.frame = self.view.frame
-        menuView.delegate = self
+        
         name.text = (SharedUser.manager.auth.user?.firstName ?? "" ) + " " + (SharedUser.manager.auth.user?.lastName ?? "")
         if let imageUrl = SharedUser.manager.auth.user?.image?.medium{
             profileIMG.kf.indicatorType = .activity

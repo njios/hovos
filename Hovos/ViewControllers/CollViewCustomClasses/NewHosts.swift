@@ -27,8 +27,12 @@ class NewHosts: NSObject, UICollectionViewDelegate,UICollectionViewDelegateFlowL
             }else{
                   cell.imageV?.image = UIImage(named: "bg")
             }
-          cell.lastSeen.text = "Signed up: \((modalObject?[indexPath.row].addedOn ?? "").getDate().getDay()) \((modalObject?[indexPath.row].addedOn ?? "").getDate().getMonth()) "
             
+            if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
+          cell.lastSeen.text = "Signed up: \((modalObject?[indexPath.row].addedOn ?? "").getDate().getMonth()) \((modalObject?[indexPath.row].addedOn ?? "").getDate().getDay())"
+            }else{
+                cell.lastSeen.text = "Signed up: \((modalObject?[indexPath.row].publishedOn ?? "").getDate().getMonth()) \((modalObject?[indexPath.row].publishedOn ?? "").getDate().getDay())"
+            }
          
             if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
           cell.name?.text = (modalObject?[indexPath.row].title ?? "")
