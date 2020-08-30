@@ -51,8 +51,8 @@ enum ApiEndPoints{
     case volunteerStatus
     case transactions
     case postMessages
-    case FavVolunteer
-    case FavHosts
+    case FavVolunteer(id:String)
+    case FavHosts(id:String)
     case otpVerify(otp:String)
     case vol_Registration(id:String)
     case host_Registration(id:String)
@@ -60,7 +60,10 @@ enum ApiEndPoints{
     case hostPublished(id:String)
     case deleteTravellerImage(id:String)
     case deleteHostImage(id:String)
+    case getTravellerFavorites
+    case getHostfavorites
     var rawValue:String{
+        
         switch self {
         case .login:
             return "/api/user/login/"
@@ -121,17 +124,21 @@ enum ApiEndPoints{
             return "/api/get/transactions"
         case .postMessages:
             return "/api/user/message/"
-        case .FavHosts:
-            return "/api/user/config/favorite_hosts"
-        case .FavVolunteer:
-            return "/api/user/config/favorite_volunteers"
+        case .FavHosts(let id):
+            return "/api/v2/user/favorite/hosts/\(id)"
+        case .FavVolunteer(let id):
+            return "/api/v2/user/favorite/travellers/\(id)"
         case .otpVerify(let otp):
             return "/api/user/verify_otp/\(otp)"
             
         case .vol_Registration(let id):
             return "/api/traveller/\(id)"
         case .host_Registration(let id):
-            return "/api/host/\(id)"
+             return "/api/host/\(id)"
+        case .getTravellerFavorites: 
+            return "/api/v2/get/travellers/favorite/"
+        case .getHostfavorites:
+            return "/api/v2/get/hosts/favorite/"
         case .hostPublished(let id):
             return "/api/host/publish/\(id)"
         case .travellerPublish(let id):

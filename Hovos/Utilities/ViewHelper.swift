@@ -34,15 +34,10 @@ class ViewHelper:UIViewController{
         DispatchQueue.main.async {
             self.viewBG.removeFromSuperview()
         }
-     
     }
     static func shared()->ViewHelper{
         return object
     }
-    
-    
-    
-    
 }
 
 

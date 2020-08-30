@@ -56,6 +56,14 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
         }
     }
     
+    @IBAction func closeOtpView(_ sender:UIButton){
+      
+        for item in self.otp{
+            item.text = ""
+        }
+        optVerifyView.isHidden = true
+    }
+    
     private func goTochangePassword(){
           let header = ["auth":SharedUser.manager.auth.auth ?? "",
                                    "id":SharedUser.manager.auth.user?.listingId ?? "",

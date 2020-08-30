@@ -228,8 +228,8 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
         let action3 = UIAlertAction(title: "CANCEL", style: .cancel) { (action) in
             alert.dismiss(animated: false) {
             }
-            
         }
+        
         alert.addAction(action1)
         alert.addAction(action2)
         alert.addAction(action3)
@@ -284,6 +284,7 @@ class EditProfile_photoesVC: UIViewController,UIImagePickerControllerDelegate,UI
             for (key, value) in parameters {
                 multipartFormData.append(value.data(using: .utf8)!, withName: key)
             }
+            
             if let data = tmpImage.jpegData(compressionQuality: 0.5){
                 multipartFormData.append(data, withName: "fd-file", fileName: "hovos.png", mimeType: "image/png")
             }

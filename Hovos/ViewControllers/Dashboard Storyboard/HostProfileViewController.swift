@@ -89,7 +89,7 @@ class HostProfileViewController: UIViewController,UpdateProfile {
         if let url = URL(string: volItem.image?.medium ?? ""){
             imageV?.kf.setImage(with: url)
         }
-        place?.text = volItem.location?.country ?? ""
+        place?.text = (volItem.location?.country ?? "") + ", " + (volItem.location?.city ?? "")
         let lastSeen = "Last seen on \((volItem.lastLogin ?? "").getDate().getMonth()) \((volItem.lastLogin ?? "").getDate().getDay())"
         let memberSince = "member since \((volItem.publishedOn ?? "").getDate().getYear())"
         lastSeen_memberSince.text = lastSeen + ", " + memberSince

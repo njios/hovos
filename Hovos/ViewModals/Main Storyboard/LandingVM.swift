@@ -25,9 +25,58 @@ class LandingVM {
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
                 let decoder =  JSONDecoder()
-                 let VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
-                    self.Volunteers = VolunteerList
-                    completion(VolunteerList)
+                let VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                self.Volunteers = VolunteerList
+                completion(VolunteerList)
+                
+            }else{
+                completion(nil)
+            }
+        }
+    }
+    
+    func getRecommendedVolunteer(_ minOffeset:Int = 0,_ maxOffset:Int = 12, completion:@escaping (Volunteer?)->())  {
+        var packet = NetworkPacket()
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                      "API_KEY":constants.Api_key.rawValue]
+        packet.apiPath = ApiEndPoints.volunteersRecommended.rawValue
+        packet.method = HTTPMethod.get.rawValue
+        packet.encoding = Alamofire.URLEncoding.httpBody
+        packet.header = header
+        packet.url = packet.url! + "?&min_offset=\(minOffeset)"
+        packet.url = packet.url! + "&max_offset=\(maxOffset)"
+        
+        ApiCall(packet: packet) { (data, status, code) in
+            if code == 200{
+                let decoder =  JSONDecoder()
+                let VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                self.Volunteers = VolunteerList
+                completion(VolunteerList)
+                
+            }else{
+                completion(nil)
+            }
+        }
+    }
+    
+    
+    func getLatestVolunteer(_ minOffeset:Int = 0,_ maxOffset:Int = 12, completion:@escaping (Volunteer?)->())  {
+        var packet = NetworkPacket()
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                      "API_KEY":constants.Api_key.rawValue]
+        packet.apiPath = ApiEndPoints.volunteersLatest.rawValue
+        packet.method = HTTPMethod.get.rawValue
+        packet.encoding = Alamofire.URLEncoding.httpBody
+        packet.header = header
+        packet.url = packet.url! + "?&min_offset=\(minOffeset)"
+        packet.url = packet.url! + "&max_offset=\(maxOffset)"
+        
+        ApiCall(packet: packet) { (data, status, code) in
+            if code == 200{
+                let decoder =  JSONDecoder()
+                let VolunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                self.Volunteers = VolunteerList
+                completion(VolunteerList)
                 
             }else{
                 completion(nil)
@@ -53,16 +102,16 @@ class LandingVM {
             if code == 200{
                 let decoder =  JSONDecoder()
                 let volunteer = try! decoder.decode(Volunteer.self, from: data!)
-                    self.Hosts = volunteer.hosts
-                    completion(volunteer.hosts)
-            
-        }
+                self.Hosts = volunteer.hosts
+                completion(volunteer.hosts)
+                
+            }
         }
     }
     
     func getAllHosts(_ minOffeset:Int = 0,_ maxOffset:Int = 12,completion:@escaping (Volunteer?)->()){
         
-       var packet = NetworkPacket()
+        var packet = NetworkPacket()
         packet.apiPath = ApiEndPoints.hostsAll.rawValue
         packet.method = HTTPMethod.get.rawValue
         packet.encoding = Alamofire.URLEncoding.httpBody
@@ -71,11 +120,63 @@ class LandingVM {
         ApiCall(packet: packet) { (data, status, code) in
             if code == 200{
                 let decoder =  JSONDecoder()
-               let volunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                let volunteerList = try! decoder.decode(Volunteer.self, from: data!)
                 completion(volunteerList)
-               
+                
             }else{
                 completion(nil)
+            }
+        }
+        
+    }
+    
+    
+    func getRecommenededHosts(_ minOffeset:Int = 0,_ maxOffset:Int = 12,completion:@escaping (Volunteer?)->()){
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                      "API_KEY":constants.Api_key.rawValue,
+                      "id":SharedUser.manager.auth.user?.listingId ?? ""]
+        var packet = NetworkPacket()
+        packet.apiPath = ApiEndPoints.hostsRecommended.rawValue
+        packet.method = HTTPMethod.get.rawValue
+        packet.encoding = Alamofire.URLEncoding.httpBody
+        packet.url = packet.url! + "?&min_offset=\(minOffeset)"
+        packet.url = packet.url! + "&max_offset=\(maxOffset)"
+        packet.header = header
+        ApiCall(packet: packet) { (data, status, code) in
+            DispatchQueue.main.async {
+                if code == 200{
+                    let decoder =  JSONDecoder()
+                    let volunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                    completion(volunteerList)
+                    
+                }else{
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getLatestHosts(_ minOffeset:Int = 0,_ maxOffset:Int = 12,completion:@escaping (Volunteer?)->()){
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                      "API_KEY":constants.Api_key.rawValue,
+                      "id":SharedUser.manager.auth.user?.listingId ?? ""]
+        
+        var packet = NetworkPacket()
+        packet.apiPath = ApiEndPoints.hostsLatest.rawValue
+        packet.method = HTTPMethod.get.rawValue
+        packet.encoding = Alamofire.URLEncoding.httpBody
+        packet.url = packet.url! + "?&min_offset=\(minOffeset)"
+        packet.url = packet.url! + "&max_offset=\(maxOffset)"
+        packet.header = header
+        ApiCall(packet: packet) { (data, status, code) in
+            DispatchQueue.main.async {
+                if code == 200{
+                    let decoder =  JSONDecoder()
+                    let volunteerList = try! decoder.decode(Volunteer.self, from: data!)
+                    completion(volunteerList)
+                }else{
+                    completion(nil)
+                }
             }
         }
         
@@ -95,9 +196,9 @@ class LandingVM {
         getApiCall(url: url! ) { (data, status, code) in
             if code == 200{
                 let decoder =  JSONDecoder()
-                 let volunteer = try! decoder.decode(Volunteer.self, from: data!)
-                    self.Hosts = volunteer.hosts
-                    completion(volunteer.hosts)
+                let volunteer = try! decoder.decode(Volunteer.self, from: data!)
+                self.Hosts = volunteer.hosts
+                completion(volunteer.hosts)
                 
             }else{
                 self.getHostBySearch(modal: modal, completion: completion)
@@ -109,32 +210,32 @@ class LandingVM {
     
     
     func getHostBySearchWithSearchItems(modal:HostSearchModel,completion:@escaping (Volunteer?)->()){
-          var str = "https://www.hovos.com\(ApiEndPoints.hostsAll.rawValue)?"
-          var qs = ""
-          qs = qs + "&min_offset=\(modal.min_offset)"
-          qs = qs + "&max_offset=\(modal.max_offset)"
-          qs = qs + "&cntry=\(modal.cntry ?? "")"
-          qs = qs + "&conti=\(modal.conti ?? "")"
-          qs = qs + "&dt=\(modal.queryDate ?? "")"
-          qs = qs + "&jobs=\(modal.jobs.joined(separator: "|"))"
-          qs = qs + "&latlng=\(modal.latlng ?? "")"
-          qs = qs + "&qs=\(modal.qs ?? "")"
-          str = str + qs.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-          let url =  URL(string: str)
-          getApiCall(url: url! ) { (data, status, code) in
-              if code == 200{
-                  let decoder =  JSONDecoder()
+        var str = "https://www.hovos.com\(ApiEndPoints.hostsAll.rawValue)?"
+        var qs = ""
+        qs = qs + "&min_offset=\(modal.min_offset)"
+        qs = qs + "&max_offset=\(modal.max_offset)"
+        qs = qs + "&cntry=\(modal.cntry ?? "")"
+        qs = qs + "&conti=\(modal.conti ?? "")"
+        qs = qs + "&dt=\(modal.queryDate ?? "")"
+        qs = qs + "&jobs=\(modal.jobs.joined(separator: "|"))"
+        qs = qs + "&latlng=\(modal.latlng ?? "")"
+        qs = qs + "&qs=\(modal.qs ?? "")"
+        str = str + qs.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+        let url =  URL(string: str)
+        getApiCall(url: url! ) { (data, status, code) in
+            if code == 200{
+                let decoder =  JSONDecoder()
                 let volunteer = try! decoder.decode(Volunteer.self, from: data!)
-                      completion(volunteer)
-                  
-              }else{
+                completion(volunteer)
                 
-                  self.getHostBySearchWithSearchItems(modal: modal, completion: completion)
-              }
-          }
-          
-          
-      }
+            }else{
+                
+                self.getHostBySearchWithSearchItems(modal: modal, completion: completion)
+            }
+        }
+        
+        
+    }
     
     private func getfacetdata(){
     }

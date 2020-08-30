@@ -35,6 +35,7 @@ class VolunteerVC: UIViewController {
     var searchInCountry = ""
     var newSearchModal:VolunteerSearchModel!
     let vc = VolunteerSearchVC( nibName: "VolunteerSearchVC", bundle: nil)
+    var favAvailable = false
     var volSearchModal:VolunteerSearchModel!{
         didSet{
             searchText.text = ""
@@ -119,6 +120,9 @@ class VolunteerVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        if favAvailable{
+            searchButton.isHidden = true
+        }
         menuView.frame = self.view.frame
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
             menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
@@ -179,14 +183,51 @@ class VolunteerVC: UIViewController {
     @IBAction func favSelected(_ sender:UIButton){
         sender.isSelected = !sender.isSelected
         if sender.isSelected{
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "id":SharedUser.manager.auth.user?.listingId ?? "",
+                          "API_KEY":constants.Api_key.rawValue]
             var identifyYourself = NetworkPacket()
-            identifyYourself.apiPath = ApiEndPoints.FavVolunteer.rawValue
+            identifyYourself.apiPath = ApiEndPoints.FavVolunteer(id:object!.travellers![sender.tag].id ?? "").rawValue
             identifyYourself.method = "POST"
+            identifyYourself.header = header
             ViewHelper.shared().showLoader(self)
             ApiCall(packet: identifyYourself) { (data, status, code) in
                 ViewHelper.shared().hideLoader()
                 print("fav selected \(code)")
+                if code == 200{
+                    FavoriteData.shared.favoriteTravellers.append(self.object!.travellers![sender.tag])
+                    DispatchQueue.main.async {
+                        self.collView.reloadData()
+                    }
+                }
+                
             }
+        }else{
+            let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                          "API_KEY":constants.Api_key.rawValue]
+            var identifyYourself = NetworkPacket()
+            identifyYourself.apiPath = ApiEndPoints.FavVolunteer(id: object!.travellers![sender.tag].id  ?? "").rawValue
+            identifyYourself.header = header
+            identifyYourself.method = "DELETE"
+            ViewHelper.shared().showLoader(self)
+            ApiCall(packet: identifyYourself) { (data, status, code) in
+                ViewHelper.shared().hideLoader()
+                print("fav selected \(code)")
+                if code == 200{
+                    let newFav = FavoriteData.shared.favoriteTravellers.filter { (item) -> Bool in
+                        if item.id == (self.object!.travellers![sender.tag].id  ?? ""){
+                            return false
+                        }else{
+                            return true
+                        }
+                    }
+                    FavoriteData.shared.favoriteTravellers = newFav
+                    DispatchQueue.main.async {
+                        self.collView.reloadData()
+                    }
+                }
+            }
+            
         }
     }
     
@@ -352,7 +393,17 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         cell.photosCollview.reloadData()
         cell.place?.setUnderLine()
         cell.photosCount.text = ""
+        
         favButton.tag = indexPath.row
+        var isFav:Bool = false
+        for item in FavoriteData.shared.favoriteTravellers{
+            if (item.id ?? "") == (volItem.id ?? ""){
+                isFav = true
+            }
+        }
+        favButton.isSelected = isFav
+        
+        
         if let img = volItem.images, img.count > 0{
             cell.photosCount.text = " 1/\(img.count)"
             cell.photosCount.isComplete = true
@@ -409,36 +460,69 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             cell.startSelection[6].image = UIImage(named: "startUnselected")
         }
         
-        if indexPath.item == object!.travellers!.count-1{
+        if indexPath.item == object!.travellers!.count-1 && favAvailable == false{
             if volSearchModal == nil{
-            
-            LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
-                ViewHelper.shared().showLoader(self)
-                   DispatchQueue.main.async {
-                self.object?.travellers?.append(contentsOf: (items?.travellers)!)
-                collectionView.reloadData()
-        
-                ViewHelper.shared().hideLoader()
-                }
-            }
+                switch type {
+                       case .all:
+                        LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                                           ViewHelper.shared().showLoader(self)
+                                           DispatchQueue.main.async {
+                                               self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                                               collectionView.reloadData()
+                                               
+                                               ViewHelper.shared().hideLoader()
+                                           }
+                                       }
+                           break
+                       case .latest:
+                        LandingVM().getLatestVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                                                                  ViewHelper.shared().showLoader(self)
+                                                                  DispatchQueue.main.async {
+                                                                      self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                                                                      collectionView.reloadData()
+                                                                      
+                                                                      ViewHelper.shared().hideLoader()
+                                                                  }
+                                                              }
+                          break
+                       case .neraby:
+                           if location != nil{
+                               let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
+                               
+                           }
+                       case .recommended:
+                        LandingVM().getRecommendedVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                                           ViewHelper.shared().showLoader(self)
+                                           DispatchQueue.main.async {
+                                               self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                                               collectionView.reloadData()
+                                               
+                                               ViewHelper.shared().hideLoader()
+                                           }
+                                       }
+                           break
+                       }
+               
+                
             }else{
                 if ((self.object?.totalResults) ?? 0)-1 > indexPath.row{
-                ViewHelper.shared().showLoader(self)
-                 
+                    ViewHelper.shared().showLoader(self)
                     
-                newSearchModal.min_offset = newSearchModal.min_offset + 12
-                newSearchModal.max_offset = newSearchModal.max_offset + 12
                     
-                vc.vmObject.searchVolunteer(object: newSearchModal) { (volunteer) in
-                    DispatchQueue.main.async {
-                        self.object?.travellers?.append(contentsOf: (volunteer?.travellers)!)
-                                collectionView.reloadData()
-                                 ViewHelper.shared().hideLoader()
+                    newSearchModal.min_offset = newSearchModal.min_offset + 12
+                    newSearchModal.max_offset = newSearchModal.max_offset + 12
+                    
+                    vc.vmObject.searchVolunteer(object: newSearchModal) { (volunteer) in
+                        DispatchQueue.main.async {
+                            self.object?.travellers?.append(contentsOf: (volunteer?.travellers)!)
+                            collectionView.reloadData()
+                            ViewHelper.shared().hideLoader()
+                        }
                     }
-                    }
-               }
+                }
             }
         }
+        
         
         
         cell.reviews = volItem.reviews ?? []

@@ -28,8 +28,10 @@ extension ListViewDelegate{
             
             if type == "New"{
                 hostVC.showMatching = false
+                hostVC.type = "latest"
             }else{
                 hostVC.showMatching = true
+                hostVC.type = "recommended"
             }
             
             if let vc =  getNavigationController(){

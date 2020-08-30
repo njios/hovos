@@ -22,6 +22,8 @@ class TabBarController: UIViewController {
     var VMObject:LandingVM!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
         VMObject = LandingVM()
         cover.isHidden = false
         if let data = UserDefaults.standard.data(forKey: constants.accessToken.rawValue){
@@ -29,10 +31,12 @@ class TabBarController: UIViewController {
             SharedUser.manager.auth = try! decoder.decode(Auth1.self, from: data)
         }
         
+        FavoriteData.shared.getTravellers()
+        FavoriteData.shared.getHosts()
+        
         let header = ["auth":SharedUser.manager.auth.auth ?? "",
                       "API_KEY":constants.Api_key.rawValue,
         ]
-        
         var recommendedRequest = NetworkPacket()
         recommendedRequest.apiPath = ApiEndPoints.user.rawValue
         recommendedRequest.header = header
@@ -117,6 +121,7 @@ class TabBarController: UIViewController {
         vc.menuView.delegate = self
     }
     @IBAction func addChild(_ sender:UIButton){
+        if sender.tag != 3{
         var vc :UIViewController!
         if sender.tag == 0{
             home.alpha = 1.0
@@ -149,6 +154,9 @@ class TabBarController: UIViewController {
                 
             }
         }
+        
+        
+        
         if sender.tag == 4{
             home.alpha = 0.5
             message.alpha = 0.5
@@ -162,6 +170,7 @@ class TabBarController: UIViewController {
         for view in containerView.subviews {
             view.removeFromSuperview()
         }
+        
         vc!.view.frame =  CGRect(x: 0, y: 0, width: self.containerView.frame.size.width, height: self.containerView.frame.size.height)
         self.addChild(vc!)
         
@@ -174,6 +183,28 @@ class TabBarController: UIViewController {
         }
         if (vc as? HostProfileViewController) != nil {
             (vc as! HostProfileViewController).menuView.delegate = self
+        }
+        
+    }else {
+            if FavoriteData.shared.favoriteHosts.count > 0{
+            
+            let mainSb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = mainSb.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
+            vc.object.hosts = FavoriteData.shared.favoriteHosts
+            vc.modalPresentationStyle = .overCurrentContext
+                vc.favAvailable = true
+            self.present(vc, animated: false, completion: nil)
+            }
+            
+            if FavoriteData.shared.favoriteTravellers.count > 0{
+            
+            let mainSb = UIStoryboard(name: "Main", bundle: nil)
+            let vc = mainSb.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
+                vc.object?.travellers = FavoriteData.shared.favoriteTravellers
+            vc.modalPresentationStyle = .overCurrentContext
+                vc.favAvailable = true
+            self.present(vc, animated: false, completion: nil)
+            }
         }
     }
     
