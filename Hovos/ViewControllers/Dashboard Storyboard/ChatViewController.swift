@@ -15,7 +15,7 @@ class ChatViewController: UIViewController,UITextViewDelegate {
  @IBOutlet weak var textViewContainer:UIView!
 @IBOutlet weak var messageText:UITextView!
  var messageItem:MessageModal!
-    var chat = [MessageModal]()
+ var chat = [MessageModal]()
     override func viewDidLoad() {
         super.viewDidLoad()
         chat = messageItem.chat!.reversed()
@@ -23,6 +23,33 @@ class ChatViewController: UIViewController,UITextViewDelegate {
         profileImage.kf.setImage(with: URL(string: messageItem.image ?? ""))
         name.text = messageItem.from ?? ""
         // Do any additional setup after loading the view.
+    }
+    
+    @IBAction func deleteClicked(_ sender:UIButton){
+       var packet = NetworkPacket()
+        // recommended volunteer
+        let header = ["auth":SharedUser.manager.auth.auth ?? "",
+                      "API_KEY":constants.Api_key.rawValue]
+        
+        packet.apiPath = ApiEndPoints.deleteMessage(id: messageItem.groupId ?? "").rawValue
+        
+        packet.header =  header
+        packet.method = "DELETE"
+        
+        ViewHelper.shared().showLoader(self)
+        
+        ApiCallWithJsonEncoding(packet: packet) { (data, status, code) in
+        
+            if code == 200{
+                DispatchQueue.main.async {
+                    ViewHelper.shared().hideLoader()
+                    self.navigationController?.popViewController(animated: false)
+                }
+            }
+        
+        }
+       
+        
     }
     
     @IBAction func sentClicked(_ sender:UIButton){

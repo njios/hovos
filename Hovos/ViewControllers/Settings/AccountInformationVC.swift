@@ -23,7 +23,11 @@ class AccountInformationVC: UIViewController,UITextFieldDelegate {
         email.text = SharedUser.manager.auth.user?.email!
         // Do any additional setup after loading the view.
     }
-    
+
+    @IBAction func eyeClicked(_ sender:UIButton){
+          password.isSecureTextEntry = !password.isSecureTextEntry
+      }
+      
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         SharedUser.manager.auth.user?.firstName = firstName.text!

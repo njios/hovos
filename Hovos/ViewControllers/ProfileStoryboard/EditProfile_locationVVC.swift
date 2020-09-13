@@ -53,9 +53,17 @@ class EditProfile_locationVVC: UIViewController,CLLocationManagerDelegate,GMSMap
                 
                 country = (response?.firstResult()?.country) ?? ""
                 countryCode = locale(for: (response?.firstResult()?.country) ?? "")
-                city = (response?.firstResult()?.administrativeArea) ?? ""
+                if let throughFare = response?.firstResult()?.thoroughfare{
+                    city = city + throughFare + " "
+                }
+                if let locality = response?.firstResult()?.locality{
+                    city = city + locality + " "
+                }
+                if let city1 = response?.firstResult()?.administrativeArea{
+                    city = city + city1
+                }
                 
-                
+            
                 
                 SharedUser.manager.auth.listing?.location = location(latitude: "\(marker.position.latitude)", city: city, country: country, countryCode: countryCode, countryId: "", location: lines.joined(separator: " "), longitude: "\(marker.position.longitude)")
             }
@@ -111,7 +119,16 @@ class EditProfile_locationVVC: UIViewController,CLLocationManagerDelegate,GMSMap
                 
                 country = (response?.firstResult()?.country) ?? ""
                 countryCode = locale(for: (response?.firstResult()?.country) ?? "")
-                city = (response?.firstResult()?.administrativeArea) ?? ""
+               countryCode = locale(for: (response?.firstResult()?.country) ?? "")
+                if let throughFare = response?.firstResult()?.thoroughfare{
+                    city = city + throughFare + " "
+                }
+                if let locality = response?.firstResult()?.locality{
+                    city = city + locality + " "
+                }
+                if let city1 = response?.firstResult()?.administrativeArea{
+                    city = city + city1
+                }
                 
                 
                 

@@ -19,12 +19,14 @@ class HostsVC: UIViewController {
     @IBOutlet weak var menuView:MenuVC!
     @IBOutlet weak var collView:UICollectionView!
     @IBOutlet weak var favButton:UIButton!
+    
+    
     var object = Volunteer()
     var name = ""
     var indexpath:IndexPath?
     var location:CLLocation!
     let photosDelegate = PhotosCollection()
-    weak var VMObject:LandingVM!
+    var VMObject:LandingVM!
     var showMatching = false
     weak var menu_delegate:LandingVC!
     var loadMore:(()->([VolunteerItem]))!
@@ -34,6 +36,7 @@ class HostsVC: UIViewController {
     var isAllHost = false
     var type  = ""
     var favAvailable = false
+    var reviews = [review]()
     override func viewDidLoad() {
         super.viewDidLoad()
         if let modal = copyModal{
@@ -42,7 +45,7 @@ class HostsVC: UIViewController {
         }
         menuView.frame = self.view.frame
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
-           // menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
+            // menuView.delegate = (self.navigationController!.viewControllers.first as! TabBarController).children.first as! DashboardVC
         }else{
             menuView.delegate = menu_delegate
         }
@@ -81,8 +84,12 @@ class HostsVC: UIViewController {
         self.loaderView?.isHidden = false
         self.object.hosts?.removeAll()
         self.collView.reloadData()
-        searchHostApi(hostSearchModal: searchModal) {_,_  in
-            
+        searchHostApi(hostSearchModal: searchModal) {items,_  in
+            DispatchQueue.main.async {
+                self.object = items!
+                self.collView.reloadData()
+                
+            }
         }
     }
     
@@ -100,6 +107,9 @@ class HostsVC: UIViewController {
             object.hosts?.removeAll()
         }
         let minOffset = hostSearchModal.min_offset
+        if VMObject == nil{
+            VMObject = LandingVM()
+        }
         VMObject.getHostBySearchWithSearchItems(modal: hostSearchModal) { (vol) in
             
             DispatchQueue.main.async {
@@ -140,12 +150,13 @@ class HostsVC: UIViewController {
             self.searchText.text = qs + ", "
         }
         
-        if continent.count > 0{
-            self.searchText.text =  self.searchText.text! + continent + ", "
-        }
+        
         
         if countriesText.count > 0{
             rangeArray.append(NSRange(location: self.searchText.text!.count, length: continent.count +  countriesText.count + 2))
+            if continent.count > 0{
+                self.searchText.text =  self.searchText.text! + continent + ", "
+            }
             self.searchText.text =  self.searchText.text! + countriesText + ", "
         }
         
@@ -176,6 +187,8 @@ class HostsVC: UIViewController {
             }
         }
         
+        self.searchText.attributedText = getUnderlineString(text: self.searchText.text!, range: rangeArray)
+        
         self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , , ", with: ", ")
         self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , , ", with: ", ")
         self.searchText.text = self.searchText.text?.replacingOccurrences(of: ", , ", with: ", ")
@@ -189,19 +202,24 @@ class HostsVC: UIViewController {
             self.collView.reloadData()
         }
         
-        self.searchText.attributedText = getUnderlineString(text: self.searchText.text!, range: rangeArray)
-        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if self.indexpath != nil{
+            ViewHelper.shared().showLoader(self)
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
-            ViewHelper.shared().showLoader(self)
+           
             self.collView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
+            ViewHelper.shared().hideLoader()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                 self.collView.scrollToItem(at: index, at: .left, animated: false)
-                ViewHelper.shared().hideLoader()
                 self.indexpath = nil
+                }
             }
         }
     }
@@ -353,6 +371,10 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             self.titleLabel.text = "Hosts in \(searchInCountry), \(indexPath.row + 1 ) of \(object.totalResults ?? 0)"
         }
         
+        if favAvailable == true{
+            self.titleLabel.text = "Favorite hosts, \(indexPath.row + 1 ) of \(object.hosts?.count ?? 0)"
+        }
+        
         
         
         footerlabel.text = "  CONTACT \((volItem.member?.firstName ?? "").uppercased())  "
@@ -470,11 +492,12 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
         }
         
         
-        if indexPath.item == object.hosts!.count-1 && favAvailable == false{
+        if indexPath.item == object.hosts!.count-1 && favAvailable == false && object.totalResults! >  indexPath.item+1{
             if searchModal == nil{
                 
                 
                 if type == "latest"{
+                     ViewHelper.shared().showLoader(self)
                     LandingVM().getLatestHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
                         DispatchQueue.main.async {
                             self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
@@ -483,16 +506,18 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
                         }
                     }
                 }else if type == "recommended"{
+                     ViewHelper.shared().showLoader(self)
                     LandingVM().getRecommenededHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
-                    
-                            self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
-                            collectionView.reloadData()
-                            ViewHelper.shared().hideLoader()
+                        
+                        self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
+                        collectionView.reloadData()
+                        ViewHelper.shared().hideLoader()
                         print("Reloaded")
                     }
                 }else{
                     ViewHelper.shared().showLoader(self)
                     if location == nil{
+                         ViewHelper.shared().showLoader(self)
                         LandingVM().getAllHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
                             self.object.hosts!.append(contentsOf: ((items?.hosts!)!))
                             collectionView.reloadData()
@@ -501,6 +526,7 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
                     }else{
                         let landingVMobject = LandingVM()
                         landingVMobject.location = location
+                        ViewHelper.shared().showLoader(self)
                         landingVMobject.getNearByHosts(object.hosts!.count, object.hosts!.count+12) { (items) in
                             DispatchQueue.main.async {
                                 self.object.hosts!.append(contentsOf: (items!))
@@ -522,9 +548,13 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
                 })
             }
         }
-        cell.reviews = volItem.reviews ?? []
+        cell.reviewsTable.delegate = self
+        cell.reviewsTable.dataSource = self
+        self.reviews = volItem.reviews ?? []
         cell.liked?.setTitle("\(volItem.likes ?? "0")", for: .normal)
         cell.disliked?.setTitle("\(volItem.dislikes ?? "0")", for: .normal)
+        cell.reviewsTable.reloadData()
+        cell.reviewsHieght.constant = CGFloat(self.reviews.count * 300)
         return cell
     }
     
@@ -543,6 +573,34 @@ extension HostsVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,UI
             }
         }
         return CGSize(width: self.view.frame.size.width, height: hieght)
+        
+    }
+    
+}
+extension HostsVC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return reviews.count
+        
+        
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let reviewItem = reviews[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell") as! ReviewCell
+        cell.memberPic.kf.indicatorType = .activity
+        cell.memberPic.kf.setImage(with: URL(string: reviewItem.member?.image?.medium ?? ""))
+        cell.reviewDate.text = reviewItem.time ?? ""
+        cell.memberName.text = (reviewItem.member?.firstName ?? "")
+        cell.review.text = reviewItem.review ?? ""
+        return cell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 300.0
         
     }
     

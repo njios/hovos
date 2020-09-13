@@ -24,19 +24,20 @@ class MessageVC: UIViewController,UITextViewDelegate {
             headerView.backgroundColor = UIColor(named: "greenColor")
             sendButton.backgroundColor = UIColor(named: "greenColor")
         }
+        
         if SharedUser.manager.auth.role == "V"{
             headerView.backgroundColor = UIColor(named: "orangeColor")
             sendButton.backgroundColor = UIColor(named: "orangeColor")
         }
         
-        if SharedUser.manager.auth.role == "H"{
-            sendButton.backgroundColor = UIColor(named: "orangeColor")
-            
-        }
-        if SharedUser.manager.auth.role == "V"{
-            sendButton.backgroundColor = UIColor(named: "greenColor")
-            
-        }
+//        if SharedUser.manager.auth.role == "H"{
+//            sendButton.backgroundColor = UIColor(named: "orangeColor")
+//        }
+//        
+//        if SharedUser.manager.auth.role == "V"{
+//            sendButton.backgroundColor = UIColor(named: "greenColor")
+//        }
+        
         // Do any additional setup after loading the view.
     }
     

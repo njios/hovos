@@ -62,8 +62,8 @@ enum ApiEndPoints{
     case deleteHostImage(id:String)
     case getTravellerFavorites
     case getHostfavorites
+    case deleteMessage(id:String)
     var rawValue:String{
-        
         switch self {
         case .login:
             return "/api/user/login/"
@@ -85,14 +85,12 @@ enum ApiEndPoints{
             return "/api/get/hosts/nearby/"
         case .hostsRecommended:
             return "/api/host/recommended/"
-            
         case .hostsAll:
             return "/api/get/hosts/all/"
         case .hostsLatest:
             return "/api/get/hosts/latest/"
         case .facetData:
             return "/api/get/hosts/facet/"
-            
         case .volunteerFacet:
             return "/api/get/travellers/facet/"
         case .jobs:
@@ -113,13 +111,10 @@ enum ApiEndPoints{
             return "/api/adyen/process/"
         case .getMessages:
             return "/api/user/messages/all/"
-            
         case .userSave:
             return "/api/user/save"
-            
         case .volunteerStatus:
             return "/api/traveller/status/"
-            
         case .transactions:
             return "/api/get/transactions"
         case .postMessages:
@@ -130,7 +125,6 @@ enum ApiEndPoints{
             return "/api/v2/user/favorite/travellers/\(id)"
         case .otpVerify(let otp):
             return "/api/user/verify_otp/\(otp)"
-            
         case .vol_Registration(let id):
             return "/api/traveller/\(id)"
         case .host_Registration(let id):
@@ -147,6 +141,8 @@ enum ApiEndPoints{
             return "/api/traveller/image/\(id)"
         case .deleteHostImage(let id):
              return "/api/host/image/\(id)"
+        case .deleteMessage(let id):
+            return "/api/user/message/\(id)"
         }
     }
     

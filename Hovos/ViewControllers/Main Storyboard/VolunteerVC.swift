@@ -151,10 +151,9 @@ class VolunteerVC: UIViewController {
         SearchModal.cntry = (volItem?.location!.countryCode)!
         SearchModal.countries = [(volItem?.location!.country)!]
         searchInCountry = (volItem?.location!.country)!
-        // SearchModal.latlng = "\(volItem?.location!.latitude! ?? "")|\(volItem?.location!.longitude! ?? "")"
-        
         self.object?.travellers?.removeAll()
         self.collView.reloadData()
+        newSearchModal = SearchModal
         ViewHelper.shared().showLoader(self)
         vmobject.searchVolunteer(object: SearchModal) { (Volunteer) in
             ViewHelper.shared().hideLoader()
@@ -164,18 +163,23 @@ class VolunteerVC: UIViewController {
                 self.collView.reloadData()
             }
         }
-        
-        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if self.indexpath != nil{
+            ViewHelper.shared().showLoader(self)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         if let index = self.indexpath{
-            ViewHelper.shared().showLoader(self)
             self.collView.reloadData()
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-                self.collView.scrollToItem(at: index, at: .left, animated: false)
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.2) {
                 ViewHelper.shared().hideLoader()
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                self.collView.scrollToItem(at: index, at: .left, animated: false)
                 self.indexpath = nil
+                }
+                
             }
         }
     }
@@ -319,7 +323,9 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             
         }
         
-        
+        if favAvailable == true{
+               self.titleLabel.text = "Favorite volunteers, \(indexPath.row + 1 ) of \(object?.travellers?.count ?? 0)"
+           }
         
         footerlabel.tag = indexPath.row
         footerlabel.text = "  CONTACT \((volItem.name ?? "").uppercased())  "
@@ -460,49 +466,49 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
             cell.startSelection[6].image = UIImage(named: "startUnselected")
         }
         
-        if indexPath.item == object!.travellers!.count-1 && favAvailable == false{
-            if volSearchModal == nil{
+        if indexPath.item == object!.travellers!.count-1 && favAvailable == false && (object!.totalResults!) > indexPath.item+1{
+            if newSearchModal == nil{
                 switch type {
-                       case .all:
-                        LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
-                                           ViewHelper.shared().showLoader(self)
-                                           DispatchQueue.main.async {
-                                               self.object?.travellers?.append(contentsOf: (items?.travellers)!)
-                                               collectionView.reloadData()
-                                               
-                                               ViewHelper.shared().hideLoader()
-                                           }
-                                       }
-                           break
-                       case .latest:
-                        LandingVM().getLatestVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
-                                                                  ViewHelper.shared().showLoader(self)
-                                                                  DispatchQueue.main.async {
-                                                                      self.object?.travellers?.append(contentsOf: (items?.travellers)!)
-                                                                      collectionView.reloadData()
-                                                                      
-                                                                      ViewHelper.shared().hideLoader()
-                                                                  }
-                                                              }
-                          break
-                       case .neraby:
-                           if location != nil{
-                               let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
-                               
-                           }
-                       case .recommended:
-                        LandingVM().getRecommendedVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
-                                           ViewHelper.shared().showLoader(self)
-                                           DispatchQueue.main.async {
-                                               self.object?.travellers?.append(contentsOf: (items?.travellers)!)
-                                               collectionView.reloadData()
-                                               
-                                               ViewHelper.shared().hideLoader()
-                                           }
-                                       }
-                           break
-                       }
-               
+                case .all:
+                    ViewHelper.shared().showLoader(self)
+                    LandingVM().getVolunteerList(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                        
+                        DispatchQueue.main.async {
+                            self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                            collectionView.reloadData()
+                            
+                            ViewHelper.shared().hideLoader()
+                        }
+                    }
+                    break
+                case .latest:
+                     ViewHelper.shared().showLoader(self)
+                    LandingVM().getLatestVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                       
+                        DispatchQueue.main.async {
+                            self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                            collectionView.reloadData()
+                            
+                            ViewHelper.shared().hideLoader()
+                        }
+                    }
+                    break
+                case .neraby:
+                    if location != nil{
+                        let distance = self.location.distance(from: CLLocation(latitude: Double(volItem.location?.longitude ?? "")!, longitude: Double(volItem.location?.latitude ?? "")!))
+                    }
+                case .recommended:
+                    ViewHelper.shared().showLoader(self)
+                    LandingVM().getRecommendedVolunteer(object!.travellers!.count, object!.travellers!.count+12) { (items) in
+                        DispatchQueue.main.async {
+                            self.object?.travellers?.append(contentsOf: (items?.travellers)!)
+                            collectionView.reloadData()
+                            ViewHelper.shared().hideLoader()
+                        }
+                    }
+                    break
+                }
+                
                 
             }else{
                 if ((self.object?.totalResults) ?? 0)-1 > indexPath.row{
@@ -512,7 +518,7 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
                     newSearchModal.min_offset = newSearchModal.min_offset + 12
                     newSearchModal.max_offset = newSearchModal.max_offset + 12
                     
-                    vc.vmObject.searchVolunteer(object: newSearchModal) { (volunteer) in
+                    VolunteerSearchVM(dependency: vc).searchVolunteer(object: newSearchModal) { (volunteer) in
                         DispatchQueue.main.async {
                             self.object?.travellers?.append(contentsOf: (volunteer?.travellers)!)
                             collectionView.reloadData()

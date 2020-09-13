@@ -24,6 +24,10 @@ class LoginVC: UIViewController,GIDSignInDelegate {
         GIDSignIn.sharedInstance()?.delegate = self
     }
     
+    @IBAction func eyeClicked(_ sender:UIButton){
+        password.isSecureTextEntry = !password.isSecureTextEntry
+    }
+    
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         vmObject?.signUp(emailId: emailId.text!, password: password.text!, completion: updateUiAfterSignup(status:data:))

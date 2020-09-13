@@ -227,6 +227,15 @@ extension HostSearchVC:UICollectionViewDelegate,UICollectionViewDataSource,UICol
         searchModel.conti = keys.first?.continentId
         searchModel.cntry = ((countriesData?[keys.first!]?.map({ $0.countryCode }))! as! [String]).joined(separator: "|")
         countries.isHidden = true
+        if  searchModel.conti != nil {
+            continentView.serachText.text = searchModel.continent
+            countriesView.serachText.text = searchModel.countries.joined(separator: ",")
+            
+            clearButton.isHidden = false
+        }
+        if searchModel.conti == nil {
+             clearButton.isHidden = true
+        }
       }
       
     

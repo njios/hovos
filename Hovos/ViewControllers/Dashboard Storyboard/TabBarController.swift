@@ -175,6 +175,9 @@ class TabBarController: UIViewController {
         self.addChild(vc!)
         
         self.containerView.addSubview(vc!.view)
+            if (vc as? DashboardVC) != nil {
+                (vc as! DashboardVC).menuView.delegate = self
+            }
         if (vc as? SettingsViewController) != nil {
             (vc as! SettingsViewController).menuView.delegate = self
         }

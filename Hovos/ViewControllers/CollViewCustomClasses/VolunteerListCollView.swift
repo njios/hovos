@@ -13,18 +13,19 @@ import ExpandableLabel
 
 protocol ListViewDelegate {
     func collViewdidUpdate(index:IndexPath)
-    func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String)
+    func collViewUpdateWithObject(index:IndexPath,object:Volunteer,type:String)
     
 }
 extension ListViewDelegate{
     
-    func collViewUpdateWithObject(index:IndexPath,object:[VolunteerItem],type:String){
+    func collViewUpdateWithObject(index:IndexPath,object:Volunteer,type:String){
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         
         if SharedUser.manager.auth.user?.role!.lowercased() == "v"{
             let hostVC = storyBoard.instantiateViewController(withIdentifier: "HostsVC") as! HostsVC
             hostVC.indexpath = index
-            hostVC.object.hosts = object
+            hostVC.object.hosts = object.hosts
+            hostVC.object.totalResults = object.totalResults
             
             if type == "New"{
                 hostVC.showMatching = false
@@ -36,15 +37,14 @@ extension ListViewDelegate{
             
             if let vc =  getNavigationController(){
                 vc.pushViewController(hostVC, animated: false)
-                //vc.present(hostVC, animated: false, completion: nil)
             }
             
         }else{
             
             let volVC = storyBoard.instantiateViewController(withIdentifier: "VolunteerVC") as! VolunteerVC
             volVC.indexpath = index
-            volVC.object?.travellers = object
-            
+            volVC.object?.travellers = object.travellers
+            volVC.object?.totalResults = object.totalResults
             if type == "New"{
                 volVC.type = .latest
             }
@@ -194,6 +194,8 @@ class listCell:UICollectionViewCell{
             
             if role == "V"{
                 vc.role = "V"
+            }else{
+                vc.role = "H"
             }
             vc.imageData = imageData
             vc.name = nameText

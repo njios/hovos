@@ -11,9 +11,9 @@ import CoreLocation
 import UIKit
 class DashBoardVM:NSObject {
     
-    var mapItems = [VolunteerItem]()
-    var recommendedItems = [VolunteerItem]()
-    var latestItems = [VolunteerItem]()
+    var mapItems = Volunteer()
+    var recommendedItems = Volunteer()
+    var latestItems = Volunteer()
     
     var location = CLLocation()
     var callback:((Int)->())!
@@ -48,22 +48,21 @@ class DashBoardVM:NSObject {
         ]
         
         let url =  URL(string: (urlComponents.url?.absoluteString)!)
-        
-        
+
         getApiCall(url: url! ) { (data, status, code) in
             
             let decoder =  JSONDecoder()
             let VolunteerList = try? decoder.decode(Volunteer.self, from: data!)
-            self.mapItems = VolunteerList?.travellers ?? []
+            self.mapItems = VolunteerList!
             ApiCall(packet: recommendedRequest) { (data, status, code) in
                 
                 let decoder =  JSONDecoder()
                 let VolunteerList1 = try? decoder.decode(Volunteer.self, from: data!)
-                self.recommendedItems = VolunteerList1?.travellers  ?? []
+                self.recommendedItems = VolunteerList1!
                 ApiCall(packet: latestRequest) { (data, status, code) in
                     let decoder =  JSONDecoder()
                     let VolunteerList2 = try? decoder.decode(Volunteer.self, from: data!)
-                    self.latestItems = VolunteerList2?.travellers ?? []
+                    self.latestItems = VolunteerList2!
                     self.callback(2)
                     
                 }
@@ -121,17 +120,17 @@ class DashBoardVM:NSObject {
             
             let decoder =  JSONDecoder()
             let VolunteerList = try? decoder.decode(Volunteer.self, from: data!)
-            self.mapItems = VolunteerList?.hosts ?? []
+            self.mapItems = VolunteerList!
             ApiCall(packet: recommendedRequest) { (data, status, code) in
                 
                 let decoder =  JSONDecoder()
                 let VolunteerList1 = try? decoder.decode(Volunteer.self, from: data!)
-                self.recommendedItems = VolunteerList1?.hosts ?? []
+                self.recommendedItems = VolunteerList1!
                 ApiCall(packet: latestRequest) { (data, status, code) in
                     
                     let decoder =  JSONDecoder()
                     let VolunteerList2 = try? decoder.decode(Volunteer.self, from: data!)
-                        self.latestItems = VolunteerList2?.hosts ?? []
+                        self.latestItems = VolunteerList2!
                         self.callback(2)
                         
                         

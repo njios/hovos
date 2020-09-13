@@ -77,6 +77,10 @@ class SignUpVc: UIViewController {
                }
     }
     
+    @IBAction func eyeClicked(_ sender:UIButton){
+        password.isSecureTextEntry = !password.isSecureTextEntry
+    }
+    
     @IBAction func signUpClicked(_ sender:UIButton){
         ViewHelper.shared().showLoader(self)
         vmObject?.signUp(firstname: firstName.text!, lastname: lastName.text!, emailId: emailId.text!, password: password.text!, type: type!, completion:updateUiAfterSignup(status:data:))
