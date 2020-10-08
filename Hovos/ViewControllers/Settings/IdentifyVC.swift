@@ -8,7 +8,7 @@
 
 import UIKit
 import Alamofire
-
+import DropDown
 class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var phoneno:UITextField!
@@ -18,14 +18,36 @@ class IdentifyVC: UIViewController,UIImagePickerControllerDelegate,UINavigationC
     @IBOutlet weak var suceeslabel:UILabel!
     @IBOutlet weak var optVerifyView:UIView!
     @IBOutlet var otp: [UITextField]!
+    let dropDown = DropDown()
+    var countryList = [String]()
+    var codeList = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         if (SharedUser.manager.auth.user?.phoneNumber ?? "") != ""{
             phoneno.text = (SharedUser.manager.auth.user?.phoneNumber ?? "").components(separatedBy: "-")[1]
             
+           
         }// Do any additional setup after loading the view.
+        getCode { (code) in
+            self.countryCode.setTitle("+\(code)", for: .normal)
+        }
+        
+        for item in countryDictionary{
+            
+            countryList.append(countryName(from: item.key) + " (+\(item.value))" )
+            codeList.append("+\(item.value)")
+        }
+        
     }
-    
+    @IBAction func showCodes(_ sender:UIButton){
+        dropDown.anchorView =  countryCode // UIView or UIBarButtonItem
+
+        dropDown.dataSource = countryList
+        dropDown.selectionAction = { [unowned self] (index: Int, item: String) in
+            self.countryCode.setTitle(codeList[index], for: .normal)
+        }
+        dropDown.show()
+    }
     
     @IBAction func identifyClicked(_ sender:UIButton){
         if  phoneno.text != "" {

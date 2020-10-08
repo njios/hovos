@@ -143,7 +143,7 @@ class listCell:UICollectionViewCell{
     @IBOutlet weak var disliked:UIButton!
     @IBOutlet weak var reviewsTable:UITableView!
     @IBOutlet weak var reviewsHieght:NSLayoutConstraint!
-    
+    @IBOutlet weak var aboutMeHieght:NSLayoutConstraint!
     var reviews = [review](){
         didSet{
             
@@ -164,6 +164,8 @@ class listCell:UICollectionViewCell{
     var imageMain = ""
     var nameText = ""
     var role = ""
+    var isCollapsed = false
+    var isExpanded = false
     weak var dependency:UIViewController!
     
     override func awakeFromNib() {
@@ -246,7 +248,12 @@ extension listCell:UITableViewDelegate,UITableViewDataSource{
         if tableView.tag == 100{
             return reviews.count
         }else{
-            return countries.count ?? 0
+            if countries.count > 5 && isExpanded == false{
+                isCollapsed = true
+                return 6
+            }else{
+            return countries.count
+            }
         }
     }
     
@@ -261,9 +268,23 @@ extension listCell:UITableViewDelegate,UITableViewDataSource{
             cell.review.text = reviewItem.review ?? ""
             return cell
         }else{
+            if isCollapsed && indexPath.row == 5 && isExpanded == false{
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AllCell") as! CountryCell
+                cell.country.text = "Show all \(countries.count) countries"
+                return cell
+            }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
             cell.country.text = countries[indexPath.row]
             return cell
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if tableView.tag != 100{
+            isExpanded = true
+            tableView.reloadData()
+            countryHeight.constant = CGFloat(countries.count * 30)
         }
     }
     

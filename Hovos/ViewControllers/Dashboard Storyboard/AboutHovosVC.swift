@@ -17,7 +17,7 @@ class AboutHovosVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     "Backgroud of the makers",
     "Contact details"]
     
-    private let subtitles = ["Version 1.0.3 last update August 31 2020",
+    private let subtitles = ["Version 1.0.3 last update October 9 2020",
     "Hovos is a marketplace for connecting colunteers and hosts. Volunteers offer their help to hosts who offer accommodations and board in return.",
     "Through Hovos we encourage connecting hosts and volunteers, creating new relationships between them and offering volunteers to learn new skills. We believe by meeting other people and experiencing new culture we grow spiritually.",
     "Hovos ia a product of the company Pimpernel Online Entertainment, founded in 1990 by Mark Wiersma. Pimpernel's activities have always been involved with developing online content. The most recent highlight was HomeForExchange.com, a prominent global home exchange platform, sold in 2015 to LoveHomeSwap.com.",

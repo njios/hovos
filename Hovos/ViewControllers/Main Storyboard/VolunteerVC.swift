@@ -299,8 +299,12 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         
         cell.countries = Array(volItem.countries!.values) as! [String]
         cell.countryTable.reloadData()
-        cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
         
+        if (volItem.countries?.count ?? 0) > 5{
+            cell.countryHeight.constant = CGFloat(6 * 30)
+        }else{
+        cell.countryHeight.constant = CGFloat((volItem.countries?.count ?? 0) * 30)
+        }
         switch type {
         case .all:
             titleLabel.text = "Volunteers, \(indexPath.row + 1) of \(object?.totalResults ?? 0)"
@@ -339,9 +343,12 @@ extension VolunteerVC:UICollectionViewDelegate,UICollectionViewDelegateFlowLayou
         
         cell.additionalInfo.text = ""
         
-        cell.additionalInfo.text = personalDesc + "\n" + languageDesc + "\n" + (volItem.additionalDesc ?? "")
-        
-        
+        cell.additionalInfo.text = personalDesc + (personalDesc.count > 0 ? "\n" : "") + languageDesc + (languageDesc.count > 0 ? "\n" : "") + (volItem.additionalDesc ?? "")
+        if (volItem.additionalDesc ?? "") == "" && personalDesc == "" && languageDesc == ""{
+            cell.aboutMeHieght.constant = 0
+        }else{
+            cell.aboutMeHieght.constant = 24
+        }
         cell.additionalInfo?.numberOfLines = 4
         cell.additionalInfo?.collapsed = true
         let attributedString = NSMutableAttributedString(string:"read more")

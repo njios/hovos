@@ -31,7 +31,7 @@ var locationManager: CLLocationManager?
              let vc = storyboard.instantiateViewController(withIdentifier: "dashboradnav")
             window?.rootViewController = vc
         }
-        
+       
         return true
     }
     
