@@ -43,6 +43,7 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
                     self.mapView.camera = GMSCameraPosition.camera(withLatitude: location.coordinate.latitude, longitude: location.coordinate.longitude, zoom: 10.0)
                     
                     let marker = customMarker()
+                    
                     marker.position = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
                     let markerImage = UIImage.init(named: "greenLocation")
                     let markerView = UIImageView(image: markerImage)
@@ -59,8 +60,12 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
                                            marker.position = CLLocationCoordinate2D(latitude: lattitude, longitude: longitude)
                         marker.title = Hosts![i].member?.firstName
                         marker.snippet = Hosts![i].currentLocation
-                                           
-                                           let markerImage = UIImage.init(named: "mappin")
+                        if let imageString = Hosts![i].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") {
+                            if let url = URL(string: imageString){
+                            marker.applyImage(url: url)
+                        }
+                        }
+                            let markerImage = UIImage.init(named: "mappin")
                                            let markerView = UIImageView(image: markerImage)
                                            marker.index = i
                                            marker.iconView = markerView
@@ -91,15 +96,13 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
         let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation
         if let custom = marker as? customMarker{
             infoWindow.name.text = custom.info.member?.firstName ?? ""
-            let lastSeen = "Last seen on \((custom.info.lastLogin ?? "").getDate().getMonth()) \((custom.info.lastLogin ?? "").getDate().getDay())"
+            let lastSeen = "Last seen on \((custom.info.member?.lastOnline  ?? "").getDate().getMonth()) \((custom.info.member?.lastOnline ?? "").getDate().getDay())"
             infoWindow.lstseen.text = lastSeen
             let jobs = custom.info.jobs?.values
             infoWindow.jobs.text = jobs?.joined(separator: " | ")
-            infoWindow.img.kf.indicatorType = .activity
-            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+            infoWindow.img.image = custom.image
+           
         }
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y =  infoWindow.center.y + 100
         return infoWindow
         
     }
@@ -114,6 +117,23 @@ class NearByHostMAPCell: UITableViewCell,GMSMapViewDelegate {
             }
         }
     }
+
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+
+        mapView.animate(toLocation: marker.position)
+        mapView.selectedMarker = marker
+
+        var point = mapView.projection.point(for: marker.position)
+        point.y = point.y - 120
+
+        let newPoint = mapView.projection.coordinate(for: point)
+        let camera = GMSCameraUpdate.setTarget(newPoint)
+        mapView.animate(with: camera)
+
+        return true
+
+    }
+    
     
 }
 
@@ -148,4 +168,18 @@ class CustomAnnotation:UIView{
 class customMarker:GMSMarker{
     var info = VolunteerItem()
     var index = -1
+    var image:UIImage!
+ 
+    
+    func applyImage(url: URL) {
+        DispatchQueue.global(qos: .background).async {
+            guard let data = try? Data(contentsOf: url),
+                let image = UIImage(data: data)
+                else { return }
+
+            DispatchQueue.main.async {
+                self.image = image
+            }
+        }
+    }
 }

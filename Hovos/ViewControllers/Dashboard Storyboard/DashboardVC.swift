@@ -174,7 +174,12 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
                 marker.title = mapItems[i].member?.firstName
                 marker.snippet = mapItems[i].currentLocation
                 
-                
+                if let imageString = mapItems[i].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") {
+                    if let url = URL(string: imageString){
+                    marker.applyImage(url: url)
+                }
+                }
+            
                 
                 var markerImage:UIImage!
                 if SharedUser.manager.auth.user?.role?.lowercased() == "v"{
@@ -226,15 +231,13 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation
         if let custom = marker as? customMarker{
             infoWindow.name.text = custom.info.member?.firstName ?? ""
-            let lastSeen = "Last seen on \((custom.info.lastLogin ?? "").getDate().getMonth()) \((custom.info.lastLogin ?? "").getDate().getDay())"
+            let lastSeen = "Last seen on \((custom.info.member?.lastOnline ?? "").getDate().getMonth()) \((custom.info.member?.lastOnline ?? "").getDate().getDay())"
             infoWindow.lstseen.text = lastSeen
             let jobs = custom.info.jobs?.values
             infoWindow.jobs.text = jobs?.joined(separator: " | ")
-            infoWindow.img.kf.indicatorType = .activity
-            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium ?? ""))
+            infoWindow.img.image = custom.image
         }
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y =  infoWindow.center.y + 100
+       
         return infoWindow
         
     }
@@ -245,6 +248,22 @@ class DashboardVC: UIViewController,GMSMapViewDelegate {
         }
     }
     
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+
+        mapView.animate(toLocation: marker.position)
+        mapView.selectedMarker = marker
+
+        var point = mapView.projection.point(for: marker.position)
+        point.y = point.y - 120
+
+        let newPoint = mapView.projection.coordinate(for: point)
+        let camera = GMSCameraUpdate.setTarget(newPoint)
+        mapView.animate(with: camera)
+
+        return true
+
+    }
+
     
 }
 extension DashboardVC:Menudelegates{

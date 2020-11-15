@@ -41,7 +41,11 @@ class HostsVC: UIViewController {
         super.viewDidLoad()
         if let modal = copyModal{
             searchModal = modal
-            searchHostApi(hostSearchModal: searchModal, completion: { _,_  in })
+            searchHostApi(hostSearchModal: searchModal, completion: { vol,_  in
+                self.object = vol!
+                self.collView.reloadData()
+                
+            })
         }
         menuView.frame = self.view.frame
         if let _ = UserDefaults.standard.value(forKey: constants.accessToken.rawValue){
@@ -87,8 +91,9 @@ class HostsVC: UIViewController {
         searchHostApi(hostSearchModal: searchModal) {items,_  in
             DispatchQueue.main.async {
                 self.object = items!
-                self.collView.reloadData()
                 
+                self.collView.reloadData()
+                self.loaderView?.isHidden = true
             }
         }
     }
@@ -121,6 +126,7 @@ class HostsVC: UIViewController {
                 }else{
                     completion(vol, hostSearchModal)
                 }
+                self.loaderView.isHidden = true
             }
         }
     }
@@ -229,10 +235,7 @@ class HostsVC: UIViewController {
     }
     
     @IBAction func searchHost(_ sender:UIButton){
-        //        indexpath = nil
-        //        object.hosts?.removeAll()
-        //        collView.reloadData()
-        
+   
         let vc = HostSearchVC(nibName: "HostSearchVC", bundle: nil)
         vc.dependency = self
         if searchModal != nil{

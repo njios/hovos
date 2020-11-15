@@ -269,9 +269,12 @@ extension listCell:UITableViewDelegate,UITableViewDataSource{
             return cell
         }else{
             if isCollapsed && indexPath.row == 5 && isExpanded == false{
-                let cell = tableView.dequeueReusableCell(withIdentifier: "AllCell") as! CountryCell
+                if  let cell = tableView.dequeueReusableCell(withIdentifier: "AllCell") as? CountryCell {
                 cell.country.text = "Show all \(countries.count) countries"
                 return cell
+                }else{
+                    return UITableViewCell()
+                }
             }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CountryCell") as! CountryCell
             cell.country.text = countries[indexPath.row]

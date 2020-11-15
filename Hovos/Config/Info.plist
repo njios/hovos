@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FacebookAppID</key>
 	<string>2177335215907710</string>
 	<key>FacebookDisplayName</key>
@@ -48,6 +48,16 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>To submit your photo to hovos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To submit your photo to hovos</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Used to fetch near by Hosts.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Used to fetch near by Hosts.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to fetch near by Hosts.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -71,15 +81,5 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Used to fetch near by Hosts.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Used to fetch near by Hosts.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Used to fetch near by Hosts.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>To submit your photo to hovos</string>
-	<key>NSAppleMusicUsageDescription</key>
-	<string>To submit your photo to hovos</string>
 </dict>
 </plist>

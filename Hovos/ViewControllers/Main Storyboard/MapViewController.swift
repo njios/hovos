@@ -19,10 +19,12 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
     var location: CLLocation!
     var mapItems:[VolunteerItem]!
     var totalmapItems = [VolunteerItem]()
+    var tappedmarker:GMSMarker!
+    var updatedLocation:CLLocation!
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        
+        updatedLocation = location
         // Do any additional setup after loading the view.
     }
     
@@ -39,6 +41,17 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
         if mapItems.count > 0{
             loadMap()
         }else{
+            
+            let coordinates = CLLocation(latitude: position.target.latitude, longitude: position.target.longitude)
+            
+            if coordinates.distance(from: updatedLocation) < 50000{
+                print(coordinates.distance(from: updatedLocation))
+                self.loadingHieght.constant = 0
+              
+                return
+            }
+            updatedLocation = coordinates
+            
             var urlComponents = URLComponents()
             urlComponents.scheme = "https"
             urlComponents.host = "www.hovos.com"
@@ -81,12 +94,18 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
                                     let markerImage = UIImage.init(named: "mappin")
                                     let markerView = UIImageView(image: markerImage)
                                     marker.index = i
+                                    if let imageString = self.totalmapItems[i].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") {
+                                        if let url = URL(string: imageString){
+                                        marker.applyImage(url: url)
+                                    }
+                                    }
                                     marker.iconView = markerView
                                     marker.info = self.totalmapItems[i]
                                     marker.map = self.mapView
                                 }
                             }
                         }
+                       
                     }
                 }
             }
@@ -118,6 +137,12 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
                 marker.title = mapItems[i].member?.firstName
                 marker.snippet = mapItems[i].currentLocation
                 
+                if let imageString = mapItems[i].member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") {
+                    if let url = URL(string: imageString){
+                    marker.applyImage(url: url)
+                }
+                }
+                    
                 let markerImage = UIImage.init(named: "mappin")
                 let markerView = UIImageView(image: markerImage)
                 marker.index = i
@@ -134,15 +159,14 @@ class MapViewController: UIViewController,GMSMapViewDelegate {
         let infoWindow = CustomAnnotation.instanceFromNib() as! CustomAnnotation
         if let custom = marker as? customMarker{
             infoWindow.name.text = custom.info.member?.firstName ?? ""
-            let lastSeen = "Last seen on \((custom.info.lastLogin ?? "").getDate().getMonth()) \((custom.info.lastLogin ?? "").getDate().getDay())"
+            let lastSeen = "Last seen on \((custom.info.member?.lastOnline ?? "").getDate().getMonth()) \((custom.info.member?.lastOnline ?? "").getDate().getDay())"
             infoWindow.lstseen.text = lastSeen
             let jobs = custom.info.jobs?.values
             infoWindow.jobs.text = jobs?.joined(separator: " | ")
-            infoWindow.img.kf.indicatorType = .activity
-            infoWindow.img.kf.setImage(with: URL(string:custom.info.member?.image?.medium?.replacingOccurrences(of: "medium", with: "small") ?? ""))
+            infoWindow.img.image = custom.image
         }
-        infoWindow.center = mapView.projection.point(for: marker.position)
-        infoWindow.center.y =  infoWindow.center.y + 100
+        tappedmarker = marker
+ 
         return infoWindow
         
     }
